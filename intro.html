@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bio-image Analysis with Python &#8212; Bio-image Analysis with Python</title>
+    <title>Bio-image Analysis Notebooks &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -80,7 +80,7 @@
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Bio-image Analysis with Python</h1>
+      <h1 class="site-logo" id="site-title">Bio-image Analysis Notebooks</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -91,7 +91,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   Bio-image Analysis with Python
+   Bio-image Analysis Notebooks
   </a>
  </li>
 </ul>
@@ -206,23 +206,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="12_image_analysis_basics/03_scikit_image.html">
-     scikit-image for processing images
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="12_image_analysis_basics/04_multi_channel_image_data.html">
      Multi-channel image data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_image_analysis_basics/skeletonization.html">
-     Skeletonization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_image_analysis_basics/analyse_banana_data_set.html">
-     Exercise: Analyse the bending of a banana in MRI
     </a>
    </li>
   </ul>
@@ -270,8 +255,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="16_3d_image_visualization/Volumetric_image_processing.html">
-     Loading, processing and visualising 3D images
+    <a class="reference internal" href="16_3d_image_visualization/10_nd_image_data.html">
+     Multidimensional image stacks
     </a>
    </li>
    <li class="toctree-l2">
@@ -282,11 +267,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="16_3d_image_visualization/05_napari.html">
      Interactive image visualization with napari
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="16_3d_image_visualization/10_nd_image_data.html">
-     Multidimensional image stacks
     </a>
    </li>
   </ul>
@@ -314,11 +294,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="18_image_filtering/simpleitk.html">
      Processing images using SimpleITK
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18_image_filtering/nsbatwm.html">
-     Segment blobs and things with membranes
     </a>
    </li>
    <li class="toctree-l2">
@@ -369,11 +344,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="20_image_segmentation/12_watershed_objects_labeling.html">
-     Watershed objects labeling
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="20_image_segmentation/14_remove_labels_on_image_edges.html">
      Remove labels on image edges
     </a>
@@ -394,8 +364,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/nsbatwm.html">
+     Segment blobs and things with membranes
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="20_image_segmentation/scikit_learn_random_forest_pixel_classifier.html">
-     Pixel classification using Scikit image
+     Pixel classification using Scikit-learn
     </a>
    </li>
    <li class="toctree-l2">
@@ -423,6 +398,11 @@
      Image segmentation with StarDist
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/apoc_object_classifier.html">
+     Object classiciation on OpenCL-compatible GPUs
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -436,23 +416,23 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="22_feature_extraction/count_blobs.html">
-     Counting blobs with pyclesperanto
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="22_feature_extraction/quantitative_measurements.html">
      Quantitative image analysis
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="22_feature_extraction/label_statistics.html">
+    <a class="reference internal" href="22_feature_extraction/count_blobs.html">
+     Counting blobs with pyclesperanto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_feature_extraction/statistics_with_pyclesperanto.html">
      Basic statistics with pyclesperanto
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="22_feature_extraction/cell_classification.html">
-     Cell classification using Random Forest Classifiers
+    <a class="reference internal" href="22_feature_extraction/statistics_with_simpleitk.html">
+     Statistics using SimpleITK
     </a>
    </li>
   </ul>
@@ -473,11 +453,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="25_neighborhood_relationships_between_cells/mesh_between_centroids.html">
-     Mesh between centroids
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="25_neighborhood_relationships_between_cells/mesh_between_touching_neighbors.html">
      Mesh between touching neighbors
     </a>
@@ -488,18 +463,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="25_neighborhood_relationships_between_cells/mesh_with_distances.html">
-     Distance-meshes
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="25_neighborhood_relationships_between_cells/distance_to_other_labels.html">
      Measure the distance to neighboring cells
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="25_neighborhood_relationships_between_cells/neighbors_of_neighbors.html">
-     Neighbors of neighbors
+    <a class="reference internal" href="25_neighborhood_relationships_between_cells/label_neighbor_filters.html">
+     Label neighbor filters
     </a>
    </li>
    <li class="toctree-l2">
@@ -534,11 +504,6 @@
      Differentiating nuclei according to signal intensity
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="28_colocalization/measure_overlap_between_label_images.html">
-     Measure overlap between two label images
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -559,8 +524,8 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="35_parameter_optimization/readme.html">
-   Parameter optimization
+  <a class="reference internal" href="40_tabular_data_wrangling/readme.html">
+   Tabular data wrangling
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
   <label for="toctree-checkbox-12">
@@ -569,65 +534,16 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="35_parameter_optimization/label_image_optimizer.html">
-     Optimize segmentation / labeling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="35_parameter_optimization/sparse_label_image_optimizer.html">
-     Optimize image segmentation / labeling with spare annotations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="35_parameter_optimization/membrane_segmentation.html">
-     Segmenting cells with fluorescent membranes using Random Forest Classifiers
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="40_tabular_data_wrangling/readme.html">
-   Tabular data wrangling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="40_tabular_data_wrangling/append_tables.html">
-     Append tables
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="40_tabular_data_wrangling/pandas.html">
      Working with tables in pandas
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="51_plotting/readme.html">
-   Plotting
+ <li class="toctree-l1">
+  <a class="reference internal" href="imprint.html">
+   Imprint
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="51_plotting/11_plotting.html">
-     Plotting
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="51_plotting/bland_altman_analysis.html">
-     Bland-Altman pots
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -717,6 +633,21 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#material-origin">
+   Material origin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#license">
+   License
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributing">
+   Contributing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#work-in-progress">
    Work-in-progress
   </a>
@@ -731,7 +662,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Bio-image Analysis with Python</h1>
+                <h1>Bio-image Analysis Notebooks</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -741,6 +672,21 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#material-origin">
+   Material origin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#license">
+   License
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributing">
+   Contributing
+  </a>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#work-in-progress">
    Work-in-progress
@@ -755,13 +701,41 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="bio-image-analysis-with-python">
-<h1>Bio-image Analysis with Python<a class="headerlink" href="#bio-image-analysis-with-python" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="bio-image-analysis-notebooks">
+<h1>Bio-image Analysis Notebooks<a class="headerlink" href="#bio-image-analysis-notebooks" title="Permalink to this headline">¶</a></h1>
 <p>This collection of <a class="reference external" href="https://www.python.org/">Python</a>
 <a class="reference external" href="https://jupyter.org/">jupyter</a> notebooks are written for Python beginners who are interested in analysing images acquired using modern fluorescence microscopes.
 The journey starts with Python basics and introduces general concepts of bio-image analysis.
 Special emphasis is put on image data showing cells and nuclei forming tissues and organisms.
 Demonstrations of basic principles are done in two-dimensional image data and more sophisticated examples demonstrate the basic principles in three-dimensional image data, potentially also over time.</p>
+<div class="section" id="material-origin">
+<h2>Material origin<a class="headerlink" href="#material-origin" title="Permalink to this headline">¶</a></h2>
+<p>This repository contains Jupyter notebooks collected from multiple sources. They are maintained here to produce course materials with more streamlinded relationships between contents. In case you are interested in specific topics, you may find more recent materials in the notebook source repositories.</p>
+<p>Sources (alphabetical)</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/haesleinhuepf/apoc">apoc</a></p></li>
+<li><p><a class="reference external" href="https://github.com/biapol/blog">BiaPol blog</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Bio-image_Analysis_with_Python">Bio-image_Analysis_with_Python</a></p></li>
+<li><p><a class="reference external" href="https://github.com/haesleinhuepf/label_neighbor_filters">label_neighbor_filters</a></p></li>
+<li><p><a class="reference external" href="https://git.mpi-cbg.de/rhaase/lecture_applied_bioimage_analysis_2020">lecture_applied_bioimage_analysis_2020</a></p></li>
+<li><p><a class="reference external" href="https://github.com/haesleinhuepf/napari-cupy-image-processing">napari-cupy-image-processing</a></p></li>
+<li><p><a class="reference external" href="https://github.com/haesleinhuepf/napari-segment-blobs-and-things-with-membranes">napari-segment-blobs-and-things-with-membranes</a></p></li>
+<li><p><a class="reference external" href="https://github.com/haesleinhuepf/napari-simpleitk-image-processing">napari-simpleitk-image-processing</a></p></li>
+<li><p><a class="reference external" href="https://github.com/haesleinhuepf/napari-workflow-optimizer">napari-workflow-optimizer</a></p></li>
+<li><p><a class="reference external" href="https://github.com/haesleinhuepf/napari-workflows">napari-workflows</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/on_the_fly_image_processing_napari">on_the_fly_image_processing_napari</a></p></li>
+<li><p><a class="reference external" href="https://github.com/clesperanto/pyclesperanto_prototype/">pyclesperanto-prototype</a></p></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>All contents of this jupyter book and the corresponding github repository is licensed <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> and
+BSD3 by the <a class="reference external" href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/contributors">authors and contributors</a>, unless mentioned otherwise.</p>
+</div>
+<div class="section" id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<p>If you see any issues in this book, have questions or suggestions, please open a <a class="reference external" href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues">github issue</a>. Contributions of any kind (pull-requests, feedback, suggestions) are very welcome. If you send a pull-request, please make sure that you own the copyright of the materials you send. In case your materials are merged, and your contribution is more than just minor corrections and additions, you will be listed under authors and copyright holders. Also please make sure that the algorithms you present are well-explained and contain links to additional resources such as <a class="reference external" href="https://www.wikipedia.org/">Wikipedia</a> pages, online videos and tutorials.</p>
+</div>
 <div class="section" id="work-in-progress">
 <h2>Work-in-progress<a class="headerlink" href="#work-in-progress" title="Permalink to this headline">¶</a></h2>
 <p>In January 2022 I just pulled together all these notebooks in one repository. I will now in the following months reorganize their content and streamline transitions between the topics. I’m doing this in the open because I like receiving feedback early on. If you have interesting notebooks that fit in the topic, your pull-request is very welcome. Also if you experience any issues, please <a class="reference external" href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues">get in touch</a>. I’m just saying, this repository is work-in-progress and it will take some time. :-)</p>

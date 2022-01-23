@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Segment blobs and things with membranes &#8212; Bio-image Analysis with Python</title>
+    <title>Filtering with napari-segment-blobs-and-things-with-membranes (nsbatwm) &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,6 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Generating feature stacks" href="feature_stacks.html" />
-    <link rel="prev" title="Processing images using SimpleITK" href="simpleitk.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -81,7 +79,7 @@
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Bio-image Analysis with Python</h1>
+      <h1 class="site-logo" id="site-title">Bio-image Analysis Notebooks</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -92,11 +90,11 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
-   Bio-image Analysis with Python
+   Bio-image Analysis Notebooks
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -207,23 +205,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../12_image_analysis_basics/03_scikit_image.html">
-     scikit-image for processing images
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../12_image_analysis_basics/04_multi_channel_image_data.html">
      Multi-channel image data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12_image_analysis_basics/skeletonization.html">
-     Skeletonization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12_image_analysis_basics/analyse_banana_data_set.html">
-     Exercise: Analyse the bending of a banana in MRI
     </a>
    </li>
   </ul>
@@ -271,8 +254,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../16_3d_image_visualization/Volumetric_image_processing.html">
-     Loading, processing and visualising 3D images
+    <a class="reference internal" href="../16_3d_image_visualization/10_nd_image_data.html">
+     Multidimensional image stacks
     </a>
    </li>
    <li class="toctree-l2">
@@ -285,23 +268,18 @@
      Interactive image visualization with napari
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../16_3d_image_visualization/10_nd_image_data.html">
-     Multidimensional image stacks
-    </a>
-   </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="readme.html">
    Image filtering
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
   <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="01_Filtering.html">
      Filtering images
@@ -315,11 +293,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="simpleitk.html">
      Processing images using SimpleITK
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Segment blobs and things with membranes
     </a>
    </li>
    <li class="toctree-l2">
@@ -370,11 +343,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/12_watershed_objects_labeling.html">
-     Watershed objects labeling
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/14_remove_labels_on_image_edges.html">
      Remove labels on image edges
     </a>
@@ -395,8 +363,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/nsbatwm.html">
+     Segment blobs and things with membranes
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/scikit_learn_random_forest_pixel_classifier.html">
-     Pixel classification using Scikit image
+     Pixel classification using Scikit-learn
     </a>
    </li>
    <li class="toctree-l2">
@@ -424,6 +397,11 @@
      Image segmentation with StarDist
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/apoc_object_classifier.html">
+     Object classiciation on OpenCL-compatible GPUs
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -437,23 +415,23 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../22_feature_extraction/count_blobs.html">
-     Counting blobs with pyclesperanto
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../22_feature_extraction/quantitative_measurements.html">
      Quantitative image analysis
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../22_feature_extraction/label_statistics.html">
+    <a class="reference internal" href="../22_feature_extraction/count_blobs.html">
+     Counting blobs with pyclesperanto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../22_feature_extraction/statistics_with_pyclesperanto.html">
      Basic statistics with pyclesperanto
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../22_feature_extraction/cell_classification.html">
-     Cell classification using Random Forest Classifiers
+    <a class="reference internal" href="../22_feature_extraction/statistics_with_simpleitk.html">
+     Statistics using SimpleITK
     </a>
    </li>
   </ul>
@@ -474,11 +452,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/mesh_between_centroids.html">
-     Mesh between centroids
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../25_neighborhood_relationships_between_cells/mesh_between_touching_neighbors.html">
      Mesh between touching neighbors
     </a>
@@ -489,18 +462,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/mesh_with_distances.html">
-     Distance-meshes
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../25_neighborhood_relationships_between_cells/distance_to_other_labels.html">
      Measure the distance to neighboring cells
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/neighbors_of_neighbors.html">
-     Neighbors of neighbors
+    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/label_neighbor_filters.html">
+     Label neighbor filters
     </a>
    </li>
    <li class="toctree-l2">
@@ -535,11 +503,6 @@
      Differentiating nuclei according to signal intensity
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../28_colocalization/measure_overlap_between_label_images.html">
-     Measure overlap between two label images
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -560,8 +523,8 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../35_parameter_optimization/readme.html">
-   Parameter optimization
+  <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
+   Tabular data wrangling
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
   <label for="toctree-checkbox-12">
@@ -570,65 +533,16 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../35_parameter_optimization/label_image_optimizer.html">
-     Optimize segmentation / labeling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../35_parameter_optimization/sparse_label_image_optimizer.html">
-     Optimize image segmentation / labeling with spare annotations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../35_parameter_optimization/membrane_segmentation.html">
-     Segmenting cells with fluorescent membranes using Random Forest Classifiers
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
-   Tabular data wrangling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../40_tabular_data_wrangling/append_tables.html">
-     Append tables
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../40_tabular_data_wrangling/pandas.html">
      Working with tables in pandas
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../51_plotting/readme.html">
-   Plotting
+ <li class="toctree-l1">
+  <a class="reference internal" href="../imprint.html">
+   Imprint
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../51_plotting/11_plotting.html">
-     Plotting
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../51_plotting/bland_altman_analysis.html">
-     Bland-Altman pots
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -735,43 +649,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#voronoi-otsu-labeling">
-   Voronoi-Otsu-Labeling
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#threshold-otsu">
-   Threshold Otsu
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#binary-invert">
-   Binary invert
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connected-component-labeling">
-   Connected component labeling
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#split-touching-objects-formerly-known-as-binary-watershed">
-   Split touching objects (formerly known as binary watershed)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#seeded-waterhed">
-   Seeded waterhed
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#subtract-background">
    Subtract background
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#segment-watershed-using-local-minima-as-seeds">
-   Segment watershed using local minima as seeds
   </a>
  </li>
 </ul>
@@ -784,7 +663,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Segment blobs and things with membranes</h1>
+                <h1>Filtering with napari-segment-blobs-and-things-with-membranes (nsbatwm)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -795,43 +674,8 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#voronoi-otsu-labeling">
-   Voronoi-Otsu-Labeling
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#threshold-otsu">
-   Threshold Otsu
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#binary-invert">
-   Binary invert
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connected-component-labeling">
-   Connected component labeling
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#split-touching-objects-formerly-known-as-binary-watershed">
-   Split touching objects (formerly known as binary watershed)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#seeded-waterhed">
-   Seeded waterhed
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#subtract-background">
    Subtract background
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#segment-watershed-using-local-minima-as-seeds">
-   Segment watershed using local minima as seeds
   </a>
  </li>
 </ul>
@@ -843,8 +687,8 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="segment-blobs-and-things-with-membranes">
-<h1>Segment blobs and things with membranes<a class="headerlink" href="#segment-blobs-and-things-with-membranes" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="filtering-with-napari-segment-blobs-and-things-with-membranes-nsbatwm">
+<h1>Filtering with napari-segment-blobs-and-things-with-membranes (nsbatwm)<a class="headerlink" href="#filtering-with-napari-segment-blobs-and-things-with-membranes-nsbatwm" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">napari_segment_blobs_and_things_with_membranes</span> <span class="kn">import</span> <span class="o">*</span>
@@ -857,137 +701,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\structure\code\napari-tools-menu\napari_tools_menu\__init__.py:122: UserWarning: Error in monkey patching napari. Please let @haesleinleinhuepf know at
-https://github.com/haesleinhuepf/napari-tools-menu/issues
-  warnings.warn(&quot;Error in monkey patching napari. Please let @haesleinleinhuepf know at\nhttps://github.com/haesleinhuepf/napari-tools-menu/issues&quot;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19b430790&gt;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c82006a90&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_1_2.png" src="../_images/nsbatwm_1_2.png" />
-</div>
-</div>
-<div class="section" id="voronoi-otsu-labeling">
-<h2>Voronoi-Otsu-Labeling<a class="headerlink" href="#voronoi-otsu-labeling" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\miniconda3\envs\bio_38\lib\site-packages\skimage\io\_plugins\matplotlib_plugin.py:150: UserWarning: Low image data range; displaying image with stretched contrast.
-  lo, hi, cmap = _get_display_range(image)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c820cf790&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_3_2.png" src="../_images/nsbatwm_3_2.png" />
-</div>
-</div>
-</div>
-<div class="section" id="threshold-otsu">
-<h2>Threshold Otsu<a class="headerlink" href="#threshold-otsu" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary</span> <span class="o">=</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c82191a90&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_5_1.png" src="../_images/nsbatwm_5_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="binary-invert">
-<h2>Binary invert<a class="headerlink" href="#binary-invert" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inverted_binary</span> <span class="o">=</span> <span class="n">binary_invert</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">inverted_binary</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c82254f70&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_7_1.png" src="../_images/nsbatwm_7_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="connected-component-labeling">
-<h2>Connected component labeling<a class="headerlink" href="#connected-component-labeling" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">connected_component_labeling</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c82314430&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_9_1.png" src="../_images/nsbatwm_9_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="split-touching-objects-formerly-known-as-binary-watershed">
-<h2>Split touching objects (formerly known as binary watershed)<a class="headerlink" href="#split-touching-objects-formerly-known-as-binary-watershed" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_objects</span> <span class="o">=</span> <span class="n">split_touching_objects</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">split_objects</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c833a41c0&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_11_1.png" src="../_images/nsbatwm_11_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="seeded-waterhed">
-<h2>Seeded waterhed<a class="headerlink" href="#seeded-waterhed" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
-<span class="n">cells</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cells3d</span><span class="p">()</span>
-
-<span class="n">nuclei</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">nuclei</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c843a74c0&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_13_1.png" src="../_images/nsbatwm_13_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labeled_nuclei</span> <span class="o">=</span> <span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">nuclei</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">labeled_nuclei</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c843f1be0&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_14_1.png" src="../_images/nsbatwm_14_1.png" />
+<img alt="../_images/nsbatwm_1_1.png" src="../_images/nsbatwm_1_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -998,24 +715,14 @@ https://github.com/haesleinhuepf/napari-tools-menu/issues
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c844b8160&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">p1</span><span class="o">/</span><span class="mi">6</span><span class="n">svzckgd1y5906pfgm71fvmr0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_10869</span><span class="o">/</span><span class="mf">1983980811.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">membranes</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">imshow</span><span class="p">(</span><span class="n">membranes</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;cells&#39; is not defined
 </pre></div>
-</div>
-<img alt="../_images/nsbatwm_15_1.png" src="../_images/nsbatwm_15_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">seeded_watershed</span><span class="p">(</span><span class="n">membranes</span><span class="p">,</span> <span class="n">labeled_nuclei</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c84511fa0&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_16_1.png" src="../_images/nsbatwm_16_1.png" />
 </div>
 </div>
 </div>
@@ -1028,44 +735,12 @@ https://github.com/haesleinhuepf/napari-tools-menu/issues
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c845b4ac0&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_18_1.png" src="../_images/nsbatwm_18_1.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">background_subtracted</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c8462a0a0&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_19_1.png" src="../_images/nsbatwm_19_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="segment-watershed-using-local-minima-as-seeds">
-<h2>Segment watershed using local minima as seeds<a class="headerlink" href="#segment-watershed-using-local-minima-as-seeds" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">local_minima_seeded_watershed</span><span class="p">(</span><span class="n">membranes</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x27c846cf4f0&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_21_2.png" src="../_images/nsbatwm_21_2.png" />
 </div>
 </div>
 </div>
@@ -1095,21 +770,7 @@ https://github.com/haesleinhuepf/napari-tools-menu/issues
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="simpleitk.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Processing images using SimpleITK</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="feature_stacks.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Generating feature stacks</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>
