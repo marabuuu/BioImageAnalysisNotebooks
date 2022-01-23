@@ -51,6 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Affine transforms using clesperanto" href="affine_transforms_clesperanto.html" />
+    <link rel="prev" title="Affine transforms using Scipy" href="affine_transforms_scipy.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -94,7 +96,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -307,16 +309,16 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="readme.html">
    Spatial transforms
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
   <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="affine_transforms_scikit_image.html">
      Affine transforms using scikit-image
@@ -325,6 +327,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="affine_transforms_scipy.html">
      Affine transforms using Scipy
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Affine transforms using cupy
     </a>
    </li>
    <li class="toctree-l2">
@@ -714,19 +721,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cupy">
-   cupy
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -739,19 +733,6 @@
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cupy">
-   cupy
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -760,8 +741,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="affine-transforms-using-cupy">
 <h1>Affine transforms using cupy<a class="headerlink" href="#affine-transforms-using-cupy" title="Permalink to this headline">¶</a></h1>
-<p>Here we compare performance of affine transforms implemented in <a class="reference external" href="https://cupy.dev">cupy</a>, <a class="reference external" href="https://scipy.org">scipy</a> and clEsperanto</p>
-<p><strong>Note:</strong> benchmarking results vary heavily depending on image size, kernel size, used operations, parameters and used hardware. Use this notebook to adapt it to your use-case scenario and benchmark on your target hardware. If you have different scenarios or use-cases, you are very welcome to submit your notebook as pull-request!</p>
+<p>Here we apply an affine transform using <a class="reference external" href="https://cupy.dev">cupy</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imshow</span>
@@ -788,6 +768,7 @@
 <img alt="../_images/affine_transforms_cupy_2_1.png" src="../_images/affine_transforms_cupy_2_1.png" />
 </div>
 </div>
+<p>Analogously to transforms in scipy also cupy used transform matrices to describe the transformation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -800,8 +781,30 @@
     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <span class="p">])</span>
-<span class="n">output_shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">/</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">output_shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before we can apply a cupy operation to an image, we need to send it to GPU memory. We receive a handle to an image on the GPU that cannot be shown using <code class="docutils literal notranslate"><span class="pre">imshow</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cuda_image</span> <span class="o">=</span> <span class="n">cupy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">cuda_image</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(192, 256, 256)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Analogously to the affine transform in scipy, we need to create the output image with a defined shape, twice as large as the original image, before we can write into it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output_shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">/</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">cuda_scaled</span> <span class="o">=</span> <span class="n">cupy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">output_shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cuda_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -811,38 +814,38 @@
 </div>
 </div>
 </div>
-<div class="section" id="cupy">
-<h2>cupy<a class="headerlink" href="#cupy" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cuda_image</span> <span class="o">=</span> <span class="n">cupy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-
-<span class="n">cuda_scaled</span> <span class="o">=</span> <span class="n">cupy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">output_shape</span><span class="p">)</span>
-<span class="n">ndi</span><span class="o">.</span><span class="n">affine_transform</span><span class="p">(</span><span class="n">cuda_image</span><span class="p">,</span> <span class="n">cupy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">matrix</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="n">cuda_scaled</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="n">output_shape</span><span class="p">)</span>
-          
-<span class="n">result</span> <span class="o">=</span> <span class="n">cupy</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">(</span><span class="n">cuda_scaled</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">200</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">ndi</span><span class="o">.</span><span class="n">affine_transform</span><span class="p">(</span><span class="n">cuda_image</span><span class="p">,</span> <span class="n">cupy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">matrix</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="n">cuda_scaled</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="n">output_shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before we can view the result image, we need to transfer it from GPU memory to CPU memory</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cupy</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">(</span><span class="n">cuda_scaled</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cupy affine transform duration: 2.615372896194458
-cupy affine transform duration: 0.46410441398620605
-cupy affine transform duration: 0.463104248046875
-cupy affine transform duration: 0.4631040096282959
-cupy affine transform duration: 0.4631037712097168
-cupy affine transform duration: 0.463104248046875
-cupy affine transform duration: 0.4631040096282959
-cupy affine transform duration: 0.4631049633026123
-cupy affine transform duration: 0.46410489082336426
-cupy affine transform duration: 0.4631030559539795
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(384, 512, 512)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x236053f26d0&gt;
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">200</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Greys_r&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/affine_transforms_cupy_5_2.png" src="../_images/affine_transforms_cupy_5_2.png" />
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1d63076bdc0&gt;
+</pre></div>
+</div>
+<img alt="../_images/affine_transforms_cupy_12_1.png" src="../_images/affine_transforms_cupy_12_1.png" />
 </div>
 </div>
 </div>
@@ -871,7 +874,21 @@ cupy affine transform duration: 0.4631030559539795
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="affine_transforms_scipy.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Affine transforms using Scipy</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="affine_transforms_clesperanto.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Affine transforms using clesperanto</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>
