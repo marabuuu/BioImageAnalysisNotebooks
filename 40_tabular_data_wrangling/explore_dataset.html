@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Turn Your DataFrame Into a Pivot Table &#8212; Bio-image Analysis Notebooks</title>
+    <title>Exploring tabular data &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -467,6 +467,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../22_feature_extraction/comparison_of_measurements_from_different_libraries.html">
+     Comparison of measurements from different libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../22_feature_extraction/parametric_maps.html">
      Parametric maps
     </a>
@@ -724,84 +729,84 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#turn-your-dataframe-into-a-pivot-table">
    Turn Your DataFrame Into a Pivot Table
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#you-can-also-import-from-a-file-in-this-case-i-will-use-pandas-to-import-some-analysis-results">
    You can also import from a file. In this case I will use pandas to import some analysis results
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#unique-type-of-cells">
    Unique type of cells
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-do-i-select-specific-columns-from-a-dataframe">
    How do I select specific columns from a DataFrame?
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#viewing-the-data">
    Viewing the data
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-can-you-transpose-your-dataset">
    How can you transpose your dataset ?
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#do-you-notice-anything-weird">
    Do you notice anything weird?
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#there-are-rows-at-the-bottom-with-nan-not-a-number">
      There are rows at the bottom with NaN (Not a Number)
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#check-for-nan-under-an-entire-dataframe">
    Check for NaN under an entire DataFrame:
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#count-the-nan-under-an-entire-dataframe">
    Count the NaN under an entire DataFrame:
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-to-do">
    What to do?
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#you-can-drop-the-rows-for-example-or-estimate-the-values">
    You can drop the rows for example or estimate the values
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#you-can-fill-nan-values-with-the-mean-for-each-column">
    You can fill NaN values with  the mean for each column
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#have-a-look-for-example-to-the-third-row">
    Have a look for example to the third row
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ploting-is-also-extremely-useful-and-important-to-check-your-data">
    Ploting is also extremely useful and important to check your data.
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plot-pairwise-relationships-in-a-dataset-in-a-fast-and-easy-way">
    Plot pairwise relationships in a dataset in a fast and easy way
   </a>
@@ -816,7 +821,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Turn Your DataFrame Into a Pivot Table</h1>
+                <h1>Exploring tabular data</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -826,84 +831,84 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#turn-your-dataframe-into-a-pivot-table">
    Turn Your DataFrame Into a Pivot Table
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#you-can-also-import-from-a-file-in-this-case-i-will-use-pandas-to-import-some-analysis-results">
    You can also import from a file. In this case I will use pandas to import some analysis results
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#unique-type-of-cells">
    Unique type of cells
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-do-i-select-specific-columns-from-a-dataframe">
    How do I select specific columns from a DataFrame?
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#viewing-the-data">
    Viewing the data
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-can-you-transpose-your-dataset">
    How can you transpose your dataset ?
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#do-you-notice-anything-weird">
    Do you notice anything weird?
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#there-are-rows-at-the-bottom-with-nan-not-a-number">
      There are rows at the bottom with NaN (Not a Number)
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#check-for-nan-under-an-entire-dataframe">
    Check for NaN under an entire DataFrame:
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#count-the-nan-under-an-entire-dataframe">
    Count the NaN under an entire DataFrame:
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-to-do">
    What to do?
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#you-can-drop-the-rows-for-example-or-estimate-the-values">
    You can drop the rows for example or estimate the values
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#you-can-fill-nan-values-with-the-mean-for-each-column">
    You can fill NaN values with  the mean for each column
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#have-a-look-for-example-to-the-third-row">
    Have a look for example to the third row
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ploting-is-also-extremely-useful-and-important-to-check-your-data">
    Ploting is also extremely useful and important to check your data.
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plot-pairwise-relationships-in-a-dataset-in-a-fast-and-easy-way">
    Plot pairwise relationships in a dataset in a fast and easy way
   </a>
@@ -917,10 +922,11 @@
             
               <div>
                 
-  <div class="cell docutils container">
+  <div class="tex2jax_ignore mathjax_ignore section" id="exploring-tabular-data">
+<h1>Exploring tabular data<a class="headerlink" href="#exploring-tabular-data" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;Import the libraries&#39;&#39;&#39;</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
 <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">SVG</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -937,7 +943,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/explore_dataset_2_0.svg" src="../_images/explore_dataset_2_0.svg" /></div>
+<img alt="../_images/explore_dataset_3_0.svg" src="../_images/explore_dataset_3_0.svg" /></div>
 </div>
 <p>How can you create a dataset?</p>
 <div class="cell docutils container">
@@ -1021,7 +1027,7 @@
 </div></div></div>
 </div>
 <div class="section" id="turn-your-dataframe-into-a-pivot-table">
-<h1>Turn Your DataFrame Into a Pivot Table<a class="headerlink" href="#turn-your-dataframe-into-a-pivot-table" title="Permalink to this headline">¶</a></h1>
+<h2>Turn Your DataFrame Into a Pivot Table<a class="headerlink" href="#turn-your-dataframe-into-a-pivot-table" title="Permalink to this headline">¶</a></h2>
 <p>A pivot table is useful to summarize and analyze the patterns in your data. Use use <code class="docutils literal notranslate"><span class="pre">pandas.pivot_table</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1080,7 +1086,7 @@
 </div>
 </div>
 <div class="section" id="you-can-also-import-from-a-file-in-this-case-i-will-use-pandas-to-import-some-analysis-results">
-<h1>You can also import from a file. In this case I will use pandas to import some analysis results<a class="headerlink" href="#you-can-also-import-from-a-file-in-this-case-i-will-use-pandas-to-import-some-analysis-results" title="Permalink to this headline">¶</a></h1>
+<h2>You can also import from a file. In this case I will use pandas to import some analysis results<a class="headerlink" href="#you-can-also-import-from-a-file-in-this-case-i-will-use-pandas-to-import-some-analysis-results" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
@@ -1088,7 +1094,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/fernandes/Documents/BioImageAnalysisNotebooks/docs/40_tabular_data_wrangling&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/haase/code/BioImageAnalysisNotebooks/docs/40_tabular_data_wrangling&#39;
 </pre></div>
 </div>
 </div>
@@ -1347,7 +1353,7 @@
 </div>
 </div>
 <div class="section" id="unique-type-of-cells">
-<h1>Unique type of cells<a class="headerlink" href="#unique-type-of-cells" title="Permalink to this headline">¶</a></h1>
+<h2>Unique type of cells<a class="headerlink" href="#unique-type-of-cells" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
@@ -1362,7 +1368,7 @@
 </div>
 </div>
 <div class="section" id="how-do-i-select-specific-columns-from-a-dataframe">
-<h1>How do I select specific columns from a DataFrame?<a class="headerlink" href="#how-do-i-select-specific-columns-from-a-dataframe" title="Permalink to this headline">¶</a></h1>
+<h2>How do I select specific columns from a DataFrame?<a class="headerlink" href="#how-do-i-select-specific-columns-from-a-dataframe" title="Permalink to this headline">¶</a></h2>
 <p>How do I select specific columns from a DataFrame</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1391,7 +1397,7 @@ Name: Area, Length: 391, dtype: float64
 </div>
 </div>
 <div class="section" id="viewing-the-data">
-<h1>Viewing the data<a class="headerlink" href="#viewing-the-data" title="Permalink to this headline">¶</a></h1>
+<h2>Viewing the data<a class="headerlink" href="#viewing-the-data" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># top 10 rows</span>
@@ -2033,7 +2039,7 @@ Name: Area, Length: 391, dtype: float64
 </div>
 </div>
 <div class="section" id="how-can-you-transpose-your-dataset">
-<h1>How can you transpose your dataset ?<a class="headerlink" href="#how-can-you-transpose-your-dataset" title="Permalink to this headline">¶</a></h1>
+<h2>How can you transpose your dataset ?<a class="headerlink" href="#how-can-you-transpose-your-dataset" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">T</span> <span class="c1"># or data.transpose()</span>
@@ -2677,15 +2683,15 @@ Name: Area, Length: 391, dtype: float64
 </div>
 </div>
 <div class="section" id="do-you-notice-anything-weird">
-<h1>Do you notice anything weird?<a class="headerlink" href="#do-you-notice-anything-weird" title="Permalink to this headline">¶</a></h1>
+<h2>Do you notice anything weird?<a class="headerlink" href="#do-you-notice-anything-weird" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="there-are-rows-at-the-bottom-with-nan-not-a-number">
-<h2>There are rows at the bottom with NaN (Not a Number)<a class="headerlink" href="#there-are-rows-at-the-bottom-with-nan-not-a-number" title="Permalink to this headline">¶</a></h2>
+<h3>There are rows at the bottom with NaN (Not a Number)<a class="headerlink" href="#there-are-rows-at-the-bottom-with-nan-not-a-number" title="Permalink to this headline">¶</a></h3>
 <p>Wiki about NaN:</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/NaN#:~:text=In%20computing%2C%20NaN%20">https://en.wikipedia.org/wiki/NaN#:~:text=In computing, NaN </a>(%2Fn,especially%20in%20floating%2Dpoint%20arithmetic.</p>
 </div>
 </div>
 <div class="section" id="check-for-nan-under-an-entire-dataframe">
-<h1>Check for NaN under an entire DataFrame:<a class="headerlink" href="#check-for-nan-under-an-entire-dataframe" title="Permalink to this headline">¶</a></h1>
+<h2>Check for NaN under an entire DataFrame:<a class="headerlink" href="#check-for-nan-under-an-entire-dataframe" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
@@ -2700,7 +2706,7 @@ Name: Area, Length: 391, dtype: float64
 </div>
 </div>
 <div class="section" id="count-the-nan-under-an-entire-dataframe">
-<h1>Count the NaN under an entire DataFrame:<a class="headerlink" href="#count-the-nan-under-an-entire-dataframe" title="Permalink to this headline">¶</a></h1>
+<h2>Count the NaN under an entire DataFrame:<a class="headerlink" href="#count-the-nan-under-an-entire-dataframe" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -2742,11 +2748,11 @@ dtype: float64
 </div>
 </div>
 <div class="section" id="what-to-do">
-<h1>What to do?<a class="headerlink" href="#what-to-do" title="Permalink to this headline">¶</a></h1>
+<h2>What to do?<a class="headerlink" href="#what-to-do" title="Permalink to this headline">¶</a></h2>
 <p>It depends on your project and what is important or not for the analysis. Its not an easy answer.</p>
 </div>
 <div class="section" id="you-can-drop-the-rows-for-example-or-estimate-the-values">
-<h1>You can drop the rows for example or estimate the values<a class="headerlink" href="#you-can-drop-the-rows-for-example-or-estimate-the-values" title="Permalink to this headline">¶</a></h1>
+<h2>You can drop the rows for example or estimate the values<a class="headerlink" href="#you-can-drop-the-rows-for-example-or-estimate-the-values" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_no_nan</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;any&quot;</span><span class="p">)</span>
@@ -3013,7 +3019,7 @@ dtype: float64
 </div>
 </div>
 <div class="section" id="you-can-fill-nan-values-with-the-mean-for-each-column">
-<h1>You can fill NaN values with  the mean for each column<a class="headerlink" href="#you-can-fill-nan-values-with-the-mean-for-each-column" title="Permalink to this headline">¶</a></h1>
+<h2>You can fill NaN values with  the mean for each column<a class="headerlink" href="#you-can-fill-nan-values-with-the-mean-for-each-column" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">column_means</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -3294,11 +3300,11 @@ dtype: float64
 </div>
 </div>
 <div class="section" id="have-a-look-for-example-to-the-third-row">
-<h1>Have a look for example to the third row<a class="headerlink" href="#have-a-look-for-example-to-the-third-row" title="Permalink to this headline">¶</a></h1>
+<h2>Have a look for example to the third row<a class="headerlink" href="#have-a-look-for-example-to-the-third-row" title="Permalink to this headline">¶</a></h2>
 <p>It is filled with the means for each numeric column that was missing</p>
 </div>
 <div class="section" id="ploting-is-also-extremely-useful-and-important-to-check-your-data">
-<h1>Ploting is also extremely useful and important to check your data.<a class="headerlink" href="#ploting-is-also-extremely-useful-and-important-to-check-your-data" title="Permalink to this headline">¶</a></h1>
+<h2>Ploting is also extremely useful and important to check your data.<a class="headerlink" href="#ploting-is-also-extremely-useful-and-important-to-check-your-data" title="Permalink to this headline">¶</a></h2>
 <p>Seaborn is a great library that helps with easy ploting of your datasets
 Link: <a class="reference external" href="https://seaborn.pydata.org/">https://seaborn.pydata.org/</a></p>
 <div class="cell docutils container">
@@ -3308,7 +3314,7 @@ Link: <a class="reference external" href="https://seaborn.pydata.org/">https://s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/explore_dataset_40_0.png" src="../_images/explore_dataset_40_0.png" />
+<img alt="../_images/explore_dataset_41_0.png" src="../_images/explore_dataset_41_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3323,12 +3329,12 @@ Link: <a class="reference external" href="https://seaborn.pydata.org/">https://s
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Value&#39;)
 </pre></div>
 </div>
-<img alt="../_images/explore_dataset_41_1.png" src="../_images/explore_dataset_41_1.png" />
+<img alt="../_images/explore_dataset_42_1.png" src="../_images/explore_dataset_42_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="plot-pairwise-relationships-in-a-dataset-in-a-fast-and-easy-way">
-<h1>Plot pairwise relationships in a dataset in a fast and easy way<a class="headerlink" href="#plot-pairwise-relationships-in-a-dataset-in-a-fast-and-easy-way" title="Permalink to this headline">¶</a></h1>
+<h2>Plot pairwise relationships in a dataset in a fast and easy way<a class="headerlink" href="#plot-pairwise-relationships-in-a-dataset-in-a-fast-and-easy-way" title="Permalink to this headline">¶</a></h2>
 <p>You can for example split by type of cell using <code class="docutils literal notranslate"><span class="pre">hue</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3340,7 +3346,8 @@ Link: <a class="reference external" href="https://seaborn.pydata.org/">https://s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/explore_dataset_43_0.png" src="../_images/explore_dataset_43_0.png" />
+<img alt="../_images/explore_dataset_44_0.png" src="../_images/explore_dataset_44_0.png" />
+</div>
 </div>
 </div>
 </div>

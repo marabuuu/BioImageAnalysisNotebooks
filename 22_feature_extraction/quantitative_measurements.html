@@ -469,6 +469,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="comparison_of_measurements_from_different_libraries.html">
+     Comparison of measurements from different libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="parametric_maps.html">
      Parametric maps
     </a>
@@ -796,12 +801,21 @@
 <p>Before we can do measurements, we need an <code class="docutils literal notranslate"><span class="pre">image</span></code> and a corresponding <code class="docutils literal notranslate"><span class="pre">label_image</span></code>. Therefore, we recapitulate filtering, thresholding and labeling:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
+
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
+<span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load image</span>
-<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs.tif&quot;</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/blobs.tif&quot;</span><span class="p">)</span>
 
 <span class="c1"># denoising</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
 <span class="n">blurred_image</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># binarization</span>
@@ -809,20 +823,15 @@
 <span class="n">thresholded_image</span> <span class="o">=</span> <span class="n">blurred_image</span> <span class="o">&gt;=</span> <span class="n">threshold</span>
 
 <span class="c1"># labeling</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
 <span class="n">label_image</span> <span class="o">=</span> <span class="n">measure</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">thresholded_image</span><span class="p">)</span>
 
 <span class="c1"># visualization</span>
-<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">imshow</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">label_image</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">label_image</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1a2b33db5b0&gt;
-</pre></div>
-</div>
-<img alt="../_images/quantitative_measurements_1_1.png" src="../_images/quantitative_measurements_1_1.png" />
+<img alt="../_images/quantitative_measurements_2_0.png" src="../_images/quantitative_measurements_2_0.png" />
 </div>
 </div>
 </div>
@@ -831,9 +840,7 @@
 <p>To read out properties from regions, we use the <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops">regionprops</a> function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
-
-<span class="c1"># analyse objects</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># analyse objects</span>
 <span class="n">properties</span> <span class="o">=</span> <span class="n">measure</span><span class="o">.</span><span class="n">regionprops</span><span class="p">(</span><span class="n">label_image</span><span class="p">,</span> <span class="n">intensity_image</span><span class="o">=</span><span class="n">image</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -847,11 +854,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;skimage.measure._regionprops.RegionProperties at 0x1a2addf3be0&gt;,
- &lt;skimage.measure._regionprops.RegionProperties at 0x1a2addf3820&gt;,
- &lt;skimage.measure._regionprops.RegionProperties at 0x1a2addf38e0&gt;,
- &lt;skimage.measure._regionprops.RegionProperties at 0x1a2addf3b50&gt;,
- &lt;skimage.measure._regionprops.RegionProperties at 0x1a2b3405f70&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;skimage.measure._regionprops.RegionProperties at 0x195f1e6a0&gt;,
+ &lt;skimage.measure._regionprops.RegionProperties at 0x1961f61c0&gt;,
+ &lt;skimage.measure._regionprops.RegionProperties at 0x1961f6040&gt;,
+ &lt;skimage.measure._regionprops.RegionProperties at 0x1961f60a0&gt;,
+ &lt;skimage.measure._regionprops.RegionProperties at 0x110c69310&gt;]
 </pre></div>
 </div>
 </div>
@@ -995,13 +1002,13 @@
   189.53846153846155,
   173.83333333333334],
  &#39;major_axis&#39;: [34.77923003414236,
-  20.950530036869292,
-  30.198484225906252,
-  24.508790749585163,
-  31.084765741920986,
-  20.456703267018657,
-  10.455950805204106,
-  22.27001359580549,
+  20.950530036869296,
+  30.19848422590625,
+  24.508790749585156,
+  31.08476574192099,
+  20.456703267018653,
+  10.455950805204104,
+  22.270013595805494,
   18.204772873013326,
   12.678548278670085,
   26.121885258285065,
@@ -1011,44 +1018,44 @@
   26.27274937409412,
   35.8698551687111,
   27.860019629951697,
-  28.010713581438818,
+  28.010713581438814,
   21.468307192278967,
-  22.917689441728477,
-  15.666167580602865,
+  22.917689441728474,
+  15.666167580602863,
   23.865287484124742,
   32.6668803721007,
-  19.572284085080955,
-  33.247760881705005,
-  20.240893283961924,
+  19.57228408508096,
+  33.24776088170501,
+  20.24089328396192,
   36.442424525819675,
   20.498286890054775,
-  23.71119799854544,
-  29.208497591042352,
+  23.711197998545444,
+  29.20849759104235,
   47.75343594118352,
   3.0237157840738176,
   40.67149576429511,
-  16.771585091512435,
-  28.81175821074679,
+  16.77158509151243,
+  28.811758210746788,
   6.09093638927516,
   20.588317981737514,
-  54.58571836011155,
+  54.585718360111564,
   32.95587965343868,
-  19.251261822332605,
+  19.25126182233261,
   16.687880082810175,
   26.756617235381256,
-  25.626194046159547,
+  25.62619404615955,
   18.831258251302966,
   24.783530938010692,
   30.43602504101513,
-  23.497977876544613,
-  27.80467510592461,
+  23.49797787654461,
+  27.804675105924606,
   16.651155953717765,
   17.042194757272345,
   35.316994908476254,
   32.401948630679065,
-  30.136816201114012,
+  30.13681620111402,
   24.67233590691917,
-  27.47945909705003,
+  27.47945909705002,
   41.32954022794983,
   21.637743417307323,
   18.753879494637765,
