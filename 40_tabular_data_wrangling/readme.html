@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Working with tables in pandas" href="pandas.html" />
+    <link rel="next" title="Introduction to working with DataFrames" href="introduction_dataframes.html" />
     <link rel="prev" title="How process files in a folder" href="../33_batch_processing/12_process_folders.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -473,11 +473,6 @@
      Comparison of measurements from different libraries
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../22_feature_extraction/parametric_maps.html">
-     Parametric maps
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -518,11 +513,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../25_neighborhood_relationships_between_cells/other_proximal_labels_count.html">
      Count proximal labels in an other label image
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/quantitative_neighbor_maps.html">
-     Quantitative maps from neighbor statistics
     </a>
    </li>
   </ul>
@@ -589,11 +579,33 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../33_batch_processing/readme.html">
-   Batch processing
+  <a class="reference internal" href="../32_tiled_image_processing/readme.html">
+   Tiled image processing
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiling_images.html">
+     Tiling images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiling_images_with_overlap.html">
+     Tiling images with overlap
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../33_batch_processing/readme.html">
+   Batch processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -609,15 +621,84 @@
   <a class="current reference internal" href="#">
    Tabular data wrangling
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.html">
-     Working with tables in pandas
+    <a class="reference internal" href="introduction_dataframes.html">
+     Introduction to working with DataFrames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="explore_dataset.html">
+     Exploring tabular data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="descriptive_statistics.html">
+     Basic descriptive statistcs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="handling_NaNs.html">
+     Handling NaN values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pivot_tables.html">
+     Pivot tables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../51_plotting/readme.html">
+   Plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../51_plotting/plotting_seaborn.html">
+     Plotting using seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../51_plotting/plotting_matplotlib.html">
+     Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../51_plotting/bland_altman_analysis.html">
+     Bland-Altman plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../60_data_visualization/readme.html">
+   Data visualization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../60_data_visualization/parametric_maps.html">
+     Parametric maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../60_data_visualization/quantitative_neighbor_maps.html">
+     Quantitative maps from neighbor statistics
     </a>
    </li>
   </ul>
@@ -755,10 +836,11 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="tabular-data-wrangling">
 <h1>Tabular data wrangling<a class="headerlink" href="#tabular-data-wrangling" title="Permalink to this headline">¶</a></h1>
+<p>Part of an bio-image analyst’s work is also to handle tabular data that was extracted from images. In this chapter we will introduce the <a class="reference external" href="https://pandas.pydata.org/">pandas</a> librariy for handling tables and ways for deriving descriptive statistics.</p>
 <div class="section" id="installing-dependencies">
 <h2>Installing dependencies<a class="headerlink" href="#installing-dependencies" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter, we will work with <a class="reference external" href="https://pandas.pydata.org/">pandas</a> for tabular data wrangling and with <a class="reference external" href="https://matplotlib.org/">matplotlib</a> and <a class="reference external" href="https://seaborn.pydata.org/">seaborn</a> for plotting data.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">pandas</span> <span class="n">matplotlib</span> <span class="n">seaborn</span>
+<p>In this chapter, we will work with <a class="reference external" href="https://pandas.pydata.org/">pandas</a> which can be installed using conda:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">pandas</span>
 </pre></div>
 </div>
 </div>
@@ -798,10 +880,10 @@
             <p class="prev-next-title">How process files in a folder</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="pandas.html" title="next page">
+    <a class='right-next' id="next-link" href="introduction_dataframes.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Working with tables in pandas</p>
+        <p class="prev-next-title">Introduction to working with DataFrames</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Batch processing" href="../33_batch_processing/readme.html" />
+    <link rel="next" title="Tiled image processing" href="../32_tiled_image_processing/readme.html" />
     <link rel="prev" title="Interactive parameter tuning with napari and magicgui" href="napari_magicgui.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -473,11 +473,6 @@
      Comparison of measurements from different libraries
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../22_feature_extraction/parametric_maps.html">
-     Parametric maps
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -518,11 +513,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../25_neighborhood_relationships_between_cells/other_proximal_labels_count.html">
      Count proximal labels in an other label image
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/quantitative_neighbor_maps.html">
-     Quantitative maps from neighbor statistics
     </a>
    </li>
   </ul>
@@ -589,11 +579,33 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../33_batch_processing/readme.html">
-   Batch processing
+  <a class="reference internal" href="../32_tiled_image_processing/readme.html">
+   Tiled image processing
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiling_images.html">
+     Tiling images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiling_images_with_overlap.html">
+     Tiling images with overlap
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../33_batch_processing/readme.html">
+   Batch processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -609,15 +621,84 @@
   <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
    Tabular data wrangling
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../40_tabular_data_wrangling/pandas.html">
-     Working with tables in pandas
+    <a class="reference internal" href="../40_tabular_data_wrangling/introduction_dataframes.html">
+     Introduction to working with DataFrames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/explore_dataset.html">
+     Exploring tabular data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/descriptive_statistics.html">
+     Basic descriptive statistcs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/handling_NaNs.html">
+     Handling NaN values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/pivot_tables.html">
+     Pivot tables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../51_plotting/readme.html">
+   Plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../51_plotting/plotting_seaborn.html">
+     Plotting using seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../51_plotting/plotting_matplotlib.html">
+     Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../51_plotting/bland_altman_analysis.html">
+     Bland-Altman plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../60_data_visualization/readme.html">
+   Data visualization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../60_data_visualization/parametric_maps.html">
+     Parametric maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../60_data_visualization/quantitative_neighbor_maps.html">
+     Quantitative maps from neighbor statistics
     </a>
    </li>
   </ul>
@@ -1122,10 +1203,10 @@ Processing took 0.2793867588043213 s
             <p class="prev-next-title">Interactive parameter tuning with napari and magicgui</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../33_batch_processing/readme.html" title="next page">
+    <a class='right-next' id="next-link" href="../32_tiled_image_processing/readme.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Batch processing</p>
+        <p class="prev-next-title">Tiled image processing</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

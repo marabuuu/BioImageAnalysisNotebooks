@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bland-Altman pots &#8212; Bio-image Analysis Notebooks</title>
+    <title>Bland-Altman plots &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,6 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data visualization" href="../60_data_visualization/readme.html" />
+    <link rel="prev" title="Plotting with Matplotlib" href="plotting_matplotlib.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -94,7 +96,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -471,11 +473,6 @@
      Comparison of measurements from different libraries
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../22_feature_extraction/parametric_maps.html">
-     Parametric maps
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -516,11 +513,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../25_neighborhood_relationships_between_cells/other_proximal_labels_count.html">
      Count proximal labels in an other label image
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/quantitative_neighbor_maps.html">
-     Quantitative maps from neighbor statistics
     </a>
    </li>
   </ul>
@@ -587,11 +579,33 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../33_batch_processing/readme.html">
-   Batch processing
+  <a class="reference internal" href="../32_tiled_image_processing/readme.html">
+   Tiled image processing
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiling_images.html">
+     Tiling images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiling_images_with_overlap.html">
+     Tiling images with overlap
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../33_batch_processing/readme.html">
+   Batch processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -607,15 +621,84 @@
   <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
    Tabular data wrangling
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../40_tabular_data_wrangling/pandas.html">
-     Working with tables in pandas
+    <a class="reference internal" href="../40_tabular_data_wrangling/introduction_dataframes.html">
+     Introduction to working with DataFrames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/explore_dataset.html">
+     Exploring tabular data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/descriptive_statistics.html">
+     Basic descriptive statistcs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/handling_NaNs.html">
+     Handling NaN values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/pivot_tables.html">
+     Pivot tables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="readme.html">
+   Plotting
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="plotting_seaborn.html">
+     Plotting using seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plotting_matplotlib.html">
+     Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Bland-Altman plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../60_data_visualization/readme.html">
+   Data visualization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../60_data_visualization/parametric_maps.html">
+     Parametric maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../60_data_visualization/quantitative_neighbor_maps.html">
+     Quantitative maps from neighbor statistics
     </a>
    </li>
   </ul>
@@ -740,8 +823,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bland-altman-plots-and-the-coefficient-of-repeatability">
-   Bland-Altman plots and the coefficient of repeatability
+  <a class="reference internal nav-link" href="#id1">
+   Bland-Altman plots
   </a>
  </li>
 </ul>
@@ -754,7 +837,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Bland-Altman pots</h1>
+                <h1>Bland-Altman plots</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -775,8 +858,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bland-altman-plots-and-the-coefficient-of-repeatability">
-   Bland-Altman plots and the coefficient of repeatability
+  <a class="reference internal nav-link" href="#id1">
+   Bland-Altman plots
   </a>
  </li>
 </ul>
@@ -788,17 +871,29 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="bland-altman-pots">
-<h1>Bland-Altman pots<a class="headerlink" href="#bland-altman-pots" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="comparison-of-means">
-<h2>Comparison of means<a class="headerlink" href="#comparison-of-means" title="Permalink to this headline">¶</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="bland-altman-plots">
+<h1>Bland-Altman plots<a class="headerlink" href="#bland-altman-plots" title="Permalink to this headline">¶</a></h1>
+<p>Comparing measurement methods can be tricky. In this notebook, we loosely follow the arguing of Martin Bland and Douglas Altman, the developers of the <a class="reference external" href="https://en.wikipedia.org/wiki/Bland%E2%80%93Altman_plot">Balnd-Altman plot</a> ([Bland and Altman 1983](<a class="reference external" href="https://www">https://www</a> <a class="reference external" href="http://users.york.ac.uk/~mb55/meas/ab83.pdf">users.york.ac.uk/~mb55/meas/ab83.pdf</a>)).</p>
+<p>See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/PbSrSupnZFQ">Method comparison with Bland-Altman analysis (video)</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="c1"># make up some data</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="comparison-of-means">
+<h2>Comparison of means<a class="headerlink" href="#comparison-of-means" title="Permalink to this headline">¶</a></h2>
+<p>When comparing measurement methods, a first step might be to calculate the mean value for two lists of measurement determined by different methods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make up some data</span>
 <span class="n">measurement_A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
 <span class="n">measurement_B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 
@@ -890,6 +985,7 @@
 </table>
 </div></div></div>
 </div>
+<p>The mean of these two measurements lists is a necessary but not sufficient to proof that the two measurement methods are replaceable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean(A) = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">measurement_A</span><span class="p">)))</span>
@@ -904,7 +1000,7 @@ Mean(B) = 5.0
 </div>
 </div>
 </div>
-<p>Take your personal notes here.</p>
+<p>However, when we look in more detail into the data, e.g. using a scatter plot, we will see that the methods are not producing similar values. For two methods that produce similar measurements, we would expect that the blue data points are on, or close by the orange line:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">measurement_A</span><span class="p">,</span> <span class="n">measurement_B</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span>
@@ -915,9 +1011,10 @@ Mean(B) = 5.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bland_altman_analysis_4_0.png" src="../_images/bland_altman_analysis_4_0.png" />
+<img alt="../_images/bland_altman_analysis_7_0.png" src="../_images/bland_altman_analysis_7_0.png" />
 </div>
 </div>
+<p>For comparing data from two different source, it may also make sense to visualise the histograms of both:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_histogram</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
@@ -932,14 +1029,15 @@ Mean(B) = 5.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bland_altman_analysis_5_0.png" src="../_images/bland_altman_analysis_5_0.png" />
-<img alt="../_images/bland_altman_analysis_5_1.png" src="../_images/bland_altman_analysis_5_1.png" />
+<img alt="../_images/bland_altman_analysis_9_0.png" src="../_images/bland_altman_analysis_9_0.png" />
+<img alt="../_images/bland_altman_analysis_9_1.png" src="../_images/bland_altman_analysis_9_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="correlation">
 <h2>Correlation<a class="headerlink" href="#correlation" title="Permalink to this headline">¶</a></h2>
-<p>The data for the following expriment is taken from 1 Altman &amp; Bland, The Statistician 32, 1983, Fig. 1.</p>
+<p>In order to measure relationships between datasets, deatermining <a class="reference external" href="https://en.wikipedia.org/wiki/Correlation_coefficient">correlation coefficients</a> might be useful.</p>
+<p>The data for the following experiment is taken from 1 Altman &amp; Bland, The Statistician 32, 1983, Fig. 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurement_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">138</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">148</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">161</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">178</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span> <span class="mi">188</span><span class="p">,</span> <span class="mi">195</span><span class="p">,</span> <span class="mi">195</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
@@ -953,15 +1051,13 @@ Mean(B) = 5.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bland_altman_analysis_7_0.png" src="../_images/bland_altman_analysis_7_0.png" />
+<img alt="../_images/bland_altman_analysis_11_0.png" src="../_images/bland_altman_analysis_11_0.png" />
 </div>
 </div>
+<p>To practice a bit python programming and for loops, we will calculate <a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson’s correlation coefficient</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Determining Pearson&#39;s correlation coefficient r with a for-loop</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="c1"># get the mean of the measurements</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the mean of the measurements</span>
 <span class="n">mean_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">measurement_1</span><span class="p">)</span>
 <span class="n">mean_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">measurement_2</span><span class="p">)</span>
 
@@ -989,12 +1085,10 @@ Mean(B) = 5.0
 </div>
 </div>
 </div>
+<p>Of course, Python libraries exist which offer that functionality, for example <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.pearsonr()</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Determine Pearson&#39;s r using scipy</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-
-<span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">measurement_1</span><span class="p">,</span> <span class="n">measurement_2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">measurement_1</span><span class="p">,</span> <span class="n">measurement_2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1005,8 +1099,13 @@ Mean(B) = 5.0
 </div>
 </div>
 </div>
-<div class="section" id="bland-altman-plots-and-the-coefficient-of-repeatability">
-<h2>Bland-Altman plots and the coefficient of repeatability<a class="headerlink" href="#bland-altman-plots-and-the-coefficient-of-repeatability" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>Bland-Altman plots<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>In Bland-Altman plots, we visualize the averaged value of two measurements agains their difference. This is basically a titled and scaled version of the scatter plot with a focus on the region where the datapoint lies. In Blant-Altman plots, we typically find three horizontal lines:</p>
+<ul class="simple">
+<li><p>The upper and lower lines frame the confidence interval in which the datapoints lie.</p></li>
+<li><p>The center line visualizes the mean difference of both methods. If this line is close by zero, that means both methods on average produce the same value.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A function for drawing Bland-Altman plots</span>
@@ -1039,7 +1138,7 @@ Mean(B) = 5.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bland_altman_analysis_12_0.png" src="../_images/bland_altman_analysis_12_0.png" />
+<img alt="../_images/bland_altman_analysis_18_0.png" src="../_images/bland_altman_analysis_18_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1063,7 +1162,7 @@ Mean(B) = 5.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bland_altman_analysis_13_0.png" src="../_images/bland_altman_analysis_13_0.png" />
+<img alt="../_images/bland_altman_analysis_19_0.png" src="../_images/bland_altman_analysis_19_0.png" />
 </div>
 </div>
 </div>
@@ -1093,7 +1192,21 @@ Mean(B) = 5.0
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="plotting_matplotlib.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Plotting with Matplotlib</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../60_data_visualization/readme.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data visualization</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>
