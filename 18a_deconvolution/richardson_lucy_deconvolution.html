@@ -849,90 +849,35 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">LogicError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/DeconvolutionSampleVerticalGrid1AU-crop.tif&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-
-<span class="nn">File ~/code/pr4deepr_pyclesperanto_prototype/pyclesperanto_prototype/_tier9/_imshow.py:8,</span> in <span class="ni">imshow</span><span class="nt">(image, title, labels, min_display_intensity, max_display_intensity, color_map, plot, colorbar)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">.._tier1</span> <span class="kn">import</span> <span class="n">maximum_z_projection</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">image</span> <span class="o">=</span> <span class="n">maximum_z_projection</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">image</span> <span class="o">=</span> <span class="n">pull</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">color_map</span>
-
-<span class="nn">File ~/code/pr4deepr_pyclesperanto_prototype/pyclesperanto_prototype/_tier0/_plugin_function.py:65,</span> in <span class="ni">plugin_function.&lt;locals&gt;.worker_function</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">bound</span><span class="o">.</span><span class="n">arguments</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="k">if</span> <span class="n">is_image</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">parameters</span> <span class="ow">and</span> <span class="n">sig</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">annotation</span> <span class="ow">is</span> <span class="n">Image</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">65</span>         <span class="n">bound</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">push</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>     <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">parameters</span> <span class="ow">and</span> <span class="n">sig</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">annotation</span> <span class="ow">is</span> <span class="n">Image</span> <span class="ow">and</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span>         <span class="n">sig2</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">output_creator</span><span class="p">)</span>
-
-<span class="nn">File ~/code/pr4deepr_pyclesperanto_prototype/pyclesperanto_prototype/_tier0/_push.py:38,</span> in <span class="ni">push</span><span class="nt">(any_array)</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="n">any_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">any_array</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="n">float_arr</span> <span class="o">=</span> <span class="n">any_array</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">38</span> <span class="k">return</span> <span class="n">Backend</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">float_arr</span><span class="p">)</span>
-
-<span class="nn">File ~/code/pr4deepr_pyclesperanto_prototype/pyclesperanto_prototype/_tier0/_opencl_backend.py:44,</span> in <span class="ni">OpenCLBackend.from_array</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="k">def</span> <span class="nf">from_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">44</span>     <span class="k">return</span> <span class="n">OCLArray</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/code/pr4deepr_pyclesperanto_prototype/pyclesperanto_prototype/_tier0/_pycl.py:69,</span> in <span class="ni">OCLArray.from_array</span><span class="nt">(cls, arr, *args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="nd">@classmethod</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="k">def</span> <span class="nf">from_array</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span>     <span class="n">assert_supported_ndarray_type</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">69</span>     <span class="n">queue</span> <span class="o">=</span> <span class="n">get_device</span><span class="p">()</span><span class="o">.</span><span class="n">queue</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="k">return</span> <span class="n">OCLArray</span><span class="o">.</span><span class="n">to_device</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="n">prepare</span><span class="p">(</span><span class="n">arr</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/code/pr4deepr_pyclesperanto_prototype/pyclesperanto_prototype/_tier0/_device.py:43,</span> in <span class="ni">get_device</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="k">def</span> <span class="nf">get_device</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Device</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="sd">&quot;&quot;&quot;Get the current device GPU class.&quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">43</span>     <span class="k">return</span> <span class="n">_current_device</span><span class="o">.</span><span class="n">_instance</span> <span class="ow">or</span> <span class="n">select_device</span><span class="p">()</span>
-
-<span class="nn">File ~/code/pr4deepr_pyclesperanto_prototype/pyclesperanto_prototype/_tier0/_device.py:72,</span> in <span class="ni">select_device</span><span class="nt">(name, dev_type, score_key)</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="k">except</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="k">pass</span>
-<span class="ne">---&gt; </span><span class="mi">72</span> <span class="n">device</span> <span class="o">=</span> <span class="n">filter_devices</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">dev_type</span><span class="p">,</span> <span class="n">score_key</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="k">if</span> <span class="n">_current_device</span><span class="o">.</span><span class="n">_instance</span> <span class="ow">and</span> <span class="n">device</span> <span class="o">==</span> <span class="n">_current_device</span><span class="o">.</span><span class="n">_instance</span><span class="o">.</span><span class="n">device</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span>     <span class="k">return</span> <span class="n">_current_device</span><span class="o">.</span><span class="n">_instance</span>
-
-<span class="nn">File ~/code/pr4deepr_pyclesperanto_prototype/pyclesperanto_prototype/_tier0/_device.py:101,</span> in <span class="ni">filter_devices</span><span class="nt">(name, dev_type, score_key)</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span> <span class="sd">&quot;&quot;&quot;Filter devices based on various options</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span><span class="sd"> :param name: First device that contains ``name`` will be returned, defaults to None</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span><span class="sd"> :rtype: List[cl.Device]</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="n">devices</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="ne">--&gt; </span><span class="mi">101</span> <span class="k">for</span> <span class="n">platform</span> <span class="ow">in</span> <span class="n">cl</span><span class="o">.</span><span class="n">get_platforms</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span>     <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">platform</span><span class="o">.</span><span class="n">get_devices</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span>         <span class="k">if</span> <span class="n">name</span> <span class="ow">and</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-
-<span class="ne">LogicError</span>: clGetPlatformIDs failed: PLATFORM_NOT_FOUND_KHR
-</pre></div>
-</div>
+<img alt="../_images/richardson_lucy_deconvolution_3_0.png" src="../_images/richardson_lucy_deconvolution_3_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psf</span> <span class="o">=</span> <span class="n">imread</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psf</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/psf.tif&#39;</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">psf</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/richardson_lucy_deconvolution_4_0.png" src="../_images/richardson_lucy_deconvolution_4_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#def RedLionfish_widget(</span>
-<span class="c1">#    data: ImageData, #Input is data that can be selected</span>
-<span class="c1">#    psfdata:ImageData,</span>
-<span class="c1">#    iterations=10, #User chooses number of RL iterations</span>
-<span class="c1">#    useGPU = True </span>
-<span class="c1">#    ) -&gt; LayerDataTuple: #Result is a LayerDataTuple, like (data, {dict_properties})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">50</span>
 
-<span class="n">rl</span><span class="o">.</span><span class="n">doRLDeconvolutionFromNpArrays</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">psfdata</span><span class="p">,</span> <span class="n">niter</span><span class="o">=</span> <span class="n">iterations</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;gpu&#39;</span> <span class="p">,</span><span class="n">resAsUint8</span><span class="o">=</span><span class="kc">True</span> <span class="p">)</span>
+<span class="n">deconvolved</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">doRLDeconvolutionFromNpArrays</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> 
+                                               <span class="n">psf</span><span class="p">,</span> 
+                                               <span class="n">niter</span><span class="o">=</span><span class="n">iterations</span><span class="p">,</span> 
+                                               <span class="n">method</span><span class="o">=</span><span class="s1">&#39;gpu&#39;</span><span class="p">,</span> 
+                                               <span class="n">resAsUint8</span><span class="o">=</span><span class="kc">True</span> <span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">deconvolved</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/richardson_lucy_deconvolution_5_0.png" src="../_images/richardson_lucy_deconvolution_5_0.png" />
 </div>
 </div>
 </div>
