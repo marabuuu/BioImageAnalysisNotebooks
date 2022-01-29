@@ -293,6 +293,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/convolution.html">
+     Convolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/02_noise_removal.html">
+     Noise removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/03_background_removal.html">
+     Background removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../18_image_filtering/edge_detection_and_enhancement.html">
      Edge detection
     </a>
@@ -424,13 +439,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Segmentation_3D.html">
-     3D Image Segmentation
+    <a class="reference internal" href="nsbatwm.html">
+     Segment nuclei and cells (blobs and things with membranes)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="nsbatwm.html">
-     Segment blobs and things with membranes
+    <a class="reference internal" href="Segmentation_3D.html">
+     3D Image Segmentation
     </a>
    </li>
    <li class="toctree-l2">
@@ -923,7 +938,7 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="thresholding">
-<h1>Thresholding<a class="headerlink" href="#thresholding" title="Permalink to this headline">¶</a></h1>
+<span id="image-segmentation-thresholding"></span><h1>Thresholding<a class="headerlink" href="#thresholding" title="Permalink to this headline">¶</a></h1>
 <p>Thresholding is a technique of image segmentation. It separates a given single-channel image (or stack) into two regions: Pixels with intensity below a given threshold, also called “background” and pixels with intensity above a given threshold, “foreground”. Typically those algorithms result in binary images where background intensity is 0 and foreground intensity is 1. When applying such algorithms in ImageJ, foreground pixels are 255. In scikit-image, background pixels are <code class="docutils literal notranslate"><span class="pre">False</span></code> and foreground pixels are <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <p>See also</p>
 <ul class="simple">

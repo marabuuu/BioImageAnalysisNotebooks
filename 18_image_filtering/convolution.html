@@ -51,6 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Noise removal filters" href="02_noise_removal.html" />
+    <link rel="prev" title="Filtering images" href="01_Filtering.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -94,7 +96,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -275,19 +277,34 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="readme.html">
    Image filtering
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
   <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="01_Filtering.html">
      Filtering images
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Convolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_noise_removal.html">
+     Noise removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_background_removal.html">
+     Background removal filters
     </a>
    </li>
    <li class="toctree-l2">
@@ -422,13 +439,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/Segmentation_3D.html">
-     3D Image Segmentation
+    <a class="reference internal" href="../20_image_segmentation/nsbatwm.html">
+     Segment nuclei and cells (blobs and things with membranes)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/nsbatwm.html">
-     Segment blobs and things with membranes
+    <a class="reference internal" href="../20_image_segmentation/Segmentation_3D.html">
+     3D Image Segmentation
     </a>
    </li>
    <li class="toctree-l2">
@@ -837,39 +854,10 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Convolution
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-kernels">
+   Other kernels
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#convolution-kernel">
-     Convolution kernel
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quick-benchmarking-different-convolution-strategies">
-     Quick benchmarking different convolution strategies
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convolution-in-3d">
-   Convolution in 3D
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quick-benchmarking-different-convolution-strategies-in-3d">
-     Quick benchmarking different convolution strategies in 3D
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mean-filter-in-scikit-image">
-     Mean filter in scikit-image
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -891,39 +879,10 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Convolution
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-kernels">
+   Other kernels
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#convolution-kernel">
-     Convolution kernel
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quick-benchmarking-different-convolution-strategies">
-     Quick benchmarking different convolution strategies
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convolution-in-3d">
-   Convolution in 3D
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quick-benchmarking-different-convolution-strategies-in-3d">
-     Quick benchmarking different convolution strategies in 3D
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mean-filter-in-scikit-image">
-     Mean filter in scikit-image
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -936,49 +895,44 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="convolution">
 <span id="image-filtering-convolution"></span><h1>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h1>
-<p>There are multiple ways for convolving images using pyclesperanto - intentionally. We will compare their performance to each other and also to an implementation in scikit-image.</p>
-<p>See also: <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution">https://en.wikipedia.org/wiki/Convolution</a></p>
-<p>Let’s start by initializing the GPU</p>
+<p>When we apply a so called <em>linear</em> filter to an image we compute every new pixel as a weighted sum of its neighbors. The process is called <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution"><em>convolution</em></a> and the matrix defining the weights is called <em>convolution kernel</em>. In the context of microscopy, we often speal about the point-spread-function (PSF) of microscopes. This PSF technically describes how an image is convolved by the microsocpe before we save it to disk.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
 <span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">ball</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">convolve</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="c1"># to measure kernel execution duration properly, we need to set this flag. It will slow down exection of workflows a bit though</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">set_wait_for_kernel_finish</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># selet a GPU with the following in the name. This will fallback to any other GPU if none with this name is found</span>
 <span class="n">cle</span><span class="o">.</span><span class="n">select_device</span><span class="p">(</span><span class="s1">&#39;RTX&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;GeForce RTX 2070 on Platform: NVIDIA CUDA (1 refs)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="convolution-kernel">
-<h2>Convolution kernel<a class="headerlink" href="#convolution-kernel" title="Permalink to this headline">¶</a></h2>
-<p>To visualize the weights used by the convolution to multiply pixels with surrounding pixel values, we create an image with a single pixel set to 1 (all others are 0) and convolve it. The resulting <code class="docutils literal notranslate"><span class="pre">kernel</span></code> image is also called the <code class="docutils literal notranslate"><span class="pre">structuring</span> <span class="pre">element</span></code>.</p>
+<p>For demonstrating the principle of convolution, we first define an example image that’s rather simple.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_kernel</span><span class="p">(</span><span class="n">radius</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 
-    <span class="n">diameter</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">spot</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">create</span><span class="p">([</span><span class="n">diameter</span><span class="p">,</span> <span class="n">diameter</span><span class="p">])</span>
-    <span class="n">cle</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">spot</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">cle</span><span class="o">.</span><span class="n">draw_box</span><span class="p">(</span><span class="n">spot</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-    <span class="n">kernel</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">create</span><span class="p">([</span><span class="n">diameter</span><span class="p">,</span> <span class="n">diameter</span><span class="p">])</span>
-    <span class="n">cle</span><span class="o">.</span><span class="n">mean_sphere</span><span class="p">(</span><span class="n">spot</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">kernel</span>
-
-<span class="n">kernel</span> <span class="o">=</span> <span class="n">create_kernel</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">kernel</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -986,295 +940,182 @@
 <img alt="../_images/convolution_3_0.png" src="../_images/convolution_3_0.png" />
 </div>
 </div>
-<p>We now generate an image with random pixel values to convolve it</p>
+<p>Next, we define a simple convolution kernel, that is represented by a small image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we convolve the image with the kernel using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.convolve.html">scipy.ndimage.convolve</a>. When we print out the result, we can see how a <code class="docutils literal notranslate"><span class="pre">1</span></code> in the original image spreads, because for every directly neighboring pixel, the kernel sums the neighbor intensities. If there are multuple pixels with intensity &gt; 0 in the original image, the resulting image will in their neighborhood compute the sum. You could call this kernel a local sum-kernel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convolved</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
 
-<span class="n">test_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]))</span>
-
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">test_image</span><span class="p">)</span>                        
+<span class="n">imshow</span><span class="p">(</span><span class="n">convolved</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/convolution_5_0.png" src="../_images/convolution_5_0.png" />
+<img alt="../_images/convolution_7_0.png" src="../_images/convolution_7_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="quick-benchmarking-different-convolution-strategies">
-<h2>Quick benchmarking different convolution strategies<a class="headerlink" href="#quick-benchmarking-different-convolution-strategies" title="Permalink to this headline">¶</a></h2>
-<p>We start by convolving the image with the kernel created above</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kernel</span> <span class="o">=</span> <span class="n">create_kernel</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="n">result_image</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">result_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">result_image</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Convolve custom duration: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convolved</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Convolve custom duration: 0.006981611251831055
-Convolve custom duration: 0.0029916763305664062
-Convolve custom duration: 0.002989530563354492
-Convolve custom duration: 0.0029921531677246094
-Convolve custom duration: 0.0029909610748291016
-Convolve custom duration: 0.002992868423461914
-Convolve custom duration: 0.002992391586303711
-Convolve custom duration: 0.0029921531677246094
-Convolve custom duration: 0.0029916763305664062
-Convolve custom duration: 0.002990245819091797
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 1., 1., 1., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 2., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 3., 2., 2., 0.],
+       [0., 0., 0., 0., 0., 1., 1., 3., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 1., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>Another strategy is calling the mean_sphere function. This means, we don’t us a kernel image internally.</p>
+<div class="section" id="other-kernels">
+<h2>Other kernels<a class="headerlink" href="#other-kernels" title="Permalink to this headline">¶</a></h2>
+<p>Depending on which kerne is used for the convolution, the images can look quite differently. A <em>mean</em>-kernel for example computes the average pixel intensity locally:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_image</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_convolved</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mean_kernel</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">result_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">mean_sphere</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">result_image</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Convolve sphere duration: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">mean_convolved</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Convolve sphere duration: 0.004986763000488281
-Convolve sphere duration: 0.004985332489013672
-Convolve sphere duration: 0.003988981246948242
-Convolve sphere duration: 0.003986835479736328
-Convolve sphere duration: 0.003989696502685547
-Convolve sphere duration: 0.0049839019775390625
-Convolve sphere duration: 0.004991292953491211
-Convolve sphere duration: 0.003987550735473633
-Convolve sphere duration: 0.003986835479736328
-Convolve sphere duration: 0.004986286163330078
-</pre></div>
+<img alt="../_images/convolution_11_0.png" src="../_images/convolution_11_0.png" />
 </div>
 </div>
-</div>
-<p>A faster version uses mean_box. Note: The structuring element is a rectangle, and not a sphere anymore. This operation is typically faster because this is a separable implementation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_image</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">result_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">mean_box</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">result_image</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Convolve box duration: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_convolved</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Convolve box duration: 0.00698089599609375
-Convolve box duration: 0.002989530563354492
-Convolve box duration: 0.002991914749145508
-Convolve box duration: 0.0029959678649902344
-Convolve box duration: 0.00299072265625
-Convolve box duration: 0.0029947757720947266
-Convolve box duration: 0.002986907958984375
-Convolve box duration: 0.002996683120727539
-Convolve box duration: 0.0029904842376708984
-Convolve box duration: 0.002994060516357422
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. ],
+       [0. , 0. , 0.2, 0. , 0. , 0. , 0. , 0. , 0. , 0. ],
+       [0. , 0.2, 0.2, 0.2, 0. , 0. , 0. , 0. , 0. , 0. ],
+       [0. , 0. , 0.2, 0. , 0. , 0. , 0. , 0. , 0. , 0. ],
+       [0. , 0. , 0. , 0. , 0. , 0. , 0. , 0.4, 0. , 0. ],
+       [0. , 0. , 0. , 0. , 0. , 0. , 0.6, 0.4, 0.4, 0. ],
+       [0. , 0. , 0. , 0. , 0. , 0.2, 0.2, 0.6, 0. , 0. ],
+       [0. , 0. , 0. , 0. , 0. , 0. , 0.2, 0. , 0. , 0. ],
+       [0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. ]])
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="convolution-in-3d">
-<h1>Convolution in 3D<a class="headerlink" href="#convolution-in-3d" title="Permalink to this headline">¶</a></h1>
+<p>The following kernel is a simple form of a <a class="reference external" href="https://en.wikipedia.org/wiki/Laplace_operator">Laplace operator</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_kernel_3d</span><span class="p">(</span><span class="n">radius</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">laplace_operator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">laplacian</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">laplace_operator</span><span class="p">)</span>
 
-    <span class="n">diameter</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">spot</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">create</span><span class="p">([</span><span class="n">diameter</span><span class="p">,</span> <span class="n">diameter</span><span class="p">,</span> <span class="n">diameter</span><span class="p">])</span>
-    <span class="n">cle</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">spot</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">cle</span><span class="o">.</span><span class="n">draw_box</span><span class="p">(</span><span class="n">spot</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-    <span class="n">kernel</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">create</span><span class="p">([</span><span class="n">diameter</span><span class="p">,</span> <span class="n">diameter</span><span class="p">,</span> <span class="n">diameter</span><span class="p">])</span>
-    <span class="n">cle</span><span class="o">.</span><span class="n">mean_sphere</span><span class="p">(</span><span class="n">spot</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">kernel</span>
-
-<span class="n">kernel</span> <span class="o">=</span> <span class="n">create_kernel_3d</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">kernel</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">laplacian</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[0.        , 0.        , 0.        , 0.        , 0.        ],
-        [0.        , 0.        , 0.        , 0.        , 0.        ],
-        [0.        , 0.        , 0.03030303, 0.        , 0.        ],
-        [0.        , 0.        , 0.        , 0.        , 0.        ],
-        [0.        , 0.        , 0.        , 0.        , 0.        ]],
-
-       [[0.        , 0.        , 0.        , 0.        , 0.        ],
-        [0.        , 0.03030303, 0.03030303, 0.03030303, 0.        ],
-        [0.        , 0.03030303, 0.03030303, 0.03030303, 0.        ],
-        [0.        , 0.03030303, 0.03030303, 0.03030303, 0.        ],
-        [0.        , 0.        , 0.        , 0.        , 0.        ]],
-
-       [[0.        , 0.        , 0.03030303, 0.        , 0.        ],
-        [0.        , 0.03030303, 0.03030303, 0.03030303, 0.        ],
-        [0.03030303, 0.03030303, 0.03030303, 0.03030303, 0.03030303],
-        [0.        , 0.03030303, 0.03030303, 0.03030303, 0.        ],
-        [0.        , 0.        , 0.03030303, 0.        , 0.        ]],
-
-       [[0.        , 0.        , 0.        , 0.        , 0.        ],
-        [0.        , 0.03030303, 0.03030303, 0.03030303, 0.        ],
-        [0.        , 0.03030303, 0.03030303, 0.03030303, 0.        ],
-        [0.        , 0.03030303, 0.03030303, 0.03030303, 0.        ],
-        [0.        , 0.        , 0.        , 0.        , 0.        ]],
-
-       [[0.        , 0.        , 0.        , 0.        , 0.        ],
-        [0.        , 0.        , 0.        , 0.        , 0.        ],
-        [0.        , 0.        , 0.03030303, 0.        , 0.        ],
-        [0.        , 0.        , 0.        , 0.        , 0.        ],
-        [0.        , 0.        , 0.        , 0.        , 0.        ]]],
-      dtype=float32)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="quick-benchmarking-different-convolution-strategies-in-3d">
-<h2>Quick benchmarking different convolution strategies in 3D<a class="headerlink" href="#quick-benchmarking-different-convolution-strategies-in-3d" title="Permalink to this headline">¶</a></h2>
-<p>We start by convolving the image with the kernel created above</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">test_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">push_zyx</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]))</span>
-                     
-</pre></div>
-</div>
+<img alt="../_images/convolution_15_0.png" src="../_images/convolution_15_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kernel</span> <span class="o">=</span> <span class="n">create_kernel_3d</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="n">result_image</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">result_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">result_image</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Convolve custom duration: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">laplacian</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Convolve custom duration: 0.06682157516479492
-Convolve custom duration: 0.06083536148071289
-Convolve custom duration: 0.05086231231689453
-Convolve custom duration: 0.051862478256225586
-Convolve custom duration: 0.05185818672180176
-Convolve custom duration: 0.05285978317260742
-Convolve custom duration: 0.05185890197753906
-Convolve custom duration: 0.0528559684753418
-Convolve custom duration: 0.05286002159118652
-Convolve custom duration: 0.052855491638183594
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  1., -4.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  2.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  3., -8.,  2.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  1., -4.,  3.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  1.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>Another strategy is calling the mean_sphere function. This means, we don’t us a kernel image internally.</p>
+<p>To demonstrate what these different kernels do, we apply them to the MRI image shown before.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_image</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open dataset and extract single plane</span>
+<span class="n">noisy_mri</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/Haase_MRT_tfl3d1.tif&#39;</span><span class="p">)[</span><span class="mi">90</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">result_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">mean_sphere</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">result_image</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Convolve sphere duration: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
+<span class="c1"># zoom in by cropping a part out</span>
+<span class="n">noisy_mri_zoom</span> <span class="o">=</span> <span class="n">noisy_mri</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convolved_mri</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">noisy_mri_zoom</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+<span class="n">mean_mri</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">noisy_mri_zoom</span><span class="p">,</span> <span class="n">mean_kernel</span><span class="p">)</span>
+<span class="n">laplacian_mri</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">noisy_mri_zoom</span><span class="p">,</span> <span class="n">laplace_operator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">noisy_mri_zoom</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;original&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">laplacian_mri</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Laplacian&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">convolved_mri</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;sum-kernel&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mean_mri</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Mean-kernel&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Convolve sphere duration: 0.04741215705871582
-Convolve sphere duration: 0.04587531089782715
-Convolve sphere duration: 0.04587697982788086
-Convolve sphere duration: 0.04587745666503906
-Convolve sphere duration: 0.045874834060668945
-Convolve sphere duration: 0.04687929153442383
-Convolve sphere duration: 0.04581880569458008
-Convolve sphere duration: 0.044886112213134766
-Convolve sphere duration: 0.045905351638793945
-Convolve sphere duration: 0.04549527168273926
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Mean-kernel&#39;)
 </pre></div>
 </div>
-</div>
-</div>
-<p>A faster version uses mean_box. Note: The structuring element is a rectangle, and not a sphere anymore. This operation is typically faster because this is a separable implementation.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_image</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">result_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">mean_box</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">result_image</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Convolve box duration: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Convolve box duration: 0.02706146240234375
-Convolve box duration: 0.0038940906524658203
-Convolve box duration: 0.0034389495849609375
-Convolve box duration: 0.003582000732421875
-Convolve box duration: 0.003453969955444336
-Convolve box duration: 0.0039038658142089844
-Convolve box duration: 0.0032875537872314453
-Convolve box duration: 0.003624439239501953
-Convolve box duration: 0.003353118896484375
-Convolve box duration: 0.0037848949432373047
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="mean-filter-in-scikit-image">
-<h2>Mean filter in scikit-image<a class="headerlink" href="#mean-filter-in-scikit-image" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mean filter with scikit-image</span>
-<span class="n">result_image</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">structuring_element</span> <span class="o">=</span> <span class="n">ball</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">result_image</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">selem</span><span class="o">=</span><span class="n">structuring_element</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">result_image</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;skimage rank.mean duration: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\rober\miniconda3\lib\site-packages\skimage\filters\rank\generic.py:278: UserWarning: Possible precision loss converting image of type float32 to uint8 as required by rank filters. Convert manually using skimage.util.img_as_ubyte to silence this warning.
-  image, selem, out, mask, n_bins = _handle_input_3D(image, selem, out, mask,
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>skimage rank.mean duration: 34.42355275154114
-skimage rank.mean duration: 33.18763279914856
-skimage rank.mean duration: 32.87314820289612
-skimage rank.mean duration: 33.66009593009949
-skimage rank.mean duration: 37.38083744049072
-skimage rank.mean duration: 35.021158933639526
-skimage rank.mean duration: 34.05577373504639
-skimage rank.mean duration: 35.13659048080444
-skimage rank.mean duration: 34.86917328834534
-skimage rank.mean duration: 35.529059410095215
-</pre></div>
-</div>
+<img alt="../_images/convolution_20_1.png" src="../_images/convolution_20_1.png" />
 </div>
 </div>
 </div>
@@ -1304,7 +1145,21 @@ skimage rank.mean duration: 35.529059410095215
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="01_Filtering.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Filtering images</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="02_noise_removal.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Noise removal filters</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

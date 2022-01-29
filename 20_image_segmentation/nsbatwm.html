@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Segment blobs and things with membranes &#8212; Bio-image Analysis Notebooks</title>
+    <title>Segment nuclei and cells (blobs and things with membranes) &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Pixel classification using Scikit-learn" href="scikit_learn_random_forest_pixel_classifier.html" />
-    <link rel="prev" title="3D Image Segmentation" href="Segmentation_3D.html" />
+    <link rel="next" title="3D Image Segmentation" href="Segmentation_3D.html" />
+    <link rel="prev" title="Image Segmentation from membrane images" href="segmentation_2d_membranes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -293,6 +293,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/convolution.html">
+     Convolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/02_noise_removal.html">
+     Noise removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/03_background_removal.html">
+     Background removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../18_image_filtering/edge_detection_and_enhancement.html">
      Edge detection
     </a>
@@ -423,14 +438,14 @@
      Image Segmentation from membrane images
     </a>
    </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Segment nuclei and cells (blobs and things with membranes)
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Segmentation_3D.html">
      3D Image Segmentation
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Segment blobs and things with membranes
     </a>
    </li>
    <li class="toctree-l2">
@@ -840,33 +855,18 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#voronoi-otsu-labeling">
-   Voronoi-Otsu-Labeling
+  <a class="reference internal nav-link" href="#voronoi-otsu-labeling-for-nuclei-segmentation">
+   Voronoi-Otsu-Labeling for nuclei segmentation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#threshold-otsu">
-   Threshold Otsu
+  <a class="reference internal nav-link" href="#seeded-watershed">
+   Seeded watershed
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connected-component-labeling">
-   Connected component labeling
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#split-touching-objects-formerly-known-as-binary-watershed">
-   Split touching objects (formerly known as binary watershed)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#seeded-waterhed">
-   Seeded waterhed
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#segment-watershed-using-local-minima-as-seeds">
-   Segment watershed using local minima as seeds
+  <a class="reference internal nav-link" href="#segment-watershed-using-automatic-seed-detection">
+   Segment watershed using automatic seed detection
   </a>
  </li>
 </ul>
@@ -879,7 +879,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Segment blobs and things with membranes</h1>
+                <h1>Segment nuclei and cells (blobs and things with membranes)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -890,33 +890,18 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#voronoi-otsu-labeling">
-   Voronoi-Otsu-Labeling
+  <a class="reference internal nav-link" href="#voronoi-otsu-labeling-for-nuclei-segmentation">
+   Voronoi-Otsu-Labeling for nuclei segmentation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#threshold-otsu">
-   Threshold Otsu
+  <a class="reference internal nav-link" href="#seeded-watershed">
+   Seeded watershed
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connected-component-labeling">
-   Connected component labeling
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#split-touching-objects-formerly-known-as-binary-watershed">
-   Split touching objects (formerly known as binary watershed)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#seeded-waterhed">
-   Seeded waterhed
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#segment-watershed-using-local-minima-as-seeds">
-   Segment watershed using local minima as seeds
+  <a class="reference internal nav-link" href="#segment-watershed-using-automatic-seed-detection">
+   Segment watershed using automatic seed detection
   </a>
  </li>
 </ul>
@@ -928,174 +913,139 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="segment-blobs-and-things-with-membranes">
-<h1>Segment blobs and things with membranes<a class="headerlink" href="#segment-blobs-and-things-with-membranes" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="segment-nuclei-and-cells-blobs-and-things-with-membranes">
+<h1>Segment nuclei and cells (blobs and things with membranes)<a class="headerlink" href="#segment-nuclei-and-cells-blobs-and-things-with-membranes" title="Permalink to this headline">¶</a></h1>
+<p>In this section we will use a watershed approach to cell segmentation. Therefore, we use the napari plugin <a class="reference external" href="https://github.com/haesleinhuepf/napari-segment-blobs-and-things-with-membranes">napari-segment-blobs-and-things-with-membranes</a>. Under the hood, this plugins uses functions from <a class="reference external" href="http://scikit-image.org/">scikit-image</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">napari_segment_blobs_and_things_with_membranes</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">napari_segment_blobs_and_things_with_membranes</span> <span class="kn">import</span> <span class="n">voronoi_otsu_labeling</span><span class="p">,</span> \
+                                                           <span class="n">seeded_watershed</span><span class="p">,</span> \
+                                                           <span class="n">local_minima_seeded_watershed</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">gaussian</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cells3d</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nuclei_channel</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
-<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imshow</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">nuclei_channel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/nsbatwm_3_0.png" src="../_images/nsbatwm_3_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">membrane_channel</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="n">blobs</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;https://fiji.sc/samples/blobs.png&#39;</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19dd8a790&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_1_11.png" src="../_images/nsbatwm_1_11.png" />
+<img alt="../_images/nsbatwm_4_0.png" src="../_images/nsbatwm_4_0.png" />
 </div>
 </div>
-<div class="section" id="voronoi-otsu-labeling">
-<h2>Voronoi-Otsu-Labeling<a class="headerlink" href="#voronoi-otsu-labeling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="voronoi-otsu-labeling-for-nuclei-segmentation">
+<h2>Voronoi-Otsu-Labeling for nuclei segmentation<a class="headerlink" href="#voronoi-otsu-labeling-for-nuclei-segmentation" title="Permalink to this headline">¶</a></h2>
+<p>First, we start with segmenting the nuclei using the <span class="xref myst">Voronoi-Otsu-Labeling algorithm</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/haase/opt/anaconda3/envs/bio_39/lib/python3.9/site-packages/skimage/io/_plugins/matplotlib_plugin.py:150: UserWarning: Low image data range; displaying image with stretched contrast.
-  lo, hi, cmap = _get_display_range(image)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19de52580&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_3_2.png" src="../_images/nsbatwm_3_2.png" />
-</div>
-</div>
-</div>
-<div class="section" id="threshold-otsu">
-<h2>Threshold Otsu<a class="headerlink" href="#threshold-otsu" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary</span> <span class="o">=</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19df28c70&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_5_1.png" src="../_images/nsbatwm_5_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="connected-component-labeling">
-<h2>Connected component labeling<a class="headerlink" href="#connected-component-labeling" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">connected_component_labeling</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19dfdfd90&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_7_1.png" src="../_images/nsbatwm_7_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="split-touching-objects-formerly-known-as-binary-watershed">
-<h2>Split touching objects (formerly known as binary watershed)<a class="headerlink" href="#split-touching-objects-formerly-known-as-binary-watershed" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_objects</span> <span class="o">=</span> <span class="n">split_touching_objects</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">split_objects</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19e09eee0&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_9_1.png" src="../_images/nsbatwm_9_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="seeded-waterhed">
-<h2>Seeded waterhed<a class="headerlink" href="#seeded-waterhed" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
-<span class="n">cells</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cells3d</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labeled_nuclei</span> <span class="o">=</span> <span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">nuclei_channel</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="n">nuclei</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">nuclei</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">labeled_nuclei</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19e1e2be0&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_11_1.png" src="../_images/nsbatwm_11_1.png" />
+<img alt="../_images/nsbatwm_6_0.png" src="../_images/nsbatwm_6_0.png" />
 </div>
 </div>
+</div>
+<div class="section" id="seeded-watershed">
+<h2>Seeded watershed<a class="headerlink" href="#seeded-watershed" title="Permalink to this headline">¶</a></h2>
+<p>We can use the image of labeled nuclei as starting point for flooding the low-intensity areas in the membrane image. This allows us to determine a cell segmentation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labeled_nuclei</span> <span class="o">=</span> <span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">nuclei</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">labeled_nuclei</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labeled_cells</span> <span class="o">=</span> <span class="n">seeded_watershed</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">,</span> <span class="n">labeled_nuclei</span><span class="p">)</span>
+
+<span class="n">imshow</span><span class="p">(</span><span class="n">labeled_cells</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19e26f100&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_12_1.png" src="../_images/nsbatwm_12_1.png" />
+<img alt="../_images/nsbatwm_8_0.png" src="../_images/nsbatwm_8_0.png" />
 </div>
 </div>
+<p>If the outlines of the cells are not 100% accurate, it may make sense to blur the membrane image a bit before segmenting the cells.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">membranes</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">membranes</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blurred</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">labeled_cells</span> <span class="o">=</span> <span class="n">seeded_watershed</span><span class="p">(</span><span class="n">blurred</span><span class="p">,</span> <span class="n">labeled_nuclei</span><span class="p">)</span>
+
+<span class="n">imshow</span><span class="p">(</span><span class="n">labeled_cells</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19e31d250&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_13_1.png" src="../_images/nsbatwm_13_1.png" />
+<img alt="../_images/nsbatwm_10_0.png" src="../_images/nsbatwm_10_0.png" />
 </div>
 </div>
+</div>
+<div class="section" id="segment-watershed-using-automatic-seed-detection">
+<h2>Segment watershed using automatic seed detection<a class="headerlink" href="#segment-watershed-using-automatic-seed-detection" title="Permalink to this headline">¶</a></h2>
+<p>In case we didn’t image a separate nuclei channel and only have the membrane channel available for segmentation, we can use the membrane image to search for local minima (dark areas).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">seeded_watershed</span><span class="p">(</span><span class="n">membranes</span><span class="p">,</span> <span class="n">labeled_nuclei</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">local_minima_seeded_watershed</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">)</span>
+                              
+<span class="n">imshow</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19e3804f0&gt;
-</pre></div>
-</div>
-<img alt="../_images/nsbatwm_14_1.png" src="../_images/nsbatwm_14_1.png" />
+<img alt="../_images/nsbatwm_12_0.png" src="../_images/nsbatwm_12_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="segment-watershed-using-local-minima-as-seeds">
-<h2>Segment watershed using local minima as seeds<a class="headerlink" href="#segment-watershed-using-local-minima-as-seeds" title="Permalink to this headline">¶</a></h2>
+<p>This function also has some parameters to allow fine tuning the segmentation. The parameter <code class="docutils literal notranslate"><span class="pre">outline_sigma</span></code> allows to control a Gaussian blur filter that allows fine-tuning the outlines of the segmented cells as shown above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">local_minima_seeded_watershed</span><span class="p">(</span><span class="n">membranes</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">local_minima_seeded_watershed</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                              
+<span class="n">imshow</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19e434520&gt;
+<img alt="../_images/nsbatwm_14_0.png" src="../_images/nsbatwm_14_0.png" />
+</div>
+</div>
+<p>If there multiple cells sticking together, it may make sense to specify <code class="docutils literal notranslate"><span class="pre">spot_sigma</span></code>. This parameter allows to configure how close / large cells are.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">local_minima_seeded_watershed</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                              
+<span class="n">imshow</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/nsbatwm_16_1.png" src="../_images/nsbatwm_16_1.png" />
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/nsbatwm_16_0.png" src="../_images/nsbatwm_16_0.png" />
 </div>
 </div>
 </div>
@@ -1126,17 +1076,17 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="Segmentation_3D.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="segmentation_2d_membranes.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">3D Image Segmentation</p>
+            <p class="prev-next-title">Image Segmentation from membrane images</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="scikit_learn_random_forest_pixel_classifier.html" title="next page">
+    <a class='right-next' id="next-link" href="Segmentation_3D.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Pixel classification using Scikit-learn</p>
+        <p class="prev-next-title">3D Image Segmentation</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

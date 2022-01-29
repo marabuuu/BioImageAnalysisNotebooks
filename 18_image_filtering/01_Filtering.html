@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Edge detection" href="edge_detection_and_enhancement.html" />
+    <link rel="next" title="Convolution" href="convolution.html" />
     <link rel="prev" title="Image filtering" href="readme.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -293,6 +293,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="convolution.html">
+     Convolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_noise_removal.html">
+     Noise removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_background_removal.html">
+     Background removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="edge_detection_and_enhancement.html">
      Edge detection
     </a>
@@ -424,13 +439,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/Segmentation_3D.html">
-     3D Image Segmentation
+    <a class="reference internal" href="../20_image_segmentation/nsbatwm.html">
+     Segment nuclei and cells (blobs and things with membranes)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/nsbatwm.html">
-     Segment blobs and things with membranes
+    <a class="reference internal" href="../20_image_segmentation/Segmentation_3D.html">
+     3D Image Segmentation
     </a>
    </li>
    <li class="toctree-l2">
@@ -844,26 +859,6 @@
    Filters with structuring elements
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#noise-removal-filters">
-   Noise removal filters
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#background-removing-filters">
-   Background removing filters
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-filters">
-   Other filters
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise">
-   Exercise
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -889,26 +884,6 @@
    Filters with structuring elements
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#noise-removal-filters">
-   Noise removal filters
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#background-removing-filters">
-   Background removing filters
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-filters">
-   Other filters
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise">
-   Exercise
-  </a>
- </li>
 </ul>
 
                         </nav>
@@ -929,7 +904,19 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">test_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">gaussian</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">test_image</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">test_image</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">test_image</span>
@@ -953,33 +940,24 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imshow</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">test_image</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">test_image</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x164f33da910&gt;
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_2_1.png" src="../_images/01_Filtering_2_1.png" />
+<img alt="../_images/01_Filtering_3_0.png" src="../_images/01_Filtering_3_0.png" />
 </div>
 </div>
 <p>The <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.gaussian">Gaussian filter</a> takes two important arguments, the image to blur and a sigma parameter. The sigma determines how wide the Gaussian blur should show effects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">gaussian</span>
-
-<span class="n">blurred</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blurred</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">imshow</span><span class="p">(</span><span class="n">blurred</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x164f479adf0&gt;
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_4_1.png" src="../_images/01_Filtering_4_1.png" />
+<img alt="../_images/01_Filtering_5_0.png" src="../_images/01_Filtering_5_0.png" />
 </div>
 </div>
 <p>Let’s compare Gaussian blurred images with different sigma</p>
@@ -989,8 +967,6 @@
 <span class="n">blurred1</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">blurred2</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">blurred3</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 
@@ -1002,10 +978,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x164f5980d00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7faec90f2f40&gt;
 </pre></div>
 </div>
-<img alt="../_images/01_Filtering_6_1.png" src="../_images/01_Filtering_6_1.png" />
+<img alt="../_images/01_Filtering_7_1.png" src="../_images/01_Filtering_7_1.png" />
 </div>
 </div>
 <p>Note: If the sigma is larger than the distance between two spots, the spots cannot be differentiated as two local maxima in the blurred image anymore.</p>
@@ -1023,14 +999,7 @@ To understand it, we should visualize it first. A disk with radius 4 is a 9x9 la
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Programs\miniconda3\envs\beetlesafari\lib\site-packages\skimage\io\_plugins\matplotlib_plugin.py:150: UserWarning: Low image data range; displaying image with stretched contrast.
-  lo, hi, cmap = _get_display_range(image)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x164f5ebf2b0&gt;
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_9_2.png" src="../_images/01_Filtering_9_2.png" />
+<img alt="../_images/01_Filtering_10_0.png" src="../_images/01_Filtering_10_0.png" />
 </div>
 </div>
 <p>Disks with other radii look like this:</p>
@@ -1038,33 +1007,22 @@ To understand it, we should visualize it first. A disk with radius 4 is a 9x9 la
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_radius</span> <span class="o">=</span> <span class="mi">5</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_radius</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_radius</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
     <span class="n">axs</span><span class="p">[</span><span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">disk</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Radius &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-2
-3
-4
-5
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_11_1.png" src="../_images/01_Filtering_11_1.png" />
+<img alt="../_images/01_Filtering_12_0.png" src="../_images/01_Filtering_12_0.png" />
 </div>
 </div>
 <p>Coming back to our test image, this is how it looks like when we apply a mean filter with different disk radii.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span> 
-
-<span class="n">filtered1</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">disk</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered1</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">disk</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">filtered2</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">disk</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">filtered3</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_image</span><span class="p">,</span> <span class="n">disk</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 
@@ -1084,219 +1042,20 @@ To understand it, we should visualize it first. A disk with radius 4 is a 9x9 la
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Programs\miniconda3\envs\beetlesafari\lib\site-packages\IPython\core\interactiveshell.py:3437: UserWarning: Possible precision loss converting image of type float64 to uint8 as required by rank filters. Convert manually using skimage.util.img_as_ubyte to silence this warning.
-  exec(code_obj, self.user_global_ns, self.user_ns)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/p1/6svzckgd1y5906pfgm71fvmr0000gn/T/ipykernel_12011/3573640970.py:1: UserWarning: Possible precision loss converting image of type float64 to uint8 as required by rank filters. Convert manually using skimage.util.img_as_ubyte to silence this warning.
+  filtered1 = filters.rank.mean(test_image, disk(1))
+/var/folders/p1/6svzckgd1y5906pfgm71fvmr0000gn/T/ipykernel_12011/3573640970.py:2: UserWarning: Possible precision loss converting image of type float64 to uint8 as required by rank filters. Convert manually using skimage.util.img_as_ubyte to silence this warning.
+  filtered2 = filters.rank.mean(test_image, disk(2))
+/var/folders/p1/6svzckgd1y5906pfgm71fvmr0000gn/T/ipykernel_12011/3573640970.py:3: UserWarning: Possible precision loss converting image of type float64 to uint8 as required by rank filters. Convert manually using skimage.util.img_as_ubyte to silence this warning.
+  filtered3 = filters.rank.mean(test_image, disk(3))
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Mean (radius = 3)&#39;)
 </pre></div>
 </div>
-<img alt="../_images/01_Filtering_13_2.png" src="../_images/01_Filtering_13_2.png" />
+<img alt="../_images/01_Filtering_14_2.png" src="../_images/01_Filtering_14_2.png" />
 </div>
 </div>
-</div>
-<div class="section" id="noise-removal-filters">
-<h2>Noise removal filters<a class="headerlink" href="#noise-removal-filters" title="Permalink to this headline">¶</a></h2>
-<p>Filter such as <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code> and <code class="docutils literal notranslate"><span class="pre">Gaussian</span></code> allow removing noise from images.</p>
-<p>We start with a single plane of the MRT example data set which is pretty noisy and zoom in.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># open dataset and extract single plane</span>
-<span class="n">noisy_mri</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../data/Haase_MRT_tfl3d1-100.tif&#39;</span><span class="p">)</span>
-
-<span class="c1"># zoom in by cropping a part out</span>
-<span class="n">noisy_mri_zoom</span> <span class="o">=</span> <span class="n">noisy_mri</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
-
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">noisy_mri</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">noisy_mri_zoom</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x164f0a42940&gt;
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_15_1.png" src="../_images/01_Filtering_15_1.png" />
-</div>
-</div>
-<p>Now we apply three filters and compare resulting images.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
-<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span>
-
-<span class="n">median_filtered</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">noisy_mri</span><span class="p">,</span> <span class="n">disk</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">mean_filtered</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">noisy_mri</span><span class="p">,</span> <span class="n">disk</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">gaussian_filtered</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">noisy_mri</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-
-<span class="c1"># first row</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">median_filtered</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Median&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mean_filtered</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gaussian_filtered</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Gaussian&quot;</span><span class="p">)</span>
-
-<span class="c1"># second row</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">median_filtered</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">])</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mean_filtered</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">])</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gaussian_filtered</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x164f5e2a700&gt;
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_17_1.png" src="../_images/01_Filtering_17_1.png" />
-</div>
-</div>
-<p>You may agree, that the first image shows edges more prominently than the other two. This is because the <a class="reference external" href="https://en.wikipedia.org/wiki/Median_filter">median filter is edge preserving</a>.</p>
-</div>
-<div class="section" id="background-removing-filters">
-<h2>Background removing filters<a class="headerlink" href="#background-removing-filters" title="Permalink to this headline">¶</a></h2>
-<p>There are also background removal filters. If there is a more or less homogeneous intensity spread over the whole image, potentially increasing in a direction, it is recommended to remove this background before segmenting the image.</p>
-<p>As example image, we will work with a zebrafish eye data set (Courtesy, Mauricio Rocha Martins, Norden lab, MPI CBG). As you can see, there is some intensity spread around the nuclei we want to segment later on. The source of this background signal is out-of-focus light.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imshow</span>
-
-<span class="c1"># load zfish image and extract a channel</span>
-<span class="n">zfish_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../data/zfish_eye.tif&#39;</span><span class="p">)[:,:,</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="n">imshow</span><span class="p">(</span><span class="n">zfish_image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x164f5da6340&gt;
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_20_1.png" src="../_images/01_Filtering_20_1.png" />
-</div>
-</div>
-<p>To subtract the background, we need to determine it first. We can use the <a class="reference external" href="https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_rolling_ball.html">rolling-ball algorithm</a> for that. The radius parameter configures how distant pixels should be taken into account for determining the background intensity.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">restoration</span>
-
-<span class="n">background_rolling</span> <span class="o">=</span> <span class="n">restoration</span><span class="o">.</span><span class="n">rolling_ball</span><span class="p">(</span><span class="n">zfish_image</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
-
-<span class="n">imshow</span><span class="p">(</span><span class="n">background_rolling</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x164f5ad17f0&gt;
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_22_1.png" src="../_images/01_Filtering_22_1.png" />
-</div>
-</div>
-<p>Afterwards, we subtract the background from the original and display all three images:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zfish_rolling</span> <span class="o">=</span> <span class="n">zfish_image</span> <span class="o">-</span> <span class="n">background_rolling</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-
-<span class="c1"># first row</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zfish_image</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">background_rolling</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Background&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zfish_rolling</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Background subtracted&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Background subtracted&#39;)
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_24_1.png" src="../_images/01_Filtering_24_1.png" />
-</div>
-</div>
-<p>There are other techniques such as the <a class="reference external" href="https://scikit-image.org/docs/stable/auto_examples/filters/plot_dog.html">Difference of Gaussians (DoG)</a> and the <a class="reference external" href="https://scikit-image.org/docs/dev/auto_examples/applications/plot_morphology.html#white-tophat">top-hat</a> for background subtraction. In the following we compare them.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DoG</span>
-<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">difference_of_gaussians</span>
-<span class="n">zfish_dog</span> <span class="o">=</span> <span class="n">difference_of_gaussians</span><span class="p">(</span><span class="n">zfish_image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
-
-<span class="c1"># Top-Hat</span>
-<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">white_tophat</span>
-<span class="n">zfish_top_hat</span> <span class="o">=</span> <span class="n">white_tophat</span><span class="p">(</span><span class="n">zfish_image</span><span class="p">,</span> <span class="n">disk</span><span class="p">(</span><span class="mi">15</span><span class="p">))</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-
-<span class="c1"># first row</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zfish_dog</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Difference of Gaussian&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zfish_top_hat</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Top hat&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zfish_rolling</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rolling ball algorithm&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Rolling ball algorithm&#39;)
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_26_1.png" src="../_images/01_Filtering_26_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="other-filters">
-<h2>Other filters<a class="headerlink" href="#other-filters" title="Permalink to this headline">¶</a></h2>
-<p>Other filters allow extracting edges, determining directions of edges and a lot more. Here just three examples.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Roberts filter</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
-<span class="n">zfish_roberts</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">roberts</span><span class="p">(</span><span class="n">zfish_image</span><span class="p">)</span>
-
-<span class="c1"># Sobel filter</span>
-<span class="n">zfish_sobel</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">sobel</span><span class="p">(</span><span class="n">zfish_image</span><span class="p">)</span>
-
-<span class="c1"># Hessian filter</span>
-<span class="n">zfish_hessian</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">zfish_image</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-
-<span class="c1"># first row</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zfish_roberts</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Roberts&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zfish_sobel</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Sobel&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zfish_hessian</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Hessian&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-15-fb4e6136142a&gt;:9: FutureWarning: Previously, hessian implicitly used &#39;constant&#39; as the border mode when dealing with the edge of the array. The new behavior is &#39;reflect&#39;. To recover the old behavior, use mode=&#39;constant&#39;. To avoid this warning, please explicitly set the mode.
-  zfish_hessian = filters.hessian(zfish_image)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Hessian&#39;)
-</pre></div>
-</div>
-<img alt="../_images/01_Filtering_28_2.png" src="../_images/01_Filtering_28_2.png" />
-</div>
-</div>
-</div>
-<div class="section" id="exercise">
-<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
-<p>Apply different algorithms and radii to remove the background in the zebrafish eye dataset. Zoom into the dataset using cropping and figure out how to make the background go away optimally.</p>
 </div>
 </div>
 
@@ -1332,10 +1091,10 @@ To understand it, we should visualize it first. A disk with radius 4 is a 9x9 la
             <p class="prev-next-title">Image filtering</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="edge_detection_and_enhancement.html" title="next page">
+    <a class='right-next' id="next-link" href="convolution.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Edge detection</p>
+        <p class="prev-next-title">Convolution</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
