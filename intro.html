@@ -795,6 +795,33 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-this-jupyter-book">
+   Structure of this Jupyter book
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#covered-python-libraries">
+   Covered Python libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#related-works">
+   Related works
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#written-resources">
+     Written resources
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#video-tutorial-collections">
+     Video tutorial collections
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#material-origin">
    Material origin
   </a>
@@ -807,6 +834,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#contributing">
    Contributing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-and-answers">
+   Questions and answers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -835,6 +867,33 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-this-jupyter-book">
+   Structure of this Jupyter book
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#covered-python-libraries">
+   Covered Python libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#related-works">
+   Related works
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#written-resources">
+     Written resources
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#video-tutorial-collections">
+     Video tutorial collections
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#material-origin">
    Material origin
   </a>
@@ -847,6 +906,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#contributing">
    Contributing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-and-answers">
+   Questions and answers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -871,18 +935,71 @@
 analysing three dimensional images acquired using modern fluorescence microscopes.
 The journey starts with Python basics and introduces general concepts of bio-image analysis.
 Special emphasis is put on image data showing cells and nuclei forming tissues and organisms.
-Demonstrations of basic principles are done in two-dimensional image data and more sophisticated examples demonstrate
-the basic principles in three-dimensional image data, potentially also over time.</p>
+Demonstrations of basic principles are done in two-dimensional image data and more sophisticated examples demonstrate the basic principles in three-dimensional image data, potentially also over time.</p>
+<div class="section" id="structure-of-this-jupyter-book">
+<h2>Structure of this Jupyter book<a class="headerlink" href="#structure-of-this-jupyter-book" title="Permalink to this headline">¶</a></h2>
+<p>The sections of this book initially cover basics in Python and image processing. The order of the sections reflects typical image analysis workflows, starting at image filtering and segmentation, followed by feature extraction, tabular data wrangling, statistics, plotting and data visualization. At the beginning of every section, basic terminology is introduced and installation instructions for the required python libraries covered in this chapter are presented. The notebooks aim to be self-contained, self-explanatory and fully reproducible. Hence, the reader can download this Jupyter book and execute all notebooks as they are. As a general requirement, a conda environment should be present on the reader’s computer as explained in the first section.</p>
+</div>
+<div class="section" id="covered-python-libraries">
+<h2>Covered Python libraries<a class="headerlink" href="#covered-python-libraries" title="Permalink to this headline">¶</a></h2>
 <p>The reader may note that we start with basic python, transit towards standard libraries for image processing such as
 <a class="reference external" href="http://scikit-image.org/">scikit-image</a> and <a class="reference external" href="https://numpy.org/">numpy</a>, and from there use increasingly GPU-acceleration libraries such as
 <a class="reference external" href="https://github.com/clEsperanto/pyclesperanto_prototype">pyclesperanto</a>.
 The more the content shifts towards three dimensional biological image processing and life-sciences specific quantiative analysis,
-the more we make use of custom open source libraries. These libraries are specialized for processing imaging data showing
-cells and tissues acquired with fluorescence microscopy.</p>
+the more we make use of custom open source libraries. These libraries are specialized for processing imaging data showing cells and tissues acquired with fluorescence microscopy.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cupy.dev/">cupy</a></p></li>
+<li><p><a class="reference external" href="https://dask.org/">dask</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/">matplotlib</a></p></li>
+<li><p><a class="reference external" href="https://napari.org/">napari</a></p></li>
+<li><p><a class="reference external" href="https://github.com/haesleinhuepf/napari-cupy-image-processing">napari-cupy-image-processing</a></p></li>
+<li><p><a class="reference external" href="https://github.com/haesleinhuepf/napari-segment-blobs-and-things-with-membranes">napari-segment-blobs-and-things-with-membranes</a></p></li>
+<li><p><a class="reference external" href="https://github.com/haesleinhuepf/napari-simpleitk-image-processing">napari-simpleitk-image-processing</a></p></li>
+<li><p><a class="reference external" href="https://numpy.org/">numpy</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/">pandas</a></p></li>
+<li><p><a class="reference external" href="https://github.com/clEsperanto/pyclesperanto_prototype">pyclesperanto_prototype</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rosalindfranklininstitute/RedLionfish/">RedLionFish</a></p></li>
+<li><p><a class="reference external" href="http://scikit-image.org/">scikit-image</a></p></li>
+<li><p><a class="reference external" href="https://scipy.org/">scipy</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/">seaborn</a></p></li>
+<li><p><a class="reference external" href="https://simpleitk.readthedocs.io/en/master/">SimpleITK</a></p></li>
+</ul>
+</div>
+<div class="section" id="related-works">
+<h2>Related works<a class="headerlink" href="#related-works" title="Permalink to this headline">¶</a></h2>
+<p>This is not the first collection of Python Jupyter notebooks and teaching materials focusing on Bio-image Analysis and related fields. There are other amazing resources, where also we learnt from. Additionally, we also produced materials before which are available online and will certainly overlap with this Juypter book.</p>
+<div class="section" id="written-resources">
+<h3>Written resources<a class="headerlink" href="#written-resources" title="Permalink to this headline">¶</a></h3>
+<p>For the readers who prefer written tutorials and executable Python Jupyter notebooks, the following list of resources might be of interest.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/IAFIG-RMS/Python-for-Bioimage-Analysis">Image Analysis Focused Interest Group of the Royal Microscopical Society (IAFIG-RMS) Python for Bioimage Analysis Course</a></p></li>
+<li><p><a class="reference external" href="https://github.com/jni/using-python-for-science">Juan Nunez-Iglesias’ Using Python for Science</a></p></li>
+<li><p><a class="reference external" href="https://git.mpi-cbg.de/rhaase/lecture_applied_bioimage_analysis_2020">Robert Haase’s lecture materials Applied Bio-image Analysis (2020)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Bio-image_Analysis_with_Python">Robert Haase’s &amp; Anna Poetsch lecture materials about Bio-image Analysis, Biostatistics, Programming and Machine Learning for Computational Biology (2021)</a></p></li>
+<li><p><a class="reference external" href="https://scikit-image.org/docs/stable/auto_examples/index.html">Scikit-image’s example galery</a></p></li>
+<li><p><a class="reference external" href="https://github.com/bnsreenu/python_for_microscopists">Sreeni’s Python for Microscopists</a></p></li>
+<li><p><a class="reference external" href="https://github.com/stefanv/teaching">Stefan van der Walt’s Python lecture materials</a></p></li>
+<li><p><a class="reference external" href="https://github.com/tlambert03/hms_pyintro2">Talley Lambert’s Python introduction for microscopists</a></p></li>
+</ul>
+</div>
+<div class="section" id="video-tutorial-collections">
+<h3>Video tutorial collections<a class="headerlink" href="#video-tutorial-collections" title="Permalink to this headline">¶</a></h3>
+<p>Focusing on a variety of topics, there are YouTubers who upload videos about microscopy, bio-image analysis, python programming and statistics.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/user/odlogo">Dominik Waithe’s YouTube channel about bio-image analysis and Python</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/c/ibiology">iBiology YouTube channel focusing on Microscopy and bio-mage analysis</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=stiM1v0oY9c&amp;list=PLqwpOkZ9dxzKUjBx3dyaqjv6igKhGvAOG">HHMI Janelia Optica Interest Group YouTube channel</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/c/Microcourses/about">MicroCourses YouTube channel focusing on microscopy and image formation</a></p></li>
+<li><p><a class="reference external" href="https://youtube.com/neubias">NEUBIAS Academy YouTube channel about Bio-image Analysis tools</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/playlist?list=PL5ESQNfM5lc7SAMstEu082ivW4BDMvd0U">Robert Haase’s YouTube lecture on Bio-image Analysis, (Python starting at lesson 9)</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/channel/UC34rW-HtPJulxr5wp2Xa04w">Sreeni’s YouTube channel (formerl Python for Microscopists)</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/channel/UCtYLUTtgS3k1Fg4y5tAhLbw">StatQuest with Josh Starmer YouTube channel about statistics and machine learning</a></p></li>
+</ul>
+</div>
+</div>
 <div class="section" id="material-origin">
 <h2>Material origin<a class="headerlink" href="#material-origin" title="Permalink to this headline">¶</a></h2>
 <p>This repository contains Jupyter notebooks collected from multiple sources. They are maintained here to produce course materials with more streamlinded relationships between contents. In case you are interested in specific topics, you may find more recent materials in the notebook source repositories.</p>
-<p>Sources (alphabetical)</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/haesleinhuepf/apoc">apoc</a></p></li>
 <li><p><a class="reference external" href="https://github.com/biapol/blog">BiaPol blog</a></p></li>
@@ -906,6 +1023,10 @@ BSD3 by the <a class="reference external" href="https://github.com/haesleinhuepf
 <div class="section" id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
 <p>If you see any issues in this book, have questions or suggestions, please open a <a class="reference external" href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues">github issue</a>. Contributions of any kind (pull-requests, feedback, suggestions) are very welcome. If you send a pull-request, please make sure that you own the copyright of the materials you send. In case your materials are merged, and your contribution is more than just minor corrections and additions, you will be listed under authors and copyright holders. Also please make sure that the algorithms you present are well-explained and contain links to additional resources such as <a class="reference external" href="https://www.wikipedia.org/">Wikipedia</a> pages, online videos and tutorials.</p>
+</div>
+<div class="section" id="questions-and-answers">
+<h2>Questions and answers<a class="headerlink" href="#questions-and-answers" title="Permalink to this headline">¶</a></h2>
+<p>If you want to discuss lessons in this Jupyter book, have feedback and/or suggestions, please open a thread on <a class="reference external" href="https://image.sc/">image.sc</a> and tag &#64;haesleinhuepf.</p>
 </div>
 <div class="section" id="work-in-progress">
 <h2>Work-in-progress<a class="headerlink" href="#work-in-progress" title="Permalink to this headline">¶</a></h2>
@@ -957,7 +1078,7 @@ BSD3 by the <a class="reference external" href="https://github.com/haesleinhuepf
     <footer class="footer">
   <p>
     
-      By Robert Haase & add-your-name-here-by-sending-a-pull-request-containing-a-notebook<br/>
+      By Robert Haase, Mig& add-your-name-here-by-sending-a-pull-request-containing-a-notebook<br/>
     
         &copy; Copyright 2021.<br/>
   </p>
