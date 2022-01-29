@@ -954,7 +954,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span> <span class="o">=</span> <span class="n">label_statistics</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">statistics</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">statistics</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -2458,6 +2459,252 @@
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>maximum</th>
+      <th>mean</th>
+      <th>median</th>
+      <th>minimum</th>
+      <th>sigma</th>
+      <th>sum</th>
+      <th>variance</th>
+      <th>bbox_0</th>
+      <th>bbox_1</th>
+      <th>...</th>
+      <th>number_of_pixels_on_border</th>
+      <th>perimeter</th>
+      <th>perimeter_on_border</th>
+      <th>perimeter_on_border_ratio</th>
+      <th>principal_axes0</th>
+      <th>principal_axes1</th>
+      <th>principal_axes2</th>
+      <th>principal_axes3</th>
+      <th>principal_moments0</th>
+      <th>principal_moments1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>...</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>30.500000</td>
+      <td>236.000000</td>
+      <td>194.966598</td>
+      <td>200.800000</td>
+      <td>130.000000</td>
+      <td>26.069709</td>
+      <td>71696.933333</td>
+      <td>693.962389</td>
+      <td>123.516667</td>
+      <td>110.200000</td>
+      <td>...</td>
+      <td>5.683333</td>
+      <td>107.224145</td>
+      <td>5.700000</td>
+      <td>0.089574</td>
+      <td>0.696028</td>
+      <td>-0.138186</td>
+      <td>0.138186</td>
+      <td>0.696028</td>
+      <td>104.628848</td>
+      <td>134.931776</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>17.464249</td>
+      <td>14.012101</td>
+      <td>16.394414</td>
+      <td>19.579304</td>
+      <td>7.456086</td>
+      <td>3.817798</td>
+      <td>41465.329504</td>
+      <td>183.657670</td>
+      <td>81.460709</td>
+      <td>76.672493</td>
+      <td>...</td>
+      <td>10.255204</td>
+      <td>309.846236</td>
+      <td>10.310929</td>
+      <td>0.161164</td>
+      <td>0.476871</td>
+      <td>0.526743</td>
+      <td>0.526743</td>
+      <td>0.476871</td>
+      <td>651.200133</td>
+      <td>712.958883</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>176.000000</td>
+      <td>137.526132</td>
+      <td>136.000000</td>
+      <td>112.000000</td>
+      <td>13.360739</td>
+      <td>2576.000000</td>
+      <td>178.509343</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>14.843629</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>-0.653319</td>
+      <td>-0.999978</td>
+      <td>-0.653870</td>
+      <td>-0.653319</td>
+      <td>1.046852</td>
+      <td>1.755916</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>15.750000</td>
+      <td>232.000000</td>
+      <td>188.713774</td>
+      <td>192.000000</td>
+      <td>128.000000</td>
+      <td>24.472535</td>
+      <td>40604.000000</td>
+      <td>598.904954</td>
+      <td>52.500000</td>
+      <td>42.750000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>53.221995</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.649215</td>
+      <td>-0.663517</td>
+      <td>-0.279282</td>
+      <td>0.649215</td>
+      <td>12.841678</td>
+      <td>22.351873</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>30.500000</td>
+      <td>240.000000</td>
+      <td>195.937410</td>
+      <td>200.000000</td>
+      <td>128.000000</td>
+      <td>26.409917</td>
+      <td>71016.000000</td>
+      <td>697.484271</td>
+      <td>127.000000</td>
+      <td>108.500000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>68.482144</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.952820</td>
+      <td>0.026675</td>
+      <td>-0.026675</td>
+      <td>0.952820</td>
+      <td>18.738377</td>
+      <td>35.597627</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>45.250000</td>
+      <td>248.000000</td>
+      <td>204.627083</td>
+      <td>210.000000</td>
+      <td>136.000000</td>
+      <td>28.649791</td>
+      <td>99386.000000</td>
+      <td>820.810634</td>
+      <td>201.500000</td>
+      <td>168.750000</td>
+      <td>...</td>
+      <td>11.250000</td>
+      <td>83.278130</td>
+      <td>11.250000</td>
+      <td>0.142182</td>
+      <td>0.989550</td>
+      <td>0.279282</td>
+      <td>0.663517</td>
+      <td>0.989550</td>
+      <td>29.329379</td>
+      <td>56.857478</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>60.000000</td>
+      <td>248.000000</td>
+      <td>229.430657</td>
+      <td>248.000000</td>
+      <td>152.000000</td>
+      <td>32.682072</td>
+      <td>172424.000000</td>
+      <td>1068.117840</td>
+      <td>251.000000</td>
+      <td>250.000000</td>
+      <td>...</td>
+      <td>39.000000</td>
+      <td>2461.579651</td>
+      <td>40.000000</td>
+      <td>0.495128</td>
+      <td>0.999988</td>
+      <td>0.653870</td>
+      <td>0.999978</td>
+      <td>0.999988</td>
+      <td>5063.911496</td>
+      <td>5560.184284</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 33 columns</p>
+</div></div></div>
 </div>
 </div>
 </div>

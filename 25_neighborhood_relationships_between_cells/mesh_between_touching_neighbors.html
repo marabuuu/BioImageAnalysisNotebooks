@@ -948,11 +948,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define centroids of cells</span>
-<span class="n">pointlist</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">push_zyx</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+<span class="n">pointlist</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
 <span class="p">[</span>
     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span>  <span class="mi">150</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">],</span>
     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">40</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span>  <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span>  <span class="mi">80</span><span class="p">,</span>  <span class="mi">80</span><span class="p">,</span>  <span class="mi">80</span><span class="p">,</span>  <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">]</span>
-<span class="p">]))</span>
+<span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pointlist</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -970,7 +970,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate an image where the centroid are labelled (labelled spots image)</span>
 <span class="n">labelled_spots</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">pointlist_to_labelled_spots</span><span class="p">(</span><span class="n">pointlist</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labelled_spots</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_sphere</span><span class="p">(</span><span class="n">labelled_spots</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1002,13 +1002,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 13.554028 100.       200.       300.       386.44598   50.000004
-  150.       250.00002  350.00003   13.576469 100.00001  200.00002
-  300.       386.4235    50.       150.       249.99998  350.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 13.554028 100.       200.       300.       386.44598   50.
+  150.       250.       350.        13.57647  100.       200.
+  300.       386.42352   50.       150.       250.       350.
    13.845719 100.       200.       300.       386.15427 ]
- [ 15.785855  15.711423  15.711423  15.711423  15.785855  39.460003
-   39.460003  39.460003  39.460003  79.46078   79.46001   79.46001
-   79.46001   79.46078  119.65165  119.65165  119.65165  119.65165
+ [ 15.785854  15.711423  15.711423  15.711423  15.785854  39.46
+   39.46      39.46      39.46      79.460785  79.46      79.46
+   79.46      79.460785 119.65166  119.65166  119.65166  119.65166
   143.8476   143.92326  143.92326  143.92326  143.8476  ]]
 </pre></div>
 </div>
