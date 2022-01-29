@@ -943,6 +943,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">pad_64</span><span class="p">(</span><span class="n">image</span><span class="p">[:,</span><span class="mi">20</span><span class="p">:</span><span class="mi">84</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">64</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -950,6 +951,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 64)
 </pre></div>
 </div>
+<img alt="../_images/deconvolution_pycudadecon_7_1.png" src="../_images/deconvolution_pycudadecon_7_1.png" />
 </div>
 </div>
 <p>We can now deconvolve the image using pycudadecon’s <code class="docutils literal notranslate"><span class="pre">decon()</span></code> function. It accepts file names as well as images as input.</p>
