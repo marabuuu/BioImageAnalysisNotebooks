@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image deconvolution &#8212; Bio-image Analysis Notebooks</title>
+    <title>Deconvolution on CUDA-compatible GPUs &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,6 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="An introduction to image deconvolution" href="introduction_deconvolution.html" />
-    <link rel="prev" title="Generating feature stacks" href="../18_image_filtering/feature_stacks.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -96,7 +94,7 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -324,11 +322,11 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="readme.html">
    Image deconvolution
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
   <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
@@ -796,9 +794,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/18a_deconvolution/readme.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/18a_deconvolution/deconvolution_pycudadecon.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -816,7 +814,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F18a_deconvolution/readme.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F18a_deconvolution/deconvolution_pycudadecon.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -832,34 +830,28 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/18a_deconvolution/deconvolution_pycudadecon.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-requirements">
-   Installing requirements
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-optional-dependencies">
-   Installing optional dependencies
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#see-also">
-   See also
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -867,67 +859,210 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Image deconvolution</h1>
+                <h1>Deconvolution on CUDA-compatible GPUs</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-requirements">
-   Installing requirements
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-optional-dependencies">
-   Installing optional dependencies
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#see-also">
-   See also
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="image-deconvolution">
-<h1>Image deconvolution<a class="headerlink" href="#image-deconvolution" title="Permalink to this headline">¶</a></h1>
-<p>Image deconvolution is also <em>just</em> a special form of image filtering. We dedicate a whole chapter to it because deconvolution play a special role in fluorescent microscopy.</p>
-<p>We will demonstrate most of the principles in two dimensional images. It shall be highlighted though that deconvolution should be done in three dimensions if possible because the physical principles behind are not the same in all directions, the point spread function is typically not symmetrical in fluorescent microscopy.</p>
-<div class="section" id="installing-requirements">
-<h2>Installing requirements<a class="headerlink" href="#installing-requirements" title="Permalink to this headline">¶</a></h2>
-<p>In this section, we will use <a class="reference external" href="https://github.com/rosalindfranklininstitute/RedLionfish">Redlionfish</a> and <a class="reference external" href="https://simpleitk.readthedocs.io/">SimpleITK</a> for deconvolving images. For the ease-of-use, we will work with the latter via a convenience layer, <a class="reference external" href="https://github.com/haesleinhuepf/napari-simpleitk-image-processing">napari-simpleitk-image-processing</a>. Enter these commands to install everything:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">reikna</span> <span class="n">pyopencl</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">redlionfish</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">napari</span><span class="o">-</span><span class="n">simpleitk</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">processing</span>
+  <div class="tex2jax_ignore mathjax_ignore section" id="deconvolution-on-cuda-compatible-gpus">
+<h1>Deconvolution on CUDA-compatible GPUs<a class="headerlink" href="#deconvolution-on-cuda-compatible-gpus" title="Permalink to this headline">¶</a></h1>
+<p>We will now apply <a class="reference external" href="https://github.com/tlambert03/pycudadecon">pycudadecon</a> for 3D image deconvolution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">pycudadecon</span> <span class="kn">import</span> <span class="n">decon</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="installing-optional-dependencies">
-<h2>Installing optional dependencies<a class="headerlink" href="#installing-optional-dependencies" title="Permalink to this headline">¶</a></h2>
-<p>In one notebook we will also use NVidia CUDA for deconvolution. If your graphics processing unit supports cuda, feel free to install <a class="reference external" href="https://github.com/tlambert03/pycudadecon">pycudadecon</a>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pycudadecon</span>
+</div>
+<p>We will load an image showing fluorescent intensity along lines. This 3D image was taken with a confocal microscope.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/DeconvolutionSampleVerticalGrid1AU-crop.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="see-also">
-<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.biodip.de/wiki/How_to_deconvolve_images_using_Huygens">BioDIP Dresden, How to deconvolve images using Huygens</a></p></li>
-</ul>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21, 150, 150)
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/deconvolution_pycudadecon_4_0.png" src="../_images/deconvolution_pycudadecon_4_0.png" />
+</div>
+</div>
+<p>The following PSF image was extracted from images taken with the same microscope using the procedure <a class="reference internal" href="extract_psf.html#deconvolution-extract-psf"><span class="std std-ref">explained before</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psf</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/psf.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">pad_64</span><span class="p">(</span><span class="n">psf</span><span class="p">):</span>
+    <span class="n">pad_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">64</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">64</span><span class="p">])</span>
+
+    <span class="n">pad_before</span> <span class="o">=</span> <span class="p">((</span><span class="n">pad_size</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">psf</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">pad_after</span> <span class="o">=</span> <span class="n">pad_size</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">psf</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="n">pad_before</span>
+
+    <span class="n">pad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">((</span><span class="n">pad_before</span><span class="p">,</span> <span class="n">pad_after</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">psf</span><span class="p">,</span> <span class="n">pad</span><span class="p">)</span>
+
+<span class="n">psf</span> <span class="o">=</span> <span class="n">pad_64</span><span class="p">(</span><span class="n">psf</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">psf</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">imshow</span><span class="p">(</span><span class="n">psf</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 64)
+</pre></div>
+</div>
+<img alt="../_images/deconvolution_pycudadecon_6_1.png" src="../_images/deconvolution_pycudadecon_6_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">pad_64</span><span class="p">(</span><span class="n">image</span><span class="p">[:,</span><span class="mi">20</span><span class="p">:</span><span class="mi">84</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">64</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 64)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now deconvolve the image using pycudadecon’s <code class="docutils literal notranslate"><span class="pre">decon()</span></code> function. It accepts file names as well as images as input.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deconvolved</span> <span class="o">=</span> <span class="n">decon</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">psf</span><span class="p">)</span>
+
+<span class="n">imshow</span><span class="p">(</span><span class="n">deconvolved</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/deconvolution_pycudadecon_9_0.png" src="../_images/deconvolution_pycudadecon_9_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deconvolved</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deconvolved</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>decon<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">Signature:</span>
+decon<span class=" -Color -Color-Bold -Color-Bold-Yellow">(</span>
+    images<span class=" -Color -Color-Bold -Color-Bold-Yellow">:</span> Union<span class=" -Color -Color-Bold -Color-Bold-Yellow">[</span>str<span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span> numpy<span class=" -Color -Color-Bold -Color-Bold-Yellow">.</span>ndarray<span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span> Sequence<span class=" -Color -Color-Bold -Color-Bold-Yellow">[</span>Union<span class=" -Color -Color-Bold -Color-Bold-Yellow">[</span>str<span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span> numpy<span class=" -Color -Color-Bold -Color-Bold-Yellow">.</span>ndarray<span class=" -Color -Color-Bold -Color-Bold-Yellow">]]],</span>
+    psf<span class=" -Color -Color-Bold -Color-Bold-Yellow">:</span> Union<span class=" -Color -Color-Bold -Color-Bold-Yellow">[</span>str<span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span> numpy<span class=" -Color -Color-Bold -Color-Bold-Yellow">.</span>ndarray<span class=" -Color -Color-Bold -Color-Bold-Yellow">],</span>
+    fpattern<span class=" -Color -Color-Bold -Color-Bold-Yellow">:</span> str <span class=" -Color -Color-Bold -Color-Bold-Yellow">=</span> <span class=" -Color -Color-Bold -Color-Bold-Blue">&#39;*.tif&#39;</span><span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span>
+    <span class=" -Color -Color-Bold -Color-Bold-Yellow">**</span>kwargs<span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span>
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">)</span> <span class=" -Color -Color-Bold -Color-Bold-Yellow">-&gt;</span> Union<span class=" -Color -Color-Bold -Color-Bold-Yellow">[</span>numpy<span class=" -Color -Color-Bold -Color-Bold-Yellow">.</span>ndarray<span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span> List<span class=" -Color -Color-Bold -Color-Bold-Yellow">[</span>numpy<span class=" -Color -Color-Bold -Color-Bold-Yellow">.</span>ndarray<span class=" -Color -Color-Bold -Color-Bold-Yellow">]]</span>
+<span class=" -Color -Color-Bold -Color-Bold-Red">Docstring:</span>
+Deconvolve an image or images with a PSF or OTF file
+
+If `images` is a directory, use the `fpattern` argument to select files
+by filename pattern.
+
+Parameters
+----------
+images : str, np.ndarray, or sequence of either
+    The array, filepath, directory, or list/tuple thereof to deconvolve
+psf : str or np.ndarray
+    a filepath of a PSF or OTF file, or a 3D numpy PSF array.  Function will
+    auto-detect whether the file is a 3D PSF or a filepath representing a 2D
+    complex OTF.
+fpattern : str, optional
+    Filepattern to use when a directory is provided in the `images` argument,
+    by default &quot;*.tif&quot;
+**kwargs
+    All other kwargs must be valid for either :func:`rl_init` or :func:`rl_decon`.
+
+Returns
+-------
+np.ndarray or list of array
+    The deconvolved image(s)
+
+Raises
+------
+ValueError
+    If save_deskewed is True and deskew is unset or 0
+IOError
+    If a directory is provided as input and ``fpattern`` yields no files
+NotImplementedError
+    If ``psf`` is provided as a complex, 2D numpy array (OTFs can only be
+    provided as filenames created with :func:`pycudadecon.make_otf`)
+
+Examples
+--------
+deconvolve a 3D TIF volume with a 3D PSF volume (e.g. a single bead stack)
+
+&gt;&gt;&gt; result = decon(&#39;/path/to/image.tif&#39;, &#39;/path/to/psf.tif&#39;)
+
+deconvolve all TIF files in a specific directory that match a certain
+`filename pattern &lt;https://docs.python.org/3.6/library/fnmatch.html&gt;`_,
+(in this example, all TIFs with the string &#39;560nm&#39; in their name)
+
+&gt;&gt;&gt; result = decon(
+...     &#39;/directory/with/images&#39;, &#39;/path/to/psf.tif&#39;, fpattern=&#39;*560nm*.tif&#39;
+... )
+
+deconvolve a list of images, provided either as np.ndarrays, filepaths,
+or directories
+
+&gt;&gt;&gt; imarray = tifffile.imread(&#39;some_other_image.tif&#39;)
+&gt;&gt;&gt; inputs = [&#39;/directory/with/images&#39;, &#39;/path/to/image.tif&#39;, imarray]
+&gt;&gt;&gt; result = decon(inputs, &#39;/path/to/psf.tif&#39;, fpattern=&#39;*560nm*.tif&#39;)
+<span class=" -Color -Color-Bold -Color-Bold-Red">File:</span>      c:\users\rober\miniconda3\envs\bio_39\lib\site-packages\pycudadecon\deconvolution.py
+<span class=" -Color -Color-Bold -Color-Bold-Red">Type:</span>      function
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -955,21 +1090,7 @@
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../18_image_filtering/feature_stacks.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Generating feature stacks</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="introduction_deconvolution.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">An introduction to image deconvolution</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>
