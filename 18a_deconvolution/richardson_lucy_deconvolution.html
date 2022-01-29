@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Richardson-Lucy-Deconvolution &#8212; Bio-image Analysis Notebooks</title>
+    <title>Richardson-Lucy-Deconvolution on OpenCL-compatible GPUs &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,6 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Spatial transforms" href="../19_spatial_transforms/readme.html" />
+    <link rel="prev" title="Determining the point-spread-function from a bead image" href="extract_psf.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -94,7 +96,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -307,12 +309,39 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="readme.html">
+   Image deconvolution
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction_deconvolution.html">
+     An introduction to image deconvolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="extract_psf.html">
+     Determining the point-spread-function from a bead image
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Richardson-Lucy-Deconvolution on OpenCL-compatible GPUs
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../19_spatial_transforms/readme.html">
    Spatial transforms
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -343,8 +372,8 @@
   <a class="reference internal" href="../20_image_segmentation/readme.html">
    Image segmentation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -440,8 +469,8 @@
   <a class="reference internal" href="../22_feature_extraction/readme.html">
    Feature extraction
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -477,8 +506,8 @@
   <a class="reference internal" href="../25_neighborhood_relationships_between_cells/readme.html">
    Neighborhood analysis in tissues
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -519,8 +548,8 @@
   <a class="reference internal" href="../27_cell_classification/readme.html">
    Cell classification
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -536,8 +565,8 @@
   <a class="reference internal" href="../28_colocalization/readme.html">
    Colocalization
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -558,8 +587,8 @@
   <a class="reference internal" href="../31_graphical_user_interfaces/readme.html">
    Graphical user interfaces
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -580,8 +609,8 @@
   <a class="reference internal" href="../32_tiled_image_processing/readme.html">
    Tiled image processing
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -602,8 +631,8 @@
   <a class="reference internal" href="../33_batch_processing/readme.html">
    Batch processing
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -619,8 +648,8 @@
   <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
    Tabular data wrangling
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-  <label for="toctree-checkbox-16">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -656,8 +685,8 @@
   <a class="reference internal" href="../51_plotting/readme.html">
    Plotting
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -683,8 +712,8 @@
   <a class="reference internal" href="../60_data_visualization/readme.html">
    Data visualization
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
+  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <label for="toctree-checkbox-19">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -812,7 +841,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Richardson-Lucy-Deconvolution</h1>
+                <h1>Richardson-Lucy-Deconvolution on OpenCL-compatible GPUs</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -823,39 +852,36 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="richardson-lucy-deconvolution">
-<h1>Richardson-Lucy-Deconvolution<a class="headerlink" href="#richardson-lucy-deconvolution" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="richardson-lucy-deconvolution-on-opencl-compatible-gpus">
+<h1>Richardson-Lucy-Deconvolution on OpenCL-compatible GPUs<a class="headerlink" href="#richardson-lucy-deconvolution-on-opencl-compatible-gpus" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Richardson%E2%80%93Lucy_deconvolution">Richardson-Lucy-Deconvolution</a> is a common and yet basic algorithm for image deconvolution in microscopy. In this notebook we will use a GPU-accelerated version of it that is implemented in the napari-plugin <a class="reference external" href="https://github.com/rosalindfranklininstitute/RedLionfish">RedLionFish</a>. Hence, you can use the same algorithm from the graphical user interface in napari.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
 <span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
-<span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
+<span class="kn">import</span> <span class="nn">RedLionfishDeconv</span> <span class="k">as</span> <span class="nn">rl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RedLionfishDeconv</span> <span class="k">as</span> <span class="nn">rl</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>We will load an image showing fluorescent intensity along lines. This 3D image was taken with a confocal microscope.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/DeconvolutionSampleVerticalGrid1AU-crop.tif&#39;</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/richardson_lucy_deconvolution_3_0.png" src="../_images/richardson_lucy_deconvolution_3_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21, 150, 150)
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psf</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/psf.tif&#39;</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">psf</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -863,6 +889,20 @@
 <img alt="../_images/richardson_lucy_deconvolution_4_0.png" src="../_images/richardson_lucy_deconvolution_4_0.png" />
 </div>
 </div>
+<p>The following PSF image was extracted from images taken with the same microscope using the procedure <a class="reference internal" href="extract_psf.html#deconvolution-extract-psf"><span class="std std-ref">explained before</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psf</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/psf.tif&#39;</span><span class="p">)</span>
+
+<span class="n">imshow</span><span class="p">(</span><span class="n">psf</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/richardson_lucy_deconvolution_6_0.png" src="../_images/richardson_lucy_deconvolution_6_0.png" />
+</div>
+</div>
+<p>We can now deconvolve the image using RedLionFish’s Richardson-Lucy-Deconvolution algorithm. We should specify that the algorith shall be executed on the <code class="docutils literal notranslate"><span class="pre">gpu</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">50</span>
@@ -871,13 +911,94 @@
                                                <span class="n">psf</span><span class="p">,</span> 
                                                <span class="n">niter</span><span class="o">=</span><span class="n">iterations</span><span class="p">,</span> 
                                                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;gpu&#39;</span><span class="p">,</span> 
-                                               <span class="n">resAsUint8</span><span class="o">=</span><span class="kc">True</span> <span class="p">)</span>
+                                               <span class="n">resAsUint8</span><span class="o">=</span><span class="kc">False</span> <span class="p">)</span>
 <span class="n">imshow</span><span class="p">(</span><span class="n">deconvolved</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/richardson_lucy_deconvolution_5_0.png" src="../_images/richardson_lucy_deconvolution_5_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:root:Failed to setup Reikna with OpenCL.
+ERROR:root:No module named &#39;reikna&#39;
+</pre></div>
+</div>
+<img alt="../_images/richardson_lucy_deconvolution_8_1.png" src="../_images/richardson_lucy_deconvolution_8_1.png" />
+</div>
+</div>
+<p>To visualize more precisely how the original image and the deconvolved version differ, we can plot the intensity along a line from the left to the right. We retrieve these numbers from a maximum intensity projection along Z.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_intensity_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">max_intensity_image</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(150, 150)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_intensity_deconvolved</span> <span class="o">=</span> <span class="n">deconvolved</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">max_intensity_deconvolved</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(150, 150)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_intensity_image</span><span class="p">[</span><span class="mi">80</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_intensity_deconvolved</span><span class="p">[</span><span class="mi">80</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/richardson_lucy_deconvolution_12_0.png" src="../_images/richardson_lucy_deconvolution_12_0.png" />
+</div>
+</div>
+<p>As you can see, the intensity range has change through deconvolution. This depends on the algorithm and implementation. Whenever applying deconvolution, consider checking if the total intensity in the original image and the deconvolved image are within the same range:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">image</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deconvolved</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">deconvolved</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 255)
+</pre></div>
+</div>
+</div>
+</div>
+<p>If these ranges differ, you should correct for it, e.g. for visualization. Note: Further analysis of the resulting intensity values must be done with care, as we cannot be sure about the actual intensity range of the deconvolution result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_intensity_image</span><span class="p">[</span><span class="mi">80</span><span class="p">]</span> <span class="o">/</span> <span class="n">max_intensity_image</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_intensity_deconvolved</span><span class="p">[</span><span class="mi">80</span><span class="p">]</span> <span class="o">/</span> <span class="n">max_intensity_deconvolved</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/richardson_lucy_deconvolution_17_0.png" src="../_images/richardson_lucy_deconvolution_17_0.png" />
 </div>
 </div>
 </div>
@@ -906,7 +1027,21 @@
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="extract_psf.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Determining the point-spread-function from a bead image</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../19_spatial_transforms/readme.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Spatial transforms</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>
@@ -914,7 +1049,7 @@
     <footer class="footer">
   <p>
     
-      By Robert Haase, Mig& add-your-name-here-by-sending-a-pull-request-containing-a-notebook<br/>
+      By Robert Haase, Miguel Fernandes & add-your-name-here-by-sending-a-pull-request-containing-a-notebook<br/>
     
         &copy; Copyright 2021.<br/>
   </p>
