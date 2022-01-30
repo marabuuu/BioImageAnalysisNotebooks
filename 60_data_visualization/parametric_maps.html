@@ -874,6 +874,78 @@
    Mean / minimum / maximum / standard-deviation intensity map
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parametric-maps-using-scikit-image">
+   Parametric maps using scikit-image
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aspect-ratio-map">
+     Aspect ratio map
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elongation-map">
+     Elongation map
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extent-map">
+   Extent map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feret-diameter-map">
+   Feret diameter map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#orientation-map">
+   Orientation map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perimeter-map">
+   Perimeter map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solidity-map">
+   Solidity map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parametric-maps-using-simpleitk-based-measurements">
+   Parametric maps using SimpleITK-based measurements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elongation">
+   Elongation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flatness">
+   Flatness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#roundness">
+   Roundness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perimeter">
+   Perimeter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quality-assurance">
+   Quality assurance
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -909,6 +981,78 @@
    Mean / minimum / maximum / standard-deviation intensity map
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parametric-maps-using-scikit-image">
+   Parametric maps using scikit-image
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aspect-ratio-map">
+     Aspect ratio map
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elongation-map">
+     Elongation map
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extent-map">
+   Extent map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feret-diameter-map">
+   Feret diameter map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#orientation-map">
+   Orientation map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perimeter-map">
+   Perimeter map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solidity-map">
+   Solidity map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parametric-maps-using-simpleitk-based-measurements">
+   Parametric maps using SimpleITK-based measurements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elongation">
+   Elongation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flatness">
+   Flatness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#roundness">
+   Roundness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perimeter">
+   Perimeter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quality-assurance">
+   Quality assurance
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -923,34 +1067,22 @@
 <p>This notebook demonstrates how parametric maps can be made. In such parametric images, pixel intensity corresponds to  measurements of the objects, for example area.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
 <span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imsave</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">regionprops</span>
+<span class="kn">from</span> <span class="nn">napari_simpleitk_image_processing</span> <span class="kn">import</span> <span class="n">label_statistics</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Starting point for drawing parametric maps is always a label image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs.tif&#39;</span><span class="p">)</span>
-<span class="n">blobs</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">artificial_objects_2d</span><span class="p">()</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">binary</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/parametric_maps_2_0.png" src="../_images/parametric_maps_2_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
-
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -958,20 +1090,9 @@
 <img alt="../_images/parametric_maps_3_0.png" src="../_images/parametric_maps_3_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">connected_components_labeling_box</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
-
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/parametric_maps_4_0.png" src="../_images/parametric_maps_4_0.png" />
-</div>
-</div>
 <div class="section" id="pixel-count-map">
 <h2>Pixel count map<a class="headerlink" href="#pixel-count-map" title="Permalink to this headline">¶</a></h2>
+<p>The pixel count map derived from a label image expresses area or volume of objects in colour.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pixel_count_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">label_pixel_count_map</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
@@ -981,13 +1102,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/parametric_maps_6_0.png" src="../_images/parametric_maps_6_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/haase/code/pyclesperanto_prototype/pyclesperanto_prototype/_tier9/_statistics_of_labelled_pixels.py:283: RuntimeWarning: invalid value encountered in true_divide
+  region_props[&#39;mean_max_distance_to_centroid_ratio&#39;] = region_props[&#39;max_distance_to_centroid&#39;] / region_props[
+/Users/haase/code/pyclesperanto_prototype/pyclesperanto_prototype/_tier9/_statistics_of_labelled_pixels.py:285: RuntimeWarning: invalid value encountered in true_divide
+  region_props[&#39;mean_max_distance_to_mass_center_ratio&#39;] = region_props[&#39;max_distance_to_mass_center&#39;] / region_props[
+</pre></div>
+</div>
+<img alt="../_images/parametric_maps_5_1.png" src="../_images/parametric_maps_5_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="extension-ratio-map">
 <h2>Extension ratio map<a class="headerlink" href="#extension-ratio-map" title="Permalink to this headline">¶</a></h2>
-<p>The extension ratio is a shape descriptor derived from the maximum distance of pixels to their object’s centroid divided by the average distance of pixels to the centroid.</p>
+<p>The extension ratio is a shape descriptor derived from the maximum distance of pixels to their object’s centroid divided by the average distance of pixels to the centroid. It alllows to differentiate elongated from roundish objects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">extension_ratio_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">extension_ratio_map</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
@@ -1001,12 +1128,25 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/parametric_maps_8_0.png" src="../_images/parametric_maps_8_0.png" />
+<img alt="../_images/parametric_maps_7_0.png" src="../_images/parametric_maps_7_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="mean-minimum-maximum-standard-deviation-intensity-map">
 <h2>Mean / minimum / maximum / standard-deviation intensity map<a class="headerlink" href="#mean-minimum-maximum-standard-deviation-intensity-map" title="Permalink to this headline">¶</a></h2>
+<p>If we use additionally an intensity image, we can also produce parametric images showing intensity measurements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blobs</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs.tif&#39;</span><span class="p">),</span> <span class="n">factor_x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">factor_y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">auto_size</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_9_0.png" src="../_images/parametric_maps_9_0.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_intensity_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">label_mean_intensity_map</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
@@ -1046,6 +1186,300 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/parametric_maps_12_0.png" src="../_images/parametric_maps_12_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="parametric-maps-using-scikit-image">
+<h2>Parametric maps using scikit-image<a class="headerlink" href="#parametric-maps-using-scikit-image" title="Permalink to this headline">¶</a></h2>
+<p>You can also compute your own measurement for each object and then visualize it in a parametric map image. Consider using <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops">scikit-image’s <code class="docutils literal notranslate"><span class="pre">regionprops()</span></code></a> for computing the measurements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="aspect-ratio-map">
+<h3>Aspect ratio map<a class="headerlink" href="#aspect-ratio-map" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">aspect_ratio</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">statistics</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">minor_axis_length</span><span class="p">:</span>
+        <span class="n">aspect_ratio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">major_axis_length</span> <span class="o">/</span> <span class="n">s</span><span class="o">.</span><span class="n">minor_axis_length</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">aspect_ratio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># note: an aspect ratio of 0 is an &quot;invalid&quot; value</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aspect_ratio_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">aspect_ratio_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_17_0.png" src="../_images/parametric_maps_17_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="elongation-map">
+<h3>Elongation map<a class="headerlink" href="#elongation-map" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">eccentricity</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">eccentricity</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">statistics</span><span class="p">]</span>
+
+<span class="n">eccentricity_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">eccentricity</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">eccentricity_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_19_0.png" src="../_images/parametric_maps_19_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="extent-map">
+<h2>Extent map<a class="headerlink" href="#extent-map" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">extent</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">statistics</span><span class="p">]</span>
+
+<span class="n">extent_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">extent</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">extent_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_21_0.png" src="../_images/parametric_maps_21_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="feret-diameter-map">
+<h2>Feret diameter map<a class="headerlink" href="#feret-diameter-map" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">feret_diameter</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">feret_diameter_max</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">statistics</span><span class="p">]</span>
+
+<span class="n">feret_diameter_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">feret_diameter</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">feret_diameter_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_23_0.png" src="../_images/parametric_maps_23_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="orientation-map">
+<h2>Orientation map<a class="headerlink" href="#orientation-map" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">orientation</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">orientation</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">statistics</span><span class="p">]</span>
+
+<span class="n">orientation_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">orientation</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">orientation_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_25_0.png" src="../_images/parametric_maps_25_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="perimeter-map">
+<h2>Perimeter map<a class="headerlink" href="#perimeter-map" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">perimeter_ski</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">perimeter</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">statistics</span><span class="p">]</span>
+
+<span class="n">perimeter_ski_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">perimeter_ski</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">perimeter_ski_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_27_0.png" src="../_images/parametric_maps_27_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="solidity-map">
+<h2>Solidity map<a class="headerlink" href="#solidity-map" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">solidity</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">solidity</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">statistics</span><span class="p">]</span>
+
+<span class="n">solidity_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">solidity</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">solidity_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_29_0.png" src="../_images/parametric_maps_29_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="parametric-maps-using-simpleitk-based-measurements">
+<h2>Parametric maps using SimpleITK-based measurements<a class="headerlink" href="#parametric-maps-using-simpleitk-based-measurements" title="Permalink to this headline">¶</a></h2>
+<p>Furthermore, also <a class="reference external" href="https://simpleitk.readthedocs.io/">SimpleITK</a> comes with quantitative measurements for labeled images. For convenience reasons, we will use the scriptable napari plugin <a class="reference external" href="https://github.com/haesleinhuepf/napari-simpleitk-image-processing">napari-simpleitk-image-processing</a> for deriving measurements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics_sitk</span> <span class="o">=</span> <span class="n">label_statistics</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">perimeter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">intensity</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">statistics_sitk</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;label&#39;, &#39;elongation&#39;, &#39;feret_diameter&#39;, &#39;flatness&#39;, &#39;roundness&#39;, &#39;equivalent_ellipsoid_diameter_0&#39;, &#39;equivalent_ellipsoid_diameter_1&#39;, &#39;equivalent_spherical_perimeter&#39;, &#39;equivalent_spherical_radius&#39;, &#39;number_of_pixels&#39;, &#39;number_of_pixels_on_border&#39;, &#39;perimeter&#39;, &#39;perimeter_on_border&#39;, &#39;perimeter_on_border_ratio&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="elongation">
+<h2>Elongation<a class="headerlink" href="#elongation" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">elongation</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">statistics_sitk</span><span class="p">[</span><span class="s1">&#39;elongation&#39;</span><span class="p">]</span>
+
+<span class="n">elongation_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">elongation</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">elongation_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_33_0.png" src="../_images/parametric_maps_33_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="flatness">
+<h2>Flatness<a class="headerlink" href="#flatness" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">flatness</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">statistics_sitk</span><span class="p">[</span><span class="s1">&#39;flatness&#39;</span><span class="p">]</span>
+
+<span class="n">flatness_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">flatness</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">flatness_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_35_0.png" src="../_images/parametric_maps_35_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="roundness">
+<h2>Roundness<a class="headerlink" href="#roundness" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">roundness</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">statistics_sitk</span><span class="p">[</span><span class="s1">&#39;roundness&#39;</span><span class="p">]</span>
+
+<span class="n">roundness_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">roundness</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">roundness_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_37_0.png" src="../_images/parametric_maps_37_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="perimeter">
+<h2>Perimeter<a class="headerlink" href="#perimeter" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">perimeter_sitk</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">statistics_sitk</span><span class="p">[</span><span class="s1">&#39;perimeter&#39;</span><span class="p">]</span>
+
+<span class="n">perimeter_sitk_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">perimeter_sitk</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">perimeter_sitk_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_39_0.png" src="../_images/parametric_maps_39_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="quality-assurance">
+<h2>Quality assurance<a class="headerlink" href="#quality-assurance" title="Permalink to this headline">¶</a></h2>
+<p>If you generate a parametric image with the “label” column, the parametric image should actually be equal to the label input image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we&#39;re appending a [0] for the &quot;measurement&quot; of the background and attach all values behind</span>
+<span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">statistics_sitk</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+
+<span class="n">label_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">label_map</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_41_0.png" src="../_images/parametric_maps_41_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label_difference</span> <span class="o">=</span> <span class="n">labels</span> <span class="o">-</span> <span class="n">label_map</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">label_difference</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_42_0.png" src="../_images/parametric_maps_42_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label_difference</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">label_difference</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 0.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>When comparing perimeter measurements from scikit-image and SimpleITK, we could see small differences. Here we can visualize which objects are affected and to what degree.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">perimeter_difference</span> <span class="o">=</span> <span class="n">perimeter_sitk_map</span> <span class="o">-</span> <span class="n">perimeter_ski_map</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">perimeter_difference</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametric_maps_45_0.png" src="../_images/parametric_maps_45_0.png" />
 </div>
 </div>
 </div>
