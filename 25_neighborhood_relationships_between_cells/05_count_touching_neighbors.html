@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Neighborhood definitions &#8212; Bio-image Analysis Notebooks</title>
+    <title>Count touching neighbors &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Mesh between touching neighbors" href="mesh_between_touching_neighbors.html" />
-    <link rel="prev" title="Neighborhood analysis in tissues" href="readme.html" />
+    <link rel="next" title="Draw distance-meshes between neighbors" href="06_mesh_with_distances.html" />
+    <link rel="prev" title="Neighborhood definitions" href="01_neighborhood_definitions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -552,34 +552,34 @@
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_neighborhood_definitions.html">
      Neighborhood definitions
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="mesh_between_touching_neighbors.html">
-     Mesh between touching neighbors
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Count touching neighbors
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="mesh_nearest_neighbors.html">
-     Mesh nearest neighbors
+    <a class="reference internal" href="06_mesh_with_distances.html">
+     Draw distance-meshes between neighbors
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="distance_to_other_labels.html">
-     Measure the distance to neighboring cells
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="label_neighbor_filters.html">
-     Label neighbor filters
+     Measure the distance to cells in another label image
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="other_proximal_labels_count.html">
      Count proximal labels in an other label image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="label_neighbor_filters.html">
+     Label neighbor filters
     </a>
    </li>
   </ul>
@@ -841,7 +841,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/25_neighborhood_relationships_between_cells/neighborhood_definitions.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/25_neighborhood_relationships_between_cells/05_count_touching_neighbors.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -861,7 +861,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F25_neighborhood_relationships_between_cells/neighborhood_definitions.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F25_neighborhood_relationships_between_cells/05_count_touching_neighbors.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -882,7 +882,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/25_neighborhood_relationships_between_cells/neighborhood_definitions.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/25_neighborhood_relationships_between_cells/05_count_touching_neighbors.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -904,30 +904,32 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-data">
-   Example data
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Count touching neighbors
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#touching-neighbors">
-   Touching neighbors
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-data">
+   Test data
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#neighbors-of-touching-neighbors">
-   Neighbors of touching neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#n-nearest-neighbors">
-   N nearest neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proximal-neighbors">
-   Proximal neighbors
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mesh-between-neighboring-cells">
+     Mesh between neighboring cells
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#centroid-connections-and-cell-borders">
+     Centroid connections and cell borders
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyze-and-visualize-number-of-touching-neighbors">
+     Analyze and visualize number of touching neighbors
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -939,7 +941,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Neighborhood definitions</h1>
+                <h1>Count touching neighbors</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -949,30 +951,32 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-data">
-   Example data
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Count touching neighbors
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#touching-neighbors">
-   Touching neighbors
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-data">
+   Test data
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#neighbors-of-touching-neighbors">
-   Neighbors of touching neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#n-nearest-neighbors">
-   N nearest neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proximal-neighbors">
-   Proximal neighbors
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mesh-between-neighboring-cells">
+     Mesh between neighboring cells
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#centroid-connections-and-cell-borders">
+     Centroid connections and cell borders
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyze-and-visualize-number-of-touching-neighbors">
+     Analyze and visualize number of touching neighbors
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -983,245 +987,314 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="neighborhood-definitions">
-<h1>Neighborhood definitions<a class="headerlink" href="#neighborhood-definitions" title="Permalink to this headline">¶</a></h1>
-<p>In py-clEsperanto (and in <a class="reference external" href="https://clij.github.io/clij2-docs/md/neighbors_of_neighbors/">CLIJ as well</a>), we’re using adjacency graphs to investigate relationships between neighboring labeled object, in practice: cells.</p>
-<p>This notebook demonstrates the considered neighborhood definitions.</p>
-<p>We consider the “neighborhood” of a pixel always includs the pixel itself per default. That sounds intuitive in the first place and leads to some unnatural behaviour in some situations.</p>
-<p>Work is in progress. Feedback is very welcome: robert.haase at <a class="reference external" href="http://tu-dresden.de">tu-dresden.de</a></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="count-touching-neighbors">
+<h1>Count touching neighbors<a class="headerlink" href="#count-touching-neighbors" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook we visualize which cells in a tissue are neighbord by drawing a mesh. Furthermore, we can change the intensity of the mesh so that it corresponds to the distance between the centroids of the cells.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="test-data">
+<h1>Test data<a class="headerlink" href="#test-data" title="Permalink to this headline">¶</a></h1>
+<p>Let’s generate some tissue-like structure consisting of cells which typically have approximately 6 neighbors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">artificial_tissue_2d</span><span class="p">(</span>
+    <span class="n">delta_x</span><span class="o">=</span><span class="mi">48</span><span class="p">,</span> 
+    <span class="n">delta_y</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> 
+    <span class="n">random_sigma_x</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> 
+    <span class="n">random_sigma_y</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> 
+    <span class="n">width</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> 
+    <span class="n">height</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
 
-<span class="n">cle</span><span class="o">.</span><span class="n">select_device</span><span class="p">(</span><span class="s2">&quot;RTX&quot;</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
-</pre></div>
+<img alt="../_images/05_count_touching_neighbors_3_0.png" src="../_images/05_count_touching_neighbors_3_0.png" />
 </div>
 </div>
-</div>
+<div class="section" id="mesh-between-neighboring-cells">
+<h2>Mesh between neighboring cells<a class="headerlink" href="#mesh-between-neighboring-cells" title="Permalink to this headline">¶</a></h2>
+<p>Before counting neighbors, we should visualize neighbor-relationships. We can do this by drawing a mesh between centroids of touching neighbor cells.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate artificial cells as test data</span>
-<span class="n">tissue</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">artificial_tissue_2d</span><span class="p">()</span>
-
-<span class="c1"># fill it with random measurements</span>
-<span class="n">values</span> <span class="o">=</span> <span class="n">random</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_all_pixels</span><span class="p">(</span><span class="n">tissue</span><span class="p">))])</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">95</span><span class="p">):</span>
-        <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">45</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">90</span>
-
-<span class="n">measurements</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">values</span><span class="p">]))</span>
-
-<span class="c1"># visualize measurments in space</span>
-<span class="n">example_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">tissue</span><span class="p">,</span> <span class="n">measurements</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="example-data">
-<h2>Example data<a class="headerlink" href="#example-data" title="Permalink to this headline">¶</a></h2>
-<p>Let’s take a look at an image with arbitrarily shaped pixels. Let’s call them “cells”. In our example image, there is one cell in the center with higher intensity:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span> <span class="n">min_display_intensity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/neighborhood_definitions_4_0.png" src="../_images/neighborhood_definitions_4_0.png" />
-</div>
-</div>
-</div>
-<div class="section" id="touching-neighbors">
-<h2>Touching neighbors<a class="headerlink" href="#touching-neighbors" title="Permalink to this headline">¶</a></h2>
-<p>We can show all cells that belong to the “touch” neighborhood by computing the local maximum intensity in this neighborhood. Let’s visualize the touching neighbor graph as mesh first.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_mesh_between_touching_labels</span><span class="p">(</span><span class="n">tissue</span><span class="p">)</span>
-
-<span class="c1"># make lines a bit thicker for visualization purposes</span>
-<span class="n">mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_sphere</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_mesh_between_touching_labels</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
 
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/neighborhood_definitions_6_0.png" src="../_images/neighborhood_definitions_6_0.png" />
+<img alt="../_images/05_count_touching_neighbors_5_0.png" src="../_images/05_count_touching_neighbors_5_0.png" />
 </div>
 </div>
-<p>From those neighbor-graph one can compute local properties, for example the maximum:</p>
+<p>We can also combine both visualizations in one image. Note, these images should not be used any further for quantitative analysis. It just serves visualization purposes.</p>
+</div>
+<div class="section" id="centroid-connections-and-cell-borders">
+<h2>Centroid connections and cell borders<a class="headerlink" href="#centroid-connections-and-cell-borders" title="Permalink to this headline">¶</a></h2>
+<p>A common way for visualizing tissues in this context is by drawing cell-borders and the centroid mesh in different colours.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_maximum</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_touching_neighbors_map</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span> <span class="n">tissue</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualization</span> <span class="o">=</span> <span class="n">mesh</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">cle</span><span class="o">.</span><span class="n">detect_label_edges</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
 
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">local_maximum</span><span class="p">,</span> <span class="n">min_display_intensity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">visualization</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/neighborhood_definitions_8_0.png" src="../_images/neighborhood_definitions_8_0.png" />
+<img alt="../_images/05_count_touching_neighbors_7_0.png" src="../_images/05_count_touching_neighbors_7_0.png" />
 </div>
 </div>
 </div>
-<div class="section" id="neighbors-of-touching-neighbors">
-<h2>Neighbors of touching neighbors<a class="headerlink" href="#neighbors-of-touching-neighbors" title="Permalink to this headline">¶</a></h2>
-<p>You can also extend the neighborhood by considering neighbors of neighbor (of neighbors (of neighbors)). How far you go, can be configured with a radius parameter. Note: Radiu==0 means, no neighbors are taken into account, radius==1 is identical with touching neighbors, radius &gt; 1 are neighbors of neighbors:</p>
+<div class="section" id="analyze-and-visualize-number-of-touching-neighbors">
+<h2>Analyze and visualize number of touching neighbors<a class="headerlink" href="#analyze-and-visualize-number-of-touching-neighbors" title="Permalink to this headline">¶</a></h2>
+<p>We can also count the touching neighbors and visualize the result as parametric image in colours.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">radius</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
-    <span class="n">local_maximum</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_touching_neighbors_map</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">)</span>
-    <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">local_maximum</span><span class="p">,</span> <span class="n">min_display_intensity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/neighborhood_definitions_10_0.png" src="../_images/neighborhood_definitions_10_0.png" />
-<img alt="../_images/neighborhood_definitions_10_1.png" src="../_images/neighborhood_definitions_10_1.png" />
-<img alt="../_images/neighborhood_definitions_10_2.png" src="../_images/neighborhood_definitions_10_2.png" />
-<img alt="../_images/neighborhood_definitions_10_3.png" src="../_images/neighborhood_definitions_10_3.png" />
-<img alt="../_images/neighborhood_definitions_10_4.png" src="../_images/neighborhood_definitions_10_4.png" />
-</div>
-</div>
-</div>
-<div class="section" id="n-nearest-neighbors">
-<h2>N nearest neighbors<a class="headerlink" href="#n-nearest-neighbors" title="Permalink to this headline">¶</a></h2>
-<p>You can also define a neighborhood from the distances between cells. As distance measurement, we use the Euclidean distance between label centroids. Also in this case you an configure how far the neighborhood should range by setting the number of nearest neighbors n. As mentioned above, neighborhoods include the center pixel. Thus, the neighborhood of a pixel and its nearest neighbor contains two neighbors:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n = &quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    <span class="n">mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_mesh_between_n_closest_labels</span><span class="p">(</span><span class="n">tissue</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neighbor_count_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">touching_neighbor_count_map</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
 
-    <span class="c1"># make lines a bit thicker for visualization purposes</span>
-    <span class="n">mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_sphere</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">neighbor_count_image</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_display_intensity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05_count_touching_neighbors_9_0.png" src="../_images/05_count_touching_neighbors_9_0.png" />
+</div>
+</div>
+<p>Note, the numbers along the image border may not be accurate. Hence, we should exclude the corresponding cells from the further analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells_ex_border</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">exclude_labels_on_edges</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
 
-    <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cells_ex_border</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  1
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_12_1.png" src="../_images/neighborhood_definitions_12_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  2
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_12_3.png" src="../_images/neighborhood_definitions_12_3.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  3
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_12_5.png" src="../_images/neighborhood_definitions_12_5.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  4
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_12_7.png" src="../_images/neighborhood_definitions_12_7.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  5
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_12_9.png" src="../_images/neighborhood_definitions_12_9.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  6
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_12_11.png" src="../_images/neighborhood_definitions_12_11.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  7
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_12_13.png" src="../_images/neighborhood_definitions_12_13.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  8
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_12_15.png" src="../_images/neighborhood_definitions_12_15.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  9
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_12_17.png" src="../_images/neighborhood_definitions_12_17.png" />
+<img alt="../_images/05_count_touching_neighbors_11_0.png" src="../_images/05_count_touching_neighbors_11_0.png" />
 </div>
 </div>
+<p>After correcting the label image, we can also correct the parametric image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n = &quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neighbor_count_image_ex_border</span> <span class="o">=</span> <span class="n">neighbor_count_image</span> <span class="o">*</span> <span class="p">(</span><span class="n">cells_ex_border</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
 
-    <span class="n">local_maximum</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_n_nearest_neighbors_map</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">local_maximum</span><span class="p">,</span> <span class="n">min_display_intensity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">neighbor_count_image_ex_border</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_display_intensity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  1
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_13_1.png" src="../_images/neighborhood_definitions_13_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  2
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_13_3.png" src="../_images/neighborhood_definitions_13_3.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  3
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_13_5.png" src="../_images/neighborhood_definitions_13_5.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  4
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_13_7.png" src="../_images/neighborhood_definitions_13_7.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  5
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_13_9.png" src="../_images/neighborhood_definitions_13_9.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  6
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_13_11.png" src="../_images/neighborhood_definitions_13_11.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  7
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_13_13.png" src="../_images/neighborhood_definitions_13_13.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  8
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_13_15.png" src="../_images/neighborhood_definitions_13_15.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  9
-</pre></div>
-</div>
-<img alt="../_images/neighborhood_definitions_13_17.png" src="../_images/neighborhood_definitions_13_17.png" />
+<img alt="../_images/05_count_touching_neighbors_13_0.png" src="../_images/05_count_touching_neighbors_13_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="proximal-neighbors">
-<h2>Proximal neighbors<a class="headerlink" href="#proximal-neighbors" title="Permalink to this headline">¶</a></h2>
-<p>We can also compute the local maximum of cells with centroid distances below a given upper threshold:</p>
+<p>Now, we can measure the number of neighbors. We can either just read those numbers and put them in a list …</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_maximum</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_proximal_neighbors_map</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">max_distance</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">local_maximum</span><span class="p">,</span> <span class="n">min_display_intensity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cle</span><span class="o">.</span><span class="n">read_intensities_from_map</span><span class="p">(</span><span class="n">cells_ex_border</span><span class="p">,</span> <span class="n">neighbor_count_image_ex_border</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/neighborhood_definitions_15_0.png" src="../_images/neighborhood_definitions_15_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cl.Array([[0., 5., 6., 7., 6., 6., 7., 6., 6., 5., 5., 6., 6., 7., 6., 6.,
+        6., 6., 6., 6., 6.]], dtype=float32)
+</pre></div>
 </div>
 </div>
+</div>
+<p>… we can also read these values together with all other statistics and put them in a pandas DataFrame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_maximum</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_proximal_neighbors_map</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">max_distance</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">local_maximum</span><span class="p">,</span> <span class="n">min_display_intensity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">statistics_of_labelled_pixels</span><span class="p">(</span><span class="n">neighbor_count_image_ex_border</span><span class="p">,</span> <span class="n">cells_ex_border</span><span class="p">)</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">statistics</span><span class="p">)</span>
+
+<span class="c1"># rename a column</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;mean_intensity&quot;</span><span class="p">:</span> <span class="s2">&quot;number_of_neighbors&quot;</span><span class="p">})</span>
+
+<span class="c1"># only filter out a subset of all columns; only what we care</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="p">[[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;number_of_neighbors&quot;</span><span class="p">,</span> <span class="s2">&quot;centroid_x&quot;</span><span class="p">,</span> <span class="s2">&quot;centroid_y&quot;</span><span class="p">]]</span>
+
+<span class="n">table</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/neighborhood_definitions_16_0.png" src="../_images/neighborhood_definitions_16_0.png" />
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>number_of_neighbors</th>
+      <th>centroid_x</th>
+      <th>centroid_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>5.0</td>
+      <td>74.592697</td>
+      <td>23.731028</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>6.0</td>
+      <td>173.741379</td>
+      <td>35.582230</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7.0</td>
+      <td>49.460915</td>
+      <td>51.928082</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>6.0</td>
+      <td>91.783768</td>
+      <td>52.666199</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>6.0</td>
+      <td>142.728210</td>
+      <td>62.962471</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>7.0</td>
+      <td>189.973206</td>
+      <td>68.526794</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>6.0</td>
+      <td>73.699181</td>
+      <td>88.797356</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>6.0</td>
+      <td>115.321083</td>
+      <td>90.665649</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>5.0</td>
+      <td>163.097733</td>
+      <td>99.824242</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>5.0</td>
+      <td>58.206852</td>
+      <td>122.341309</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>6.0</td>
+      <td>98.847565</td>
+      <td>134.280228</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>6.0</td>
+      <td>147.731705</td>
+      <td>127.326218</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>7.0</td>
+      <td>200.522903</td>
+      <td>112.817368</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>6.0</td>
+      <td>67.880905</td>
+      <td>162.991592</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>6.0</td>
+      <td>122.943306</td>
+      <td>157.515717</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>6.0</td>
+      <td>171.010025</td>
+      <td>153.333328</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>17</td>
+      <td>6.0</td>
+      <td>43.426266</td>
+      <td>189.492981</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>6.0</td>
+      <td>96.272728</td>
+      <td>192.326477</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>19</td>
+      <td>6.0</td>
+      <td>140.815964</td>
+      <td>194.446030</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>20</td>
+      <td>6.0</td>
+      <td>193.817596</td>
+      <td>193.019318</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 </div>
@@ -1251,17 +1324,17 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="readme.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="01_neighborhood_definitions.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Neighborhood analysis in tissues</p>
+            <p class="prev-next-title">Neighborhood definitions</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="mesh_between_touching_neighbors.html" title="next page">
+    <a class='right-next' id="next-link" href="06_mesh_with_distances.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Mesh between touching neighbors</p>
+        <p class="prev-next-title">Draw distance-meshes between neighbors</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

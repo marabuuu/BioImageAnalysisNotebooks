@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mesh nearest neighbors &#8212; Bio-image Analysis Notebooks</title>
+    <title>Draw distance-meshes between neighbors &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Measure the distance to neighboring cells" href="distance_to_other_labels.html" />
-    <link rel="prev" title="Mesh between touching neighbors" href="mesh_between_touching_neighbors.html" />
+    <link rel="next" title="Measure the distance to cells in another label image" href="distance_to_other_labels.html" />
+    <link rel="prev" title="Count touching neighbors" href="05_count_touching_neighbors.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -553,33 +553,33 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="neighborhood_definitions.html">
+    <a class="reference internal" href="01_neighborhood_definitions.html">
      Neighborhood definitions
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="mesh_between_touching_neighbors.html">
-     Mesh between touching neighbors
+    <a class="reference internal" href="05_count_touching_neighbors.html">
+     Count touching neighbors
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Mesh nearest neighbors
+     Draw distance-meshes between neighbors
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="distance_to_other_labels.html">
-     Measure the distance to neighboring cells
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="label_neighbor_filters.html">
-     Label neighbor filters
+     Measure the distance to cells in another label image
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="other_proximal_labels_count.html">
      Count proximal labels in an other label image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="label_neighbor_filters.html">
+     Label neighbor filters
     </a>
    </li>
   </ul>
@@ -841,7 +841,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/25_neighborhood_relationships_between_cells/mesh_nearest_neighbors.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/25_neighborhood_relationships_between_cells/06_mesh_with_distances.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -861,7 +861,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F25_neighborhood_relationships_between_cells/mesh_nearest_neighbors.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F25_neighborhood_relationships_between_cells/06_mesh_with_distances.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -882,7 +882,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/25_neighborhood_relationships_between_cells/mesh_nearest_neighbors.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/25_neighborhood_relationships_between_cells/06_mesh_with_distances.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -906,7 +906,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Mesh nearest neighbors</h1>
+                <h1>Draw distance-meshes between neighbors</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -917,116 +917,122 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="mesh-nearest-neighbors">
-<h1>Mesh nearest neighbors<a class="headerlink" href="#mesh-nearest-neighbors" title="Permalink to this headline">¶</a></h1>
-<p>In this notebook, we draw connections between nearest neighbors</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="draw-distance-meshes-between-neighbors">
+<h1>Draw distance-meshes between neighbors<a class="headerlink" href="#draw-distance-meshes-between-neighbors" title="Permalink to this headline">¶</a></h1>
+<p>When studying neighborhood-relationships between cells, e.g. to determine if cells can communicate with each other, their distances to each other are relevant. We can visualize those using distance meshes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
-<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imshow</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>We’re using a dataset published by <a class="reference external" href="https://doi.org/10.1091/mbc.E13-04-0221">Heriche et al.</a> licensed <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> available in the <a class="reference external" href="https://idr.openmicroscopy.org/webclient/img_detail/179719/">Image Data Resource</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pointlist</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">pointlist</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/plate1_1_013 [Well 5, Field 1 (Spot 5)].png&quot;</span><span class="p">)[:,:,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">nuclei</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">raw_image</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nuclei</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[59.001747   9.736637  42.609783  90.45526    9.868053  98.452995
-  71.22194    5.5048933 63.576927  59.419697  34.2262    17.47825
-  97.633064  45.608437  76.99399   44.49453   53.4873    36.749214
-  52.64983   18.57199   21.179062  57.78511   40.779755  68.90545
-  79.450905 ]
- [49.071693  86.23194   61.176292  70.62072   71.90566   95.76109
-   5.4489503 47.43074   61.73494   50.394714  51.958324  94.066574
-  18.093037  95.91523   63.090202  42.924343   2.1506605 51.849003
-  97.52378   82.48361   67.0514    71.21503   53.87805   82.20656
-  21.318045 ]]
-</pre></div>
+<img alt="../_images/06_mesh_with_distances_3_0.png" src="../_images/06_mesh_with_distances_3_0.png" />
 </div>
 </div>
-</div>
+<p>A mesh can for example be drawn between proximal neighbors, nuclei which are closer than a given maximum distance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labelled_spots</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">pointlist_to_labelled_spots</span><span class="p">(</span><span class="n">pointlist</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labelled_spots</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_distance</span> <span class="o">=</span> <span class="mi">320</span>
+
+<span class="n">proximal_neighbor_mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_mesh_between_proximal_labels</span><span class="p">(</span><span class="n">nuclei</span><span class="p">,</span> <span class="n">maximum_distance</span><span class="o">=</span><span class="n">max_distance</span><span class="p">)</span>
+
+<span class="c1"># we make the lines a bit thicker for visualization purposes</span>
+<span class="n">proximal_neighbor_mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_box</span><span class="p">(</span><span class="n">proximal_neighbor_mesh</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">proximal_neighbor_mesh</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mesh_nearest_neighbors_3_0.png" src="../_images/mesh_nearest_neighbors_3_0.png" />
+<img alt="../_images/06_mesh_with_distances_5_0.png" src="../_images/06_mesh_with_distances_5_0.png" />
 </div>
 </div>
+<p>For drawing a distance mesh, we need to combine a distance matrix, an abstract representation of distances of all objects to each other with a neighborhood-matrix, which represents which cells are neighbors.</p>
+<p>We start with the distance matrix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">extend_labeling_via_voronoi</span><span class="p">(</span><span class="n">labelled_spots</span><span class="p">)</span>
-<span class="n">membranes</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">detect_label_edges</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">membranes</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">centroids</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">centroids_of_background_and_labels</span><span class="p">(</span><span class="n">nuclei</span><span class="p">)</span>
+
+<span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">generate_distance_matrix</span><span class="p">(</span><span class="n">centroids</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
+
+<span class="c1"># we ignor distances to the background object</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">set_column</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">set_row</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mesh_nearest_neighbors_4_0.png" src="../_images/mesh_nearest_neighbors_4_0.png" />
+<img alt="../_images/06_mesh_with_distances_7_0.png" src="../_images/06_mesh_with_distances_7_0.png" />
 </div>
 </div>
+<p>Next, we should setup a matrix which represents for each nucleus (from the left to the right) which are its n nearest neighbors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nearest_neighbors_mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_mesh_between_n_closest_labels</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nearest_neighbors_mesh</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">proximal_neighbor_matrix</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">generate_proximal_neighbors_matrix</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">max_distance</span><span class="o">=</span><span class="n">max_distance</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">proximal_neighbor_matrix</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mesh_nearest_neighbors_5_0.png" src="../_images/mesh_nearest_neighbors_5_0.png" />
+<img alt="../_images/06_mesh_with_distances_9_0.png" src="../_images/06_mesh_with_distances_9_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">two_nearest_neighbors_mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_mesh_between_n_closest_labels</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">two_nearest_neighbors_mesh</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distance_touch_matrix</span> <span class="o">=</span> <span class="n">distance_matrix</span> <span class="o">*</span> <span class="n">proximal_neighbor_matrix</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">distance_touch_matrix</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mesh_nearest_neighbors_6_0.png" src="../_images/mesh_nearest_neighbors_6_0.png" />
+<img alt="../_images/06_mesh_with_distances_10_0.png" src="../_images/06_mesh_with_distances_10_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">three_nearest_neighbors_mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_mesh_between_n_closest_labels</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">three_nearest_neighbors_mesh</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distance_mesh1</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">touch_matrix_to_mesh</span><span class="p">(</span><span class="n">centroids</span><span class="p">,</span> <span class="n">distance_touch_matrix</span><span class="p">)</span>
+
+<span class="c1"># we make the lines a bit thicker for visualization purposes</span>
+<span class="n">distance_mesh1</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_box</span><span class="p">(</span><span class="n">distance_mesh1</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">distance_mesh1</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mesh_nearest_neighbors_7_0.png" src="../_images/mesh_nearest_neighbors_7_0.png" />
+<img alt="../_images/06_mesh_with_distances_11_0.png" src="../_images/06_mesh_with_distances_11_0.png" />
 </div>
 </div>
+<p>To check if the nuclei from above are still the centroids of the mesh, we put both together in one image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">four_nearest_neighbors_mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_mesh_between_n_closest_labels</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">four_nearest_neighbors_mesh</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualization</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_images</span><span class="p">(</span><span class="n">nuclei</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">distance_mesh1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">visualization</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mesh_nearest_neighbors_8_0.png" src="../_images/mesh_nearest_neighbors_8_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ten_nearest_neighbors_mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_mesh_between_n_closest_labels</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ten_nearest_neighbors_mesh</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/mesh_nearest_neighbors_9_0.png" src="../_images/mesh_nearest_neighbors_9_0.png" />
+<img alt="../_images/06_mesh_with_distances_13_0.png" src="../_images/06_mesh_with_distances_13_0.png" />
 </div>
 </div>
 </div>
@@ -1056,17 +1062,17 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="mesh_between_touching_neighbors.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="05_count_touching_neighbors.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Mesh between touching neighbors</p>
+            <p class="prev-next-title">Count touching neighbors</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="distance_to_other_labels.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Measure the distance to neighboring cells</p>
+        <p class="prev-next-title">Measure the distance to cells in another label image</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

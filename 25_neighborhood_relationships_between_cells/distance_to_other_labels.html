@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Measure the distance to neighboring cells &#8212; Bio-image Analysis Notebooks</title>
+    <title>Measure the distance to cells in another label image &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Label neighbor filters" href="label_neighbor_filters.html" />
-    <link rel="prev" title="Mesh nearest neighbors" href="mesh_nearest_neighbors.html" />
+    <link rel="next" title="Count proximal labels in an other label image" href="other_proximal_labels_count.html" />
+    <link rel="prev" title="Draw distance-meshes between neighbors" href="06_mesh_with_distances.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -553,33 +553,33 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="neighborhood_definitions.html">
+    <a class="reference internal" href="01_neighborhood_definitions.html">
      Neighborhood definitions
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="mesh_between_touching_neighbors.html">
-     Mesh between touching neighbors
+    <a class="reference internal" href="05_count_touching_neighbors.html">
+     Count touching neighbors
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="mesh_nearest_neighbors.html">
-     Mesh nearest neighbors
+    <a class="reference internal" href="06_mesh_with_distances.html">
+     Draw distance-meshes between neighbors
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Measure the distance to neighboring cells
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="label_neighbor_filters.html">
-     Label neighbor filters
+     Measure the distance to cells in another label image
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="other_proximal_labels_count.html">
      Count proximal labels in an other label image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="label_neighbor_filters.html">
+     Label neighbor filters
     </a>
    </li>
   </ul>
@@ -906,7 +906,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Measure the distance to neighboring cells</h1>
+                <h1>Measure the distance to cells in another label image</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -917,8 +917,8 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="measure-the-distance-to-neighboring-cells">
-<h1>Measure the distance to neighboring cells<a class="headerlink" href="#measure-the-distance-to-neighboring-cells" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="measure-the-distance-to-cells-in-another-label-image">
+<h1>Measure the distance to cells in another label image<a class="headerlink" href="#measure-the-distance-to-cells-in-another-label-image" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -929,7 +929,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;gfx90c on Platform: AMD Accelerated Parallel Processing (2 refs)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
 </pre></div>
 </div>
 </div>
@@ -997,17 +997,17 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="mesh_nearest_neighbors.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="06_mesh_with_distances.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Mesh nearest neighbors</p>
+            <p class="prev-next-title">Draw distance-meshes between neighbors</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="label_neighbor_filters.html" title="next page">
+    <a class='right-next' id="next-link" href="other_proximal_labels_count.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Label neighbor filters</p>
+        <p class="prev-next-title">Count proximal labels in an other label image</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
