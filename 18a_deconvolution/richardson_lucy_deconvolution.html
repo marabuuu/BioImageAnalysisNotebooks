@@ -1053,22 +1053,9 @@ ERROR:root:No module named &#39;reikna&#39;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 255)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 28.122286)
 </pre></div>
 </div>
-</div>
-</div>
-<p>If these ranges differ, you should correct for it, e.g. for visualization. Note: Further analysis of the resulting intensity values must be done with care, as we cannot be sure about the actual intensity range of the deconvolution result.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_intensity_image</span><span class="p">[</span><span class="mi">80</span><span class="p">]</span> <span class="o">/</span> <span class="n">max_intensity_image</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_intensity_deconvolved</span><span class="p">[</span><span class="mi">80</span><span class="p">]</span> <span class="o">/</span> <span class="n">max_intensity_deconvolved</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/richardson_lucy_deconvolution_17_0.png" src="../_images/richardson_lucy_deconvolution_17_0.png" />
 </div>
 </div>
 </div>
