@@ -1227,6 +1227,14 @@ Processing image of size (0, 0)
     </tr>
 </table></div></div>
 </div>
+<p>Before we can start the computation, we need to deactivate asynchronous execution of operations in pyclesperanto. <a class="reference external" href="https://github.com/clEsperanto/pyclesperanto_prototype/issues/163">See also related issue</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cle</span><span class="o">.</span><span class="n">set_wait_for_kernel_finish</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>When we invoke saving the results to disk, the processing will happen on individual tiles.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1240,44 +1248,44 @@ Processing image of size (0, 0)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Processing image of size (160, 160)
 Processing image of size (160, 160)
 Processing image of size (160, 160)
-Processing image of sizeProcessing image of size (160, 160)
+Processing image of size (160, 160)
+Processing image of size (160, 160)
+Processing image of size Processing image of size (160, 160)
+(160, 160)
+Processing image of size (160, 160)
+Processing image of size (160, 160)
+Processing image of size (160, 160)
+(160, 160)
+Processing image of size (160, 160)
+(160, 160)
+(160, 160)
+(160, 160)
+Processing image of size Processing image of size (160, 160)
+(160, 160)
+(160, 160)
+(160, 160)
+(160, 160)
+Processing image of size (160, 160)
+Processing image of size(160, 160) 
+(160, 160)
+Processing image of size (160, 160)
+(160, 160)
+Processing image of size (160, 160)
+Processing image of size (160, 160)
+Processing image of size (160, 160)
+(160, 160)
+Processing image of size (160, 160)
+(160, 160)
+Processing image of size (160, 160)
+(160, 160)
+(160, 160)
+(160, 160)
+(160, 160)Processing image of sizeProcessing image of size(160, 160)
  (160, 160)
-Processing image of size (160, 160)
-Processing image of sizeProcessing image of size (160, 160)
- (160, 160)
-Processing image of size (160, 160)
-Processing image of size (160, 160)
-(160, 160)(160, 160)
-
-(160, 160)(160, 160)
-
-Processing image of size (160, 160)
-(160, 160)
-(160, 160)
-(160, 160)
-(160, 160)
-Processing image of sizeProcessing image of size  (160, 160)(160, 160)
-
+ 
 (160, 160)
 Processing image of size (160, 160)
 Processing image of size (160, 160)
-Processing image of sizeProcessing image of sizeProcessing image of size   (160, 160)(160, 160)(160, 160)
-(160, 160)
-
-
-Processing image of size (160, 160)Processing image of size
- (160, 160)
-(160, 160)
-Processing image of size (160, 160)
-(160, 160)(160, 160)
-
-Processing image of size (160, 160)
-Processing image of size (160, 160)
-(160, 160)
-Processing image of size (160, 160)
-(160, 160)
-Processing image of size (160, 160)(160, 160)
-
 (160, 160)
 (160, 160)
 (160, 160)
@@ -1379,7 +1387,7 @@ Processing image of size (160, 160)(160, 160)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/tiled_area_mapping_16_0.png" src="../_images/tiled_area_mapping_16_0.png" />
+<img alt="../_images/tiled_area_mapping_18_0.png" src="../_images/tiled_area_mapping_18_0.png" />
 </div>
 </div>
 </div>
