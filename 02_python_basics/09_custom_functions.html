@@ -909,27 +909,22 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Functions
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#custom-functions">
    Custom functions
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simplify-code-using-functions">
    Simplify code using functions
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#documenting-functions">
    Documenting functions
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercise">
    Exercise
   </a>
@@ -954,27 +949,22 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Functions
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#custom-functions">
    Custom functions
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simplify-code-using-functions">
    Simplify code using functions
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#documenting-functions">
    Documenting functions
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercise">
    Exercise
   </a>
@@ -1036,9 +1026,8 @@
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="custom-functions">
-<h1>Custom functions<a class="headerlink" href="#custom-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="custom-functions">
+<h2>Custom functions<a class="headerlink" href="#custom-functions" title="Permalink to this headline">¶</a></h2>
 <p>You can DEFine your own functions using the <code class="docutils literal notranslate"><span class="pre">def</span></code> statement. After the def statement, you should specify your functions’ name and in brackets its parameters. Afterwards follows a colon <code class="docutils literal notranslate"><span class="pre">:</span></code> and all following lines of code which are indented are part of this function. A final <code class="docutils literal notranslate"><span class="pre">return</span></code> statement sends the result back to from where the function was called.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1091,8 +1080,8 @@
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="simplify-code-using-functions">
-<h1>Simplify code using functions<a class="headerlink" href="#simplify-code-using-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simplify-code-using-functions">
+<h2>Simplify code using functions<a class="headerlink" href="#simplify-code-using-functions" title="Permalink to this headline">¶</a></h2>
 <p>Assume you have a complicated algorithm which can tell you if a number if odd or even. Let’s put this algorithm in a function and call it later on. For our algorithm, we will use the <a class="reference external" href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operator %</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1143,8 +1132,8 @@
 </div>
 <p>Thus, instead of writing the same <code class="docutils literal notranslate"><span class="pre">if-else</span></code> block again and again, we can just call our custom <code class="docutils literal notranslate"><span class="pre">print_odd_or_even</span></code> function.</p>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="documenting-functions">
-<h1>Documenting functions<a class="headerlink" href="#documenting-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="documenting-functions">
+<h2>Documenting functions<a class="headerlink" href="#documenting-functions" title="Permalink to this headline">¶</a></h2>
 <p>You can document what a function does in its so called doc string. The doc string follows right after the functions header and looks like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1179,6 +1168,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Signature:</span> square<span class=" -Color -Color-Blue">(</span>number<span class=" -Color -Color-Blue">)</span>
+<span class=" -Color -Color-Red">Docstring:</span> Squares a number by multiplying it with itself  and returns its result.
+<span class=" -Color -Color-Red">File:</span>      /var/folders/p1/6svzckgd1y5906pfgm71fvmr0000gn/T/ipykernel_11914/1507435947.py
+<span class=" -Color -Color-Red">Type:</span>      function
+</pre></div>
+</div>
+</div>
 </div>
 <p>By the way, you can do this with any function:</p>
 <div class="cell docutils container">
@@ -1207,9 +1204,10 @@
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="exercise">
-<h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
 <p>Write a function that takes two parameters: <code class="docutils literal notranslate"><span class="pre">number_of_points_in_exam</span></code> and <code class="docutils literal notranslate"><span class="pre">number_of_total_points_in_exam</span></code> and returns a grade from 1 to 5. Students with &gt; 95% of the points get grade 1, above 80% they get grade 2, above 60% grade 3 and above 50% grade 4. Students with less than 50% get grade 5 and have to repeat the exam. Then, call the function for three students who had 15, 25 and 29 points in an exam with 30 total points.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
