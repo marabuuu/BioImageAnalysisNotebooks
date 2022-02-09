@@ -337,11 +337,6 @@
      Processing images using SimpleITK
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../18_image_filtering/feature_stacks.html">
-     Generating feature stacks
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -483,42 +478,12 @@
      3D Image Segmentation
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="scikit_learn_random_forest_pixel_classifier.html">
-     Pixel classification using Scikit-learn
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="apoc_object_segmenter.html">
-     Object segmentation on OpenCL-compatible GPUs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="apoc_pixel_classifier_continue_training.html">
-     Pixel classification on OpenCL-compatible GPUs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="apoc_probability_mapper.html">
-     Probability maps
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="apoc_train_on_folders.html">
-     Training pixel classifiers from folders of images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="cellpose.html">
-     Image Segmentation with CellPose
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="stardist.html">
-     Image segmentation with StarDist
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../20a_pixel_classification/readme.html">
+   Machine learning for image segmentation
+  </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../22_feature_extraction/readme.html">
@@ -616,7 +581,12 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../27_cell_classification/apoc_object_classifier.html">
-     Object classiciation on OpenCL-compatible GPUs
+     Object classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../27_cell_classification/forest_statistics.html">
+     Random forest decision making statistics
     </a>
    </li>
   </ul>
@@ -973,7 +943,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="image-segmentation">
 <h1>Image segmentation<a class="headerlink" href="#image-segmentation" title="Permalink to this headline">¶</a></h1>
-<p>Image analysist refer to image segmentation when subdividing an image into multiple groups of pixels having different characteristics. In this chapter we will learn basic algorithms for binarizing images, for labeling objects in images. We will also do a dive into machine learning and deep learning based image segmentation algorithms.</p>
+<p>Image analysist refer to image segmentation when subdividing an image into multiple groups of pixels having different characteristics. In this chapter we will learn basic algorithms for binarizing images, for labeling objects in images.</p>
 <div class="section" id="installation-of-requirements">
 <h2>Installation of requirements<a class="headerlink" href="#installation-of-requirements" title="Permalink to this headline">¶</a></h2>
 <p>As in the chapters before, we will use <a class="reference external" href="https://scikit-image.org/">scikit-image</a>, <a class="reference external" href="https://github.com/clEsperanto/pyclesperanto_prototype">pyclesperanto-prototype</a> and <a class="reference external" href="https://github.com/haesleinhuepf/napari-simpleitk-image-processing">napari-simpleitk-image-processing</a> for segmenting the images. Some visualization will again be done using <a class="reference external" href="https://matplotlib.org/">matplotlib</a>.</p>
@@ -982,15 +952,6 @@
 <h2>Installation of optional dependencies<a class="headerlink" href="#installation-of-optional-dependencies" title="Permalink to this headline">¶</a></h2>
 <p>For some short-cuts to watershed-based image segmentation algorithms, installation of the scriptable napari plugin <a class="reference external" href="https://github.com/haesleinhuepf/napari-segment-blobs-and-things-with-membranes">napari-segment-blobs-and-things-with-membranes</a> is recommended. You can install it using pip:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">napari</span><span class="o">-</span><span class="n">segment</span><span class="o">-</span><span class="n">blobs</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">things</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">membranes</span>
-</pre></div>
-</div>
-<p>In the second half of this chaper, we will explore deep learning based algorithms for image segmentation. If you want to try out the tools presented there, <a class="reference external" href="https://cellpose.readthedocs.io/">cellpose</a> and <a class="reference external" href="https://github.com/stardist/stardist">stardist</a>, you should install them, for example using pip:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">stardist</span> <span class="n">numpy</span><span class="o">==</span><span class="mf">1.21.5</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">cellpose</span><span class="p">[</span><span class="nb">all</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Mac users may have to execute the second command like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;cellpose[all]&quot;</span>
 </pre></div>
 </div>
 <p>See also</p>

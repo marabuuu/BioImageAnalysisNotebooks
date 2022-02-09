@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Object classiciation on OpenCL-compatible GPUs &#8212; Bio-image Analysis Notebooks</title>
+    <title>Object classification on OpenCL-compatible GPUs &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Colocalization" href="../28_colocalization/readme.html" />
+    <link rel="next" title="Random forest decision making statistics" href="forest_statistics.html" />
     <link rel="prev" title="Cell classification" href="readme.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -337,11 +337,6 @@
      Processing images using SimpleITK
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../18_image_filtering/feature_stacks.html">
-     Generating feature stacks
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -483,42 +478,12 @@
      3D Image Segmentation
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/scikit_learn_random_forest_pixel_classifier.html">
-     Pixel classification using Scikit-learn
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/apoc_object_segmenter.html">
-     Object segmentation on OpenCL-compatible GPUs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/apoc_pixel_classifier_continue_training.html">
-     Pixel classification on OpenCL-compatible GPUs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/apoc_probability_mapper.html">
-     Probability maps
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/apoc_train_on_folders.html">
-     Training pixel classifiers from folders of images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/cellpose.html">
-     Image Segmentation with CellPose
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/stardist.html">
-     Image segmentation with StarDist
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../20a_pixel_classification/readme.html">
+   Machine learning for image segmentation
+  </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../22_feature_extraction/readme.html">
@@ -616,7 +581,12 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Object classiciation on OpenCL-compatible GPUs
+     Object classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="forest_statistics.html">
+     Random forest decision making statistics
     </a>
    </li>
   </ul>
@@ -944,6 +914,16 @@
    Training
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prediction">
+   Prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#available-features-for-object-classification">
+   Available features for object classification
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -954,7 +934,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Object classiciation on OpenCL-compatible GPUs</h1>
+                <h1>Object classification on OpenCL-compatible GPUs</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -969,6 +949,16 @@
    Training
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prediction">
+   Prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#available-features-for-object-classification">
+   Available features for object classification
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -978,32 +968,34 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="object-classiciation-on-opencl-compatible-gpus">
-<h1>Object classiciation on OpenCL-compatible GPUs<a class="headerlink" href="#object-classiciation-on-opencl-compatible-gpus" title="Permalink to this headline">¶</a></h1>
-<p>APOC is based on <a class="reference external" href="https://github.com/clEsperanto/pyclesperanto_prototype">pyclesperanto</a> and <a class="reference external" href="https://scikit-learn.org/stable/">sklearn</a>. For object segmentation, it uses a pixel classifier and connected components labeling.</p>
-<p>Let’s start with loading an example image and some ground truth:</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="object-classification-on-opencl-compatible-gpus">
+<h1>Object classification on OpenCL-compatible GPUs<a class="headerlink" href="#object-classification-on-opencl-compatible-gpus" title="Permalink to this headline">¶</a></h1>
+<p>APOC is based on <a class="reference external" href="https://github.com/clEsperanto/pyclesperanto_prototype">pyclesperanto</a> and <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>. It allows classifying objects according to measured properties / features such as intensity, shape and number of neighboring cells.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imsave</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">apoc</span>
+
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imsave</span>
 <span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">apoc</span>
-
-<span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs.tif&#39;</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;Greys_r&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/apoc_object_classifier_1_0.png" src="../_images/apoc_object_classifier_1_0.png" />
 </div>
-</div>
-<p>For object classifcation, we need a label image as input as well.</p>
+<p>For object classification, we need an intensity image and a label image as input.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segmentation_result</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load intensity image</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs.tif&#39;</span><span class="p">)</span>
 
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">segmentation_result</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># segment the image</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">image</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;Greys_r&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1013,11 +1005,20 @@
 </div>
 <div class="section" id="training">
 <h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
+<p>We also need a ground truth annotation image. This image is also a label image with a sparse annotation. A line with value <code class="docutils literal notranslate"><span class="pre">1</span></code> was drawn through all objects that are supposed to belong to class <code class="docutils literal notranslate"><span class="pre">1</span></code>. A line with value <code class="docutils literal notranslate"><span class="pre">2</span></code> was drawn through all objects that should be classified as class <code class="docutils literal notranslate"><span class="pre">2</span></code>. If the line crosses the background, this is ignored. In this example, objects were annotated in three classes:</p>
+<ul class="simple">
+<li><p>Elongated objects</p></li>
+<li><p>Roundish objects</p></li>
+<li><p>Small objects</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annotation</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/label_annotation.tif&#39;</span><span class="p">))</span>
 
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1025,25 +1026,120 @@
 <img alt="../_images/apoc_object_classifier_5_0.png" src="../_images/apoc_object_classifier_5_0.png" />
 </div>
 </div>
+<p>Next, we need to define which features we want to use for classifying objects. We will use area, shape and the standard deviation of the intensity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="s1">&#39;area,mean_max_distance_to_centroid_ratio,standard_deviation_intensity&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="s1">&#39;area mean_max_distance_to_centroid_ratio standard_deviation_intensity&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an object classifier</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;../../data/blobs_object_classifier.cl&quot;</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">apoc</span><span class="o">.</span><span class="n">ObjectClassifier</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
-<span class="c1"># Create an object classifier</span>
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">apoc</span><span class="o">.</span><span class="n">ObjectClassifier</span><span class="p">(</span><span class="s2">&quot;object_classifier.cl&quot;</span><span class="p">)</span>
-
-<span class="c1"># train it</span>
-<span class="n">classifier</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">segmentation_result</span><span class="p">,</span> <span class="n">annotation</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
-
-<span class="c1"># determine object classification</span>
-<span class="n">classification_result</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">segmentation_result</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="c1"># train it; after training, it will be saved to the file specified above</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">annotation</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After the classifier has been trained, we can use it immediately to predict the classification of the objects in the image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># determine object classification</span>
+<span class="n">classification_result</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
 
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">classification_result</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/apoc_object_classifier_6_0.png" src="../_images/apoc_object_classifier_6_0.png" />
+<img alt="../_images/apoc_object_classifier_10_0.png" src="../_images/apoc_object_classifier_10_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="prediction">
+<h2>Prediction<a class="headerlink" href="#prediction" title="Permalink to this headline">¶</a></h2>
+<p>You can also reload the classifier from disc and apply it to other images. We will simulate this by rotating the original image. This is by the way a good sanity check to see if the classification depends on the orientation of the image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image2</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">angle_around_z_in_degrees</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">labels2</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">angle_around_z_in_degrees</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier2</span> <span class="o">=</span> <span class="n">apoc</span><span class="o">.</span><span class="n">ObjectClassifier</span><span class="p">(</span><span class="s2">&quot;../../data/blobs_object_classifier.cl&quot;</span><span class="p">)</span>
+
+<span class="n">classification_result2</span> <span class="o">=</span> <span class="n">classifier2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">labels2</span><span class="p">,</span> <span class="n">image2</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">classification_result2</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/apoc_object_classifier_13_0.png" src="../_images/apoc_object_classifier_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="available-features-for-object-classification">
+<h2>Available features for object classification<a class="headerlink" href="#available-features-for-object-classification" title="Permalink to this headline">¶</a></h2>
+<p>We can print out all available features . Parameters with a <code class="docutils literal notranslate"><span class="pre">?</span></code> expect a number at that position and can be specified multiple times with multiple values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apoc</span><span class="o">.</span><span class="n">list_available_object_classification_features</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;label&#39;,
+ &#39;original_label&#39;,
+ &#39;bbox_min_x&#39;,
+ &#39;bbox_min_y&#39;,
+ &#39;bbox_min_z&#39;,
+ &#39;bbox_max_x&#39;,
+ &#39;bbox_max_y&#39;,
+ &#39;bbox_max_z&#39;,
+ &#39;bbox_width&#39;,
+ &#39;bbox_height&#39;,
+ &#39;bbox_depth&#39;,
+ &#39;min_intensity&#39;,
+ &#39;max_intensity&#39;,
+ &#39;sum_intensity&#39;,
+ &#39;area&#39;,
+ &#39;mean_intensity&#39;,
+ &#39;sum_intensity_times_x&#39;,
+ &#39;mass_center_x&#39;,
+ &#39;sum_intensity_times_y&#39;,
+ &#39;mass_center_y&#39;,
+ &#39;sum_intensity_times_z&#39;,
+ &#39;mass_center_z&#39;,
+ &#39;sum_x&#39;,
+ &#39;centroid_x&#39;,
+ &#39;sum_y&#39;,
+ &#39;centroid_y&#39;,
+ &#39;sum_z&#39;,
+ &#39;centroid_z&#39;,
+ &#39;sum_distance_to_centroid&#39;,
+ &#39;mean_distance_to_centroid&#39;,
+ &#39;sum_distance_to_mass_center&#39;,
+ &#39;mean_distance_to_mass_center&#39;,
+ &#39;standard_deviation_intensity&#39;,
+ &#39;max_distance_to_centroid&#39;,
+ &#39;max_distance_to_mass_center&#39;,
+ &#39;mean_max_distance_to_centroid_ratio&#39;,
+ &#39;mean_max_distance_to_mass_center_ratio&#39;,
+ &#39;touching_neighbor_count&#39;,
+ &#39;average_distance_of_touching_neighbors&#39;,
+ &#39;average_distance_of_n_nearest_neighbors=?&#39;,
+ &#39;average_distance_of_n_nearest_neighbors=?&#39;]
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1081,10 +1177,10 @@
             <p class="prev-next-title">Cell classification</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../28_colocalization/readme.html" title="next page">
+    <a class='right-next' id="next-link" href="forest_statistics.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Colocalization</p>
+        <p class="prev-next-title">Random forest decision making statistics</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
