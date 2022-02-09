@@ -51,6 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parametric maps" href="parametric_maps.html" />
+    <link rel="prev" title="Data visualization" href="readme.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -94,7 +96,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -801,16 +803,21 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="readme.html">
    Data visualization
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
   <label for="toctree-checkbox-19">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Overlay texts on images
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="parametric_maps.html">
      Parametric maps
@@ -947,52 +954,55 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="overlay-texts-on-images">
 <h1>Overlay texts on images<a class="headerlink" href="#overlay-texts-on-images" title="Permalink to this headline">¶</a></h1>
-<p>After labeling elements in an image, one may want to see some text over each element describing, for example, its area, or simply the label number of that element. On way to do that is with <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.annotate.html">matplotlib axes annotate function</a>.</p>
+<p>After labeling elements in an image, one may want to see some text over each element describing, for example, its area, or simply the label number of that element. One way to do that is using the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.annotate.html">matplotlib axes annotate function</a>.</p>
 <p>Previous related topics:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://haesleinhuepf.github.io/BioImageAnalysisNotebooks/20_image_segmentation/09_connected_component_labeling.html">Label images</a></p></li>
 <li><p><a class="reference external" href="https://haesleinhuepf.github.io/BioImageAnalysisNotebooks/22_feature_extraction/quantitative_measurements.html">Quantitative image analysis</a></p></li>
 </ul>
-<p>We first open a labeled image and plot it with matplotlib.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># Load data</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We first open a labeled image and plot it with matplotlib.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data</span>
 <span class="n">labeled_blobs</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs_labeled.tif&#39;</span><span class="p">)</span>
 
 <span class="c1"># Visualization</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labeled_blobs</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;nipy_spectral&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2947c7cc790&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f87c0430340&gt;
 </pre></div>
 </div>
-<img alt="../_images/overlay_text_on_image_4_1.png" src="../_images/overlay_text_on_image_4_1.png" />
+<img alt="../_images/overlay_text_on_image_5_1.png" src="../_images/overlay_text_on_image_5_1.png" />
 </div>
 </div>
 <p>Then, we analyze the labeled elements and get their properties.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
-
-<span class="c1"># Analyse objects</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyse objects</span>
 <span class="n">regionprops</span> <span class="o">=</span> <span class="n">measure</span><span class="o">.</span><span class="n">regionprops</span><span class="p">(</span><span class="n">labeled_blobs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Finally, we use annotate with the following arguments:</p>
+<p>Finally, we use the <code class="docutils literal notranslate"><span class="pre">axs.annotate()</span></code> function with the following arguments:</p>
 <ul class="simple">
-<li><p>text: the string to be displayed;</p></li>
-<li><p>xy: the coordinates to plot the text;</p></li>
-<li><p>fontisize: the size of the text;</p></li>
-<li><p>color: the color of the text;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code>: the string to be displayed;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xy</span></code>: the coordinates to plot the text;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fontsize</span></code>: the size of the text;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: the color of the text;</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1014,10 +1024,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/overlay_text_on_image_8_0.png" src="../_images/overlay_text_on_image_8_0.png" />
+<img alt="../_images/overlay_text_on_image_9_0.png" src="../_images/overlay_text_on_image_9_0.png" />
 </div>
 </div>
-<p>As mentioned before, we can plot other measurements on top of each element, like its area.</p>
+<p>As mentioned before, we can write quantitative measurements on top of each element, like its area.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualization</span>
@@ -1033,12 +1043,12 @@
     <span class="n">element_area</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">area</span><span class="p">)</span>
     
     <span class="c1"># Plot label number at the coordinates of that element centroid</span>
-    <span class="n">axs</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="n">element_area</span><span class="p">,</span> <span class="n">xy</span> <span class="o">=</span> <span class="n">element_centroid</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">element_area</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; px&quot;</span><span class="p">,</span> <span class="n">xy</span> <span class="o">=</span> <span class="n">element_centroid</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/overlay_text_on_image_10_0.png" src="../_images/overlay_text_on_image_10_0.png" />
+<img alt="../_images/overlay_text_on_image_11_0.png" src="../_images/overlay_text_on_image_11_0.png" />
 </div>
 </div>
 </div>
@@ -1067,7 +1077,21 @@
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="readme.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Data visualization</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="parametric_maps.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Parametric maps</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>
