@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tiling images &#8212; Bio-image Analysis Notebooks</title>
+    <title>Tiled image processing, a quick run-through &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tiling images with overlap" href="tiling_images_with_overlap.html" />
+    <link rel="next" title="Tiling images - the naive approach" href="tiling_images_naive_approach.html" />
     <link rel="prev" title="Tiled image processing" href="readme.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -682,7 +682,12 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Tiling images
+     Tiled image processing, a quick run-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tiling_images_naive_approach.html">
+     Tiling images - the naive approach
     </a>
    </li>
    <li class="toctree-l2">
@@ -866,7 +871,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/32_tiled_image_processing/tiling_images.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/32_tiled_image_processing/tiled_nuclei_counting_quick.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -886,7 +891,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F32_tiled_image_processing/tiling_images.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F32_tiled_image_processing/tiled_nuclei_counting_quick.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -907,7 +912,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/32_tiled_image_processing/tiling_images.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/32_tiled_image_processing/tiled_nuclei_counting_quick.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -930,8 +935,13 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#border-effects">
-   Border effects
+  <a class="reference internal nav-link" href="#loading-the-zarr-backed-image">
+   Loading the zarr-backed image
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#counting-nuclei">
+   Counting nuclei
   </a>
  </li>
 </ul>
@@ -944,7 +954,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Tiling images</h1>
+                <h1>Tiled image processing, a quick run-through</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -955,8 +965,13 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#border-effects">
-   Border effects
+  <a class="reference internal nav-link" href="#loading-the-zarr-backed-image">
+   Loading the zarr-backed image
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#counting-nuclei">
+   Counting nuclei
   </a>
  </li>
 </ul>
@@ -968,46 +983,44 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="tiling-images">
-<h1>Tiling images<a class="headerlink" href="#tiling-images" title="Permalink to this headline">¶</a></h1>
-<p>In tiled image processing, the first step is cutting the image into tiles. While this could be done with numpy, we will use <a class="reference external" href="https://github.com/dask/dask-image">dask_image</a> because it comes with multiple very useful features in this context.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="tiled-image-processing-a-quick-run-through">
+<h1>Tiled image processing, a quick run-through<a class="headerlink" href="#tiled-image-processing-a-quick-run-through" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook we will process a big dataset that has been saved in zarr format to count cells in individual tiles using <a class="reference external" href="https://docs.dask.org/en/stable/">dask</a> and <a class="reference external" href="https://zarr.readthedocs.io/en/stable/">zarr</a>. The underlying principles will be explained in the next sections.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">zarr</span>
 <span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
-<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">gaussian</span>
-<span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">cells3d</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
 <span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
+<span class="kn">from</span> <span class="nn">numcodecs</span> <span class="kn">import</span> <span class="n">Blosc</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>In the first example we will use an image showing nuclei from fluorescence microscopy and just denoise the image using a Gaussian blur. We will do this tile-by-tile. For that, we first define the <code class="docutils literal notranslate"><span class="pre">procedure</span></code> that should be applied to all tiles. We build in a print statement into this function to when it’s executed and how large the image is that is being processed.</p>
+<p>For demonstration purposes, we use a dataset that is provided by Theresa Suckert, OncoRay, University Hospital Carl Gustav Carus, TU Dresden. The dataset is licensed <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">License: CC-BY 4.0</a>. We are using a cropped version here that was resaved a 8-bit image to be able to provide it with the notebook. You find the full size 16-bit image in CZI file format <a class="reference external" href="https://zenodo.org/record/4276076#.YX1F-55BxaQ">online</a>. The biological background is explained in <a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S0167814020301043">Suckert et al. 2020</a>, where we also applied a similar workflow.</p>
+<p>When working with big data, you will likely have an image stored in the right format to begin with. For demonstration purposes, we save here a test image into the zarr format, which is commonly used for handling big image data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">procedure</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;proceduring&quot;</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resave a test image into tiled zarr format</span>
+<span class="n">input_filename</span> <span class="o">=</span> <span class="s1">&#39;../../data/P1_H_C3H_M004_17-cropped.tif&#39;</span>
+<span class="n">zarr_filename</span> <span class="o">=</span> <span class="s1">&#39;../../data/P1_H_C3H_M004_17-cropped.zarr&#39;</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">input_filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">compressor</span> <span class="o">=</span> <span class="n">Blosc</span><span class="p">(</span><span class="n">cname</span><span class="o">=</span><span class="s1">&#39;zstd&#39;</span><span class="p">,</span> <span class="n">clevel</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">Blosc</span><span class="o">.</span><span class="n">BITSHUFFLE</span><span class="p">)</span>
+<span class="n">zarray</span> <span class="o">=</span> <span class="n">zarr</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">compressor</span><span class="o">=</span><span class="n">compressor</span><span class="p">)</span>
+<span class="n">zarr</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">zarr_filename</span><span class="p">,</span> <span class="n">zarray</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="section" id="loading-the-zarr-backed-image">
+<h2>Loading the zarr-backed image<a class="headerlink" href="#loading-the-zarr-backed-image" title="Permalink to this headline">¶</a></h2>
+<p>Dask brings built-in support for the zarr file format. We can create dask arrays directly from a zarr file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cells3d</span><span class="p">()[</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/tiling_images_4_0.png" src="../_images/tiling_images_4_0.png" />
-</div>
-</div>
-<p>After loading the image, it can be tiled like that. In dask, tiles are also called <em>chunks</em>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tiles</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
-<span class="n">tiles</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zarr_image</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">from_zarr</span><span class="p">(</span><span class="n">zarr_filename</span><span class="p">)</span>
+<span class="n">zarr_image</span>
 </pre></div>
 </div>
 </div>
@@ -1027,83 +1040,240 @@
 
                     <tr>
                         <th> Bytes </th>
-                        <td> 128.00 kiB </td>
-                        <td> 32.00 kiB </td>
+                        <td> 9.54 MiB </td>
+                        <td> 9.77 kiB </td>
                     </tr>
 
                     <tr>
                         <th> Shape </th>
-                        <td> (256, 256) </td>
-                        <td> (128, 128) </td>
+                        <td> (2000, 5000) </td>
+                        <td> (100, 100) </td>
                     </tr>
                     <tr>
                         <th> Count </th>
-                        <td> 4 Tasks </td>
-                        <td> 4 Chunks </td>
+                        <td> 1001 Tasks </td>
+                        <td> 1000 Chunks </td>
                     </tr>
                     <tr>
                     <th> Type </th>
-                    <td> uint16 </td>
+                    <td> uint8 </td>
                     <td> numpy.ndarray </td>
                     </tr>
                 </tbody>
             </table>
         </td>
         <td>
-        <svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+        <svg width="170" height="98" style="stroke:rgb(0,0,0);stroke-width:1" >
 
   <!-- Horizontal lines -->
   <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
-  <line x1="0" y1="60" x2="120" y2="60" />
-  <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2" />
+  <line x1="0" y1="2" x2="120" y2="2" />
+  <line x1="0" y1="4" x2="120" y2="4" />
+  <line x1="0" y1="7" x2="120" y2="7" />
+  <line x1="0" y1="9" x2="120" y2="9" />
+  <line x1="0" y1="12" x2="120" y2="12" />
+  <line x1="0" y1="14" x2="120" y2="14" />
+  <line x1="0" y1="16" x2="120" y2="16" />
+  <line x1="0" y1="19" x2="120" y2="19" />
+  <line x1="0" y1="21" x2="120" y2="21" />
+  <line x1="0" y1="24" x2="120" y2="24" />
+  <line x1="0" y1="26" x2="120" y2="26" />
+  <line x1="0" y1="28" x2="120" y2="28" />
+  <line x1="0" y1="31" x2="120" y2="31" />
+  <line x1="0" y1="33" x2="120" y2="33" />
+  <line x1="0" y1="36" x2="120" y2="36" />
+  <line x1="0" y1="38" x2="120" y2="38" />
+  <line x1="0" y1="40" x2="120" y2="40" />
+  <line x1="0" y1="43" x2="120" y2="43" />
+  <line x1="0" y1="48" x2="120" y2="48" style="stroke-width:2" />
 
   <!-- Vertical lines -->
-  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
-  <line x1="60" y1="0" x2="60" y2="120" />
-  <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2" />
+  <line x1="0" y1="0" x2="0" y2="48" style="stroke-width:2" />
+  <line x1="4" y1="0" x2="4" y2="48" />
+  <line x1="12" y1="0" x2="12" y2="48" />
+  <line x1="16" y1="0" x2="16" y2="48" />
+  <line x1="24" y1="0" x2="24" y2="48" />
+  <line x1="31" y1="0" x2="31" y2="48" />
+  <line x1="36" y1="0" x2="36" y2="48" />
+  <line x1="43" y1="0" x2="43" y2="48" />
+  <line x1="50" y1="0" x2="50" y2="48" />
+  <line x1="55" y1="0" x2="55" y2="48" />
+  <line x1="62" y1="0" x2="62" y2="48" />
+  <line x1="67" y1="0" x2="67" y2="48" />
+  <line x1="74" y1="0" x2="74" y2="48" />
+  <line x1="81" y1="0" x2="81" y2="48" />
+  <line x1="86" y1="0" x2="86" y2="48" />
+  <line x1="93" y1="0" x2="93" y2="48" />
+  <line x1="100" y1="0" x2="100" y2="48" />
+  <line x1="105" y1="0" x2="105" y2="48" />
+  <line x1="112" y1="0" x2="112" y2="48" />
+  <line x1="120" y1="0" x2="120" y2="48" style="stroke-width:2" />
 
   <!-- Colored Rectangle -->
-  <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"/>
+  <polygon points="0.0,0.0 120.0,0.0 120.0,48.0 0.0,48.0" style="fill:#8B4903A0;stroke-width:0"/>
 
   <!-- Text -->
-  <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >256</text>
-  <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">256</text>
+  <text x="60.000000" y="68.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >5000</text>
+  <text x="140.000000" y="24.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,24.000000)">2000</text>
 </svg>
         </td>
     </tr>
 </table></div></div>
 </div>
-<p>Next, we tell dask what to do with our tiles. We want to <em>map</em> the function <code class="docutils literal notranslate"><span class="pre">procedure</span></code> on all individual tiles. Note, this does not process the whole image yet.</p>
+<p>We can apply image processing to this tiled dataset directly.</p>
+</div>
+<div class="section" id="counting-nuclei">
+<h2>Counting nuclei<a class="headerlink" href="#counting-nuclei" title="Permalink to this headline">¶</a></h2>
+<p>For counting the nuclei, we setup a simple image processing workflow. It returns an image with a single pixel containing the number of nuclei in the given input image. These single pixels will be assembled to a pixel count map; an image with much less pixels than the original image, but with the advantage that we can look at it - it’s no big data anymore.cle.exclude_labels_with_map_values_within_range</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tile_map</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">map_blocks</span><span class="p">(</span><span class="n">procedure</span><span class="p">,</span> <span class="n">tiles</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count_nuclei</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Label objects in a binary image and produce a pixel-count-map image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Count nuclei including those which touch the image border</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
+    <span class="n">label_intensity_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">mean_intensity_map</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+    
+    <span class="n">high_intensity_labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">exclude_labels_with_map_values_within_range</span><span class="p">(</span><span class="n">label_intensity_map</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">maximum_value_range</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">nuclei_count</span> <span class="o">=</span> <span class="n">high_intensity_labels</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    
+    <span class="c1"># Count nuclei including those which touch the image border</span>
+    <span class="n">labels_without_borders</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">exclude_labels_on_edges</span><span class="p">(</span><span class="n">high_intensity_labels</span><span class="p">)</span>
+    <span class="n">nuclei_count_excluding_borders</span> <span class="o">=</span> <span class="n">labels_without_borders</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    
+    <span class="c1"># Both nuclei-count including and excluding nuclei at image borders </span>
+    <span class="c1"># are no good approximation. We should exclude the nuclei only on </span>
+    <span class="c1"># half of the borders to get a good estimate.</span>
+    <span class="c1"># Alternatively, we just take the average of both counts.</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([[(</span><span class="n">nuclei_count</span> <span class="o">+</span> <span class="n">nuclei_count_excluding_borders</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]])</span>
+    
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before we can start the computation, we need to deactivate asynchronous execution of operations in pyclesperanto. <a class="reference external" href="https://github.com/clEsperanto/pyclesperanto_prototype/issues/163">See also related issue</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cle</span><span class="o">.</span><span class="n">set_wait_for_kernel_finish</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For processing tiles using dask, we setup processing blocks with no overlap.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tile_map</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">map_blocks</span><span class="p">(</span><span class="n">count_nuclei</span><span class="p">,</span> <span class="n">zarr_image</span><span class="p">)</span>
+
+<span class="n">tile_map</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>proceduring (0, 0)
-proceduring (1, 1)
-</pre></div>
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 76.29 MiB </td>
+                        <td> 78.12 kiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (2000, 5000) </td>
+                        <td> (100, 100) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 2001 Tasks </td>
+                        <td> 1000 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float64 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="98" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="2" x2="120" y2="2" />
+  <line x1="0" y1="4" x2="120" y2="4" />
+  <line x1="0" y1="7" x2="120" y2="7" />
+  <line x1="0" y1="9" x2="120" y2="9" />
+  <line x1="0" y1="12" x2="120" y2="12" />
+  <line x1="0" y1="14" x2="120" y2="14" />
+  <line x1="0" y1="16" x2="120" y2="16" />
+  <line x1="0" y1="19" x2="120" y2="19" />
+  <line x1="0" y1="21" x2="120" y2="21" />
+  <line x1="0" y1="24" x2="120" y2="24" />
+  <line x1="0" y1="26" x2="120" y2="26" />
+  <line x1="0" y1="28" x2="120" y2="28" />
+  <line x1="0" y1="31" x2="120" y2="31" />
+  <line x1="0" y1="33" x2="120" y2="33" />
+  <line x1="0" y1="36" x2="120" y2="36" />
+  <line x1="0" y1="38" x2="120" y2="38" />
+  <line x1="0" y1="40" x2="120" y2="40" />
+  <line x1="0" y1="43" x2="120" y2="43" />
+  <line x1="0" y1="48" x2="120" y2="48" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="48" style="stroke-width:2" />
+  <line x1="4" y1="0" x2="4" y2="48" />
+  <line x1="12" y1="0" x2="12" y2="48" />
+  <line x1="16" y1="0" x2="16" y2="48" />
+  <line x1="24" y1="0" x2="24" y2="48" />
+  <line x1="31" y1="0" x2="31" y2="48" />
+  <line x1="36" y1="0" x2="36" y2="48" />
+  <line x1="43" y1="0" x2="43" y2="48" />
+  <line x1="50" y1="0" x2="50" y2="48" />
+  <line x1="55" y1="0" x2="55" y2="48" />
+  <line x1="62" y1="0" x2="62" y2="48" />
+  <line x1="67" y1="0" x2="67" y2="48" />
+  <line x1="74" y1="0" x2="74" y2="48" />
+  <line x1="81" y1="0" x2="81" y2="48" />
+  <line x1="86" y1="0" x2="86" y2="48" />
+  <line x1="93" y1="0" x2="93" y2="48" />
+  <line x1="100" y1="0" x2="100" y2="48" />
+  <line x1="105" y1="0" x2="105" y2="48" />
+  <line x1="112" y1="0" x2="112" y2="48" />
+  <line x1="120" y1="0" x2="120" y2="48" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,48.0 0.0,48.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="68.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >5000</text>
+  <text x="140.000000" y="24.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,24.000000)">2000</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div>
 </div>
-</div>
-</div>
-<p>As we can read, the function was executed twice with very small images (0x0 and 1x1 pixels). Dask does that in principle to explore if the function works. Next, we will actually execute our <code class="docutils literal notranslate"><span class="pre">procedure</span></code> on the tiles of the image.</p>
+<p>As the result image is much smaller then the original, we can compute the whole result map.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">tile_map</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>proceduring (128, 128)
-proceduringproceduring (128, 128)
- (128, 128)
-proceduring (128, 128)
-</pre></div>
 </div>
-</div>
-</div>
-<p>The printed output looks a bit chaotic because dask executed the <code class="docutils literal notranslate"><span class="pre">procedure</span></code> on multiple tiles in parallel. If we inspect the result, we will see it is again an image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">shape</span>
@@ -1111,63 +1281,33 @@ proceduring (128, 128)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(256, 256)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(20, 50)
 </pre></div>
 </div>
 </div>
 </div>
+<p>Again, as the result map is small, we can just visualize it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.ndarray
-</pre></div>
+<img alt="../_images/tiled_nuclei_counting_quick_17_0.png" src="../_images/tiled_nuclei_counting_quick_17_0.png" />
 </div>
 </div>
-</div>
+<p>With a quick visual check in the original image, we can see that indeed in the top left corner of the image, there are much less cells than in the bottom right.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mf">3.5</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/tiling_images_14_0.png" src="../_images/tiling_images_14_0.png" />
+<img alt="../_images/tiled_nuclei_counting_quick_19_0.png" src="../_images/tiled_nuclei_counting_quick_19_0.png" />
 </div>
 </div>
-<div class="section" id="border-effects">
-<h2>Border effects<a class="headerlink" href="#border-effects" title="Permalink to this headline">¶</a></h2>
-<p>When processing images tile-by-tile we always must assume that along the border artifacts appear that result from cutting the image into tiles. As our example image fits in memory, we can apply <code class="docutils literal notranslate"><span class="pre">procedure</span></code> to it and compare it to the result from the tiled image processing</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">untiled_result</span> <span class="o">=</span> <span class="n">procedure</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">untiled_result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>proceduring (256, 256)
-</pre></div>
-</div>
-<img alt="../_images/tiling_images_16_1.png" src="../_images/tiling_images_16_1.png" />
-</div>
-</div>
-<p>The differences are not obvious, but we can visualize them.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">difference</span> <span class="o">=</span> <span class="n">result</span> <span class="o">-</span> <span class="n">untiled_result</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/tiling_images_18_0.png" src="../_images/tiling_images_18_0.png" />
-</div>
-</div>
-<p>When applying a Gaussian blur with a small sigma, these effects may be negligible. In case the effects cause severe issues in our image processing workflow, we may want to reduce or event prevent those artifacts.</p>
 </div>
 </div>
 
@@ -1203,10 +1343,10 @@ proceduring (128, 128)
             <p class="prev-next-title">Tiled image processing</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="tiling_images_with_overlap.html" title="next page">
+    <a class='right-next' id="next-link" href="tiling_images_naive_approach.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tiling images with overlap</p>
+        <p class="prev-next-title">Tiling images - the naive approach</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

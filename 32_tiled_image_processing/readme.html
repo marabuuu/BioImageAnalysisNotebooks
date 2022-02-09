@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tiling images" href="tiling_images.html" />
+    <link rel="next" title="Tiled image processing, a quick run-through" href="tiled_nuclei_counting_quick.html" />
     <link rel="prev" title="Interactive cropping with napari" href="../31_graphical_user_interfaces/napari_crop.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -681,8 +681,13 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="tiling_images.html">
-     Tiling images
+    <a class="reference internal" href="tiled_nuclei_counting_quick.html">
+     Tiled image processing, a quick run-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tiling_images_naive_approach.html">
+     Tiling images - the naive approach
     </a>
    </li>
    <li class="toctree-l2">
@@ -927,9 +932,12 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="tiled-image-processing">
 <h1>Tiled image processing<a class="headerlink" href="#tiled-image-processing" title="Permalink to this headline">¶</a></h1>
-<p>If image data is too large to fit into memory, it becomes necessary to split the image into multiple <em>tiles</em> and process them individually. While this is step is straightforward, it can become very challenging to stitch the resulting image tiles together and return one big result image. In this section we will elaborate on multiple strategies to deal with tiled image processing.</p>
-<p>See als</p>
+<p>If image data is too large to fit into memory, it becomes necessary to split the image into multiple <em>tiles</em> and process them individually. While this is step is straightforward, it can become very challenging to stitch the resulting image tiles together and return one big result image. In this section we will elaborate on multiple strategies to deal with tiled image processing. The <a class="reference external" href="https://docs.dask.org/en/stable/">dask library</a> enables processing tiled images easy to use. This chapter starts with a complete workflow showing dask in action and then explains the individual steps for setting up a proper workflow for processing your data afterwards.</p>
+<p>See also</p>
 <ul class="simple">
+<li><p>Genevieve Buckley’s talk about <a class="reference external" href="https://www.youtube.com/watch?v=MpjgzNeISeI&amp;t=1359s">“dask-image: distributed image processing for large data” </a> (PyConline AU 2020) <a class="reference external" href="https://genevievebuckley.github.io/dask-image-talk-2020/">Slides</a></p></li>
+<li><p>John Kirkham’s talk about <a class="reference external" href="https://www.youtube.com/watch?v=XGUS174vvLs">“dask image:A Library for Distributed Image Processing”</a> (SciPy 2019)</p></li>
+<li><p><a class="reference external" href="https://docs.dask.org/en/stable/">Dask documentation</a></p></li>
 <li><p><a class="reference external" href="http://image.dask.org/en/latest/">Dask image documentation</a></p></li>
 <li><p><a class="reference external" href="https://examples.dask.org/applications/image-processing.html">Dask examples: image processing</a></p></li>
 </ul>
@@ -969,10 +977,10 @@
             <p class="prev-next-title">Interactive cropping with napari</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="tiling_images.html" title="next page">
+    <a class='right-next' id="next-link" href="tiled_nuclei_counting_quick.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tiling images</p>
+        <p class="prev-next-title">Tiled image processing, a quick run-through</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image visualization in 3D &#8212; Bio-image Analysis Notebooks</title>
+    <title>Tiling images - the naive approach &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Multidimensional image stacks" href="10_nd_image_data.html" />
-    <link rel="prev" title="Further reading" href="../15_gpu_acceleration/further_reading.html" />
+    <link rel="next" title="Tiling images with overlap" href="tiling_images_with_overlap.html" />
+    <link rel="prev" title="Tiled image processing, a quick run-through" href="tiled_nuclei_counting_quick.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -270,28 +270,28 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../16_3d_image_visualization/readme.html">
    Image visualization in 3D
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_nd_image_data.html">
+    <a class="reference internal" href="../16_3d_image_visualization/10_nd_image_data.html">
      Multidimensional image stacks
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="inspecting_3d_images.html">
+    <a class="reference internal" href="../16_3d_image_visualization/inspecting_3d_images.html">
      Inspecting 3D image data with pyclesperanto
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="05_napari.html">
+    <a class="reference internal" href="../16_3d_image_visualization/05_napari.html">
      Interactive image visualization with napari
     </a>
    </li>
@@ -670,53 +670,53 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../32_tiled_image_processing/readme.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="readme.html">
    Tiled image processing
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
   <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="../32_tiled_image_processing/tiled_nuclei_counting_quick.html">
+    <a class="reference internal" href="tiled_nuclei_counting_quick.html">
      Tiled image processing, a quick run-through
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../32_tiled_image_processing/tiling_images_naive_approach.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Tiling images - the naive approach
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../32_tiled_image_processing/tiling_images_with_overlap.html">
+    <a class="reference internal" href="tiling_images_with_overlap.html">
      Tiling images with overlap
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../32_tiled_image_processing/tiled_connected_component_labeling.html">
+    <a class="reference internal" href="tiled_connected_component_labeling.html">
      Connected component labeling in tiles
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../32_tiled_image_processing/tiled_object_measurements.html">
+    <a class="reference internal" href="tiled_object_measurements.html">
      Measurements in objects in tiled images
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../32_tiled_image_processing/tiled_image_file_formats_zarr.html">
+    <a class="reference internal" href="tiled_image_file_formats_zarr.html">
      Tiled image file formats: zarr
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../32_tiled_image_processing/tiled_area_mapping.html">
+    <a class="reference internal" href="tiled_area_mapping.html">
      Map area of objects in tiles
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../32_tiled_image_processing/tiled_nuclei_counting.html">
+    <a class="reference internal" href="tiled_nuclei_counting.html">
      Counting nuclei in tiles
     </a>
    </li>
@@ -871,9 +871,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/16_3d_image_visualization/readme.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/32_tiled_image_processing/tiling_images_naive_approach.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -891,7 +891,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F16_3d_image_visualization/readme.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F32_tiled_image_processing/tiling_images_naive_approach.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -907,6 +907,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/32_tiled_image_processing/tiling_images_naive_approach.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -918,8 +935,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installation-of-requirements">
-   Installation of requirements
+  <a class="reference internal nav-link" href="#border-effects">
+   Border effects
   </a>
  </li>
 </ul>
@@ -932,7 +949,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Image visualization in 3D</h1>
+                <h1>Tiling images - the naive approach</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -943,8 +960,8 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installation-of-requirements">
-   Installation of requirements
+  <a class="reference internal nav-link" href="#border-effects">
+   Border effects
   </a>
  </li>
 </ul>
@@ -956,25 +973,207 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="image-visualization-in-3d">
-<h1>Image visualization in 3D<a class="headerlink" href="#image-visualization-in-3d" title="Permalink to this headline">¶</a></h1>
-<p>Visualizing three dimensional image data on a flat computer screen is challenging, especially when working with scripting languages such as Python. In this chapter we will introduce the concepts of slicing and projecting image data. Furthermore, we will start using the n-dimensional image viewer <a class="reference external" href="https://napari.org">napari</a>.</p>
-<div class="section" id="installation-of-requirements">
-<h2>Installation of requirements<a class="headerlink" href="#installation-of-requirements" title="Permalink to this headline">¶</a></h2>
-<p>napari can be installed using conda:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">napari</span>
-</pre></div>
-</div>
-<p>or using pip:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">napari</span><span class="p">[</span><span class="nb">all</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Mac users may have to execute the second command like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;napari[all]&quot;</span>
+  <div class="tex2jax_ignore mathjax_ignore section" id="tiling-images-the-naive-approach">
+<h1>Tiling images - the naive approach<a class="headerlink" href="#tiling-images-the-naive-approach" title="Permalink to this headline">¶</a></h1>
+<p>In tiled image processing, the first step is cutting the image into tiles. While this could be done with numpy, we will use <a class="reference external" href="https://docs.dask.org/en/stable/">dask</a> because it comes with multiple very useful features in this context.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
+<span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">gaussian</span>
+<span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">cells3d</span>
+<span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
 </pre></div>
 </div>
 </div>
-<div class="toctree-wrapper compound">
+</div>
+<p>In the first example we will use an image showing nuclei from fluorescence microscopy and just denoise the image using a Gaussian blur. We will do this tile-by-tile. For that, we first define the <code class="docutils literal notranslate"><span class="pre">procedure</span></code> that should be applied to all tiles. We build in a print statement into this function to when it’s executed and how large the image is that is being processed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">procedure</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;proceduring&quot;</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cells3d</span><span class="p">()[</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/tiling_images_naive_approach_4_0.png" src="../_images/tiling_images_naive_approach_4_0.png" />
+</div>
+</div>
+<p>After loading the image, it can be tiled like that. In dask, tiles are also called <em>chunks</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tiles</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+<span class="n">tiles</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 128.00 kiB </td>
+                        <td> 32.00 kiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (256, 256) </td>
+                        <td> (128, 128) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 4 Tasks </td>
+                        <td> 4 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> uint16 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="60" x2="120" y2="60" />
+  <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
+  <line x1="60" y1="0" x2="60" y2="120" />
+  <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >256</text>
+  <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">256</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div>
+</div>
+<p>Next, we tell dask what to do with our tiles. We want to <em>map</em> the function <code class="docutils literal notranslate"><span class="pre">procedure</span></code> on all individual tiles. Note, this does not process the whole image yet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tile_map</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">map_blocks</span><span class="p">(</span><span class="n">procedure</span><span class="p">,</span> <span class="n">tiles</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>proceduring (0, 0)
+proceduring (1, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can read, the function was executed twice with very small images (0x0 and 1x1 pixels). Dask does that in principle to explore if the function works. Next, we will actually execute our <code class="docutils literal notranslate"><span class="pre">procedure</span></code> on the tiles of the image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">tile_map</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span> <span class="c1"># Warning: This loads all image data into memory</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>proceduringproceduring (128, 128)
+ (128, 128)
+proceduring (128, 128)
+proceduring (128, 128)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The printed output looks a bit chaotic because dask executed the <code class="docutils literal notranslate"><span class="pre">procedure</span></code> on multiple tiles in parallel. If we inspect the result, we will see it is again an image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(256, 256)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.ndarray
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> The <code class="docutils literal notranslate"><span class="pre">imshow</span></code> function may not work on big datasets. We are using it here for demonstration purposes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/tiling_images_naive_approach_15_0.png" src="../_images/tiling_images_naive_approach_15_0.png" />
+</div>
+</div>
+<div class="section" id="border-effects">
+<h2>Border effects<a class="headerlink" href="#border-effects" title="Permalink to this headline">¶</a></h2>
+<p>When processing images tile-by-tile we always must assume that along the border artifacts appear that result from cutting the image into tiles. As our example image fits in memory, we can apply <code class="docutils literal notranslate"><span class="pre">procedure</span></code> to it and compare it to the result from the tiled image processing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">untiled_result</span> <span class="o">=</span> <span class="n">procedure</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">untiled_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>proceduring (256, 256)
+</pre></div>
+</div>
+<img alt="../_images/tiling_images_naive_approach_17_1.png" src="../_images/tiling_images_naive_approach_17_1.png" />
+</div>
+</div>
+<p>The differences are not obvious, but we can visualize them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">difference</span> <span class="o">=</span> <span class="n">result</span> <span class="o">-</span> <span class="n">untiled_result</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/tiling_images_naive_approach_19_0.png" src="../_images/tiling_images_naive_approach_19_0.png" />
+</div>
+</div>
+<p>When applying a Gaussian blur with a small sigma, these effects may be negligible. In case the effects cause severe issues in our image processing workflow, we may want to reduce or event prevent those artifacts.</p>
 </div>
 </div>
 
@@ -991,7 +1190,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./16_3d_image_visualization"
+            path: "./32_tiled_image_processing"
         },
         predefinedOutput: true
     }
@@ -1003,17 +1202,17 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../15_gpu_acceleration/further_reading.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="tiled_nuclei_counting_quick.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Further reading</p>
+            <p class="prev-next-title">Tiled image processing, a quick run-through</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="10_nd_image_data.html" title="next page">
+    <a class='right-next' id="next-link" href="tiling_images_with_overlap.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Multidimensional image stacks</p>
+        <p class="prev-next-title">Tiling images with overlap</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

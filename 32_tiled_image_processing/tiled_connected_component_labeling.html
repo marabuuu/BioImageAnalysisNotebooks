@@ -681,8 +681,13 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="tiling_images.html">
-     Tiling images
+    <a class="reference internal" href="tiled_nuclei_counting_quick.html">
+     Tiled image processing, a quick run-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tiling_images_naive_approach.html">
+     Tiling images - the naive approach
     </a>
    </li>
    <li class="toctree-l2">
@@ -970,6 +975,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="connected-component-labeling-in-tiles">
 <h1>Connected component labeling in tiles<a class="headerlink" href="#connected-component-labeling-in-tiles" title="Permalink to this headline">¶</a></h1>
+<p>Labeling objects in tiles is a challenging task. If this step cannot be circumvented, the <a class="reference external" href="http://image.dask.org/en/latest/">dask-image</a> offers the right functionality to retrieve label images with labels crossing multiple tiles.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>

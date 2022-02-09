@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Connected component labeling in tiles" href="tiled_connected_component_labeling.html" />
-    <link rel="prev" title="Tiling images" href="tiling_images.html" />
+    <link rel="prev" title="Tiling images - the naive approach" href="tiling_images_naive_approach.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -681,8 +681,13 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="tiling_images.html">
-     Tiling images
+    <a class="reference internal" href="tiled_nuclei_counting_quick.html">
+     Tiled image processing, a quick run-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tiling_images_naive_approach.html">
+     Tiling images - the naive approach
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -970,7 +975,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="tiling-images-with-overlap">
 <h1>Tiling images with overlap<a class="headerlink" href="#tiling-images-with-overlap" title="Permalink to this headline">¶</a></h1>
-<p>When processing images in tiles, we can observe artifacts on borders of the tiles in the resulting image. One strategy to prevent these artifacts is to process tiles with some overlap. <a class="reference external" href="https://github.com/dask/dask-image">dask_image</a> also supports this.</p>
+<p>When processing images in tiles, we can observe artifacts on borders of the tiles in the resulting image. One strategy to prevent these artifacts is to process tiles with some overlap. <a class="reference external" href="https://docs.dask.org/en/stable/">dask</a> also supports this. Again, for demonstration purposes, we use <code class="docutils literal notranslate"><span class="pre">imshow</span></code> to show the resulting images. If these were big data, the <code class="docutils literal notranslate"><span class="pre">imshow</span></code> function would not work.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
@@ -1086,12 +1091,16 @@
 proceduring (1, 1)
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/haase/opt/anaconda3/envs/bio_39/lib/python3.9/site-packages/dask/array/overlap.py:642: FutureWarning: Default &#39;boundary&#39; argument value will change from &#39;reflect&#39; to &#39;none&#39; in future versions from 2022.03.0 onwards. Use &#39;boundary=&quot;none&quot;&#39; to opt into the future behavior now or set &#39;boundary=&quot;reflect&quot;&#39; to maintain the current behavior going forward.
+  warnings.warn(
+</pre></div>
+</div>
 </div>
 </div>
 <p>The function was executed twice with very small images (0x0 and 1x1 pixels) to check if it works. Next, we actually compute the result.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">tile_map</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">tile_map</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span> <span class="c1"># Warning: This loads all image data into memory</span>
 </pre></div>
 </div>
 </div>
@@ -1138,10 +1147,10 @@ proceduring (130, 130)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overlap width 0
 proceduring (0, 0)
 proceduring (1, 1)
-proceduringproceduringproceduring (128, 128)
+proceduringproceduring (128, 128)
+proceduring (128, 128) (128, 128)
+
 proceduring (128, 128)
- (128, 128)
- (128, 128)
 </pre></div>
 </div>
 <img alt="../_images/tiling_images_with_overlap_15_1.png" src="../_images/tiling_images_with_overlap_15_1.png" />
@@ -1162,8 +1171,8 @@ proceduring (138, 138)
 Overlap width 10
 proceduring (0, 0)
 proceduring (1, 1)
-proceduring (148, 148)
-proceduring (148, 148)
+proceduringproceduring (148, 148)
+ (148, 148)
 proceduring (148, 148)
 proceduring (148, 148)
 </pre></div>
@@ -1176,8 +1185,8 @@ proceduring (0, 0)
 proceduring (1, 1)
 proceduring (158, 158)
 proceduring (158, 158)
-proceduring proceduring (158, 158)
-(158, 158)
+proceduring (158, 158)
+proceduring (158, 158)
 </pre></div>
 </div>
 <img alt="../_images/tiling_images_with_overlap_15_7.png" src="../_images/tiling_images_with_overlap_15_7.png" />
@@ -1228,11 +1237,11 @@ proceduring (168, 168)
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="tiling_images.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="tiling_images_naive_approach.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Tiling images</p>
+            <p class="prev-next-title">Tiling images - the naive approach</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="tiled_connected_component_labeling.html" title="next page">

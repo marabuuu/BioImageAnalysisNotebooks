@@ -681,8 +681,13 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="tiling_images.html">
-     Tiling images
+    <a class="reference internal" href="tiled_nuclei_counting_quick.html">
+     Tiled image processing, a quick run-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tiling_images_naive_approach.html">
+     Tiling images - the naive approach
     </a>
    </li>
    <li class="toctree-l2">
@@ -1086,6 +1091,7 @@ mean squared error 0.0
 </div>
 </div>
 <p>The empirically determined overlap where this error becomes 0 is an optimistic estimation. When using this method in you example, make sure you apply a overlap that’s larger than the determined value.</p>
+<p><strong>Note:</strong> The <code class="docutils literal notranslate"><span class="pre">compute</span></code> and <code class="docutils literal notranslate"><span class="pre">imshow</span></code> functions may not work on big datasets as the images may not fit in computer memory. We are using it here for demonstration purposes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">overlap_width</span> <span class="o">=</span> <span class="mi">30</span>
