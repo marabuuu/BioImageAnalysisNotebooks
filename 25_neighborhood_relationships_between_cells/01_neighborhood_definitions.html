@@ -951,29 +951,41 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-data">
-   Example data
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Neighborhood definitions
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-data">
+     Example data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#touching-neighbors">
+     Touching neighbors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neighbors-of-touching-neighbors">
+     Neighbors of touching neighbors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n-nearest-neighbors">
+     N nearest neighbors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proximal-neighbors">
+     Proximal neighbors
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#touching-neighbors">
-   Touching neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#neighbors-of-touching-neighbors">
-   Neighbors of touching neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#n-nearest-neighbors">
-   N nearest neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proximal-neighbors">
-   Proximal neighbors
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>
@@ -996,29 +1008,41 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-data">
-   Example data
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Neighborhood definitions
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-data">
+     Example data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#touching-neighbors">
+     Touching neighbors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neighbors-of-touching-neighbors">
+     Neighbors of touching neighbors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n-nearest-neighbors">
+     N nearest neighbors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proximal-neighbors">
+     Proximal neighbors
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#touching-neighbors">
-   Touching neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#neighbors-of-touching-neighbors">
-   Neighbors of touching neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#n-nearest-neighbors">
-   N nearest neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proximal-neighbors">
-   Proximal neighbors
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>
@@ -1032,10 +1056,11 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="neighborhood-definitions">
 <h1>Neighborhood definitions<a class="headerlink" href="#neighborhood-definitions" title="Permalink to this headline">¶</a></h1>
-<p>In py-clEsperanto (and in <a class="reference external" href="https://clij.github.io/clij2-docs/md/neighbors_of_neighbors/">CLIJ as well</a>), we’re using adjacency graphs to investigate relationships between neighboring labeled object, in practice: cells.</p>
-<p>This notebook demonstrates the considered neighborhood definitions.</p>
-<p>We consider the “neighborhood” of a pixel always includs the pixel itself per default. That sounds intuitive in the first place and leads to some unnatural behaviour in some situations.</p>
-<p>Work is in progress. Feedback is very welcome: robert.haase at <a class="reference external" href="http://tu-dresden.de">tu-dresden.de</a></p>
+<p>In pyclesperanto, neighbor adjacency graphs are used to investigate relationships between neighboring labeled objects, such as cells. This notebook demonstrates the considered neighborhood definitions.</p>
+<p>See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fcomp.2021.774396/full">Image Processing Filters for Grids of Cells Analogous to Filters Processing Grids of Pixels</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
@@ -1048,11 +1073,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;NVIDIA GeForce RTX 3050 Ti Laptop GPU on Platform: NVIDIA CUDA (1 refs)&gt;
 </pre></div>
 </div>
 </div>
 </div>
+<p>For visualizing relationships between neighboring objects, we start at an artificial cell grid. Cells are aligned approximately in a honeycomb grid. Intensity in these cells is uniformly distributed. Just a single cell in the center of the grid has much higher intensity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate artificial cells as test data</span>
@@ -1084,13 +1110,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_neighborhood_definitions_4_0.png" src="../_images/01_neighborhood_definitions_4_0.png" />
+<img alt="../_images/01_neighborhood_definitions_5_0.png" src="../_images/01_neighborhood_definitions_5_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="touching-neighbors">
 <h2>Touching neighbors<a class="headerlink" href="#touching-neighbors" title="Permalink to this headline">¶</a></h2>
-<p>We can show all cells that belong to the “touch” neighborhood by computing the local maximum intensity in this neighborhood. Let’s visualize the touching neighbor graph as mesh first.</p>
+<p>We can show all cells that belong to the “touching” neighborhood by visualizing the touching neighbor graph as mesh.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_mesh_between_touching_labels</span><span class="p">(</span><span class="n">tissue</span><span class="p">)</span>
@@ -1103,10 +1129,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_neighborhood_definitions_6_0.png" src="../_images/01_neighborhood_definitions_6_0.png" />
+<img alt="../_images/01_neighborhood_definitions_7_0.png" src="../_images/01_neighborhood_definitions_7_0.png" />
 </div>
 </div>
-<p>From those neighbor-graph one can compute local properties, for example the maximum:</p>
+<p>If we apply a local maximum filter to this grid, we can see how the high intensity of the single cell in the center spreads to directly touching neighbor cells.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_maximum</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_touching_neighbors_map</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span> <span class="n">tissue</span><span class="p">)</span>
@@ -1116,13 +1142,18 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_neighborhood_definitions_8_0.png" src="../_images/01_neighborhood_definitions_8_0.png" />
+<img alt="../_images/01_neighborhood_definitions_9_0.png" src="../_images/01_neighborhood_definitions_9_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="neighbors-of-touching-neighbors">
 <h2>Neighbors of touching neighbors<a class="headerlink" href="#neighbors-of-touching-neighbors" title="Permalink to this headline">¶</a></h2>
-<p>You can also extend the neighborhood by considering neighbors of neighbor (of neighbors (of neighbors)). How far you go, can be configured with a radius parameter. Note: Radiu==0 means, no neighbors are taken into account, radius==1 is identical with touching neighbors, radius &gt; 1 are neighbors of neighbors:</p>
+<p>You can also extend the neighborhood by considering neighbors of neighbor (of neighbors (of neighbors)). How far you go, can be configured with a radius parameter.</p>
+<ul class="simple">
+<li><p>Radius==0 means, no neighbors are taken into account,</p></li>
+<li><p>radius==1 is identical with touching neighbors,</p></li>
+<li><p>radius &gt; 1 are neighbors of neighbors.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">radius</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
@@ -1132,17 +1163,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_neighborhood_definitions_10_0.png" src="../_images/01_neighborhood_definitions_10_0.png" />
-<img alt="../_images/01_neighborhood_definitions_10_1.png" src="../_images/01_neighborhood_definitions_10_1.png" />
-<img alt="../_images/01_neighborhood_definitions_10_2.png" src="../_images/01_neighborhood_definitions_10_2.png" />
-<img alt="../_images/01_neighborhood_definitions_10_3.png" src="../_images/01_neighborhood_definitions_10_3.png" />
-<img alt="../_images/01_neighborhood_definitions_10_4.png" src="../_images/01_neighborhood_definitions_10_4.png" />
+<img alt="../_images/01_neighborhood_definitions_11_0.png" src="../_images/01_neighborhood_definitions_11_0.png" />
+<img alt="../_images/01_neighborhood_definitions_11_1.png" src="../_images/01_neighborhood_definitions_11_1.png" />
+<img alt="../_images/01_neighborhood_definitions_11_2.png" src="../_images/01_neighborhood_definitions_11_2.png" />
+<img alt="../_images/01_neighborhood_definitions_11_3.png" src="../_images/01_neighborhood_definitions_11_3.png" />
+<img alt="../_images/01_neighborhood_definitions_11_4.png" src="../_images/01_neighborhood_definitions_11_4.png" />
 </div>
 </div>
 </div>
 <div class="section" id="n-nearest-neighbors">
 <h2>N nearest neighbors<a class="headerlink" href="#n-nearest-neighbors" title="Permalink to this headline">¶</a></h2>
-<p>You can also define a neighborhood from the distances between cells. As distance measurement, we use the Euclidean distance between label centroids. Also in this case you an configure how far the neighborhood should range by setting the number of nearest neighbors n. As mentioned above, neighborhoods include the center pixel. Thus, the neighborhood of a pixel and its nearest neighbor contains two neighbors:</p>
+<p>You can also define a neighborhood from the distances between cells. As distance measurement, we use the Euclidean distance between label centroids. Also in this case you an configure how far the neighborhood should range by setting the number of nearest neighbors <em>n</em>. As mentioned above, neighborhoods include the center cell. Thus, the neighborhood of an object and its <code class="docutils literal notranslate"><span class="pre">n=1</span></code> nearest neighbor contains two neighbors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
@@ -1153,55 +1184,6 @@
     <span class="n">mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_sphere</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  1
-</pre></div>
-</div>
-<img alt="../_images/01_neighborhood_definitions_12_1.png" src="../_images/01_neighborhood_definitions_12_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  2
-</pre></div>
-</div>
-<img alt="../_images/01_neighborhood_definitions_12_3.png" src="../_images/01_neighborhood_definitions_12_3.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  3
-</pre></div>
-</div>
-<img alt="../_images/01_neighborhood_definitions_12_5.png" src="../_images/01_neighborhood_definitions_12_5.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  4
-</pre></div>
-</div>
-<img alt="../_images/01_neighborhood_definitions_12_7.png" src="../_images/01_neighborhood_definitions_12_7.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  5
-</pre></div>
-</div>
-<img alt="../_images/01_neighborhood_definitions_12_9.png" src="../_images/01_neighborhood_definitions_12_9.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  6
-</pre></div>
-</div>
-<img alt="../_images/01_neighborhood_definitions_12_11.png" src="../_images/01_neighborhood_definitions_12_11.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  7
-</pre></div>
-</div>
-<img alt="../_images/01_neighborhood_definitions_12_13.png" src="../_images/01_neighborhood_definitions_12_13.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  8
-</pre></div>
-</div>
-<img alt="../_images/01_neighborhood_definitions_12_15.png" src="../_images/01_neighborhood_definitions_12_15.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  9
-</pre></div>
-</div>
-<img alt="../_images/01_neighborhood_definitions_12_17.png" src="../_images/01_neighborhood_definitions_12_17.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n = &quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-
-    <span class="n">local_maximum</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_n_nearest_neighbors_map</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">local_maximum</span><span class="p">,</span> <span class="n">min_display_intensity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1244,10 +1226,60 @@
 <img alt="../_images/01_neighborhood_definitions_13_17.png" src="../_images/01_neighborhood_definitions_13_17.png" />
 </div>
 </div>
+<p>Also this can be visualized using the local maximum filter. Compared to neighbors-of-neighbors, the radius of the neighborhood can be tuned more fine-granular using n-nearest neighbors. Note that for computing the maximum in that neighborhood, not every increase by <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">+=</span> <span class="pre">1</span></code> the size of the red area increases. This is due to the fact that not the maximum pixel pushes its intensity to the neighbors, it’s the neighbors which pull that intensity when applying the maximum filter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n = &quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+    <span class="n">local_maximum</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_n_nearest_neighbors_map</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">local_maximum</span><span class="p">,</span> <span class="n">min_display_intensity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  1
+</pre></div>
+</div>
+<img alt="../_images/01_neighborhood_definitions_15_1.png" src="../_images/01_neighborhood_definitions_15_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  2
+</pre></div>
+</div>
+<img alt="../_images/01_neighborhood_definitions_15_3.png" src="../_images/01_neighborhood_definitions_15_3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  3
+</pre></div>
+</div>
+<img alt="../_images/01_neighborhood_definitions_15_5.png" src="../_images/01_neighborhood_definitions_15_5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  4
+</pre></div>
+</div>
+<img alt="../_images/01_neighborhood_definitions_15_7.png" src="../_images/01_neighborhood_definitions_15_7.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  5
+</pre></div>
+</div>
+<img alt="../_images/01_neighborhood_definitions_15_9.png" src="../_images/01_neighborhood_definitions_15_9.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  6
+</pre></div>
+</div>
+<img alt="../_images/01_neighborhood_definitions_15_11.png" src="../_images/01_neighborhood_definitions_15_11.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  7
+</pre></div>
+</div>
+<img alt="../_images/01_neighborhood_definitions_15_13.png" src="../_images/01_neighborhood_definitions_15_13.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  8
+</pre></div>
+</div>
+<img alt="../_images/01_neighborhood_definitions_15_15.png" src="../_images/01_neighborhood_definitions_15_15.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n =  9
+</pre></div>
+</div>
+<img alt="../_images/01_neighborhood_definitions_15_17.png" src="../_images/01_neighborhood_definitions_15_17.png" />
+</div>
+</div>
 </div>
 <div class="section" id="proximal-neighbors">
 <h2>Proximal neighbors<a class="headerlink" href="#proximal-neighbors" title="Permalink to this headline">¶</a></h2>
-<p>We can also compute the local maximum of cells with centroid distances below a given upper threshold:</p>
+<p>We can also compute the local maximum of cells with centroid distances below a given upper threshold.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_maximum</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_proximal_neighbors_map</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span> <span class="n">tissue</span><span class="p">,</span> <span class="n">max_distance</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -1256,7 +1288,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_neighborhood_definitions_15_0.png" src="../_images/01_neighborhood_definitions_15_0.png" />
+<img alt="../_images/01_neighborhood_definitions_17_0.png" src="../_images/01_neighborhood_definitions_17_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1267,10 +1299,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_neighborhood_definitions_16_0.png" src="../_images/01_neighborhood_definitions_16_0.png" />
+<img alt="../_images/01_neighborhood_definitions_18_0.png" src="../_images/01_neighborhood_definitions_18_0.png" />
 </div>
 </div>
 </div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="exercise">
+<h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h1>
+<p>Draw a mesh between proximal neighbors with different distances, e.g. in a for-loop.</p>
 </div>
 
     <script type="text/x-thebe-config">

@@ -946,6 +946,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distance-meshes-in-more-detail">
+   Distance meshes in more detail
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -958,6 +971,19 @@
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distance-meshes-in-more-detail">
+   Distance meshes in more detail
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -1001,7 +1027,7 @@
 <span class="c1"># we make the lines a bit thicker for visualization purposes</span>
 <span class="n">proximal_neighbor_mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_box</span><span class="p">(</span><span class="n">proximal_neighbor_mesh</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">proximal_neighbor_mesh</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">proximal_neighbor_mesh</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1009,6 +1035,23 @@
 <img alt="../_images/06_mesh_with_distances_5_0.png" src="../_images/06_mesh_with_distances_5_0.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">proximal_distance_mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">draw_distance_mesh_between_proximal_labels</span><span class="p">(</span><span class="n">nuclei</span><span class="p">,</span> <span class="n">maximum_distance</span><span class="o">=</span><span class="n">max_distance</span><span class="p">)</span>
+
+<span class="c1"># we make the lines a bit thicker for visualization purposes</span>
+<span class="n">proximal_distance_mesh</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_box</span><span class="p">(</span><span class="n">proximal_distance_mesh</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">proximal_distance_mesh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/06_mesh_with_distances_6_0.png" src="../_images/06_mesh_with_distances_6_0.png" />
+</div>
+</div>
+<div class="section" id="distance-meshes-in-more-detail">
+<h2>Distance meshes in more detail<a class="headerlink" href="#distance-meshes-in-more-detail" title="Permalink to this headline">¶</a></h2>
 <p>For drawing a distance mesh, we need to combine a distance matrix, an abstract representation of distances of all objects to each other with a neighborhood-matrix, which represents which cells are neighbors.</p>
 <p>We start with the distance matrix.</p>
 <div class="cell docutils container">
@@ -1026,7 +1069,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_mesh_with_distances_7_0.png" src="../_images/06_mesh_with_distances_7_0.png" />
+<img alt="../_images/06_mesh_with_distances_8_0.png" src="../_images/06_mesh_with_distances_8_0.png" />
 </div>
 </div>
 <p>Next, we should setup a matrix which represents for each nucleus (from the left to the right) which are its n nearest neighbors.</p>
@@ -1039,7 +1082,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_mesh_with_distances_9_0.png" src="../_images/06_mesh_with_distances_9_0.png" />
+<img alt="../_images/06_mesh_with_distances_10_0.png" src="../_images/06_mesh_with_distances_10_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1051,7 +1094,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_mesh_with_distances_10_0.png" src="../_images/06_mesh_with_distances_10_0.png" />
+<img alt="../_images/06_mesh_with_distances_11_0.png" src="../_images/06_mesh_with_distances_11_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1066,7 +1109,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_mesh_with_distances_11_0.png" src="../_images/06_mesh_with_distances_11_0.png" />
+<img alt="../_images/06_mesh_with_distances_12_0.png" src="../_images/06_mesh_with_distances_12_0.png" />
 </div>
 </div>
 <p>To check if the nuclei from above are still the centroids of the mesh, we put both together in one image.</p>
@@ -1079,7 +1122,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_mesh_with_distances_13_0.png" src="../_images/06_mesh_with_distances_13_0.png" />
+<img alt="../_images/06_mesh_with_distances_14_0.png" src="../_images/06_mesh_with_distances_14_0.png" />
+</div>
 </div>
 </div>
 </div>

@@ -966,22 +966,24 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="measure-the-distance-to-cells-in-another-label-image">
 <h1>Measure the distance to cells in another label image<a class="headerlink" href="#measure-the-distance-to-cells-in-another-label-image" title="Permalink to this headline">¶</a></h1>
+<p>In some projects imaging cells, nuclei and other organelles with multiple markers, we are interested in measuring distances between cells with different expression patterns. Given a tissue where not all cells express a certain marker, we may want to measure the distance of each cell to the next cell expressing that marker. Hence, we want to measure and visualize that distance in a map.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">cle</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;gfx90c on Platform: AMD Accelerated Parallel Processing (2 refs)&gt;
 </pre></div>
 </div>
 </div>
 </div>
-<p>Our starting point is a label image and another label image, where some of the labels in the first image are selected from.</p>
+<p>Our starting point is a label image and another label image, where some of the labels in the first image are selected from. The first label image represents all cells. The second label image represents cells that express the marker.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">artificial_tissue_2d</span><span class="p">()</span>
@@ -1016,6 +1018,104 @@
 <div class="cell_output docutils container">
 <img alt="../_images/distance_to_other_labels_6_0.png" src="../_images/distance_to_other_labels_6_0.png" />
 </div>
+</div>
+<p>We can also read out these values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">statistics_of_labelled_pixels</span><span class="p">(</span><span class="n">distance_map</span><span class="p">,</span> <span class="n">label_image</span><span class="p">)</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">statistics</span><span class="p">)</span>
+
+<span class="c1"># The table above contains too much information.</span>
+<span class="c1"># Hence, we rename a column and remove most others</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;mean_intensity&quot;</span><span class="p">:</span> <span class="s2">&quot;centroid_distance&quot;</span><span class="p">})</span>
+<span class="n">table</span><span class="p">[[</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;centroid_distance&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>centroid_distance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>13.957838</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>15.516336</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>17.409723</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>16.673353</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>170</th>
+      <td>171</td>
+      <td>20.870539</td>
+    </tr>
+    <tr>
+      <th>171</th>
+      <td>172</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>172</th>
+      <td>173</td>
+      <td>24.419371</td>
+    </tr>
+    <tr>
+      <th>173</th>
+      <td>174</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>174</th>
+      <td>175</td>
+      <td>32.159912</td>
+    </tr>
+  </tbody>
+</table>
+<p>175 rows × 2 columns</p>
+</div></div></div>
 </div>
 </div>
 
