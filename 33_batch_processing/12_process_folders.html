@@ -1002,6 +1002,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="how-process-files-in-a-folder">
 <h1>How process files in a folder<a class="headerlink" href="#how-process-files-in-a-folder" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook we will program a loop which walks over a folder of images. Furthermore, the loop will call a python function that analyses the images one by one. Hence, we will process all images in that folder using the same procedure.</p>
 <p>See also</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://realpython.com/working-with-files-in-python/">Working with files in python</a></p></li>
@@ -1010,9 +1011,19 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="c1"># define the location of the folder to go through</span>
-<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;../data/beads/&#39;</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">imshow</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For demonstration purposes, we reuse a folder of images showing banana-slices imaged using magnetic resonance imaging (Courtesy of Nasreddin Abolmaali, OncoRay, TU Dreesden)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the location of the folder to go through</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;../../data/banana/&#39;</span>
 
 <span class="c1"># get a list of files in that folder</span>
 <span class="n">file_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
@@ -1022,12 +1033,37 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;243.tif&#39;, &#39;245.tif&#39;, &#39;271.tif&#39;, &#39;277.tif&#39;, &#39;image data source.txt&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;banana0002.tif&#39;,
+ &#39;banana0003.tif&#39;,
+ &#39;banana0004.tif&#39;,
+ &#39;banana0005.tif&#39;,
+ &#39;banana0006.tif&#39;,
+ &#39;banana0007.tif&#39;,
+ &#39;banana0008.tif&#39;,
+ &#39;banana0009.tif&#39;,
+ &#39;banana0010.tif&#39;,
+ &#39;banana0011.tif&#39;,
+ &#39;banana0012.tif&#39;,
+ &#39;banana0013.tif&#39;,
+ &#39;banana0014.tif&#39;,
+ &#39;banana0015.tif&#39;,
+ &#39;banana0016.tif&#39;,
+ &#39;banana0017.tif&#39;,
+ &#39;banana0018.tif&#39;,
+ &#39;banana0019.tif&#39;,
+ &#39;banana0020.tif&#39;,
+ &#39;banana0021.tif&#39;,
+ &#39;banana0022.tif&#39;,
+ &#39;banana0023.tif&#39;,
+ &#39;banana0024.tif&#39;,
+ &#39;banana0025.tif&#39;,
+ &#39;banana0026.tif&#39;,
+ &#39;image_source.txt&#39;]
 </pre></div>
 </div>
 </div>
 </div>
-<p>Obviously, there are not just images in that folder. Let’s filter the list:</p>
+<p>Obviously, there are not just images in that folder. We can filter that list with a short for-statement:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_file_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_list</span> <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tif&quot;</span><span class="p">)]</span>
@@ -1037,12 +1073,36 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;243.tif&#39;, &#39;245.tif&#39;, &#39;271.tif&#39;, &#39;277.tif&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;banana0002.tif&#39;,
+ &#39;banana0003.tif&#39;,
+ &#39;banana0004.tif&#39;,
+ &#39;banana0005.tif&#39;,
+ &#39;banana0006.tif&#39;,
+ &#39;banana0007.tif&#39;,
+ &#39;banana0008.tif&#39;,
+ &#39;banana0009.tif&#39;,
+ &#39;banana0010.tif&#39;,
+ &#39;banana0011.tif&#39;,
+ &#39;banana0012.tif&#39;,
+ &#39;banana0013.tif&#39;,
+ &#39;banana0014.tif&#39;,
+ &#39;banana0015.tif&#39;,
+ &#39;banana0016.tif&#39;,
+ &#39;banana0017.tif&#39;,
+ &#39;banana0018.tif&#39;,
+ &#39;banana0019.tif&#39;,
+ &#39;banana0020.tif&#39;,
+ &#39;banana0021.tif&#39;,
+ &#39;banana0022.tif&#39;,
+ &#39;banana0023.tif&#39;,
+ &#39;banana0024.tif&#39;,
+ &#39;banana0025.tif&#39;,
+ &#39;banana0026.tif&#39;]
 </pre></div>
 </div>
 </div>
 </div>
-<p>Alternatively, we can also write a longer for-loop and check if files are images:</p>
+<p>Alternatively, we can also write a longer for-loop and check if files are images. This code does exactly the same, it is just written in a different way.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># go through all files in the folder</span>
@@ -1054,10 +1114,31 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>243.tif
-245.tif
-271.tif
-277.tif
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>banana0002.tif
+banana0003.tif
+banana0004.tif
+banana0005.tif
+banana0006.tif
+banana0007.tif
+banana0008.tif
+banana0009.tif
+banana0010.tif
+banana0011.tif
+banana0012.tif
+banana0013.tif
+banana0014.tif
+banana0015.tif
+banana0016.tif
+banana0017.tif
+banana0018.tif
+banana0019.tif
+banana0020.tif
+banana0021.tif
+banana0022.tif
+banana0023.tif
+banana0024.tif
+banana0025.tif
+banana0026.tif
 </pre></div>
 </div>
 </div>
@@ -1065,10 +1146,7 @@
 <p>In order to show all images, we need to open them from the correct <code class="docutils literal notranslate"><span class="pre">directory</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">imshow</span><span class="p">,</span> <span class="n">show</span>
-
-<span class="c1"># go through all files in the folder</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># go through all files in the folder</span>
 <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">image_file_list</span><span class="p">:</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">directory</span> <span class="o">+</span> <span class="n">image_file</span><span class="p">)</span>
     <span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -1077,19 +1155,37 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/12_process_folders_7_0.png" src="../_images/12_process_folders_7_0.png" />
-<img alt="../_images/12_process_folders_7_1.png" src="../_images/12_process_folders_7_1.png" />
-<img alt="../_images/12_process_folders_7_2.png" src="../_images/12_process_folders_7_2.png" />
-<img alt="../_images/12_process_folders_7_3.png" src="../_images/12_process_folders_7_3.png" />
+<img alt="../_images/12_process_folders_9_0.png" src="../_images/12_process_folders_9_0.png" />
+<img alt="../_images/12_process_folders_9_1.png" src="../_images/12_process_folders_9_1.png" />
+<img alt="../_images/12_process_folders_9_2.png" src="../_images/12_process_folders_9_2.png" />
+<img alt="../_images/12_process_folders_9_3.png" src="../_images/12_process_folders_9_3.png" />
+<img alt="../_images/12_process_folders_9_4.png" src="../_images/12_process_folders_9_4.png" />
+<img alt="../_images/12_process_folders_9_5.png" src="../_images/12_process_folders_9_5.png" />
+<img alt="../_images/12_process_folders_9_6.png" src="../_images/12_process_folders_9_6.png" />
+<img alt="../_images/12_process_folders_9_7.png" src="../_images/12_process_folders_9_7.png" />
+<img alt="../_images/12_process_folders_9_8.png" src="../_images/12_process_folders_9_8.png" />
+<img alt="../_images/12_process_folders_9_9.png" src="../_images/12_process_folders_9_9.png" />
+<img alt="../_images/12_process_folders_9_10.png" src="../_images/12_process_folders_9_10.png" />
+<img alt="../_images/12_process_folders_9_11.png" src="../_images/12_process_folders_9_11.png" />
+<img alt="../_images/12_process_folders_9_12.png" src="../_images/12_process_folders_9_12.png" />
+<img alt="../_images/12_process_folders_9_13.png" src="../_images/12_process_folders_9_13.png" />
+<img alt="../_images/12_process_folders_9_14.png" src="../_images/12_process_folders_9_14.png" />
+<img alt="../_images/12_process_folders_9_15.png" src="../_images/12_process_folders_9_15.png" />
+<img alt="../_images/12_process_folders_9_16.png" src="../_images/12_process_folders_9_16.png" />
+<img alt="../_images/12_process_folders_9_17.png" src="../_images/12_process_folders_9_17.png" />
+<img alt="../_images/12_process_folders_9_18.png" src="../_images/12_process_folders_9_18.png" />
+<img alt="../_images/12_process_folders_9_19.png" src="../_images/12_process_folders_9_19.png" />
+<img alt="../_images/12_process_folders_9_20.png" src="../_images/12_process_folders_9_20.png" />
+<img alt="../_images/12_process_folders_9_21.png" src="../_images/12_process_folders_9_21.png" />
+<img alt="../_images/12_process_folders_9_22.png" src="../_images/12_process_folders_9_22.png" />
+<img alt="../_images/12_process_folders_9_23.png" src="../_images/12_process_folders_9_23.png" />
+<img alt="../_images/12_process_folders_9_24.png" src="../_images/12_process_folders_9_24.png" />
 </div>
 </div>
 <p><a class="reference external" href="https://nbviewer.jupyter.org/github/BiAPoL/Bio-image_Analysis_with_Python/blob/main/python_basics/09_custom_functions.ipynb">Custom functions</a> help us to keep code organized. For example, we can put image-analysis code in a function and then just call it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">load_and_measure</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_and_measure</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function opens an image and returns its mean intensity.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1099,17 +1195,17 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 
 <span class="c1"># for testing</span>
-<span class="n">load_and_measure</span><span class="p">(</span><span class="n">directory</span> <span class="o">+</span> <span class="s2">&quot;277.tif&quot;</span><span class="p">)</span>
+<span class="n">load_and_measure</span><span class="p">(</span><span class="n">directory</span> <span class="o">+</span> <span class="s2">&quot;banana0010.tif&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>108.2138434495215
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>69.15106201171875
 </pre></div>
 </div>
 </div>
 </div>
-<p>With such a custom function, we can make use of short for-loops:</p>
+<p>With such a custom function, we can also make use of the short form for writing for-loops:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_intensities_of_all_images</span> <span class="o">=</span> <span class="p">[</span><span class="n">load_and_measure</span><span class="p">(</span><span class="n">directory</span> <span class="o">+</span> <span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">image_file_list</span><span class="p">]</span>
@@ -1118,7 +1214,31 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[95.16940536089672, 95.94634976739597, 112.10313360881543, 108.2138434495215]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12.94198947482639,
+ 25.04678683810764,
+ 39.627543131510414,
+ 49.71319580078125,
+ 56.322109646267364,
+ 60.08679877387153,
+ 63.94538031684028,
+ 66.04618326822917,
+ 69.15106201171875,
+ 70.85603162977431,
+ 74.40909152560764,
+ 77.48423936631944,
+ 81.77360026041667,
+ 85.44072129991319,
+ 91.22532823350694,
+ 94.36199951171875,
+ 98.47229682074652,
+ 99.3980712890625,
+ 102.34300401475694,
+ 101.50947401258681,
+ 97.14067247178819,
+ 80.13118489583333,
+ 49.77497694227431,
+ 28.36090766059028,
+ 18.806070963541668]
 </pre></div>
 </div>
 </div>
@@ -1126,7 +1246,7 @@
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="exercise">
 <h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h1>
-<p>Open all images of the beads dataset, segment the images and measure the average size of the beads. Write measurement results to “beads.csv”.</p>
+<p>Open all images of the banana dataset, segment the images and measure the centroid of the banana slices to a table. Write measurement results to “banana.csv”.</p>
 <p>Hint: Instead of the <code class="docutils literal notranslate"><span class="pre">imshow</span></code> command in the last example, execute your image processing workflow. Setup the image processing workflow first, e.g. in a custom function. Programm iterating over files in a folder last, after the image processing works.</p>
 </div>
 
