@@ -37,9 +37,12 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -407,7 +410,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="readme.html">
+  <a class="reference internal" href="../20_image_segmentation/readme.html">
    Image segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
@@ -417,62 +420,62 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="06_Introduction_to_image_segmentation.html">
+    <a class="reference internal" href="../20_image_segmentation/06_Introduction_to_image_segmentation.html">
      Image segmentation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07_Thresholding.html">
+    <a class="reference internal" href="../20_image_segmentation/07_Thresholding.html">
      Thresholding
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08_binary_mask_refinement.html">
+    <a class="reference internal" href="../20_image_segmentation/08_binary_mask_refinement.html">
      Binary mask refinement
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="split_touching_objects.html">
+    <a class="reference internal" href="../20_image_segmentation/split_touching_objects.html">
      Split touching objects
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="09_connected_component_labeling.html">
+    <a class="reference internal" href="../20_image_segmentation/09_connected_component_labeling.html">
      Label images
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_touching_objects_labeling.html">
+    <a class="reference internal" href="../20_image_segmentation/10_touching_objects_labeling.html">
      Touching objects labeling
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="11_voronoi_otsu_labeling.html">
+    <a class="reference internal" href="../20_image_segmentation/11_voronoi_otsu_labeling.html">
      Voronoi-Otsu-labeling
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="14_remove_labels_on_image_edges.html">
+    <a class="reference internal" href="../20_image_segmentation/14_remove_labels_on_image_edges.html">
      Remove labels on image edges
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="15_sequential_labeling.html">
+    <a class="reference internal" href="../20_image_segmentation/15_sequential_labeling.html">
      Sequential object (re-)labeling
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="segmentation_2d_membranes.html">
+    <a class="reference internal" href="../20_image_segmentation/segmentation_2d_membranes.html">
      Image Segmentation from membrane images
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="nsbatwm.html">
+    <a class="reference internal" href="../20_image_segmentation/nsbatwm.html">
      Segment nuclei and cells (blobs and things with membranes)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Segmentation_3D.html">
+    <a class="reference internal" href="../20_image_segmentation/Segmentation_3D.html">
      3D Image Segmentation
     </a>
    </li>
@@ -886,7 +889,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/20_image_segmentation/cellpose.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/20b_deep_learning/cellpose.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -906,7 +909,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F20_image_segmentation/cellpose.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F20b_deep_learning/cellpose.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -927,7 +930,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/20_image_segmentation/cellpose.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/20b_deep_learning/cellpose.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -1180,7 +1183,7 @@ estimated masks for 1 image(s) in 13.80 sec
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./20_image_segmentation"
+            path: "./20b_deep_learning"
         },
         predefinedOutput: true
     }
