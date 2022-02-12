@@ -442,13 +442,18 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="split_touching_objects.html">
+    <a class="reference internal" href="08a_split_touching_objects.html">
      Split touching objects
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_connected_component_labeling.html">
      Label images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09a_gauss_otsu_labeling.html">
+     Gauss-Otsu-labeling
     </a>
    </li>
    <li class="toctree-l2">
@@ -459,6 +464,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="11_voronoi_otsu_labeling.html">
      Voronoi-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_open_close_labels.html">
+     Label image refinement
     </a>
    </li>
    <li class="toctree-l2">
@@ -473,12 +483,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="segmentation_2d_membranes.html">
-     Image Segmentation from membrane images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="nsbatwm.html">
-     Segment nuclei and cells (blobs and things with membranes)
+     Seeded watershed for membrane-based cell segmentation
     </a>
    </li>
    <li class="toctree-l2">
@@ -514,8 +519,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier_continue_training.html">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier.html">
      Pixel classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/mutlichannel_images.html">
+     Pixel classification in multi-channel images
     </a>
    </li>
    <li class="toctree-l2">
@@ -1090,7 +1100,7 @@
 </div>
 </div>
 </div>
-<p>When using methods such as thresholding in notebooks, it is recommended to print out the used threshold. That can be helpful later when reproducing the workflow, also if others want to apply the same threshold to the dataset in other software.</p>
+<p>When using methods such as thresholding in notebooks, it is recommended to print out the result to see what it actually returns. Here, we are using the method from scikit-image, which returns the threshold that is applied. Printing that threshold can be helpful later when reproducing the workflow, also if others want to apply the same threshold to the dataset in other software.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span>
@@ -1103,7 +1113,7 @@
 </div>
 </div>
 </div>
-<p>Using numpy arrays, we can apply the threshold by applying the &gt;= operator. The result will be a binary image.</p>
+<p>Using numpy arrays, we can apply the threshold by applying the <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> operator. The result will be a binary image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary_image</span> <span class="o">=</span> <span class="n">image</span> <span class="o">&gt;=</span> <span class="n">threshold</span>
@@ -1141,11 +1151,10 @@
 </div>
 </div>
 </div>
+<p>As shown earlier, matplotlib allows us to draw an outline on top of an image visualized using <code class="docutils literal notranslate"><span class="pre">imshow</span></code> using the <code class="docutils literal notranslate"><span class="pre">contour</span></code> command.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># create a new plot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a new plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># add two images</span>
@@ -1155,13 +1164,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x19fe85460&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x2b57076dc70&gt;
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_12_1.png" src="../_images/07_Thresholding_12_1.png" />
+<img alt="../_images/07_Thresholding_13_1.png" src="../_images/07_Thresholding_13_1.png" />
 </div>
 </div>
-<p>To visualize a segmentation result, napari can be used.</p>
 <p>There is a list of <a class="reference external" href="https://scikit-image.org/docs/dev/auto_examples/segmentation/plot_thresholding.html">thresholding algorithms</a> available. It is possible to apply them all to your data and see differences:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1177,7 +1185,7 @@
 </div>
 <div class="section" id="thresholding-using-pyclesperanto">
 <h2>Thresholding using pyclesperanto<a class="headerlink" href="#thresholding-using-pyclesperanto" title="Permalink to this headline">¶</a></h2>
-<p>Furthermore, also other libraries such as offer thresholding algorithms. As mentioned if you for example process images on the GPU, you may want to continuously process images on the GPU and not push and pull data between CPU and GPU memory. Otus’s threshold can also be applied using pyclesperanto.</p>
+<p>Furthermore, also other libraries such as <a class="reference external" href="https://github.com/clesperanto/pyclesperanto_prototype/">pyclesperanto</a> offer thresholding algorithms. The implementation here does not return the threshold, it directly returns the binary image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary_image2</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -1202,10 +1210,22 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary_image2</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="thresholding-using-simpleitk">
 <h2>Thresholding using SimpleITK<a class="headerlink" href="#thresholding-using-simpleitk" title="Permalink to this headline">¶</a></h2>
-<p>Also SimpleITK offers thresholding algorithms which can be found in the <a class="reference external" href="https://simpleitk.readthedocs.io/en/master/filters.html">list of filters</a>. For scripting convenience, we use here <a class="reference external" href="https://github.com/haesleinhuepf/napari-simpleitk-image-processing">napari-simpleitk-image-processing</a> a scriptable napari plugin that offers some SimpleITK functions in a more accessible way. We can program a small for-loop that tries all the thresholding alogrithms in SimpleITK and shows us the result:</p>
+<p>Also <a class="reference external" href="https://simpleitk.readthedocs.io/">SimpleITK</a> offers thresholding algorithms which can be found in the <a class="reference external" href="https://simpleitk.readthedocs.io/en/master/filters.html">list of filters</a>. For scripting convenience, we use here <a class="reference external" href="https://github.com/haesleinhuepf/napari-simpleitk-image-processing">napari-simpleitk-image-processing</a> a scriptable napari plugin that offers some SimpleITK functions in a more accessible way. We can program a small for-loop that tries all the thresholding alogrithms in SimpleITK and shows us the results:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold_algorithms</span> <span class="o">=</span> <span class="p">[</span>
@@ -1239,51 +1259,51 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_huang
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_1.png" src="../_images/07_Thresholding_21_1.png" />
+<img alt="../_images/07_Thresholding_22_1.png" src="../_images/07_Thresholding_22_1.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_intermodes
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_3.png" src="../_images/07_Thresholding_21_3.png" />
+<img alt="../_images/07_Thresholding_22_3.png" src="../_images/07_Thresholding_22_3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_isodata
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_5.png" src="../_images/07_Thresholding_21_5.png" />
+<img alt="../_images/07_Thresholding_22_5.png" src="../_images/07_Thresholding_22_5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_kittler_illingworth
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_7.png" src="../_images/07_Thresholding_21_7.png" />
+<img alt="../_images/07_Thresholding_22_7.png" src="../_images/07_Thresholding_22_7.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_li
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_9.png" src="../_images/07_Thresholding_21_9.png" />
+<img alt="../_images/07_Thresholding_22_9.png" src="../_images/07_Thresholding_22_9.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_maximum_entropy
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_11.png" src="../_images/07_Thresholding_21_11.png" />
+<img alt="../_images/07_Thresholding_22_11.png" src="../_images/07_Thresholding_22_11.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_moments
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_13.png" src="../_images/07_Thresholding_21_13.png" />
+<img alt="../_images/07_Thresholding_22_13.png" src="../_images/07_Thresholding_22_13.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_otsu
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_15.png" src="../_images/07_Thresholding_21_15.png" />
+<img alt="../_images/07_Thresholding_22_15.png" src="../_images/07_Thresholding_22_15.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_renyi_entropy
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_17.png" src="../_images/07_Thresholding_21_17.png" />
+<img alt="../_images/07_Thresholding_22_17.png" src="../_images/07_Thresholding_22_17.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_shanbhag
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_19.png" src="../_images/07_Thresholding_21_19.png" />
+<img alt="../_images/07_Thresholding_22_19.png" src="../_images/07_Thresholding_22_19.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_triangle
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_21.png" src="../_images/07_Thresholding_21_21.png" />
+<img alt="../_images/07_Thresholding_22_21.png" src="../_images/07_Thresholding_22_21.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold_yen
 </pre></div>
 </div>
-<img alt="../_images/07_Thresholding_21_23.png" src="../_images/07_Thresholding_21_23.png" />
+<img alt="../_images/07_Thresholding_22_23.png" src="../_images/07_Thresholding_22_23.png" />
 </div>
 </div>
 </div>

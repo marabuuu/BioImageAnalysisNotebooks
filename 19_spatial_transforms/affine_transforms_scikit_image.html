@@ -442,13 +442,18 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/split_touching_objects.html">
+    <a class="reference internal" href="../20_image_segmentation/08a_split_touching_objects.html">
      Split touching objects
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/09_connected_component_labeling.html">
      Label images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/09a_gauss_otsu_labeling.html">
+     Gauss-Otsu-labeling
     </a>
    </li>
    <li class="toctree-l2">
@@ -459,6 +464,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/11_voronoi_otsu_labeling.html">
      Voronoi-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/12_open_close_labels.html">
+     Label image refinement
     </a>
    </li>
    <li class="toctree-l2">
@@ -473,12 +483,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/segmentation_2d_membranes.html">
-     Image Segmentation from membrane images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/nsbatwm.html">
-     Segment nuclei and cells (blobs and things with membranes)
+     Seeded watershed for membrane-based cell segmentation
     </a>
    </li>
    <li class="toctree-l2">
@@ -514,8 +519,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier_continue_training.html">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier.html">
      Pixel classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/mutlichannel_images.html">
+     Pixel classification in multi-channel images
     </a>
    </li>
    <li class="toctree-l2">
@@ -1055,7 +1065,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x12e115130&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x25a6cff0d30&gt;
 </pre></div>
 </div>
 <img alt="../_images/affine_transforms_scikit_image_6_1.png" src="../_images/affine_transforms_scikit_image_6_1.png" />
@@ -1075,7 +1085,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x18ffe83d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x25a6edb8d60&gt;
 </pre></div>
 </div>
 <img alt="../_images/affine_transforms_scikit_image_8_1.png" src="../_images/affine_transforms_scikit_image_8_1.png" />
@@ -1093,7 +1103,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;gfx90c on Platform: AMD Accelerated Parallel Processing (2 refs)&gt;
 </pre></div>
 </div>
 </div>
@@ -1112,9 +1122,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 256, 256)
-(1, 256, 256)
-copy back
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\structure\code\pyclesperanto_prototype\pyclesperanto_prototype\_tier9\_imshow.py:14: UserWarning: The imshow parameter color_map is deprecated. Use colormap instead.
+  warnings.warn(&quot;The imshow parameter color_map is deprecated. Use colormap instead.&quot;)
 </pre></div>
 </div>
 <img alt="../_images/affine_transforms_scikit_image_11_1.png" src="../_images/affine_transforms_scikit_image_11_1.png" />

@@ -442,13 +442,18 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/split_touching_objects.html">
+    <a class="reference internal" href="../20_image_segmentation/08a_split_touching_objects.html">
      Split touching objects
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/09_connected_component_labeling.html">
      Label images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/09a_gauss_otsu_labeling.html">
+     Gauss-Otsu-labeling
     </a>
    </li>
    <li class="toctree-l2">
@@ -459,6 +464,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/11_voronoi_otsu_labeling.html">
      Voronoi-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/12_open_close_labels.html">
+     Label image refinement
     </a>
    </li>
    <li class="toctree-l2">
@@ -473,12 +483,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/segmentation_2d_membranes.html">
-     Image Segmentation from membrane images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/nsbatwm.html">
-     Segment nuclei and cells (blobs and things with membranes)
+     Seeded watershed for membrane-based cell segmentation
     </a>
    </li>
    <li class="toctree-l2">
@@ -514,8 +519,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier_continue_training.html">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier.html">
      Pixel classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/mutlichannel_images.html">
+     Pixel classification in multi-channel images
     </a>
    </li>
    <li class="toctree-l2">
@@ -1022,7 +1032,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;gfx90c on Platform: AMD Accelerated Parallel Processing (2 refs)&gt;
 </pre></div>
 </div>
 </div>
@@ -1067,7 +1077,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convolved</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
 
-<span class="n">imshow</span><span class="p">(</span><span class="n">convolved</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">convolved</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1113,7 +1123,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_convolved</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mean_kernel</span><span class="p">)</span>
 
-<span class="n">imshow</span><span class="p">(</span><span class="n">mean_convolved</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">mean_convolved</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1157,7 +1167,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">laplacian</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">laplace_operator</span><span class="p">)</span>
 
-<span class="n">imshow</span><span class="p">(</span><span class="n">laplacian</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">laplacian</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1210,13 +1220,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">noisy_mri_zoom</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">noisy_mri_zoom</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;original&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">laplacian_mri</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">laplacian_mri</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Laplacian&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">convolved_mri</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">convolved_mri</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;sum-kernel&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mean_mri</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">mean_mri</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Mean-kernel&quot;</span><span class="p">)</span>
 </pre></div>
 </div>

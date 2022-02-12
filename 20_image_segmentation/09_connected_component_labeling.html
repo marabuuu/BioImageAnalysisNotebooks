@@ -54,8 +54,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Touching objects labeling" href="10_touching_objects_labeling.html" />
-    <link rel="prev" title="Split touching objects" href="split_touching_objects.html" />
+    <link rel="next" title="Gauss-Otsu-labeling" href="09a_gauss_otsu_labeling.html" />
+    <link rel="prev" title="Split touching objects" href="08a_split_touching_objects.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -442,13 +442,18 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="split_touching_objects.html">
+    <a class="reference internal" href="08a_split_touching_objects.html">
      Split touching objects
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Label images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09a_gauss_otsu_labeling.html">
+     Gauss-Otsu-labeling
     </a>
    </li>
    <li class="toctree-l2">
@@ -459,6 +464,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="11_voronoi_otsu_labeling.html">
      Voronoi-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_open_close_labels.html">
+     Label image refinement
     </a>
    </li>
    <li class="toctree-l2">
@@ -473,12 +483,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="segmentation_2d_membranes.html">
-     Image Segmentation from membrane images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="nsbatwm.html">
-     Segment nuclei and cells (blobs and things with membranes)
+     Seeded watershed for membrane-based cell segmentation
     </a>
    </li>
    <li class="toctree-l2">
@@ -514,8 +519,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier_continue_training.html">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier.html">
      Pixel classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/mutlichannel_images.html">
+     Pixel classification in multi-channel images
     </a>
    </li>
    <li class="toctree-l2">
@@ -1112,7 +1122,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_connected_component_labeling_2_0.png" src="../_images/09_connected_component_labeling_2_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\structure\code\pyclesperanto_prototype\pyclesperanto_prototype\_tier9\_imshow.py:14: UserWarning: The imshow parameter color_map is deprecated. Use colormap instead.
+  warnings.warn(&quot;The imshow parameter color_map is deprecated. Use colormap instead.&quot;)
+</pre></div>
+</div>
+<img alt="../_images/09_connected_component_labeling_2_1.png" src="../_images/09_connected_component_labeling_2_1.png" />
 </div>
 </div>
 <p>This binary image can be interpreted in two ways: Either there are five rectangles with size ranging between 1 and 6. Alternatively, there are two rectangles with size 6 and one snake-like structure of size 9 pixels.</p>
@@ -1211,7 +1225,7 @@
 </div>
 <div class="section" id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
-<p>Find out experimentally what the default setting of the connectivity parameter of the label function is.</p>
+<p>Find out experimentally what the default setting of the connectivity parameter of the <code class="docutils literal notranslate"><span class="pre">skimage.measure.label</span></code> function is.</p>
 </div>
 </div>
 
@@ -1240,17 +1254,17 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="split_touching_objects.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="08a_split_touching_objects.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Split touching objects</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="10_touching_objects_labeling.html" title="next page">
+    <a class='right-next' id="next-link" href="09a_gauss_otsu_labeling.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Touching objects labeling</p>
+        <p class="prev-next-title">Gauss-Otsu-labeling</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -55,7 +55,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3D Image Segmentation" href="Segmentation_3D.html" />
-    <link rel="prev" title="Segment nuclei and cells (blobs and things with membranes)" href="nsbatwm.html" />
+    <link rel="prev" title="Seeded watershed for membrane-based cell segmentation" href="segmentation_2d_membranes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -442,13 +442,18 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="split_touching_objects.html">
+    <a class="reference internal" href="08a_split_touching_objects.html">
      Split touching objects
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_connected_component_labeling.html">
      Label images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09a_gauss_otsu_labeling.html">
+     Gauss-Otsu-labeling
     </a>
    </li>
    <li class="toctree-l2">
@@ -459,6 +464,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="11_voronoi_otsu_labeling.html">
      Voronoi-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_open_close_labels.html">
+     Label image refinement
     </a>
    </li>
    <li class="toctree-l2">
@@ -473,12 +483,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="segmentation_2d_membranes.html">
-     Image Segmentation from membrane images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="nsbatwm.html">
-     Segment nuclei and cells (blobs and things with membranes)
+     Seeded watershed for membrane-based cell segmentation
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -514,8 +519,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier_continue_training.html">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier.html">
      Pixel classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/mutlichannel_images.html">
+     Pixel classification in multi-channel images
     </a>
    </li>
    <li class="toctree-l2">
@@ -1084,7 +1094,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_intensity_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">mean_intensity_map</span><span class="p">(</span><span class="n">membranes_single_slice</span><span class="p">,</span> <span class="n">cell_labels_pre</span><span class="p">)</span>
 
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mean_intensity_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mean_intensity_map</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1128,13 +1138,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1"># label cell candidates</span>
-    <span class="n">cell_labels_pre</span> <span class="o">=</span> <span class="n">nsbatwm</span><span class="o">.</span><span class="n">local_minima_seeded_watershed</span><span class="p">(</span><span class="n">membranes_single_slice</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="n">cell_segmentation_spot_sigma</span><span class="p">)</span>
+    <span class="n">cell_labels_pre</span> <span class="o">=</span> <span class="n">nsbatwm</span><span class="o">.</span><span class="n">local_minima_seeded_watershed</span><span class="p">(</span>
+                                <span class="n">membranes_single_slice</span><span class="p">,</span> 
+                                <span class="n">spot_sigma</span><span class="o">=</span><span class="n">cell_segmentation_spot_sigma</span><span class="p">)</span>
     
     <span class="c1"># measure intensity in all candidates</span>
-    <span class="n">mean_intensity_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">mean_intensity_map</span><span class="p">(</span><span class="n">membranes_single_slice</span><span class="p">,</span> <span class="n">cell_labels_pre</span><span class="p">)</span>
+    <span class="n">mean_intensity_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">mean_intensity_map</span><span class="p">(</span>
+                                <span class="n">membranes_single_slice</span><span class="p">,</span> 
+                                <span class="n">cell_labels_pre</span><span class="p">)</span>
     
     <span class="c1"># exclude candidates with low signal</span>
-    <span class="n">cell_labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">exclude_labels_with_map_values_within_range</span><span class="p">(</span><span class="n">mean_intensity_map</span><span class="p">,</span> <span class="n">cell_labels_pre</span><span class="p">,</span> <span class="n">maximum_value_range</span><span class="o">=</span><span class="n">maximum_mean_intensity_per_cell</span><span class="p">)</span>
+    <span class="n">cell_labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">exclude_labels_with_map_values_within_range</span><span class="p">(</span>
+                        <span class="n">mean_intensity_map</span><span class="p">,</span> <span class="n">cell_labels_pre</span><span class="p">,</span> 
+                        <span class="n">maximum_value_range</span><span class="o">=</span><span class="n">maximum_mean_intensity_per_cell</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">cell_labels</span>
 </pre></div>
@@ -1221,11 +1237,11 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="nsbatwm.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="segmentation_2d_membranes.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Segment nuclei and cells (blobs and things with membranes)</p>
+            <p class="prev-next-title">Seeded watershed for membrane-based cell segmentation</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Segmentation_3D.html" title="next page">

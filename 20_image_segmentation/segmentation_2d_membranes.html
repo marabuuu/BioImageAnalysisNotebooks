@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Segmentation from membrane images &#8212; Bio-image Analysis Notebooks</title>
+    <title>Seeded watershed for membrane-based cell segmentation &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,7 +54,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Segment nuclei and cells (blobs and things with membranes)" href="nsbatwm.html" />
+    <link rel="next" title="Post-processing for membrane-based cell segmentation" href="refine_cell_segmentation.html" />
     <link rel="prev" title="Sequential object (re-)labeling" href="15_sequential_labeling.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -442,13 +442,18 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="split_touching_objects.html">
+    <a class="reference internal" href="08a_split_touching_objects.html">
      Split touching objects
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_connected_component_labeling.html">
      Label images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09a_gauss_otsu_labeling.html">
+     Gauss-Otsu-labeling
     </a>
    </li>
    <li class="toctree-l2">
@@ -459,6 +464,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="11_voronoi_otsu_labeling.html">
      Voronoi-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_open_close_labels.html">
+     Label image refinement
     </a>
    </li>
    <li class="toctree-l2">
@@ -473,12 +483,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Image Segmentation from membrane images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="nsbatwm.html">
-     Segment nuclei and cells (blobs and things with membranes)
+     Seeded watershed for membrane-based cell segmentation
     </a>
    </li>
    <li class="toctree-l2">
@@ -514,8 +519,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier_continue_training.html">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier.html">
      Pixel classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/mutlichannel_images.html">
+     Pixel classification in multi-channel images
     </a>
    </li>
    <li class="toctree-l2">
@@ -959,6 +969,34 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#voronoi-otsu-labeling-for-nuclei-segmentation">
+   Voronoi-Otsu-Labeling for nuclei segmentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seeded-watershed">
+   Seeded watershed
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seeded-watershed-using-automatic-seed-detection">
+   Seeded watershed using automatic seed detection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -966,60 +1004,96 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Image Segmentation from membrane images</h1>
+                <h1>Seeded watershed for membrane-based cell segmentation</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#voronoi-otsu-labeling-for-nuclei-segmentation">
+   Voronoi-Otsu-Labeling for nuclei segmentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seeded-watershed">
+   Seeded watershed
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seeded-watershed-using-automatic-seed-detection">
+   Seeded watershed using automatic seed detection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="image-segmentation-from-membrane-images">
-<h1>Image Segmentation from membrane images<a class="headerlink" href="#image-segmentation-from-membrane-images" title="Permalink to this headline">¶</a></h1>
-<p>Cell segmentation from images showing membranes can be challenging, e.g. as some markers do not mark membranes continously. Thus, some pre-processing needs to be done in order to retrieve optimal segmentation results.</p>
-<p>To demonstrate the workflow, we’re using single slices derived from 3D image data from the <a class="reference external" href="https://bbbc.broadinstitute.org/BBBC034">Broad Bio Image Challenge</a>, Thirstrup et al. 2018, available from the Broad Bioimage Benchmark Collection, Ljosa V, Sokolnicki KL, Carpenter AE (2012). Annotated high-throughput microscopy image sets for validation. Nature Methods 9(7):637 / doi. PMID: 22743765 PMCID: PMC3627348. Available at <a class="reference external" href="http://dx.doi.org/10.1038/nmeth.2083">http://dx.doi.org/10.1038/nmeth.2083</a></p>
-<p>We start by opening an example image and configuring an intersting sub-region.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="seeded-watershed-for-membrane-based-cell-segmentation">
+<h1>Seeded watershed for membrane-based cell segmentation<a class="headerlink" href="#seeded-watershed-for-membrane-based-cell-segmentation" title="Permalink to this headline">¶</a></h1>
+<p>In this section we will use a seeded watershed approach to cell segmentation. This approach is very common when cell segmentation based on images of membrane markers are given. Therefore, we use the napari plugin <a class="reference external" href="https://github.com/haesleinhuepf/napari-segment-blobs-and-things-with-membranes">napari-segment-blobs-and-things-with-membranes</a>. Under the hood, this plugins uses functions from <a class="reference external" href="http://scikit-image.org/">scikit-image</a>.</p>
+<p>See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/LT8L3vSLQ2Q?t=2124">Robert Haase’s lecture 02a Image Filtering and Segmentation, watershed explanation at 35:30</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imshow</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">input_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;BBBC034_v1_dataset/AICS_12_134_C=0.tif&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">napari_segment_blobs_and_things_with_membranes</span> <span class="kn">import</span> <span class="n">voronoi_otsu_labeling</span><span class="p">,</span> \
+                                                           <span class="n">seeded_watershed</span><span class="p">,</span> \
+                                                           <span class="n">local_minima_seeded_watershed</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">gaussian</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Next, we initialize the GPU</p>
+<p>We load the Cells3d example image from scikit-image which is a two-channel image showing nuclei and membrains.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
-
-<span class="c1"># select a specific OpenCL / GPU device and see which one was chosen</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">select_device</span><span class="p">(</span><span class="s1">&#39;RTX&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cells3d</span><span class="p">()</span>
+<span class="n">cells</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(60, 2, 256, 256)
 </pre></div>
 </div>
 </div>
 </div>
-<p>Initially, we push the image to GPU memory and segment it using thresholding to see how good it can be done right away.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">binary_not</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">input_image</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nuclei_channel</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
-<span class="n">labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">voronoi_labeling</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">nuclei_channel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/segmentation_2d_membranes_4_0.png" src="../_images/segmentation_2d_membranes_4_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">membrane_channel</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">binary</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1027,20 +1101,14 @@
 <img alt="../_images/segmentation_2d_membranes_5_0.png" src="../_images/segmentation_2d_membranes_5_0.png" />
 </div>
 </div>
-<p>Alternatively, with some intermediate correction, e.g. binary opening, we can improve segmentation quality in the binary image before labeling individual objects.</p>
+<div class="section" id="voronoi-otsu-labeling-for-nuclei-segmentation">
+<h2>Voronoi-Otsu-Labeling for nuclei segmentation<a class="headerlink" href="#voronoi-otsu-labeling-for-nuclei-segmentation" title="Permalink to this headline">¶</a></h2>
+<p>First, we start with segmenting the nuclei using the <span class="xref myst">Voronoi-Otsu-Labeling algorithm</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">binary_not</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">input_image</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labeled_nuclei</span> <span class="o">=</span> <span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">nuclei_channel</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># binary opening, a.k.a. binary erosion followed by binary dilation:</span>
-<span class="n">corrected_binary</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_box</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">minimum_box</span><span class="p">(</span><span class="n">binary</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">voronoi_labeling</span><span class="p">(</span><span class="n">corrected_binary</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">binary</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">labeled_nuclei</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1048,25 +1116,94 @@
 <img alt="../_images/segmentation_2d_membranes_7_0.png" src="../_images/segmentation_2d_membranes_7_0.png" />
 </div>
 </div>
-<p>Alternatively, we can improve segmentation quality by making the membranes virtualy thicker in the original image before thresholding:</p>
+</div>
+<div class="section" id="seeded-watershed">
+<h2>Seeded watershed<a class="headerlink" href="#seeded-watershed" title="Permalink to this headline">¶</a></h2>
+<p>We can use the image of labeled nuclei as starting point for flooding the low-intensity areas in the membrane image. This allows us to determine a cell segmentation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># grey value dilation, a.k.a. a maximum-filter</span>
-<span class="n">thicker_membranes</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_sphere</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labeled_cells</span> <span class="o">=</span> <span class="n">seeded_watershed</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">,</span> <span class="n">labeled_nuclei</span><span class="p">)</span>
 
-<span class="n">binary</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">binary_not</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">thicker_membranes</span><span class="p">))</span>
-
-<span class="n">labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">voronoi_labeling</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">thicker_membranes</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">binary</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">labeled_cells</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/segmentation_2d_membranes_9_0.png" src="../_images/segmentation_2d_membranes_9_0.png" />
+</div>
+</div>
+<p>If the outlines of the cells are not 100% accurate, it may make sense to blur the membrane image a bit before segmenting the cells.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blurred</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">labeled_cells</span> <span class="o">=</span> <span class="n">seeded_watershed</span><span class="p">(</span><span class="n">blurred</span><span class="p">,</span> <span class="n">labeled_nuclei</span><span class="p">)</span>
+
+<span class="n">imshow</span><span class="p">(</span><span class="n">labeled_cells</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/segmentation_2d_membranes_11_0.png" src="../_images/segmentation_2d_membranes_11_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="seeded-watershed-using-automatic-seed-detection">
+<h2>Seeded watershed using automatic seed detection<a class="headerlink" href="#seeded-watershed-using-automatic-seed-detection" title="Permalink to this headline">¶</a></h2>
+<p>In case we didn’t image a separate nuclei channel and only have the membrane channel available for segmentation, we can use the membrane image to search for local minima (dark areas).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labeles_cells2</span> <span class="o">=</span> <span class="n">local_minima_seeded_watershed</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">)</span>
+                              
+<span class="n">imshow</span><span class="p">(</span><span class="n">labeles_cells2</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/segmentation_2d_membranes_13_0.png" src="../_images/segmentation_2d_membranes_13_0.png" />
+</div>
+</div>
+<p>This function also has some parameters to allow fine tuning the segmentation. The parameter <code class="docutils literal notranslate"><span class="pre">outline_sigma</span></code> allows to control a Gaussian blur filter that allows fine-tuning the outlines of the segmented cells as shown above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labeles_cells3</span> <span class="o">=</span> <span class="n">local_minima_seeded_watershed</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                              
+<span class="n">imshow</span><span class="p">(</span><span class="n">labeles_cells3</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/segmentation_2d_membranes_15_0.png" src="../_images/segmentation_2d_membranes_15_0.png" />
+</div>
+</div>
+<p>If there multiple cells sticking together, it may make sense to specify <code class="docutils literal notranslate"><span class="pre">spot_sigma</span></code>. This parameter allows to configure how close / large cells are.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labeles_cells4</span> <span class="o">=</span> <span class="n">local_minima_seeded_watershed</span><span class="p">(</span><span class="n">membrane_channel</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                              
+<span class="n">imshow</span><span class="p">(</span><span class="n">labeles_cells4</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/segmentation_2d_membranes_17_0.png" src="../_images/segmentation_2d_membranes_17_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>Load the following dataset and find good parameters for processing it using a seeded watershed approach. This example image data is a courtesy of Sascha M. Kuhn, Nadler Lab, MPI-CBG Dresden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_slice</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/membrane_2d_timelapse.tif&quot;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">imshow</span><span class="p">(</span><span class="n">image_slice</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/segmentation_2d_membranes_19_0.png" src="../_images/segmentation_2d_membranes_19_0.png" />
+</div>
 </div>
 </div>
 </div>
@@ -1103,10 +1240,10 @@
             <p class="prev-next-title">Sequential object (re-)labeling</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="nsbatwm.html" title="next page">
+    <a class='right-next' id="next-link" href="refine_cell_segmentation.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Segment nuclei and cells (blobs and things with membranes)</p>
+        <p class="prev-next-title">Post-processing for membrane-based cell segmentation</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

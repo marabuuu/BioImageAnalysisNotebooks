@@ -442,13 +442,18 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/split_touching_objects.html">
+    <a class="reference internal" href="../20_image_segmentation/08a_split_touching_objects.html">
      Split touching objects
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/09_connected_component_labeling.html">
      Label images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/09a_gauss_otsu_labeling.html">
+     Gauss-Otsu-labeling
     </a>
    </li>
    <li class="toctree-l2">
@@ -459,6 +464,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/11_voronoi_otsu_labeling.html">
      Voronoi-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/12_open_close_labels.html">
+     Label image refinement
     </a>
    </li>
    <li class="toctree-l2">
@@ -473,12 +483,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../20_image_segmentation/segmentation_2d_membranes.html">
-     Image Segmentation from membrane images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../20_image_segmentation/nsbatwm.html">
-     Segment nuclei and cells (blobs and things with membranes)
+     Seeded watershed for membrane-based cell segmentation
     </a>
    </li>
    <li class="toctree-l2">
@@ -514,8 +519,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier_continue_training.html">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier.html">
      Pixel classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/mutlichannel_images.html">
+     Pixel classification in multi-channel images
     </a>
    </li>
    <li class="toctree-l2">
@@ -1112,12 +1122,12 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
 
-<span class="n">cle</span><span class="o">.</span><span class="n">select_device</span><span class="p">(</span><span class="s1">&#39;RTX&#39;</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">select_device</span><span class="p">(</span><span class="s1">&#39;TX&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;NVIDIA GeForce GTX 1650 with Max-Q Design on Platform: NVIDIA CUDA (1 refs)&gt;
 </pre></div>
 </div>
 </div>
@@ -1170,11 +1180,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(192, 256, 256)
-(192, 256, 256)
-</pre></div>
-</div>
-<img alt="../_images/affine_transforms_clesperanto_6_1.png" src="../_images/affine_transforms_clesperanto_6_1.png" />
+<img alt="../_images/affine_transforms_clesperanto_6_0.png" src="../_images/affine_transforms_clesperanto_6_0.png" />
 </div>
 </div>
 <p>Images are rotated around their center by default. You can change this by providing an additional parameter. The image will then be rotated around the origin.</p>
@@ -1186,11 +1192,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(192, 256, 256)
-(192, 256, 256)
-</pre></div>
-</div>
-<img alt="../_images/affine_transforms_clesperanto_8_1.png" src="../_images/affine_transforms_clesperanto_8_1.png" />
+<img alt="../_images/affine_transforms_clesperanto_8_0.png" src="../_images/affine_transforms_clesperanto_8_0.png" />
 </div>
 </div>
 </div>
@@ -1205,11 +1207,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(192, 256, 256)
-(192, 256, 256)
-</pre></div>
-</div>
-<img alt="../_images/affine_transforms_clesperanto_10_1.png" src="../_images/affine_transforms_clesperanto_10_1.png" />
+<img alt="../_images/affine_transforms_clesperanto_10_0.png" src="../_images/affine_transforms_clesperanto_10_0.png" />
 </div>
 </div>
 </div>
@@ -1224,11 +1222,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(192, 256, 256)
-(192, 256, 256)
-</pre></div>
-</div>
-<img alt="../_images/affine_transforms_clesperanto_12_1.png" src="../_images/affine_transforms_clesperanto_12_1.png" />
+<img alt="../_images/affine_transforms_clesperanto_12_0.png" src="../_images/affine_transforms_clesperanto_12_0.png" />
 </div>
 </div>
 <p>In this context, the <code class="docutils literal notranslate"><span class="pre">auto_size</span></code> parameter might be useful:</p>
@@ -1240,13 +1234,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>determined translation [-0. -0. -0.]
-determined new_size [192, 512, 128]
-(192, 256, 256)
-(192, 512, 128)
-</pre></div>
-</div>
-<img alt="../_images/affine_transforms_clesperanto_14_1.png" src="../_images/affine_transforms_clesperanto_14_1.png" />
+<img alt="../_images/affine_transforms_clesperanto_14_0.png" src="../_images/affine_transforms_clesperanto_14_0.png" />
 </div>
 </div>
 </div>
@@ -1261,11 +1249,7 @@ determined new_size [192, 512, 128]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(192, 256, 256)
-(192, 256, 256)
-</pre></div>
-</div>
-<img alt="../_images/affine_transforms_clesperanto_16_1.png" src="../_images/affine_transforms_clesperanto_16_1.png" />
+<img alt="../_images/affine_transforms_clesperanto_16_0.png" src="../_images/affine_transforms_clesperanto_16_0.png" />
 </div>
 </div>
 </div>
@@ -1287,11 +1271,7 @@ determined new_size [192, 512, 128]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(192, 256, 256)
-(192, 256, 256)
-</pre></div>
-</div>
-<img alt="../_images/affine_transforms_clesperanto_18_1.png" src="../_images/affine_transforms_clesperanto_18_1.png" />
+<img alt="../_images/affine_transforms_clesperanto_18_0.png" src="../_images/affine_transforms_clesperanto_18_0.png" />
 </div>
 </div>
 <p>Alternatively, you can configure a transform object and pass it:</p>
@@ -1307,11 +1287,7 @@ determined new_size [192, 512, 128]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(192, 256, 256)
-(192, 256, 256)
-</pre></div>
-</div>
-<img alt="../_images/affine_transforms_clesperanto_20_1.png" src="../_images/affine_transforms_clesperanto_20_1.png" />
+<img alt="../_images/affine_transforms_clesperanto_20_0.png" src="../_images/affine_transforms_clesperanto_20_0.png" />
 </div>
 </div>
 <div class="section" id="shearing">
@@ -1326,7 +1302,7 @@ determined new_size [192, 512, 128]
 <span class="n">shear_angle</span> <span class="o">=</span> <span class="mf">30.0</span>
 
 <span class="n">transform</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">AffineTransform3D</span><span class="p">()</span>
-<span class="n">shear_transform</span><span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">shear_z</span><span class="p">(</span><span class="n">angle_y_in_degrees</span><span class="o">=</span><span class="n">shear_angle</span><span class="p">)</span>
+<span class="n">shear_transform</span><span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">shear_in_z_plane</span><span class="p">(</span><span class="n">angle_y_in_degrees</span><span class="o">=</span><span class="n">shear_angle</span><span class="p">)</span>
 
 <span class="n">transformed_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">affine_transform</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">shear_transform</span><span class="p">)</span>
 
@@ -1341,9 +1317,7 @@ determined new_size [192, 512, 128]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(192, 256, 256)
-(192, 256, 256)
-yz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yz
 </pre></div>
 </div>
 <img alt="../_images/affine_transforms_clesperanto_22_1.png" src="../_images/affine_transforms_clesperanto_22_1.png" />
@@ -1365,17 +1339,14 @@ yz
 <p>Let’s crop the nose and transform it using different interpolation modes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">start_x</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">start_y</span><span class="o">=</span><span class="mi">125</span><span class="p">,</span> <span class="n">start_z</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop</span> <span class="o">=</span> <span class="n">input_image</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">:</span><span class="mi">150</span><span class="p">,</span><span class="mi">45</span><span class="p">:</span><span class="mi">70</span><span class="p">]</span>
+
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">crop</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shape&quot;</span><span class="p">,</span> <span class="n">crop</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/affine_transforms_clesperanto_24_0.png" src="../_images/affine_transforms_clesperanto_24_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shape (25, 25, 25)
-</pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1393,11 +1364,7 @@ yz
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(25, 25, 25)
-(250, 250, 250)
-</pre></div>
-</div>
-<img alt="../_images/affine_transforms_clesperanto_26_1.png" src="../_images/affine_transforms_clesperanto_26_1.png" />
+<img alt="../_images/affine_transforms_clesperanto_26_0.png" src="../_images/affine_transforms_clesperanto_26_0.png" />
 </div>
 </div>
 <div class="section" id="linear-interpolation">
@@ -1411,11 +1378,7 @@ yz
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(25, 25, 25)
-(250, 250, 250)
-</pre></div>
-</div>
-<img alt="../_images/affine_transforms_clesperanto_28_1.png" src="../_images/affine_transforms_clesperanto_28_1.png" />
+<img alt="../_images/affine_transforms_clesperanto_28_0.png" src="../_images/affine_transforms_clesperanto_28_0.png" />
 </div>
 </div>
 </div>
