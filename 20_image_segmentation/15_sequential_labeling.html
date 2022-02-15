@@ -980,8 +980,13 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#relabeling-using-pyclesperanto">
-   Relabeling using pyclesperanto
+  <a class="reference internal nav-link" href="#sequential-labeling">
+   Sequential labeling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reverting-sequential-labeling">
+   Reverting sequential labeling
   </a>
  </li>
 </ul>
@@ -1005,8 +1010,13 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#relabeling-using-pyclesperanto">
-   Relabeling using pyclesperanto
+  <a class="reference internal nav-link" href="#sequential-labeling">
+   Sequential labeling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reverting-sequential-labeling">
+   Reverting sequential labeling
   </a>
  </li>
 </ul>
@@ -1024,71 +1034,158 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
 <span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">relabel_sequential</span>
 <span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Our starting point is a label image with labels 1-5, where label 3 is not present:</p>
+<p>Our starting point is a label image with labels 1-8, where some labels are not present:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
-    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-<span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">label_image</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/label_map_with_index_gaps.tif&quot;</span><span class="p">)</span>
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">label_image</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 1 2 2 0]
- [0 1 4 5 0]]
+<img alt="../_images/15_sequential_labeling_3_0.png" src="../_images/15_sequential_labeling_3_0.png" />
+</div>
+</div>
+<p>When measuring the maximum intensity in the image, we can see that this label image containing 4 labels is obviously not sequentially labeled.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">label_image</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/15_sequential_labeling_3_1.png" src="../_images/15_sequential_labeling_3_1.png" />
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
 </div>
 </div>
-<p>We can now relabel this image and remove these gaps using <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.segmentation.html#skimage.segmentation.relabel_sequential">scikit-image’s <code class="docutils literal notranslate"><span class="pre">relabel_sequential()</span></code> function</a>:</p>
+</div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">unique</span></code> function to figure out which labels are present:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">label_image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 4, 8], dtype=uint8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sequential-labeling">
+<h2>Sequential labeling<a class="headerlink" href="#sequential-labeling" title="Permalink to this headline">¶</a></h2>
+<p>We can now relabel this image and remove these gaps using <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.segmentation.html#skimage.segmentation.relabel_sequential">scikit-image’s <code class="docutils literal notranslate"><span class="pre">relabel_sequential()</span></code> function</a>. We’re entering the <code class="docutils literal notranslate"><span class="pre">_</span></code> as additional return variables as we’re not interested in them. This is necessary because the <code class="docutils literal notranslate"><span class="pre">relabel_sequential</span></code> function returns three things, but we only need the first.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">relabeled</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">relabel_sequential</span><span class="p">(</span><span class="n">label_image</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">relabeled</span><span class="p">)</span>
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">relabeled</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 1 2 2 0]
- [0 1 3 4 0]]
+<img alt="../_images/15_sequential_labeling_9_0.png" src="../_images/15_sequential_labeling_9_0.png" />
+</div>
+</div>
+<p>Afterwards, the unique labels should be sequential:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">relabeled</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/15_sequential_labeling_5_1.png" src="../_images/15_sequential_labeling_5_1.png" />
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4], dtype=uint8)
+</pre></div>
 </div>
 </div>
-<p>We’re entering the <code class="docutils literal notranslate"><span class="pre">_</span></code> as additional return variables as we’re not interested in them. This is necessary because the <code class="docutils literal notranslate"><span class="pre">relabel_sequential</span></code> function returns three things, but we only need the first.</p>
-<div class="section" id="relabeling-using-pyclesperanto">
-<h2>Relabeling using pyclesperanto<a class="headerlink" href="#relabeling-using-pyclesperanto" title="Permalink to this headline">¶</a></h2>
-<p>Also pyclesperanto has a function relabeling label images sequentially. The result is supposed identical to the result in scikit-image. It just doesn’t return the additional values.</p>
+</div>
+<p>Also pyclesperanto has a function for relabeling label images sequentially. The result is supposed identical to the result in scikit-image. It just doesn’t return the additional values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">relabeled1</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">relabel_sequential</span><span class="p">(</span><span class="n">label_image</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">relabeled1</span><span class="p">)</span>
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">relabeled1</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 1 2 2 0]
- [0 1 3 4 0]]
+<img alt="../_images/15_sequential_labeling_13_0.png" src="../_images/15_sequential_labeling_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="reverting-sequential-labeling">
+<h2>Reverting sequential labeling<a class="headerlink" href="#reverting-sequential-labeling" title="Permalink to this headline">¶</a></h2>
+<p>In some cases we apply an operation to a label image that returns a new label image with less labels that are sequentially labeled but the label-identity is lost. This happens for example when excluding labels from the label image that are too small.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">large_labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">exclude_small_labels</span><span class="p">(</span><span class="n">relabeled</span><span class="p">,</span> <span class="n">maximum_size</span><span class="o">=</span><span class="mi">260</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">large_labels</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/15_sequential_labeling_7_1.png" src="../_images/15_sequential_labeling_7_1.png" />
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/15_sequential_labeling_15_0.png" src="../_images/15_sequential_labeling_15_0.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">large_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2], dtype=uint32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To restore the original label identities, we need to multiply a binary image representing the remaining labels with the original label image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary_remaining_labels</span> <span class="o">=</span> <span class="n">large_labels</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">binary_remaining_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/15_sequential_labeling_18_0.png" src="../_images/15_sequential_labeling_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">large_labels_with_original_identity</span> <span class="o">=</span> <span class="n">binary_remaining_labels</span> <span class="o">*</span> <span class="n">relabeled</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">large_labels_with_original_identity</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/15_sequential_labeling_19_0.png" src="../_images/15_sequential_labeling_19_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">large_labels_with_original_identity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 1., 3.], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now conclude that labels with identities 2 and 4 were too small and thus, excluded.</p>
 </div>
 </div>
 
