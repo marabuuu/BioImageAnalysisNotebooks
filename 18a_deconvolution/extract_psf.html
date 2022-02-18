@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Determining the point-spread-function from a bead image &#8212; Bio-image Analysis Notebooks</title>
+    <title>Determining the point-spread-function from a bead image by averaging &#8212; Bio-image Analysis Notebooks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -364,7 +364,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Determining the point-spread-function from a bead image
+     Determining the point-spread-function from a bead image by averaging
     </a>
    </li>
    <li class="toctree-l2">
@@ -974,6 +974,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#psf-averaging">
+   PSF averaging
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -981,27 +994,45 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Determining the point-spread-function from a bead image</h1>
+                <h1>Determining the point-spread-function from a bead image by averaging</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#psf-averaging">
+   PSF averaging
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="determining-the-point-spread-function-from-a-bead-image">
-<span id="deconvolution-extract-psf"></span><h1>Determining the point-spread-function from a bead image<a class="headerlink" href="#determining-the-point-spread-function-from-a-bead-image" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="determining-the-point-spread-function-from-a-bead-image-by-averaging">
+<span id="deconvolution-extract-psf"></span><h1>Determining the point-spread-function from a bead image by averaging<a class="headerlink" href="#determining-the-point-spread-function-from-a-bead-image-by-averaging" title="Permalink to this headline">¶</a></h1>
 <p>In order to deconvolve a microsocpy image properly, we should determine the point-spread-function (PSF) of the microscope.</p>
+<p>See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/True-North-Intelligent-Algorithms/tnia-python/blob/main/notebooks/Deconvolution/extract_psf-Haase-beads.ipynb">PSF destilling by Brian Northan</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imsave</span>
-<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve</span>
 <span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
 <span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -1035,14 +1066,12 @@
 <img alt="../_images/extract_psf_5_2.png" src="../_images/extract_psf_5_2.png" />
 </div>
 </div>
-<p>For determining an average PSF, technically we would need to crop out all the individual beads, align them and then average the images.</p>
-<p>However, there is a trick to determine the PSF. For that, we make a perfect PSF, an black image with a single white pixel in the center. Afterwards, we convolve the perfect PSF with the images showing beads using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.convolve.html">scipy.signal.convolve</a>. This will result in an average PSF image. Note: This will only work if there are no other objects in the image.</p>
+<p>For determining an average PSF, technically we can crop out all the individual beads, align them and then average the images. Therefore, we segment the objects and determine their center of mass.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">perfect_psf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">45</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">45</span><span class="p">))</span>
-<span class="n">perfect_psf</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">22</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-
-<span class="n">imshow</span><span class="p">(</span><span class="n">perfect_psf</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Segment objects</span>
+<span class="n">label_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">bead_image</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">label_image</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1052,60 +1081,167 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a PSF image from the perfect_psf which should have the &#39;same&#39; size</span>
-<span class="n">psf</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">perfect_psf</span><span class="p">,</span> <span class="n">bead_image</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can then inspect the average PSF in 3D. If the PSF is a bit off-center, this is not a big problem. However, if it touches the image boarde, that can cause problems later on.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_x_projection</span><span class="p">(</span><span class="n">psf</span><span class="p">),</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_y_projection</span><span class="p">(</span><span class="n">psf</span><span class="p">),</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_z_projection</span><span class="p">(</span><span class="n">psf</span><span class="p">),</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># determine center of mass for each object</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">statistics_of_labelled_pixels</span><span class="p">(</span><span class="n">bead_image</span><span class="p">,</span> <span class="n">label_image</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;mass_center_x&quot;</span><span class="p">,</span> <span class="s2">&quot;mass_center_y&quot;</span><span class="p">,</span> <span class="s2">&quot;mass_center_z&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/extract_psf_10_0.png" src="../_images/extract_psf_10_0.png" />
-<img alt="../_images/extract_psf_10_1.png" src="../_images/extract_psf_10_1.png" />
-<img alt="../_images/extract_psf_10_2.png" src="../_images/extract_psf_10_2.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mass_center_x</th>
+      <th>mass_center_y</th>
+      <th>mass_center_z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>30.107895</td>
+      <td>73.028938</td>
+      <td>23.327475</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>44.293156</td>
+      <td>111.633430</td>
+      <td>23.329062</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>76.092850</td>
+      <td>82.453033</td>
+      <td>23.299677</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>125.439606</td>
+      <td>35.972496</td>
+      <td>23.390951</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
-</div>
-<p>We can move the PSF around by putting the white pixel in the perfect PSF in different places.</p>
+<div class="section" id="psf-averaging">
+<h2>PSF averaging<a class="headerlink" href="#psf-averaging" title="Permalink to this headline">¶</a></h2>
+<p>Next, we will iterate over the beads and crop them out by translating them into a smaller PSF image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">perfect_psf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">45</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">45</span><span class="p">))</span>
-<span class="n">perfect_psf</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">22</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># configure size of future PSF image</span>
+<span class="n">psf_radius</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">psf_radius</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
 
-<span class="c1"># extract PSF</span>
-<span class="n">psf</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">perfect_psf</span><span class="p">,</span> <span class="n">bead_image</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+<span class="c1"># initialize PSF</span>
+<span class="n">single_psf_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">create</span><span class="p">([</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">])</span>
+<span class="n">avg_psf_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">create</span><span class="p">([</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">])</span>
 
-<span class="c1"># show result</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_x_projection</span><span class="p">(</span><span class="n">psf</span><span class="p">),</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_y_projection</span><span class="p">(</span><span class="n">psf</span><span class="p">),</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_z_projection</span><span class="p">(</span><span class="n">psf</span><span class="p">),</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">num_psfs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;mass_center_x&quot;</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;mass_center_y&quot;</span><span class="p">]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;mass_center_z&quot;</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bead&quot;</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="s2">&quot;at position&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    
+    <span class="c1"># move PSF in right position in a smaller image</span>
+    <span class="n">cle</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">bead_image</span><span class="p">,</span> <span class="n">single_psf_image</span><span class="p">,</span> 
+                  <span class="n">translate_x</span><span class="o">=</span> <span class="o">-</span><span class="n">x</span> <span class="o">+</span> <span class="n">psf_radius</span><span class="p">,</span>
+                  <span class="n">translate_y</span><span class="o">=</span> <span class="o">-</span><span class="n">y</span> <span class="o">+</span> <span class="n">psf_radius</span><span class="p">,</span>
+                  <span class="n">translate_z</span><span class="o">=</span> <span class="o">-</span><span class="n">z</span> <span class="o">+</span> <span class="n">psf_radius</span><span class="p">)</span>
+
+    <span class="c1"># visualize</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>    
+    <span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_x_projection</span><span class="p">(</span><span class="n">single_psf_image</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_y_projection</span><span class="p">(</span><span class="n">single_psf_image</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_z_projection</span><span class="p">(</span><span class="n">single_psf_image</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    
+    <span class="c1"># average</span>
+    <span class="n">avg_psf_image</span> <span class="o">=</span> <span class="n">avg_psf_image</span> <span class="o">+</span> <span class="n">single_psf_image</span> <span class="o">/</span> <span class="n">num_psfs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bead 0 at position 30.107894897460938 73.02893829345703 23.32747459411621
+Bead 1 at position 44.293155670166016 111.63343048095703 23.32906150817871
+Bead 2 at position 76.09284973144531 82.45303344726562 23.2996768951416
+Bead 3 at position 125.43960571289062 35.972496032714844 23.39095115661621
+</pre></div>
+</div>
+<img alt="../_images/extract_psf_10_1.png" src="../_images/extract_psf_10_1.png" />
+<img alt="../_images/extract_psf_10_2.png" src="../_images/extract_psf_10_2.png" />
+<img alt="../_images/extract_psf_10_3.png" src="../_images/extract_psf_10_3.png" />
+<img alt="../_images/extract_psf_10_4.png" src="../_images/extract_psf_10_4.png" />
+</div>
+</div>
+<p>The average PSF then looks like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>    
+<span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_x_projection</span><span class="p">(</span><span class="n">avg_psf_image</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_y_projection</span><span class="p">(</span><span class="n">avg_psf_image</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_z_projection</span><span class="p">(</span><span class="n">avg_psf_image</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/extract_psf_12_0.png" src="../_images/extract_psf_12_0.png" />
-<img alt="../_images/extract_psf_12_1.png" src="../_images/extract_psf_12_1.png" />
-<img alt="../_images/extract_psf_12_2.png" src="../_images/extract_psf_12_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_psf_image</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">avg_psf_image</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 94.5)
+</pre></div>
+</div>
 </div>
 </div>
 <p>After we determined a well centered PSF, we can save it for later re-use. Before doing that, we normalize the PSF. Goal is to have an image where the total intensity is <code class="docutils literal notranslate"><span class="pre">1</span></code>. This makes sure that an image that is deconvolvolution using this PSF later on does not modify the image’s intensity range.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalized_psf</span> <span class="o">=</span> <span class="n">psf</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">psf</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalized_psf</span> <span class="o">=</span> <span class="n">avg_psf_image</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">avg_psf_image</span><span class="p">)</span>
 
 <span class="n">imshow</span><span class="p">(</span><span class="n">normalized_psf</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/extract_psf_14_0.png" src="../_images/extract_psf_14_0.png" />
+<img alt="../_images/extract_psf_15_0.png" src="../_images/extract_psf_15_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalized_psf</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">normalized_psf</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 0.0006259646)
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1115,9 +1251,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\AppData\Local\Temp\ipykernel_4248\3265681491.py:1: UserWarning: ../../data/psf.tif is a low contrast image
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\AppData\Local\Temp\ipykernel_16716\3265681491.py:1: UserWarning: ../../data/psf.tif is a low contrast image
   imsave(&#39;../../data/psf.tif&#39;, normalized_psf)
 </pre></div>
+</div>
 </div>
 </div>
 </div>
