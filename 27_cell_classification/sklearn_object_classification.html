@@ -1,0 +1,1912 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object classification with scikit-learn &#8212; Bio-image Analysis Notebooks</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Object classification with APOC and SimpleITK-based features" href="apoc_simpleitk_object_classification.html" />
+    <link rel="prev" title="Random forest decision making statistics" href="forest_statistics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Bio-image Analysis Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Bio-image Analysis Notebooks
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_introduction/trailer.html">
+   Trailer: Bio-image Analysis with Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_introduction/readme.html">
+   Setting up your computer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_python_basics/readme.html">
+   Python basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/01_our_first_juptyer_notebook.html">
+     Python code in Jupyter notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/02_Math_in_python.html">
+     Basic math in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/03_Dont_try_this_at_home.html">
+     Pitfalls when working with Jupyter notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/04_Basic_types.html">
+     Basic types in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/05_lists_tuples.html">
+     Lists and tuples
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/05a_cropping_lists.html">
+     Cropping lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/05b_sorting_lists.html">
+     Sorting lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/05c_masking.html">
+     Masking numpy arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/06_Dictionaries_and_tables.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/07_Conditions.html">
+     Conditions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/08_loops.html">
+     Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/09_custom_functions.html">
+     Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03_advanced_python/readme.html">
+   Advanced python programming
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_advanced_python/custom_libraries.html">
+     Custom libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_advanced_python/functional_parameters.html">
+     Functional parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_advanced_python/napari_workflows.html">
+     Workflows in napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_advanced_python/parallelization.html">
+     Parallelization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12_image_analysis_basics/readme.html">
+   Image analysis basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_image_analysis_basics/01_Introduction_to_image_processing.html">
+     Introduction to image processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_image_analysis_basics/02_Working_with_images.html">
+     Working with images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_image_analysis_basics/03_Cropping_images.html">
+     Cropping images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_image_analysis_basics/04_multi_channel_image_data.html">
+     Multi-channel image data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_image_analysis_basics/image_file_formats.html">
+     Image file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../15_gpu_acceleration/readme.html">
+   GPU accelerated image processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../15_gpu_acceleration/clesperanto.html">
+     clEsperanto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../15_gpu_acceleration/why_GPU_acceleration.html">
+     Why GPU-acceleration makes sense
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../15_gpu_acceleration/cupy.html">
+     GPU-accelerated image processing using CUPY and CUCIM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../15_gpu_acceleration/memory_management.html">
+     Tracing memory consumption
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../15_gpu_acceleration/further_reading.html">
+     Further reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../16_3d_image_visualization/readme.html">
+   Image visualization in 3D
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../16_3d_image_visualization/10_nd_image_data.html">
+     Multidimensional image stacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../16_3d_image_visualization/inspecting_3d_images.html">
+     Inspecting 3D image data with pyclesperanto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../16_3d_image_visualization/05_napari.html">
+     Interactive image visualization with napari
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../18_image_filtering/readme.html">
+   Image filtering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/01_Filtering.html">
+     Filtering images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/convolution.html">
+     Convolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/02_noise_removal.html">
+     Noise removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/03_background_removal.html">
+     Background removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/edge_detection_and_enhancement.html">
+     Edge detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18_image_filtering/simpleitk.html">
+     Processing images using SimpleITK
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../18a_deconvolution/readme.html">
+   Image deconvolution
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18a_deconvolution/introduction_deconvolution.html">
+     An introduction to image deconvolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18a_deconvolution/extract_psf.html">
+     Determining the point-spread-function from a bead image by averaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../18a_deconvolution/richardson_lucy_deconvolution.html">
+     Richardson-Lucy-Deconvolution on OpenCL-compatible GPUs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../19_spatial_transforms/readme.html">
+   Spatial transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../19_spatial_transforms/coordinate_systems.html">
+     Coordinate systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../19_spatial_transforms/cropping.html">
+     Slicing and cropping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../19_spatial_transforms/affine_transforms_scikit_image.html">
+     Affine transforms using scikit-image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../19_spatial_transforms/affine_transforms_scipy.html">
+     Affine transforms using Scipy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../19_spatial_transforms/affine_transforms_cupy.html">
+     Affine transforms using cupy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../19_spatial_transforms/affine_transforms_clesperanto.html">
+     Affine transforms using clesperanto
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../20_image_segmentation/readme.html">
+   Image segmentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/06_Introduction_to_image_segmentation.html">
+     Image segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/07_Thresholding.html">
+     Thresholding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/08_binary_mask_refinement.html">
+     Binary mask refinement
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/08a_split_touching_objects.html">
+     Split touching objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/09_connected_component_labeling.html">
+     Label images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/09a_gauss_otsu_labeling.html">
+     Gauss-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/10_touching_objects_labeling.html">
+     Touching objects labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/11_voronoi_otsu_labeling.html">
+     Voronoi-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/12_open_close_labels.html">
+     Label image refinement
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/14_remove_labels_on_image_edges.html">
+     Remove labels on image edges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/15_sequential_labeling.html">
+     Sequential object (re-)labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/segmentation_2d_membranes.html">
+     Seeded watershed for membrane-based cell segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/refine_cell_segmentation.html">
+     Post-processing for membrane-based cell segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20_image_segmentation/Segmentation_3D.html">
+     3D Image Segmentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../20a_pixel_classification/readme.html">
+   Machine learning for image segmentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/scikit_learn_random_forest_pixel_classifier.html">
+     Pixel classification using Scikit-learn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_object_segmenter.html">
+     Object segmentation on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_pixel_classifier.html">
+     Pixel classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/mutlichannel_images.html">
+     Pixel classification in multi-channel images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_probability_mapper.html">
+     Probability maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/apoc_train_on_folders.html">
+     Training pixel classifiers from folders of images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/feature_stacks.html">
+     Generating feature stacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/selecting_features.html">
+     Selecting features
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../21_segmentation_comparison/readme.html">
+   Comparing segmentation algorithms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../21_segmentation_comparison/scenario_otsu_segmentation.html">
+     Scenario: Comparing different implementations of the same thresholding algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../21_segmentation_comparison/visual_comparison.html">
+     Visual labeling comparison
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../21_segmentation_comparison/quantiative_comparison.html">
+     Quantitative labeling comparison
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../22_feature_extraction/readme.html">
+   Feature extraction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../22_feature_extraction/quantitative_measurements.html">
+     Quantitative image analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../22_feature_extraction/count_blobs.html">
+     Counting bright objects in images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../22_feature_extraction/statistics_with_pyclesperanto.html">
+     Basic statistics with pyclesperanto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../22_feature_extraction/statistics_with_simpleitk.html">
+     Statistics using SimpleITK
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../22_feature_extraction/comparison_of_measurements_from_different_libraries.html">
+     Comparison of measurements from different libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../22_feature_extraction/measure_intensity_on_label_edges.html">
+     Measuring intensity on label borders
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../22_feature_extraction/shape_descriptors_based_on_neighborhood_graphs.html">
+     Shape descriptors based on neighborhood graphs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../25_neighborhood_relationships_between_cells/readme.html">
+   Neighborhood analysis in tissues
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/01_neighborhood_definitions.html">
+     Neighborhood definitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/05_count_touching_neighbors.html">
+     Count touching neighbors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/06_mesh_with_distances.html">
+     Draw distance-meshes between neighbors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/distance_to_other_labels.html">
+     Measure the distance to cells in another label image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/other_proximal_labels_count.html">
+     Count proximal labels in an other label image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/neighbor_meshes_in_3d.html">
+     Neighbor meshes in three dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../25_neighborhood_relationships_between_cells/label_neighbor_filters.html">
+     Label neighbor filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="readme.html">
+   Cell classification
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="apoc_object_classifier.html">
+     Object classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="forest_statistics.html">
+     Random forest decision making statistics
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Object classification with scikit-learn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="apoc_simpleitk_object_classification.html">
+     Object classification with APOC and SimpleITK-based features
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../28_colocalization/readme.html">
+   Colocalization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../28_colocalization/counting_nuclei_multichannel.html">
+     Counting nuclei according to expression in multiple channels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../28_colocalization/differentiate_nuclei_intensity.html">
+     Differentiating nuclei according to signal intensity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../31_graphical_user_interfaces/readme.html">
+   Graphical user interfaces
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../31_graphical_user_interfaces/napari.html">
+     Interactive image visualization with napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../31_graphical_user_interfaces/napari_magicgui.html">
+     Interactive parameter tuning with napari and magicgui
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../31_graphical_user_interfaces/napari-skimage-regionprops.html">
+     Visualizing region properties in napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../31_graphical_user_interfaces/napari_dask.html">
+     Tribolium embryo morphometry over time in Napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../31_graphical_user_interfaces/napari_crop.html">
+     Interactive cropping with napari
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../32_tiled_image_processing/readme.html">
+   Tiled image processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiled_nuclei_counting_quick.html">
+     Tiled image processing, a quick run-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiling_images_naive_approach.html">
+     Tiling images - the naive approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiling_images_with_overlap.html">
+     Tiling images with overlap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiled_connected_component_labeling.html">
+     Connected component labeling in tiles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiled_object_measurements.html">
+     Measurements in objects in tiled images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiled_image_file_formats_zarr.html">
+     Tiled image file formats: zarr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiled_area_mapping.html">
+     Map area of objects in tiles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../32_tiled_image_processing/tiled_nuclei_counting.html">
+     Counting nuclei in tiles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../33_batch_processing/readme.html">
+   Batch processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../33_batch_processing/12_process_folders.html">
+     How process files in a folder
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
+   Tabular data wrangling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <label for="toctree-checkbox-19">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/introduction_dataframes.html">
+     Introduction to working with DataFrames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/explore_dataset.html">
+     Exploring tabular data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/select_rows_and_columns.html">
+     Selecting columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/descriptive_statistics.html">
+     Basic descriptive statistcs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/handling_NaNs.html">
+     Handling NaN values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../40_tabular_data_wrangling/pivot_tables.html">
+     Pivot tables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../51_plotting/readme.html">
+   Plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../51_plotting/plotting_seaborn.html">
+     Plotting using seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../51_plotting/plotting_matplotlib.html">
+     Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../51_plotting/bland_altman_analysis.html">
+     Bland-Altman plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../60_data_visualization/readme.html">
+   Data visualization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+  <label for="toctree-checkbox-21">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../60_data_visualization/overlay_text_on_image.html">
+     Overlay texts on images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../60_data_visualization/parametric_maps.html">
+     Parametric maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../60_data_visualization/quantitative_neighbor_maps.html">
+     Quantitative maps from neighbor statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_introduction/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../imprint.html">
+   Imprint
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/27_cell_classification/sklearn_object_classification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F27_cell_classification/sklearn_object_classification.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/27_cell_classification/sklearn_object_classification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-extraction">
+   Feature extraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-wrangling">
+   Data wrangling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classifier-training">
+   Classifier Training
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prediction">
+   Prediction
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Object classification with scikit-learn</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-extraction">
+   Feature extraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-wrangling">
+   Data wrangling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classifier-training">
+   Classifier Training
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prediction">
+   Prediction
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="object-classification-with-scikit-learn">
+<h1>Object classification with scikit-learn<a class="headerlink" href="#object-classification-with-scikit-learn" title="Permalink to this headline">¶</a></h1>
+<p>Based on size and shape measurements, e.g. derived using <span class="xref myst">scikit-image <code class="docutils literal notranslate"><span class="pre">regionprops</span></code></span> and some sparse ground truth annotation, we can classify objects. A common algorithm for this are <a class="reference external" href="https://en.wikipedia.org/wiki/Random_forest">Random Forest Classifiers</a>. A commonly used implementation is available as <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">scikit-learn Random Forest Classifier</a>.</p>
+<p>See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=dstjhCPBDOY&amp;list=PL5ESQNfM5lc7SAMstEu082ivW4BDMvd0U&amp;index=19">Machine learning for pixel and bbject classification (video lecture)</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span><span class="p">,</span> <span class="n">replace_intensities</span><span class="p">,</span> <span class="n">relabel_sequential</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_otsu</span>
+<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">label</span><span class="p">,</span> <span class="n">regionprops</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">clear_border</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our starting point are an image, a label image and some ground truth annotation. The annotation is also a label image where the user was just drawing lines with different intensity (class) through small objects, large objects and elongated objects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load and label data</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs.tif&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">image</span> <span class="o">&gt;</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">image</span><span class="p">))</span>
+<span class="n">annotation</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/label_annotation.tif&#39;</span><span class="p">)</span>
+
+<span class="c1"># visualize</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">continue_drawing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/sklearn_object_classification_3_0.png" src="../_images/sklearn_object_classification_3_0.png" />
+</div>
+</div>
+<div class="section" id="feature-extraction">
+<h2>Feature extraction<a class="headerlink" href="#feature-extraction" title="Permalink to this headline">¶</a></h2>
+<p>The first step to classify objects according to their properties is <a class="reference internal" href="../22_feature_extraction/readme.html#feature-extraction"><span class="std std-ref">feature extraction</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">intensity_image</span><span class="o">=</span><span class="n">image</span><span class="p">)</span>
+
+<span class="c1"># read out specific measurements</span>
+<span class="n">label_ids</span> <span class="o">=</span>          <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">s</span><span class="o">.</span><span class="n">label</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">])</span>
+<span class="n">areas</span> <span class="o">=</span>              <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">s</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">])</span>
+<span class="n">minor_axis_lengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">s</span><span class="o">.</span><span class="n">minor_axis_length</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">])</span>
+<span class="n">major_axis_lengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">s</span><span class="o">.</span><span class="n">major_axis_length</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">])</span>
+
+<span class="c1"># compute additional parameters</span>
+<span class="n">aspect_ratios</span> <span class="o">=</span> <span class="n">major_axis_lengths</span> <span class="o">/</span> <span class="n">minor_axis_lengths</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/p1/6svzckgd1y5906pfgm71fvmr0000gn/T/ipykernel_18924/1513904267.py:10: RuntimeWarning: invalid value encountered in true_divide
+  aspect_ratios = major_axis_lengths / minor_axis_lengths
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also read out the maximum intensity of every labeled object from the ground truth annotation. These values will serve to train the classifier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annotation_stats</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">intensity_image</span><span class="o">=</span><span class="n">annotation</span><span class="p">)</span>
+
+<span class="n">annotated_class</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">s</span><span class="o">.</span><span class="n">max_intensity</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">annotation_stats</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-wrangling">
+<h2>Data wrangling<a class="headerlink" href="#data-wrangling" title="Permalink to this headline">¶</a></h2>
+<p>To look at the data before it is fed to the training, we visualize it as <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas DataFrame</a>. Note: The rows with <code class="docutils literal notranslate"><span class="pre">annotated_class=0</span></code> correspond to labels that have not been annotated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">label_ids</span><span class="p">,</span>
+    <span class="s1">&#39;area&#39;</span><span class="p">:</span> <span class="n">areas</span><span class="p">,</span>
+    <span class="s1">&#39;minor_axis&#39;</span><span class="p">:</span> <span class="n">minor_axis_lengths</span><span class="p">,</span>
+    <span class="s1">&#39;major_axis&#39;</span><span class="p">:</span> <span class="n">major_axis_lengths</span><span class="p">,</span>
+    <span class="s1">&#39;aspect_ratio&#39;</span><span class="p">:</span> <span class="n">aspect_ratios</span><span class="p">,</span>
+    <span class="s1">&#39;annotated_class&#39;</span><span class="p">:</span> <span class="n">annotated_class</span>
+<span class="p">}</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># show only first 5 rows</span>
+<span class="n">table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>area</th>
+      <th>minor_axis</th>
+      <th>major_axis</th>
+      <th>aspect_ratio</th>
+      <th>annotated_class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>433</td>
+      <td>16.819060</td>
+      <td>34.957399</td>
+      <td>2.078439</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>185</td>
+      <td>11.803854</td>
+      <td>21.061417</td>
+      <td>1.784283</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>658</td>
+      <td>28.278264</td>
+      <td>30.212552</td>
+      <td>1.068402</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>434</td>
+      <td>23.064079</td>
+      <td>24.535398</td>
+      <td>1.063793</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>477</td>
+      <td>19.833058</td>
+      <td>31.162612</td>
+      <td>1.571246</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>From that table, we extract now a table that only contains the annotated rows/labels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annotated_table</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="p">[</span><span class="s1">&#39;annotated_class&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">annotated_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>area</th>
+      <th>minor_axis</th>
+      <th>major_axis</th>
+      <th>aspect_ratio</th>
+      <th>annotated_class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>658</td>
+      <td>28.278264</td>
+      <td>30.212552</td>
+      <td>1.068402</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>81</td>
+      <td>9.239435</td>
+      <td>11.153514</td>
+      <td>1.207164</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>501</td>
+      <td>24.403675</td>
+      <td>26.232105</td>
+      <td>1.074924</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>448</td>
+      <td>21.751312</td>
+      <td>26.272749</td>
+      <td>1.207870</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>425</td>
+      <td>19.335056</td>
+      <td>28.075209</td>
+      <td>1.452037</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>22</td>
+      <td>412</td>
+      <td>21.819832</td>
+      <td>24.135300</td>
+      <td>1.106118</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>27</td>
+      <td>676</td>
+      <td>24.623036</td>
+      <td>36.525858</td>
+      <td>1.483402</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>31</td>
+      <td>610</td>
+      <td>17.433716</td>
+      <td>48.005150</td>
+      <td>2.753581</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>32</td>
+      <td>14</td>
+      <td>4.120630</td>
+      <td>4.208834</td>
+      <td>1.021406</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>33</td>
+      <td>641</td>
+      <td>21.042345</td>
+      <td>40.781012</td>
+      <td>1.938045</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>36</td>
+      <td>22</td>
+      <td>4.355578</td>
+      <td>6.495072</td>
+      <td>1.491208</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>38</td>
+      <td>902</td>
+      <td>21.741393</td>
+      <td>54.785426</td>
+      <td>2.519867</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As we do not want to use all columns for training, we now select the right columns. It is recommended to write a short convenience function <code class="docutils literal notranslate"><span class="pre">select_data</span></code> for this, because we will reuse it later for prediction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select_data</span><span class="p">(</span><span class="n">table</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+        <span class="n">table</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">],</span>
+        <span class="n">table</span><span class="p">[</span><span class="s1">&#39;aspect_ratio&#39;</span><span class="p">]</span>
+    <span class="p">])</span>
+
+<span class="n">training_data</span> <span class="o">=</span> <span class="n">select_data</span><span class="p">(</span><span class="n">annotated_table</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">training_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[658.        ,   1.06840194],
+       [ 81.        ,   1.20716407],
+       [501.        ,   1.07492436],
+       [448.        ,   1.20786966],
+       [425.        ,   1.45203663],
+       [412.        ,   1.1061176 ],
+       [676.        ,   1.48340188],
+       [610.        ,   2.75358106],
+       [ 14.        ,   1.02140552],
+       [641.        ,   1.93804502],
+       [ 22.        ,   1.4912077 ],
+       [902.        ,   2.51986728]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also extract the annotation from that table and call it <code class="docutils literal notranslate"><span class="pre">ground_truth</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ground_truth</span> <span class="o">=</span> <span class="n">annotated_table</span><span class="p">[</span><span class="s1">&#39;annotated_class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">ground_truth</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.0, 2.0, 3.0, 3.0, 3.0, 3.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="classifier-training">
+<h2>Classifier Training<a class="headerlink" href="#classifier-training" title="Permalink to this headline">¶</a></h2>
+<p>Next, we can train the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">Random Forest Classifer</a>. It needs training data and ground truth in the format presented above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomForestClassifier(max_depth=2, n_estimators=10, random_state=0)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="prediction">
+<h2>Prediction<a class="headerlink" href="#prediction" title="Permalink to this headline">¶</a></h2>
+<p>To apply a classifier to the whole dataset, or any other dataset, we need to bring the data into the same format as used for training. We can reuse the function <code class="docutils literal notranslate"><span class="pre">select_data</span></code> for that. Furthermore, we need to drop rows from our table where not-a-number (<a class="reference external" href="https://en.wikipedia.org/wiki/NaN">NaN</a>) values appeared (<a class="reference internal" href="../40_tabular_data_wrangling/handling_NaNs.html#tabular-data-wrangling-handling-nan-values"><span class="std std-ref">read more</span></a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table_without_nans</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;any&quot;</span><span class="p">)</span>
+
+<span class="n">all_data</span> <span class="o">=</span> <span class="n">select_data</span><span class="p">(</span><span class="n">table_without_nans</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">all_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[433.        ,   2.0784395 ],
+       [185.        ,   1.78428301],
+       [658.        ,   1.06840194],
+       [434.        ,   1.06379267],
+       [477.        ,   1.57124594],
+       [285.        ,   1.15397362],
+       [ 81.        ,   1.20716407],
+       [278.        ,   1.39040997],
+       [231.        ,   1.14134293],
+       [ 30.        ,   4.64290752],
+       [501.        ,   1.07492436],
+       [660.        ,   1.33770096],
+       [ 99.        ,   1.27265076],
+       [228.        ,   1.1427708 ],
+       [448.        ,   1.20786966],
+       [401.        ,   2.50541908],
+       [520.        ,   1.18241662],
+       [425.        ,   1.45203663],
+       [271.        ,   1.34918562],
+       [350.        ,   1.16890653],
+       [159.        ,   1.22661614],
+       [412.        ,   1.1061176 ],
+       [426.        ,   1.81249164],
+       [260.        ,   1.15413724],
+       [506.        ,   1.6790716 ],
+       [289.        ,   1.13174859],
+       [676.        ,   1.48340188],
+       [175.        ,   1.7693589 ],
+       [361.        ,   1.22276182],
+       [545.        ,   1.22505758],
+       [610.        ,   2.75358106],
+       [ 14.        ,   1.02140552],
+       [641.        ,   1.93804502],
+       [195.        ,   1.14814639],
+       [593.        ,   1.08971368],
+       [ 22.        ,   1.4912077 ],
+       [268.        ,   1.29513144],
+       [902.        ,   2.51986728],
+       [473.        ,   1.74526337],
+       [239.        ,   1.21436236],
+       [167.        ,   1.29262079],
+       [413.        ,   1.37572589],
+       [415.        ,   1.2468234 ],
+       [244.        ,   1.13831252],
+       [377.        ,   1.28619722],
+       [652.        ,   1.11512228],
+       [379.        ,   1.14903134],
+       [578.        ,   1.05037771],
+       [ 69.        ,   3.02058993],
+       [170.        ,   1.36058208],
+       [472.        ,   2.04509462],
+       [613.        ,   1.35438231],
+       [543.        ,   1.3209039 ],
+       [204.        ,   2.23080499],
+       [555.        ,   1.07333913],
+       [858.        ,   1.56519017],
+       [281.        ,   1.32328162],
+       [215.        ,   1.30875672],
+       [  3.        ,   1.73205081],
+       [ 81.        ,   3.13450027],
+       [ 90.        ,   4.18288936],
+       [ 53.        ,   2.92386162],
+       [ 49.        ,   4.45617521]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then hand over <code class="docutils literal notranslate"><span class="pre">all_data</span></code> to the classifier for prediction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table_without_nans</span><span class="p">[</span><span class="s1">&#39;predicted_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">all_data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table_without_nans</span><span class="p">[</span><span class="s1">&#39;predicted_class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 1.0, 2.0, 3.0, 3.0, 3.0, 2.0, 3.0, 2.0, 1.0, 3.0, 3.0, 2.0, 2.0, 3.0, 1.0, 3.0, 3.0, 3.0, 3.0, 2.0, 3.0, 1.0, 3.0, 3.0, 3.0, 3.0, 1.0, 3.0, 3.0, 1.0, 2.0, 1.0, 2.0, 2.0, 3.0, 3.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 2.0, 3.0, 2.0, 3.0, 2.0, 1.0, 3.0, 1.0, 3.0, 3.0, 1.0, 3.0, 3.0, 3.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/p1/6svzckgd1y5906pfgm71fvmr0000gn/T/ipykernel_18924/549567337.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  table_without_nans[&#39;predicted_class&#39;] = classifier.predict(all_data)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then merge the table containing the <code class="docutils literal notranslate"><span class="pre">predicted_class</span></code> column with the original table. In the resulting <code class="docutils literal notranslate"><span class="pre">table_with_prediction</span></code>, we still need to decide how to handle <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values. It is not possible to classify those because measurements are missing. Thus, we replace the class of those with 0 using <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.fillna.html"><code class="docutils literal notranslate"><span class="pre">fillna</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># merge prediction with original table</span>
+<span class="n">table_with_prediction</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">table_without_nans</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="c1"># replace not predicted (NaN) with 0</span>
+<span class="n">table_with_prediction</span><span class="p">[</span><span class="s1">&#39;predicted_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">table_with_prediction</span><span class="p">[</span><span class="s1">&#39;predicted_class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">table_with_prediction</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>area_x</th>
+      <th>minor_axis_x</th>
+      <th>major_axis_x</th>
+      <th>aspect_ratio_x</th>
+      <th>annotated_class_x</th>
+      <th>area_y</th>
+      <th>minor_axis_y</th>
+      <th>major_axis_y</th>
+      <th>aspect_ratio_y</th>
+      <th>annotated_class_y</th>
+      <th>predicted_class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>433</td>
+      <td>16.819060</td>
+      <td>34.957399</td>
+      <td>2.078439</td>
+      <td>0.0</td>
+      <td>433.0</td>
+      <td>16.819060</td>
+      <td>34.957399</td>
+      <td>2.078439</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>185</td>
+      <td>11.803854</td>
+      <td>21.061417</td>
+      <td>1.784283</td>
+      <td>0.0</td>
+      <td>185.0</td>
+      <td>11.803854</td>
+      <td>21.061417</td>
+      <td>1.784283</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>658</td>
+      <td>28.278264</td>
+      <td>30.212552</td>
+      <td>1.068402</td>
+      <td>2.0</td>
+      <td>658.0</td>
+      <td>28.278264</td>
+      <td>30.212552</td>
+      <td>1.068402</td>
+      <td>2.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>434</td>
+      <td>23.064079</td>
+      <td>24.535398</td>
+      <td>1.063793</td>
+      <td>0.0</td>
+      <td>434.0</td>
+      <td>23.064079</td>
+      <td>24.535398</td>
+      <td>1.063793</td>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>477</td>
+      <td>19.833058</td>
+      <td>31.162612</td>
+      <td>1.571246</td>
+      <td>0.0</td>
+      <td>477.0</td>
+      <td>19.833058</td>
+      <td>31.162612</td>
+      <td>1.571246</td>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>60</td>
+      <td>1</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>61</td>
+      <td>81</td>
+      <td>5.920690</td>
+      <td>18.558405</td>
+      <td>3.134500</td>
+      <td>0.0</td>
+      <td>81.0</td>
+      <td>5.920690</td>
+      <td>18.558405</td>
+      <td>3.134500</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>62</td>
+      <td>90</td>
+      <td>5.369081</td>
+      <td>22.458271</td>
+      <td>4.182889</td>
+      <td>0.0</td>
+      <td>90.0</td>
+      <td>5.369081</td>
+      <td>22.458271</td>
+      <td>4.182889</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>63</td>
+      <td>53</td>
+      <td>5.065719</td>
+      <td>14.811463</td>
+      <td>2.923862</td>
+      <td>0.0</td>
+      <td>53.0</td>
+      <td>5.065719</td>
+      <td>14.811463</td>
+      <td>2.923862</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>64</td>
+      <td>49</td>
+      <td>3.843548</td>
+      <td>17.127524</td>
+      <td>4.456175</td>
+      <td>0.0</td>
+      <td>49.0</td>
+      <td>3.843548</td>
+      <td>17.127524</td>
+      <td>4.456175</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>64 rows × 12 columns</p>
+</div></div></div>
+</div>
+<p>From that table, we can extract the column containing the prediction and use <a class="reference external" href="https://clij.github.io/clij2-docs/reference_replaceIntensities"><code class="docutils literal notranslate"><span class="pre">replace_intensities</span></code></a> to generate a <code class="docutils literal notranslate"><span class="pre">class_image</span></code>. The background and objects with NaNs in measurements will have value 0 in that image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we add a 0 for the class of background at the beginning</span>
+<span class="n">predicted_class</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">table_with_prediction</span><span class="p">[</span><span class="s1">&#39;predicted_class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_image</span> <span class="o">=</span> <span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">predicted_class</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">class_image</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/sklearn_object_classification_26_0.png" src="../_images/sklearn_object_classification_26_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./27_cell_classification"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="forest_statistics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Random forest decision making statistics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="apoc_simpleitk_object_classification.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Object classification with APOC and SimpleITK-based features</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Robert Haase, Miguel Fernandes, Marcelo Leomil Zoccoler & add-your-name-here-by-sending-a-pull-request-containing-a-notebook<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

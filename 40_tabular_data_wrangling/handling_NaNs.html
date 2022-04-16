@@ -700,6 +700,16 @@ const thebe_selector_output = ".output, .cell_output"
      Random forest decision making statistics
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../27_cell_classification/sklearn_object_classification.html">
+     Object classification with scikit-learn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../27_cell_classification/apoc_simpleitk_object_classification.html">
+     Object classification with APOC and SimpleITK-based features
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -848,6 +858,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="explore_dataset.html">
      Exploring tabular data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="select_rows_and_columns.html">
+     Selecting columns
     </a>
    </li>
    <li class="toctree-l2">
@@ -1041,9 +1056,16 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dropping-rows-that-containt-nans">
-   Dropping rows that containt NaNs
+  <a class="reference internal nav-link" href="#dropping-rows-that-contain-nans">
+   Dropping rows that contain NaNs
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determining-rows-that-contain-nans">
+     Determining rows that contain NaNs
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1071,9 +1093,16 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dropping-rows-that-containt-nans">
-   Dropping rows that containt NaNs
+  <a class="reference internal nav-link" href="#dropping-rows-that-contain-nans">
+   Dropping rows that contain NaNs
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determining-rows-that-contain-nans">
+     Determining rows that contain NaNs
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1085,12 +1114,13 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="handling-nan-values">
-<h1>Handling NaN values<a class="headerlink" href="#handling-nan-values" title="Permalink to this headline">¶</a></h1>
+<span id="tabular-data-wrangling-handling-nan-values"></span><h1>Handling NaN values<a class="headerlink" href="#handling-nan-values" title="Permalink to this headline">¶</a></h1>
 <p>When analysing tabular data, sometimes table cells are present that does not contain data. In Python this typically means the value is <em>Not a Number</em> (<a class="reference external" href="https://en.wikipedia.org/wiki/NaN">NaN</a>). We cannot assume these values are <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">-1</span></code> or any other value because that would distort descriptive statistics, for example. We need to deal with these NaN entries differently and this notebook will introduce how.</p>
 <p>To get a first view where NaNs play a role, we load again an example table and sort it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
 </pre></div>
 </div>
 </div>
@@ -1416,8 +1446,8 @@ dtype: float64
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="dropping-rows-that-containt-nans">
-<h1>Dropping rows that containt NaNs<a class="headerlink" href="#dropping-rows-that-containt-nans" title="Permalink to this headline">¶</a></h1>
+<div class="tex2jax_ignore mathjax_ignore section" id="dropping-rows-that-contain-nans">
+<h1>Dropping rows that contain NaNs<a class="headerlink" href="#dropping-rows-that-contain-nans" title="Permalink to this headline">¶</a></h1>
 <p>Depending on what kind of data analysis should be performed, it might make sense to just ignore columns that contain NaN values. Alternatively, it is possible to delete rows that contain NaNs.</p>
 <p>It depends on your project and what is important or not for the analysis. Its not an easy answer.</p>
 <div class="cell docutils container">
@@ -1683,6 +1713,100 @@ dtype: float64
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="determining-rows-that-contain-nans">
+<h2>Determining rows that contain NaNs<a class="headerlink" href="#determining-rows-that-contain-nans" title="Permalink to this headline">¶</a></h2>
+<p>In some use-cases it might be useful to have a list of row-indices where there are NaN values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span>
+    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">52</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>3.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22</td>
+      <td>NaN</td>
+      <td>44.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>21</td>
+      <td>2.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12</td>
+      <td>12.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>23</td>
+      <td>22.0</td>
+      <td>52.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False,  True, False,  True, False])
+</pre></div>
+</div>
 </div>
 </div>
 </div>
