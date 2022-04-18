@@ -1083,8 +1083,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#separating-test-and-validation-data">
+   Separating test and validation data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#classifier-training">
    Classifier training
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#validation">
+   Validation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1123,8 +1133,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#separating-test-and-validation-data">
+   Separating test and validation data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#classifier-training">
    Classifier training
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#validation">
+   Validation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1159,6 +1179,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">jaccard_score</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
 
 <span class="c1"># local import; this library is located in the same folder as the notebook</span>
 <span class="kn">from</span> <span class="nn">data_generator</span> <span class="kn">import</span> <span class="n">generate_biomodal_2d_data</span>
@@ -1324,6 +1345,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="annotating-data">
 <h2>Annotating data<a class="headerlink" href="#annotating-data" title="Permalink to this headline">¶</a></h2>
 <p>As mentioned above, supervised machine learning algorithms need some form of annotation, also called <em>ground truth</em>. We create a list of annotations where <code class="docutils literal notranslate"><span class="pre">1</span></code> represents small objects and <code class="docutils literal notranslate"><span class="pre">2</span></code> represents large and elongated objects.</p>
+<p>Note: We are here annotating the first 20 data points, which is a quite small number. In real projects, larger amounts of annotation data might be necessary to train well-performing classifiers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">manual_annotation</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
@@ -1346,10 +1368,25 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f973057b7f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x14d8ee3d790&gt;
 </pre></div>
 </div>
 <img alt="../_images/supervised_machine_learning_9_1.png" src="../_images/supervised_machine_learning_9_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="separating-test-and-validation-data">
+<h2>Separating test and validation data<a class="headerlink" href="#separating-test-and-validation-data" title="Permalink to this headline">¶</a></h2>
+<p>Before we train our classifier, we need to split the annotated data into two subsets. Goal is to enable unbiased validation. We train on the first half of the annotated data points and measure the quality on the second half. <a class="reference external" href="https://scikit-learn.org/stable/common_pitfalls.html#data-leakage">Read more</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span> <span class="o">=</span> <span class="n">data_to_annotate</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">validation_data</span> <span class="o">=</span> <span class="n">data_to_annotate</span><span class="p">[</span><span class="mi">10</span><span class="p">:]</span>
+
+<span class="n">train_annotation</span> <span class="o">=</span> <span class="n">manual_annotation</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">validation_annotation</span> <span class="o">=</span> <span class="n">manual_annotation</span><span class="p">[</span><span class="mi">10</span><span class="p">:]</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1359,7 +1396,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
-<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_to_annotate</span><span class="p">,</span> <span class="n">manual_annotation</span><span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">train_annotation</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1370,31 +1407,171 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="prediction">
-<h2>Prediction<a class="headerlink" href="#prediction" title="Permalink to this headline">¶</a></h2>
-<p>With the trained classifier, we can process the whole data set. We can <em>classify</em> the data points, or create a <em>prediction</em> of the class.</p>
+<div class="section" id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h2>
+<p>We can now apply the classifier to the validation data and measure how many of these data points have been analyzed correctly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">validation_data</span><span class="p">)</span>
+
+<span class="c1"># Show results next to annotation in a table</span>
+<span class="n">result_annotation_comparison_table</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Predicted&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
+    <span class="s2">&quot;Annotated&quot;</span><span class="p">:</span> <span class="n">validation_annotation</span>
+<span class="p">}</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result_annotation_comparison_table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Predicted</th>
+      <th>Annotated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To get some standardized measures of the quality of the results of our classifier, we use <a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html">scikit-learn’s metrics</a>. An overview about the techniques are also available on <a class="reference external" href="https://en.wikipedia.org/wiki/Precision_and_recall">Wikipedia</a> and mean in the context here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html#sklearn.metrics.accuracy_score">Accurcay</a>: What portion of predictions were correct?</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score">Precision</a>: What portion of predicted <code class="docutils literal notranslate"><span class="pre">1</span></code>s were annotated as <code class="docutils literal notranslate"><span class="pre">1</span></code>?</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score">Recall (sensitivity)</a>: What portion of predicted <code class="docutils literal notranslate"><span class="pre">2</span></code>s have been annotated as <code class="docutils literal notranslate"><span class="pre">2</span></code>?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">validation_annotation</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precision_score</span><span class="p">(</span><span class="n">validation_annotation</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.75
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recall_score</span><span class="p">(</span><span class="n">validation_annotation</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want to understand more detailed how the enties are counted and the quality scores are computed, the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.multilabel_confusion_matrix.html#sklearn.metrics.multilabel_confusion_matrix">multilabel confusion matrix</a> may be worth a look.</p>
+</div>
+<div class="section" id="prediction">
+<h2>Prediction<a class="headerlink" href="#prediction" title="Permalink to this headline">¶</a></h2>
+<p>After training and validation of the classifier, we can reuse it to process other data sets.
+It is uncommon to classify test- and validation data, as those should be used for making the classifier only. We here apply the classifier to the remaining data points, which have not been annotated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">remaining_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">20</span><span class="p">:]</span>
+
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">remaining_data</span><span class="p">)</span>
 <span class="n">prediction</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 2, 1, 1, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2, 2, 2, 1, 1,
-       1, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1,
-       2, 2, 2, 2, 2, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 2, 2,
-       2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 2, 1, 1, 1,
-       2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 2,
-       1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 2, 2, 2, 1, 2,
-       2, 2, 1, 2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 1, 1, 2, 2, 2, 1, 2, 1, 1,
-       1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1,
-       1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2,
-       1, 2, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1,
-       1, 2, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 1, 2, 1, 1, 2, 2, 2,
-       1, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1, 1,
-       1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 2, 2, 2, 1, 2, 1, 2,
-       2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 1, 1,
+       2, 1, 2, 2, 2, 2, 2, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2,
+       2, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 2, 1,
+       1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2,
+       1, 2, 1, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 2, 2, 2,
+       1, 2, 2, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1,
+       1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 1, 1, 1, 1, 2, 2, 1,
+       1, 1, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2,
+       1, 2, 1, 2, 1, 1, 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 1,
+       2, 1, 1, 2, 1, 1, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 1, 2, 1, 1, 2,
+       2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1,
+       1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 2, 2, 2, 1, 2,
+       1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1])
 </pre></div>
 </div>
 </div>
@@ -1404,7 +1581,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prediction</span><span class="p">]</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">predicted_colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">remaining_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">remaining_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">predicted_colors</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;area&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;elongation&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1414,7 +1591,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;elongation&#39;)
 </pre></div>
 </div>
-<img alt="../_images/supervised_machine_learning_15_1.png" src="../_images/supervised_machine_learning_15_1.png" />
+<img alt="../_images/supervised_machine_learning_24_1.png" src="../_images/supervised_machine_learning_24_1.png" />
 </div>
 </div>
 </div>
