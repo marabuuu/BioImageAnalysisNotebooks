@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Setting up a dataset &#8212; Bio-image Analysis Notebooks</title>
+    <title>Resave scikit-image example data &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,6 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Glossary" href="../01_introduction/glossary.html" />
+    <link rel="prev" title="Load an image and measure shape of objects in 3D" href="load_image_and_measure_shape_of_nuclei_in_3d.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -111,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -1023,6 +1025,33 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="readme.html">
+   Snippets
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="load_an_show_an_image.html">
+     Load and show an image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="load_image_and_measure_shape_of_nuclei_in_3d.html">
+     Load an image and measure shape of objects in 3D
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Resave scikit-image example data
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/glossary.html">
    Glossary
@@ -1092,7 +1121,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/44_hypothesis_testing/Testing tomato ripen time.ipynb"
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/98_snippets/resave_skimage_example_data.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1152,7 +1181,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F44_hypothesis_testing/Testing tomato ripen time.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F98_snippets/resave_skimage_example_data.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1180,7 +1209,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/44_hypothesis_testing/Testing tomato ripen time.ipynb"
+        <a href="../_sources/98_snippets/resave_skimage_example_data.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1217,94 +1246,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Setting up a dataset
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#descriptive-statistics">
-   Descriptive statistics
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hypothesis-testing">
-   Hypothesis testing
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parametric-test-one-sample-t-test">
-     Parametric test: One sample t-test
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Setting up a dataset</h1>
+                <h1>Resave scikit-image example data</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Setting up a dataset
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#descriptive-statistics">
-   Descriptive statistics
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hypothesis-testing">
-   Hypothesis testing
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parametric-test-one-sample-t-test">
-     Parametric test: One sample t-test
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -1312,125 +1270,84 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="setting-up-a-dataset">
-<h1>Setting up a dataset<a class="headerlink" href="#setting-up-a-dataset" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="resave-scikit-image-example-data">
+<h1>Resave scikit-image example data<a class="headerlink" href="#resave-scikit-image-example-data" title="Permalink to this headline">#</a></h1>
+<p>!pip install scikit-image</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tomatoes</span>
-
-<span class="n">number_of_tomatoes</span> <span class="o">=</span> <span class="mi">100</span>
-
-<span class="n">ripe_time</span> <span class="o">=</span> <span class="n">tomatoes</span><span class="o">.</span><span class="n">ripen</span><span class="p">(</span><span class="n">number_of_tomatoes</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">ripe_time</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">cells3d</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imsave</span><span class="p">,</span> <span class="n">imshow</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span> <span class="o">=</span> <span class="n">cells3d</span><span class="p">()</span>
+<span class="n">cells</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[25.36077192 21.99284607 24.66147459 24.13522414 25.19699394 27.1105588
- 27.21711827 23.99201324 24.62837502 24.00316964 23.97265165 23.69150348
- 23.87474102 24.24951924 22.70964348 27.44811164 23.14164549 23.69577962
- 24.63399963 25.52432004 24.44467109 24.68202734 20.99456432 25.01167432
- 25.31265913 25.98709214 17.59602636 28.80564209 24.74442957 23.09989612
- 24.0190898  22.8590973  22.8516007  25.67153251 25.13355891 26.42321083
- 27.99791641 20.84282366 21.66138292 23.38381399 20.58994995 26.24360199
- 25.36720024 25.46465655 21.03491453 24.78498624 27.36868498 27.48801593
- 25.57688679 25.54842762 26.74737965 22.51636024 25.75046789 20.93175349
- 25.83472988 23.41791145 22.6338715  22.12807181 29.58382288 21.54881035
- 24.60023214 25.09047661 24.75968111 24.64405223 25.7446681  25.201116
- 23.38080789 22.85446879 20.55882516 24.80651406 25.26496377 25.95638214
- 24.69654821 26.11271043 24.57061342 26.21995055 23.57329152 22.38873739
- 23.79337091 25.38534656 24.89694605 22.29055239 23.23316104 26.95960368
- 23.48341966 25.05951226 22.38369459 24.06997003 27.97668846 25.86545142
- 26.85137435 25.39114133 23.21363012 24.38962764 22.08019012 26.99443634
- 24.40998955 26.6712733  25.06958356 27.04129782]
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="descriptive-statistics">
-<h1>Descriptive statistics<a class="headerlink" href="#descriptive-statistics" title="Permalink to this headline">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">do_descriptive_statistics</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="n">mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">standard_deviation_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">mean_x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; +- &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">standard_deviation_x</span><span class="p">))</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(60, 2, 256, 256)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">do_descriptive_statistics</span><span class="p">(</span><span class="n">ripe_time</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">cells</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean: 24.512579751104184 +- 1.9787623359862967
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x11599423940&gt;
+</pre></div>
+</div>
+<img alt="../_images/resave_skimage_example_data_3_1.png" src="../_images/resave_skimage_example_data_3_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">membranes</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">membranes</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(60, 256, 256)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ripe_time</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Ripe time of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ripe_time</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; tomatoes&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Ripe time / days&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imsave</span><span class="p">(</span><span class="s2">&quot;../../data/cells3d_membranes.tif&quot;</span><span class="p">,</span> <span class="n">membranes</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/Testing tomato ripen time_5_0.png" src="../_images/Testing tomato ripen time_5_0.png" />
 </div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="hypothesis-testing">
-<h1>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">#</a></h1>
-<ul class="simple">
-<li><p>null-hypothesis: Tomatoes become ripe after 25 days</p></li>
-<li><p>alternate hypothesis: Ripe time of our tomatoes is different from 25 days</p></li>
-</ul>
-<section id="parametric-test-one-sample-t-test">
-<h2>Parametric test: One sample t-test<a class="headerlink" href="#parametric-test-one-sample-t-test" title="Permalink to this headline">#</a></h2>
-<p>Parameter: Presumptive mean of the population: 25</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-
-<span class="n">presumptive_ripe_time</span> <span class="o">=</span> <span class="mi">25</span>
-
-<span class="n">statistics</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">ripe_time</span><span class="p">,</span> <span class="n">presumptive_ripe_time</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p-value: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p_value</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nuclei</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">nuclei</span><span class="p">[</span><span class="mi">30</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">40</span><span class="n">d3242832e0</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">presumptive_ripe_time</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">statistics</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">ripe_time</span><span class="p">,</span> <span class="n">presumptive_ripe_time</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> 
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p-value: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p_value</span><span class="p">))</span>
-
-<span class="ne">NameError</span>: name &#39;ripe_time&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1159953b400&gt;
+</pre></div>
+</div>
+<img alt="../_images/resave_skimage_example_data_6_1.png" src="../_images/resave_skimage_example_data_6_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imsave</span><span class="p">(</span><span class="s2">&quot;../../data/cells3d_nuclei.tif&quot;</span><span class="p">,</span> <span class="n">nuclei</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1446,7 +1363,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./44_hypothesis_testing"
+            path: "./98_snippets"
         },
         predefinedOutput: true
     }
@@ -1460,6 +1377,20 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="load_image_and_measure_shape_of_nuclei_in_3d.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Load an image and measure shape of objects in 3D</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../01_introduction/glossary.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Glossary</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>

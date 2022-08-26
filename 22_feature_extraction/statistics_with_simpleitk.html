@@ -1025,6 +1025,33 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../98_snippets/readme.html">
+   Snippets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../98_snippets/load_an_show_an_image.html">
+     Load and show an image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../98_snippets/load_image_and_measure_shape_of_nuclei_in_3d.html">
+     Load an image and measure shape of objects in 3D
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../98_snippets/resave_skimage_example_data.html">
+     Resave scikit-image example data
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/glossary.html">
    Glossary
@@ -1251,6 +1278,22 @@ title="Print to PDF"
    Label statistics
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#specific-measures">
+   Specific measures
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perimeter-on-border-ratio">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       perimeter_on_border_ratio
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -1280,6 +1323,22 @@ title="Print to PDF"
    Label statistics
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#specific-measures">
+   Specific measures
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perimeter-on-border-ratio">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       perimeter_on_border_ratio
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
                         </nav>
@@ -1298,7 +1357,7 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
+<span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
 <span class="kn">from</span> <span class="nn">napari_simpleitk_image_processing</span> <span class="kn">import</span> <span class="n">watershed_otsu_labeling</span>
 <span class="kn">from</span> <span class="nn">napari_simpleitk_image_processing</span> <span class="kn">import</span> <span class="n">label_statistics</span>
 </pre></div>
@@ -1308,7 +1367,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blobs</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs.tif&#39;</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1321,7 +1380,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">watershed_otsu_labeling</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1334,7 +1393,13 @@ title="Print to PDF"
 <h2>Label statistics<a class="headerlink" href="#label-statistics" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span> <span class="o">=</span> <span class="n">label_statistics</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span> <span class="o">=</span> <span class="n">label_statistics</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> 
+                              <span class="n">intensity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                              <span class="n">size</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                              <span class="n">shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                              <span class="n">perimeter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                              <span class="n">position</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">moments</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">statistics</span><span class="p">)</span>
 <span class="n">df</span>
@@ -2837,7 +2902,16 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;label&#39;, &#39;maximum&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;minimum&#39;, &#39;sigma&#39;, &#39;sum&#39;, &#39;variance&#39;, &#39;bbox_0&#39;, &#39;bbox_1&#39;, &#39;bbox_2&#39;, &#39;bbox_3&#39;, &#39;centroid_0&#39;, &#39;centroid_1&#39;, &#39;elongation&#39;, &#39;feret_diameter&#39;, &#39;flatness&#39;, &#39;roundness&#39;, &#39;equivalent_ellipsoid_diameter_0&#39;, &#39;equivalent_ellipsoid_diameter_1&#39;, &#39;equivalent_spherical_perimeter&#39;, &#39;equivalent_spherical_radius&#39;, &#39;number_of_pixels&#39;, &#39;number_of_pixels_on_border&#39;, &#39;perimeter&#39;, &#39;perimeter_on_border&#39;, &#39;perimeter_on_border_ratio&#39;, &#39;principal_axes0&#39;, &#39;principal_axes1&#39;, &#39;principal_axes2&#39;, &#39;principal_axes3&#39;, &#39;principal_moments0&#39;, &#39;principal_moments1&#39;])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;label&#39;, &#39;maximum&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;minimum&#39;, &#39;sigma&#39;, &#39;sum&#39;,
+       &#39;variance&#39;, &#39;bbox_0&#39;, &#39;bbox_1&#39;, &#39;bbox_2&#39;, &#39;bbox_3&#39;, &#39;centroid_0&#39;,
+       &#39;centroid_1&#39;, &#39;elongation&#39;, &#39;feret_diameter&#39;, &#39;flatness&#39;, &#39;roundness&#39;,
+       &#39;equivalent_ellipsoid_diameter_0&#39;, &#39;equivalent_ellipsoid_diameter_1&#39;,
+       &#39;equivalent_spherical_perimeter&#39;, &#39;equivalent_spherical_radius&#39;,
+       &#39;number_of_pixels&#39;, &#39;number_of_pixels_on_border&#39;, &#39;perimeter&#39;,
+       &#39;perimeter_on_border&#39;, &#39;perimeter_on_border_ratio&#39;, &#39;principal_axes0&#39;,
+       &#39;principal_axes1&#39;, &#39;principal_axes2&#39;, &#39;principal_axes3&#39;,
+       &#39;principal_moments0&#39;, &#39;principal_moments1&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -3088,6 +3162,57 @@ title="Print to PDF"
 <p>8 rows × 33 columns</p>
 </div></div></div>
 </div>
+</section>
+<section id="specific-measures">
+<h2>Specific measures<a class="headerlink" href="#specific-measures" title="Permalink to this headline">#</a></h2>
+<p>SimpleITK offers some non-standard measurements which deserve additional documentation</p>
+<section id="perimeter-on-border-ratio">
+<h3><code class="docutils literal notranslate"><span class="pre">perimeter_on_border_ratio</span></code><a class="headerlink" href="#perimeter-on-border-ratio" title="Permalink to this headline">#</a></h3>
+<p>In this context, the <span class="xref myst">SimpleITK documentation</span> points to a <a class="reference external" href="https://www.insight-journal.org/browse/publication/176">publication</a> which mentiones “‘SizeOnBorder’ is the number of pixels in the objects which are on the border of the image.” While the documentation is wage, the <code class="docutils literal notranslate"><span class="pre">perimeter_on_border_ratio</span></code> may be related.</p>
+<p>First, we check its range on the above example image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">perimeter_on_border_ratio</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perimeter_on_border_ratio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">perimeter_on_border_ratio</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">perimeter_on_border_ratio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 0.4951280471249033)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we visualize the measurement in space.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">perimeter_on_border_ratio_map</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensities</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">perimeter_on_border_ratio</span><span class="p">)</span>
+<span class="n">perimeter_on_border_ratio_map</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src="data:image/png;base64,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"></img>
+</td>
+<td style="text-align: center; vertical-align: top;">
+<b><a href="https://github.com/clEsperanto/pyclesperanto_prototype" target="_blank">cle._</a> image</b><br/>
+<table>
+<tr><td>shape</td><td>(254,&nbsp;256)</td></tr>
+<tr><td>dtype</td><td>float32</td></tr>
+<tr><td>size</td><td>254.0 kB</td></tr>
+<tr><td>min</td><td>0.0</td></tr><tr><td>max</td><td>0.49512804</td></tr>
+</table>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIEAAABWCAYAAADom/XHAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAAsTAAALEwEAmpwYAAABG0lEQVR4nO3dwW3CQBBA0b9RSoBztkwaowsognPSw9ICkU1IlPfOo9EcvmzfPNZa8b+9vfoAXk8EiAARkAhIBCQCEgGJgOp964LD4bDmnDucwl6u1+vXWuv46PzmCOacXS6XrWvY0Rjj9p15rwOeE8E8nZun8zNW8wSeBIgAEZAISAQkAhIBiYBEQCIgEZAISAQkAhIBiYBEQCIgEZAISAQkAhIBiYBEQCIgEZAISAQkAhIBiYBEQCIgEZAISAQkAhIBiYBEQCIgEZAISAQkAhIBiYBEQCIgEZAISAQkAhIBiYBEQCIgEZAI6Aci8PPs32+stbYtGOOzuu1zDjv5WGsdHx3eHAF/n28CRIAISAQkAhIBiYBEQCKgugP9JR+BQlNLMgAAAABJRU5ErkJggg=="></img>
+</td>
+</tr>
+</table></div></div>
+</div>
+<p>The visualization substantiates our presumption that the <code class="docutils literal notranslate"><span class="pre">perimeter_on_border_ratio</span></code> indeed is related to the amount the object touches the image border.</p>
+</section>
 </section>
 </section>
 

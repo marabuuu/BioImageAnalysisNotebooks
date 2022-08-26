@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Setting up a dataset &#8212; Bio-image Analysis Notebooks</title>
+    <title>Plotting the p-value depending on a given normal distribution &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -1023,6 +1023,33 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../98_snippets/readme.html">
+   Snippets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../98_snippets/load_an_show_an_image.html">
+     Load and show an image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../98_snippets/load_image_and_measure_shape_of_nuclei_in_3d.html">
+     Load an image and measure shape of objects in 3D
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../98_snippets/resave_skimage_example_data.html">
+     Resave scikit-image example data
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/glossary.html">
    Glossary
@@ -1092,7 +1119,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/44_hypothesis_testing/Testing curation time.ipynb"
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/44_hypothesis_testing/The_p-value.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1152,7 +1179,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F44_hypothesis_testing/Testing curation time.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F44_hypothesis_testing/The_p-value.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1180,7 +1207,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/44_hypothesis_testing/Testing curation time.ipynb"
+        <a href="../_sources/44_hypothesis_testing/The_p-value.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1217,94 +1244,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Setting up a dataset
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#descriptive-statistics">
-   Descriptive statistics
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hypothesis-testing">
-   Hypothesis testing
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-sample-t-test-of-independent-samples">
-     Two-sample T-test of independent samples
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Setting up a dataset</h1>
+                <h1>Plotting the p-value depending on a given normal distribution</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Setting up a dataset
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#descriptive-statistics">
-   Descriptive statistics
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hypothesis-testing">
-   Hypothesis testing
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-sample-t-test-of-independent-samples">
-     Two-sample T-test of independent samples
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -1312,165 +1268,110 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="setting-up-a-dataset">
-<h1>Setting up a dataset<a class="headerlink" href="#setting-up-a-dataset" title="Permalink to this headline">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">patients</span>
-
-<span class="n">number_of_patients</span> <span class="o">=</span> <span class="mi">100</span>
-
-<span class="n">curation_time_treatment</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">treatment_group</span><span class="p">(</span><span class="n">number_of_patients</span><span class="p">)</span>
-<span class="n">curation_time_placebo</span> <span class="o">=</span> <span class="n">patients</span><span class="o">.</span><span class="n">placebo_group</span><span class="p">(</span><span class="n">number_of_patients</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">curation_time_treatment</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">curation_time_placebo</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 7.27011443  9.85465087  6.95141023  9.24500459  8.90495633  5.79813565
-  9.9992094   4.28286738  5.0511571   6.01641775  7.83666669  8.28679017
-  8.34411823  8.40852419  6.08060269  7.51628825  5.25725523  8.04858072
-  8.15182518  8.12191271  6.55381928  3.33632874  6.31461858  4.6032308
-  4.94019806 13.35032912  6.03333339  1.85193828  8.1009366   4.87296902
-  6.66458631  5.30685262  6.8634381   6.76577551  6.91485281  8.45594048
- 10.96326062  8.2848168   5.35423583  6.08847733  5.79986437 11.02288371
-  6.2350441   5.7274503   7.28870892  4.80090545  8.14478415 10.16106687
-  8.38779289  8.5303685   5.60679502  6.46821253  9.13004099 10.87366831
-  8.78542611 10.33541741  3.51638379  6.02953238  5.65259087  4.61802449
-  7.2299876   4.78301236  5.37869989  7.48787149  6.38289068  7.19154068
-  9.27137051  5.54527698 10.65534957  5.08766764  7.02866932  9.05415527
-  7.6600142   9.267061    8.19955612  6.33452432  9.4027188   9.7310974
-  6.48210483  6.26928475  5.27401951  6.74515644  0.68122265  8.18065681
-  9.15268339  7.74697703 10.28201112  7.71229436  7.63087416  7.09212867
-  4.14195812  3.42643788  2.43797867  6.96902512  5.80804667  4.03700635
-  4.8747575   4.7259411   5.56147663  7.57001294]
-[ 5.13524566  8.1089771   7.57939463  6.47165697  5.19815039  8.55567731
-  1.83529688  9.70428483  8.13301694  9.97211549  7.73281157  8.07545269
-  6.40288602  9.04946821  8.48383013 10.20897295  6.94660508 11.64089259
-  8.44294434 10.59686178  8.12008165 10.34050033  6.58178866  6.34215898
-  8.12158417  5.21995735  3.42094155  6.25153858  6.80850307  6.38487336
-  7.77958492  8.04584323  5.16018103  5.32055156  3.2750884   4.74092265
-  8.47644018  8.38169422  6.54200936  4.66342594  7.3811708   5.96611443
-  2.5391737   5.80949073  8.43909846  8.35925088  7.73026043  8.92385488
-  4.42756307  5.43570972  4.37772115  7.20869488  8.61585258  6.95059967
-  5.36276821  8.55683181  5.63832339  8.98418562  9.40877157  7.10719578
-  6.81846318  6.30936051  1.59327067  6.51518219  6.64126646  6.94963272
-  6.16910104  8.44546918  7.27876465  6.3617845   5.65081483  4.77328228
-  5.8978814  12.09305192  9.00288095  7.58249317  7.93682524  7.95180752
-  6.61845776  5.44036616  8.23451973  8.40993964  7.10424768  5.81649113
-  9.93482548  4.05564067 11.28050143  8.55349791  7.61527436  7.59975485
-  8.71477125  5.0134487   9.63238054  3.53756252  6.05610185  6.78353894
-  8.28886174  8.29957261  5.26320487  8.89943049]
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="descriptive-statistics">
-<h1>Descriptive statistics<a class="headerlink" href="#descriptive-statistics" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="plotting-the-p-value-depending-on-a-given-normal-distribution">
+<h1>Plotting the p-value depending on a given normal distribution<a class="headerlink" href="#plotting-the-p-value-depending-on-a-given-normal-distribution" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">do_descriptive_statistics</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="n">mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">standard_deviation_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">mean_x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; +- &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">standard_deviation_x</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Treatment group&quot;</span><span class="p">)</span>
-<span class="n">do_descriptive_statistics</span><span class="p">(</span><span class="n">curation_time_treatment</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Placebo group&quot;</span><span class="p">)</span>
-<span class="n">do_descriptive_statistics</span><span class="p">(</span><span class="n">curation_time_placebo</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Treatment group
-Mean: 6.966549057422408 +- 2.138934068447365
-Placebo group
-Mean: 7.10598565233434 +- 1.998905769266872
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_random_distribution</span><span class="p">(</span><span class="n">given_mean</span><span class="p">,</span> <span class="n">given_standard_deviation</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">given_standard_deviation</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">number_of_samples</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">curation_time_treatment</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Curation time of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">curation_time_treatment</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; patients treated&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Curation time / days&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">curation_time_placebo</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Curation time of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">curation_time_placebo</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; patients receiving a placebo&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Curation time / days&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/Testing curation time_5_0.png" src="../_images/Testing curation time_5_0.png" />
-<img alt="../_images/Testing curation time_5_1.png" src="../_images/Testing curation time_5_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">my_statistics_functions</span> <span class="kn">import</span> <span class="n">draw_curation_time_histogram</span>
-
-<span class="n">draw_curation_time_histogram</span><span class="p">(</span><span class="n">curation_time_treatment</span><span class="p">,</span> 
-                             <span class="s2">&quot;patients receiving a treatment&quot;</span><span class="p">)</span>
-<span class="n">draw_curation_time_histogram</span><span class="p">(</span><span class="n">curation_time_placebo</span><span class="p">,</span> 
-                             <span class="s2">&quot;patients receiving a placebo&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/Testing curation time_6_0.png" src="../_images/Testing curation time_6_0.png" />
-<img alt="../_images/Testing curation time_6_1.png" src="../_images/Testing curation time_6_1.png" />
-</div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="hypothesis-testing">
-<h1>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">#</a></h1>
-<ul class="simple">
-<li><p>null-hypothesis: Patients receiving the treatment feel better earlier</p></li>
-<li><p>alternate hypothesis: Patients receiving the placebo need longer to feel better</p></li>
-</ul>
-<section id="two-sample-t-test-of-independent-samples">
-<h2>Two-sample T-test of independent samples<a class="headerlink" href="#two-sample-t-test-of-independent-samples" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="k">def</span> <span class="nf">test_if_mean_is</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="n">statistics</span><span class="p">,</span> <span class="n">pvalue</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">statistics</span><span class="p">,</span> <span class="n">pvalue</span><span class="p">]</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_random_distribution_and_plot_pvalue</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">):</span>
+    <span class="n">given_mean</span> <span class="o">=</span> <span class="mi">7</span>
+    <span class="n">given_standard_deviation</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">make_random_distribution</span><span class="p">(</span><span class="n">given_mean</span><span class="p">,</span> <span class="n">given_standard_deviation</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">)</span>
+    <span class="nb">range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">p_values</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">t_stats_arr</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">:</span>
+        <span class="n">t_stats</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">test_if_mean_is</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">p_values</span> <span class="o">=</span> <span class="n">p_values</span> <span class="o">+</span> <span class="p">[</span><span class="n">p_value</span><span class="p">]</span>
+        <span class="n">t_stats_arr</span> <span class="o">=</span> <span class="n">t_stats_arr</span> <span class="o">+</span> <span class="p">[</span><span class="n">t_stats</span><span class="p">]</span>
 
-<span class="n">presumptive_ripe_time</span> <span class="o">=</span> <span class="mi">25</span>
 
-<span class="n">statistics</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">curation_time_treatment</span><span class="p">,</span> <span class="n">curation_time_placebo</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Normal distribution of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; samples&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Sample value&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p-value: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p_value</span><span class="p">))</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">,</span> <span class="n">p_values</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;p-value with respect to normal distibution of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; samples&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;p-values&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Suspected mean&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">,</span> <span class="n">t_stats_arr</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;t-stats&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Suspected mean&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">number_of_samples</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">]:</span>
+    <span class="n">make_random_distribution_and_plot_pvalue</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p-value: 0.6360930181448069
-</pre></div>
+<img alt="../_images/The_p-value_5_0.png" src="../_images/The_p-value_5_0.png" />
+<img alt="../_images/The_p-value_5_1.png" src="../_images/The_p-value_5_1.png" />
+<img alt="../_images/The_p-value_5_2.png" src="../_images/The_p-value_5_2.png" />
+<img alt="../_images/The_p-value_5_3.png" src="../_images/The_p-value_5_3.png" />
+<img alt="../_images/The_p-value_5_4.png" src="../_images/The_p-value_5_4.png" />
+<img alt="../_images/The_p-value_5_5.png" src="../_images/The_p-value_5_5.png" />
+<img alt="../_images/The_p-value_5_6.png" src="../_images/The_p-value_5_6.png" />
+<img alt="../_images/The_p-value_5_7.png" src="../_images/The_p-value_5_7.png" />
+<img alt="../_images/The_p-value_5_8.png" src="../_images/The_p-value_5_8.png" />
+<img alt="../_images/The_p-value_5_9.png" src="../_images/The_p-value_5_9.png" />
+<img alt="../_images/The_p-value_5_10.png" src="../_images/The_p-value_5_10.png" />
+<img alt="../_images/The_p-value_5_11.png" src="../_images/The_p-value_5_11.png" />
+<img alt="../_images/The_p-value_5_12.png" src="../_images/The_p-value_5_12.png" />
+<img alt="../_images/The_p-value_5_13.png" src="../_images/The_p-value_5_13.png" />
+<img alt="../_images/The_p-value_5_14.png" src="../_images/The_p-value_5_14.png" />
+<img alt="../_images/The_p-value_5_15.png" src="../_images/The_p-value_5_15.png" />
+<img alt="../_images/The_p-value_5_16.png" src="../_images/The_p-value_5_16.png" />
+<img alt="../_images/The_p-value_5_17.png" src="../_images/The_p-value_5_17.png" />
+<img alt="../_images/The_p-value_5_18.png" src="../_images/The_p-value_5_18.png" />
+<img alt="../_images/The_p-value_5_19.png" src="../_images/The_p-value_5_19.png" />
+<img alt="../_images/The_p-value_5_20.png" src="../_images/The_p-value_5_20.png" />
+<img alt="../_images/The_p-value_5_21.png" src="../_images/The_p-value_5_21.png" />
+<img alt="../_images/The_p-value_5_22.png" src="../_images/The_p-value_5_22.png" />
+<img alt="../_images/The_p-value_5_23.png" src="../_images/The_p-value_5_23.png" />
 </div>
 </div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
