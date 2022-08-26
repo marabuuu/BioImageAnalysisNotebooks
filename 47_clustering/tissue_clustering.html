@@ -741,7 +741,7 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="readme.html">
+  <a class="reference internal" href="../27_cell_classification/readme.html">
    Cell classification
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
@@ -751,22 +751,22 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="apoc_object_classifier.html">
+    <a class="reference internal" href="../27_cell_classification/apoc_object_classifier.html">
      Object classification on OpenCL-compatible GPUs
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="forest_statistics.html">
+    <a class="reference internal" href="../27_cell_classification/forest_statistics.html">
      Random forest decision making statistics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="sklearn_object_classification.html">
+    <a class="reference internal" href="../27_cell_classification/sklearn_object_classification.html">
      Object classification with scikit-learn
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="apoc_simpleitk_object_classification.html">
+    <a class="reference internal" href="../27_cell_classification/apoc_simpleitk_object_classification.html">
      Object classification with APOC and SimpleITK-based features
     </a>
    </li>
@@ -970,11 +970,33 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../51_plotting/readme.html">
-   Plotting
+  <a class="reference internal" href="readme.html">
+   Clustering
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
   <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="trailer.html">
+     Clustering - a quick walkthrough
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="umap.html">
+     Clustering with UMAPs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../51_plotting/readme.html">
+   Plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1000,8 +1022,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../60_data_visualization/readme.html">
    Data visualization
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-  <label for="toctree-checkbox-23">
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1027,8 +1049,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../98_snippets/readme.html">
    Snippets
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-  <label for="toctree-checkbox-24">
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1119,7 +1141,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/27_cell_classification/clustering.ipynb"
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/47_clustering/tissue_clustering.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1179,7 +1201,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F27_cell_classification/clustering.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F47_clustering/tissue_clustering.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1207,7 +1229,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/27_cell_classification/clustering.ipynb"
+        <a href="../_sources/47_clustering/tissue_clustering.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1437,7 +1459,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_4_0.png" src="../_images/clustering_4_0.png" />
+<img alt="../_images/tissue_clustering_4_0.png" src="../_images/tissue_clustering_4_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1449,7 +1471,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_5_0.png" src="../_images/clustering_5_0.png" />
+<img alt="../_images/tissue_clustering_5_0.png" src="../_images/tissue_clustering_5_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1461,7 +1483,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_6_0.png" src="../_images/clustering_6_0.png" />
+<img alt="../_images/tissue_clustering_6_0.png" src="../_images/tissue_clustering_6_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1486,7 +1508,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_8_0.png" src="../_images/clustering_8_0.png" />
+<img alt="../_images/tissue_clustering_8_0.png" src="../_images/tissue_clustering_8_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1683,7 +1705,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_13_0.png" src="../_images/clustering_13_0.png" />
+<img alt="../_images/tissue_clustering_13_0.png" src="../_images/tissue_clustering_13_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1694,7 +1716,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_14_0.png" src="../_images/clustering_14_0.png" />
+<img alt="../_images/tissue_clustering_14_0.png" src="../_images/tissue_clustering_14_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1705,7 +1727,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_15_0.png" src="../_images/clustering_15_0.png" />
+<img alt="../_images/tissue_clustering_15_0.png" src="../_images/tissue_clustering_15_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1716,7 +1738,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_16_0.png" src="../_images/clustering_16_0.png" />
+<img alt="../_images/tissue_clustering_16_0.png" src="../_images/tissue_clustering_16_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1728,7 +1750,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_17_0.png" src="../_images/clustering_17_0.png" />
+<img alt="../_images/tissue_clustering_17_0.png" src="../_images/tissue_clustering_17_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1770,7 +1792,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7fd5226b87f0&gt;
 </pre></div>
 </div>
-<img alt="../_images/clustering_20_1.png" src="../_images/clustering_20_1.png" />
+<img alt="../_images/tissue_clustering_20_1.png" src="../_images/tissue_clustering_20_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1786,7 +1808,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_21_0.png" src="../_images/clustering_21_0.png" />
+<img alt="../_images/tissue_clustering_21_0.png" src="../_images/tissue_clustering_21_0.png" />
 </div>
 </div>
 </section>
@@ -1805,7 +1827,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_23_0.png" src="../_images/clustering_23_0.png" />
+<img alt="../_images/tissue_clustering_23_0.png" src="../_images/tissue_clustering_23_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1854,7 +1876,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_27_0.png" src="../_images/clustering_27_0.png" />
+<img alt="../_images/tissue_clustering_27_0.png" src="../_images/tissue_clustering_27_0.png" />
 </div>
 </div>
 </section>
@@ -1894,7 +1916,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_31_0.png" src="../_images/clustering_31_0.png" />
+<img alt="../_images/tissue_clustering_31_0.png" src="../_images/tissue_clustering_31_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1906,7 +1928,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_32_0.png" src="../_images/clustering_32_0.png" />
+<img alt="../_images/tissue_clustering_32_0.png" src="../_images/tissue_clustering_32_0.png" />
 </div>
 </div>
 </section>
@@ -1935,7 +1957,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_35_0.png" src="../_images/clustering_35_0.png" />
+<img alt="../_images/tissue_clustering_35_0.png" src="../_images/tissue_clustering_35_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1947,7 +1969,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_36_0.png" src="../_images/clustering_36_0.png" />
+<img alt="../_images/tissue_clustering_36_0.png" src="../_images/tissue_clustering_36_0.png" />
 </div>
 </div>
 </section>
@@ -2010,7 +2032,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/clustering_42_0.png" src="../_images/clustering_42_0.png" />
+<img alt="../_images/tissue_clustering_42_0.png" src="../_images/tissue_clustering_42_0.png" />
 </div>
 </div>
 </section>
@@ -2032,7 +2054,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./27_cell_classification"
+            path: "./47_clustering"
         },
         predefinedOutput: true
     }
