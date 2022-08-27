@@ -773,11 +773,33 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../28_colocalization/readme.html">
-   Colocalization
+  <a class="reference internal" href="readme.html">
+   Clustering
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
   <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="trailer.html">
+     Clustering - a quick walkthrough
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="umap.html">
+     Clustering with UMAPs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../28_colocalization/readme.html">
+   Colocalization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -798,8 +820,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../31_graphical_user_interfaces/readme.html">
    Graphical user interfaces
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -835,8 +857,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../32_tiled_image_processing/readme.html">
    Tiled image processing
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
+  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <label for="toctree-checkbox-19">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -887,8 +909,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../33_batch_processing/readme.html">
    Batch processing
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -909,8 +931,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
    Tabular data wrangling
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
+  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+  <label for="toctree-checkbox-21">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -946,8 +968,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../41_descriptive_statistics/readme.html">
    Descriptive statistics
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
-  <label for="toctree-checkbox-21">
+  <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+  <label for="toctree-checkbox-22">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -965,28 +987,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../41_descriptive_statistics/Bland_altman_analysis.html">
      Method comparison
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="readme.html">
-   Clustering
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
-  <label for="toctree-checkbox-22">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="trailer.html">
-     Clustering - a quick walkthrough
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="umap.html">
-     Clustering with UMAPs
     </a>
    </li>
   </ul>
@@ -1266,12 +1266,41 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   densMAP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-to-umap">
+   Comparison to UMAP
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -1283,6 +1312,24 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   densMAP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-to-umap">
+   Comparison to UMAP
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -1293,6 +1340,122 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="densmap">
 <h1>densMAP<a class="headerlink" href="#densmap" title="Permalink to this headline">#</a></h1>
 <p>The densMAP is a dimensionality reduction technique adapted from the UMAP explained in the section before. The densMAP has the advantage that it to some degree preserves the density of the data points while creating the manifold.</p>
+<p>See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://umap-learn.readthedocs.io/en/latest/densmap_demo.html">Better Preserving Local Density with DensMAP (UMAP documentation)</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">human_mitosis</span>
+<span class="kn">from</span> <span class="nn">napari_segment_blobs_and_things_with_membranes</span> <span class="kn">import</span> <span class="n">voronoi_otsu_labeling</span>
+<span class="kn">from</span> <span class="nn">napari_simpleitk_image_processing</span> <span class="kn">import</span> <span class="n">label_statistics</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">umap</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As example dataset we use the same Tribolium dataset as in the trailer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/Lund-25MB.tif&quot;</span><span class="p">)</span>
+
+<span class="c1"># Segment nuclei</span>
+<span class="n">background_subtracted</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">top_hat_box</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">background_subtracted</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Feature extraction</span>
+<span class="n">nuclei_statistics</span> <span class="o">=</span> <span class="n">label_statistics</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> 
+                                     <span class="n">intensity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                     <span class="n">size</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                     <span class="n">shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                     <span class="n">perimeter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                     <span class="n">moments</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Feature selection</span>
+<span class="n">selected_table</span> <span class="o">=</span> <span class="n">nuclei_statistics</span><span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;variance&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;elongation&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+<span class="n">selected_statistics</span> <span class="o">=</span> <span class="n">selected_table</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Standard scaling</span>
+<span class="n">scaled_statistics</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">selected_statistics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>densMAP<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reducer_u</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">densmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">embedding_u</span> <span class="o">=</span> <span class="n">reducer_u</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">scaled_statistics</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">embedding_u</span><span class="p">),</span> <span class="n">embedding_u</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(numpy.ndarray, (1200, 2))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seaborn</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">embedding_u</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> 
+                    <span class="n">y</span><span class="o">=</span><span class="n">embedding_u</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/dens_map_6_1.png" src="../_images/dens_map_6_1.png" />
+</div>
+</div>
+</section>
+<section id="comparison-to-umap">
+<h2>Comparison to UMAP<a class="headerlink" href="#comparison-to-umap" title="Permalink to this headline">#</a></h2>
+<p>Comparing the densMAP to the UMAP in this particular case, the points appear indeed denser. However, also outliers reside in the densMAP, which are not apparent in the corresponding UMAP</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reducer_d</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">embedding_d</span> <span class="o">=</span> <span class="n">reducer_d</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">scaled_statistics</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">embedding_d</span><span class="p">),</span> <span class="n">embedding_d</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(numpy.ndarray, (1200, 2))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seaborn</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">embedding_d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> 
+                    <span class="n">y</span><span class="o">=</span><span class="n">embedding_d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/dens_map_9_1.png" src="../_images/dens_map_9_1.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

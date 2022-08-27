@@ -774,12 +774,34 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="readme.html">
+   Clustering
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Clustering - a quick walkthrough
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="umap.html">
+     Clustering with UMAPs
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../28_colocalization/readme.html">
    Colocalization
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-  <label for="toctree-checkbox-16">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -800,8 +822,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../31_graphical_user_interfaces/readme.html">
    Graphical user interfaces
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -837,8 +859,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../32_tiled_image_processing/readme.html">
    Tiled image processing
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
+  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <label for="toctree-checkbox-19">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -889,8 +911,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../33_batch_processing/readme.html">
    Batch processing
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -911,8 +933,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
    Tabular data wrangling
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
+  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+  <label for="toctree-checkbox-21">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -948,8 +970,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../41_descriptive_statistics/readme.html">
    Descriptive statistics
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
-  <label for="toctree-checkbox-21">
+  <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+  <label for="toctree-checkbox-22">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -967,28 +989,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../41_descriptive_statistics/Bland_altman_analysis.html">
      Method comparison
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="readme.html">
-   Clustering
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
-  <label for="toctree-checkbox-22">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Clustering - a quick walkthrough
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="umap.html">
-     Clustering with UMAPs
     </a>
    </li>
   </ul>
@@ -1408,7 +1408,7 @@ title="Print to PDF"
 <p>First we start by loading a 3D dataset showing a Tribolium castaneum embryo undergoing gastrulation (curtesy: Daniela Vorkel, Myers lab, MPI-CBG / CSBD Dresden). The dataset shows dense nuclei marked with nuclei-GFP on the left forming the embryo and less dense nuclei, called serosa, on the right surrounding the embryo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;c:/structure/data/Lund-20MB.tif&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/Lund-25MB.tif&quot;</span><span class="p">)</span>
 <span class="n">image</span>
 </pre></div>
 </div>
@@ -1682,7 +1682,7 @@ title="Print to PDF"
 </section>
 <section id="standard-scaling">
 <h2>Standard scaling<a class="headerlink" href="#standard-scaling" title="Permalink to this headline">#</a></h2>
-<p>The selected features need to be scaled so that all values range from -1 to 1. This is necessary for the following algorithms as they could misinterpret a perimeter of 5 microns less than a perimeter of 50 pixels, even if both might be exactly the same length physically.</p>
+<p>The selected features need to be scaled so that all values range from -1 to 1. This is necessary for the following algorithms as they could misinterpret a perimeter of 5 microns less than a perimeter of 50 pixels, even if both might be exactly the same length physically (<span class="xref myst">Read more</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaled_statistics</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">selected_statistics</span><span class="p">)</span>
