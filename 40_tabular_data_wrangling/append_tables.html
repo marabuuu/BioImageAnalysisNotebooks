@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Append tables &#8212; Bio-image Analysis Notebooks</title>
+    <title>Appending tables &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,6 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Selecting columns" href="select_rows_and_columns.html" />
+    <link rel="prev" title="Exploring tabular data" href="explore_dataset.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -111,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -959,16 +961,16 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="readme.html">
    Tabular data wrangling
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
   <label for="toctree-checkbox-22">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="introduction_dataframes.html">
      Introduction to working with DataFrames
@@ -977,6 +979,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="explore_dataset.html">
      Exploring tabular data
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Appending tables
     </a>
    </li>
    <li class="toctree-l2">
@@ -1271,23 +1278,60 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-columns-of-tables">
+   Combining columns of tables
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Append tables</h1>
+                <h1>Appending tables</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-columns-of-tables">
+   Combining columns of tables
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -1295,8 +1339,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="append-tables">
-<h1>Append tables<a class="headerlink" href="#append-tables" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="appending-tables">
+<h1>Appending tables<a class="headerlink" href="#appending-tables" title="Permalink to this headline">#</a></h1>
+<p>When processing multiple images, potentially using multiple image processing libraries, a common task is to combine tables.</p>
+<p>We start with two small tables of measurements.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1306,29 +1352,11 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;A&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
-    <span class="s2">&quot;B&quot;</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
-    <span class="s2">&quot;C&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;C&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
-    <span class="s2">&quot;B&quot;</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
-    <span class="s2">&quot;D&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dict1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span>       <span class="p">[</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">2</span><span class="p">,</span>   <span class="mi">3</span><span class="p">],</span>
+    <span class="s2">&quot;circularity&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span>
+    <span class="s2">&quot;elongation&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
+    <span class="p">})</span>
 <span class="n">table1</span>
 </pre></div>
 </div>
@@ -1352,23 +1380,29 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
+      <th>label</th>
+      <th>circularity</th>
+      <th>elongation</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>3</td>
-      <td>5</td>
+      <td>0.3</td>
+      <td>2.3</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>4</td>
-      <td>6</td>
+      <td>0.5</td>
+      <td>3.4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>0.7</td>
+      <td>1.2</td>
     </tr>
   </tbody>
 </table>
@@ -1376,7 +1410,11 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dict2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span>    <span class="p">[</span><span class="mi">3</span><span class="p">,</span>   <span class="mi">2</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>   <span class="mi">4</span><span class="p">],</span>
+    <span class="s2">&quot;area&quot;</span><span class="p">:</span>     <span class="p">[</span><span class="mi">22</span><span class="p">,</span>  <span class="mi">32</span><span class="p">,</span>  <span class="mi">25</span><span class="p">,</span>  <span class="mi">18</span><span class="p">],</span>
+    <span class="s2">&quot;skewness&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+    <span class="p">})</span>
 <span class="n">table2</span>
 </pre></div>
 </div>
@@ -1400,32 +1438,48 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>C</th>
-      <th>B</th>
-      <th>D</th>
+      <th>label</th>
+      <th>area</th>
+      <th>skewness</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
       <td>3</td>
-      <td>5</td>
+      <td>22</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
+      <td>32</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>25</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>3</th>
       <td>4</td>
-      <td>6</td>
+      <td>18</td>
+      <td>0.3</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+<section id="combining-columns-of-tables">
+<h2>Combining columns of tables<a class="headerlink" href="#combining-columns-of-tables" title="Permalink to this headline">#</a></h2>
+<p>According to the <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/merging.html">pandas documentation</a> there are multiple ways for combining tables. We first use a <em>wrong</em> example to highlight pitfalls when combining tables.</p>
+<p>In the following example, measurements of label 1 and 3 are mixed. Furthermore, one of our tables did not contain measurements for label 4.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">combined_tables</span> <span class="o">=</span> <span class="n">table1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">table2</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">combined_tables</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wrongly_combined_tables</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">table1</span><span class="p">,</span> <span class="n">table2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">wrongly_combined_tables</span>
 </pre></div>
 </div>
 </div>
@@ -1448,67 +1502,190 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
+      <th>label</th>
+      <th>circularity</th>
+      <th>elongation</th>
+      <th>label</th>
+      <th>area</th>
+      <th>skewness</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>1.0</td>
+      <td>0.3</td>
+      <td>2.3</td>
       <td>3</td>
-      <td>5</td>
-      <td>NaN</td>
+      <td>22</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2.0</td>
-      <td>4</td>
-      <td>6</td>
-      <td>NaN</td>
+      <td>0.5</td>
+      <td>3.4</td>
+      <td>2</td>
+      <td>32</td>
+      <td>0.6</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>NaN</td>
-      <td>3</td>
+      <td>3.0</td>
+      <td>0.7</td>
+      <td>1.2</td>
       <td>1</td>
-      <td>5.0</td>
+      <td>25</td>
+      <td>0.3</td>
     </tr>
     <tr>
       <th>3</th>
       <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>4</td>
-      <td>2</td>
-      <td>6.0</td>
+      <td>18</td>
+      <td>0.3</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+<p>A better way for combining tables is the <code class="docutils literal notranslate"><span class="pre">merge</span></code> command. It allows to explicitly specify <code class="docutils literal notranslate"><span class="pre">on</span></code> which column the tables should be combined. Data scientists speak of the ‘index’ or ‘identifier’ of rows in the tables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">combined_tables</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correctly_combined_tables1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">table1</span><span class="p">,</span> <span class="n">table2</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="n">correctly_combined_tables1</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;A&#39;: {0: 1.0, 1: 2.0, 2: nan, 3: nan},
- &#39;B&#39;: {0: 3, 1: 4, 2: 3, 3: 4},
- &#39;C&#39;: {0: 5, 1: 6, 2: 1, 3: 2},
- &#39;D&#39;: {0: nan, 1: nan, 2: 5.0, 3: 6.0}}
-</pre></div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>circularity</th>
+      <th>elongation</th>
+      <th>area</th>
+      <th>skewness</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0.3</td>
+      <td>2.3</td>
+      <td>25</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>0.5</td>
+      <td>3.4</td>
+      <td>32</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>0.7</td>
+      <td>1.2</td>
+      <td>22</td>
+      <td>0.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
-</div>
-</div>
+<p>You may note that in the above example, label 4 is missing. We can also get it by out table by performing an <code class="docutils literal notranslate"><span class="pre">outer</span> <span class="pre">join</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correctly_combined_tables2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">table1</span><span class="p">,</span> <span class="n">table2</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="n">correctly_combined_tables2</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>circularity</th>
+      <th>elongation</th>
+      <th>area</th>
+      <th>skewness</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0.3</td>
+      <td>2.3</td>
+      <td>25</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>0.5</td>
+      <td>3.4</td>
+      <td>32</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>0.7</td>
+      <td>1.2</td>
+      <td>22</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>18</td>
+      <td>0.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1538,6 +1715,20 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="explore_dataset.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Exploring tabular data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="select_rows_and_columns.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Selecting columns</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
