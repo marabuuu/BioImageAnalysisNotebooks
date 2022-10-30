@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Simulating data" href="../30_simulating_data/readme.html" />
+    <link rel="next" title="Distance-based colocalization" href="distance-based_colocalization.html" />
     <link rel="prev" title="Counting nuclei according to expression in multiple channels" href="counting_nuclei_multichannel.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -836,6 +836,11 @@ const thebe_selector_output = ".output, .cell_output"
      Differentiating nuclei according to signal intensity
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="distance-based_colocalization.html">
+     Distance-based colocalization
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -1375,7 +1380,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Intel(R) Iris(R) Xe Graphics on Platform: Intel(R) OpenCL HD Graphics (1 refs)&gt;
 </pre></div>
 </div>
 </div>
@@ -1384,7 +1389,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load file</span>
-<span class="n">raw_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;plate1_1_013 [Well 5, Field 1 (Spot 5)].png&#39;</span><span class="p">)</span>
+<span class="n">raw_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/plate1_1_013 [Well 5, Field 1 (Spot 5)].png&#39;</span><span class="p">)</span>
 
 <span class="c1"># visualize</span>
 <span class="n">imshow</span><span class="p">(</span><span class="n">raw_image</span><span class="p">)</span>
@@ -1392,7 +1397,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x178cbaf70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1dac72d7c40&gt;
 </pre></div>
 </div>
 <img alt="../_images/differentiate_nuclei_intensity_3_1.png" src="../_images/differentiate_nuclei_intensity_3_1.png" />
@@ -1413,7 +1418,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x17acb54c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1dac7328970&gt;
 </pre></div>
 </div>
 <img alt="../_images/differentiate_nuclei_intensity_5_1.png" src="../_images/differentiate_nuclei_intensity_5_1.png" />
@@ -1435,7 +1440,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/differentiate_nuclei_intensity_7_0.png" src="../_images/differentiate_nuclei_intensity_7_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\miniconda3\envs\bio39\lib\site-packages\pyclesperanto_prototype\_tier9\_imshow.py:46: UserWarning: The imshow parameter color_map is deprecated. Use colormap instead.
+  warnings.warn(&quot;The imshow parameter color_map is deprecated. Use colormap instead.&quot;)
+</pre></div>
+</div>
+<img alt="../_images/differentiate_nuclei_intensity_7_1.png" src="../_images/differentiate_nuclei_intensity_7_1.png" />
 </div>
 </div>
 <p>Firstly, we can measure the intensity in the second channel, marked with eGFP and visualize that measurement in a parametric image. In such a parametric image, all pixels inside a nucleus have the same value, in this case the mean average intensity of the cell.</p>
@@ -1451,7 +1460,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/differentiate_nuclei_intensity_9_0.png" src="../_images/differentiate_nuclei_intensity_9_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\miniconda3\envs\bio39\lib\site-packages\pyclesperanto_prototype\_tier9\_imshow.py:46: UserWarning: The imshow parameter color_map is deprecated. Use colormap instead.
+  warnings.warn(&quot;The imshow parameter color_map is deprecated. Use colormap instead.&quot;)
+</pre></div>
+</div>
+<img alt="../_images/differentiate_nuclei_intensity_9_1.png" src="../_images/differentiate_nuclei_intensity_9_1.png" />
 </div>
 </div>
 <p>From such a parametric image, we can retrieve the intensity values and get them in a vector. The first item in this list has value 0 and corresponds to the intensity of the background, which is 0 in the parametric image.</p>
@@ -1463,16 +1476,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cl.Array([[  0.      ,  80.87585 ,  23.529799, 118.17817 ,  80.73025 ,
-         95.55178 ,  72.84752 ,  92.34759 ,  78.84362 ,  85.400444,
-        105.108025,  65.06639 ,  73.69295 ,  77.40092 ,  81.48371 ,
-         77.12867 ,  96.582085,  95.94536 ,  70.883995,  89.705025,
-         72.01046 ,  27.257877,  84.460075,  25.497112,  80.69056 ,
-        147.49736 ,  28.112642,  25.16763 ,  28.448261,  25.31705 ,
-         38.072815, 108.81613 ]], dtype=float32)
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><pre>cle.array([[  0.        80.875854  23.529799 118.17817   80.730255  95.55177
+   72.84752   92.34759   78.84362   85.400444 105.108025  65.06639
+   73.69295   77.40091   81.48371   77.12868   96.58209   95.94536
+   70.883995  89.70502   72.01046   27.257877  84.460075  25.49711
+   80.69057  147.49736   28.112642  25.167627  28.448263  25.31705
+   38.072815 108.81613 ]], dtype=float32)</pre></div></div>
 </div>
 <p>There is by the way also an alternative way to come to the mean intensities directly, by measuring all properties of the nuclei including position and shape. It the statistics can be further processed as <a class="reference external" href="https://pandas.pydata.org/">pandas</a> DataFrame.</p>
 <div class="cell docutils container">
@@ -1542,13 +1551,13 @@ title="Print to PDF"
       <td>...</td>
       <td>0.0</td>
       <td>1.683849e+09</td>
-      <td>640.648621</td>
+      <td>640.648682</td>
       <td>1.683884e+09</td>
-      <td>640.661621</td>
+      <td>640.661682</td>
       <td>8.487288</td>
-      <td>1187.033325</td>
+      <td>1187.033203</td>
       <td>1187.743164</td>
-      <td>1.852862</td>
+      <td>1.852861</td>
       <td>1.853932</td>
     </tr>
     <tr>
@@ -1565,14 +1574,14 @@ title="Print to PDF"
       <td>67.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>4.128045e+04</td>
-      <td>18.704329</td>
+      <td>4.128044e+04</td>
+      <td>18.704323</td>
       <td>4.128327e+04</td>
       <td>18.705606</td>
       <td>4.734930</td>
-      <td>34.280666</td>
+      <td>34.280727</td>
       <td>34.338104</td>
-      <td>1.832767</td>
+      <td>1.832770</td>
       <td>1.835712</td>
     </tr>
     <tr>
@@ -1590,13 +1599,13 @@ title="Print to PDF"
       <td>...</td>
       <td>0.0</td>
       <td>5.392080e+04</td>
-      <td>19.715101</td>
-      <td>5.393992e+04</td>
-      <td>19.722090</td>
-      <td>1.663604</td>
-      <td>32.079910</td>
+      <td>19.715099</td>
+      <td>5.393993e+04</td>
+      <td>19.722092</td>
+      <td>1.663603</td>
+      <td>32.079941</td>
       <td>31.469477</td>
-      <td>1.627174</td>
+      <td>1.627176</td>
       <td>1.595646</td>
     </tr>
     <tr>
@@ -1615,13 +1624,13 @@ title="Print to PDF"
       <td>0.0</td>
       <td>3.630314e+04</td>
       <td>17.769527</td>
-      <td>3.636824e+04</td>
-      <td>17.801392</td>
-      <td>24.842558</td>
-      <td>36.856163</td>
-      <td>36.085430</td>
-      <td>2.074122</td>
-      <td>2.027113</td>
+      <td>3.636823e+04</td>
+      <td>17.801388</td>
+      <td>24.842560</td>
+      <td>36.856213</td>
+      <td>36.085457</td>
+      <td>2.074125</td>
+      <td>2.027115</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1637,14 +1646,14 @@ title="Print to PDF"
       <td>72.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>6.753253e+04</td>
-      <td>21.686747</td>
+      <td>6.753254e+04</td>
+      <td>21.686750</td>
       <td>6.755171e+04</td>
       <td>21.692907</td>
       <td>17.358543</td>
       <td>38.805695</td>
       <td>38.417568</td>
-      <td>1.789374</td>
+      <td>1.789373</td>
       <td>1.770974</td>
     </tr>
   </tbody>
@@ -1661,12 +1670,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 20.829758,  80.87585 ,  23.529799, 118.17817 ,  80.73025 ,
-        95.55178 ,  72.84752 ,  92.34759 ,  78.84362 ,  85.400444,
-       105.108025,  65.06639 ,  73.69295 ,  77.40092 ,  81.48371 ,
-        77.12867 ,  96.582085,  95.94536 ,  70.883995,  89.705025,
-        72.01046 ,  27.257877,  84.460075,  25.497112,  80.69056 ,
-       147.49736 ,  28.112642,  25.16763 ,  28.448261,  25.31705 ,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 20.829758,  80.875854,  23.529799, 118.17817 ,  80.730255,
+        95.55177 ,  72.84752 ,  92.34759 ,  78.84362 ,  85.400444,
+       105.108025,  65.06639 ,  73.69295 ,  77.40091 ,  81.48371 ,
+        77.12868 ,  96.58209 ,  95.94536 ,  70.883995,  89.70502 ,
+        72.01046 ,  27.257877,  84.460075,  25.49711 ,  80.69057 ,
+       147.49736 ,  28.112642,  25.167627,  28.448263,  25.31705 ,
         38.072815, 108.81613 ], dtype=float32)
 </pre></div>
 </div>
@@ -1681,9 +1690,9 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 7.,  1.,  0.,  4., 10.,  5.,  2.,  1.,  0.,  1.]),
- array([ 23.529799,  35.926556,  48.32331 ,  60.720066,  73.11682 ,
-         85.51358 ,  97.91034 , 110.30709 , 122.70385 , 135.1006  ,
-        147.49736 ], dtype=float32),
+ array([ 23.52979851,  35.92655563,  48.32331085,  60.72006607,
+         73.11682129,  85.51358032,  97.91033936, 110.30709076,
+        122.70384979, 135.1006012 , 147.49736023]),
  &lt;BarContainer object of 10 artists&gt;)
 </pre></div>
 </div>
@@ -1711,7 +1720,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/differentiate_nuclei_intensity_19_0.png" src="../_images/differentiate_nuclei_intensity_19_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\miniconda3\envs\bio39\lib\site-packages\pyclesperanto_prototype\_tier9\_imshow.py:46: UserWarning: The imshow parameter color_map is deprecated. Use colormap instead.
+  warnings.warn(&quot;The imshow parameter color_map is deprecated. Use colormap instead.&quot;)
+</pre></div>
+</div>
+<img alt="../_images/differentiate_nuclei_intensity_19_1.png" src="../_images/differentiate_nuclei_intensity_19_1.png" />
 </div>
 </div>
 <p>And we can also count those by determining the maximum intensity in the label image:</p>
@@ -1744,16 +1757,20 @@ title="Print to PDF"
     The two sigma parameters allow tuning the segmentation result. Under the hood,
     this filter applies two Gaussian blurs, spot detection, Otsu-thresholding [2] and Voronoi-labeling [3]. The
     thresholded binary image is flooded using the Voronoi tesselation approach starting from the found local maxima.
-    
+
+    Notes
+    -----
+    * This operation assumes input images are isotropic.
+
     Parameters
     ----------
     source : Image
         Input grey-value image
     label_image_destination : Image, optional
         Output image
-    spot_sigma : float
+    spot_sigma : float, optional
         controls how close detected cells can be
-    outline_sigma : float
+    outline_sigma : float, optional
         controls how precise segmented objects are outlined.
     
     Returns
@@ -1789,9 +1806,9 @@ title="Print to PDF"
     
     Parameters
     ----------
-    input : Image
+    source : Image
     label_map : Image
-    destination : Image
+    destination : Image, optional
     
     Returns
     -------
@@ -1852,7 +1869,7 @@ title="Print to PDF"
     
     Parameters
     ----------
-    input : Image
+    source : Image
     labelmap : Image
 
     Returns
@@ -1877,13 +1894,17 @@ title="Print to PDF"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This operation removes labels from a labelmap and renumbers the
     remaining labels.
 
+    Notes
+    -----
+    * Values of all pixels in a label each must be identical.
+
     Parameters
     ----------
     values_map : Image
     label_map_input : Image
-    label_map_destination : Image
-    minimum_value_range : Number
-    maximum_value_range : Number
+    label_map_destination : Image, optional
+    minimum_value_range : Number, optional
+    maximum_value_range : Number, optional
 
     Returns
     -------
@@ -1934,10 +1955,10 @@ title="Print to PDF"
             <p class="prev-next-title">Counting nuclei according to expression in multiple channels</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../30_simulating_data/readme.html" title="next page">
+    <a class='right-next' id="next-link" href="distance-based_colocalization.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Simulating data</p>
+        <p class="prev-next-title">Distance-based colocalization</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
