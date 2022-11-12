@@ -1316,6 +1316,26 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#browsing-the-remote-server">
+   Browsing the remote server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#retrieving-a-file">
+   Retrieving a file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-processing">
+   Image processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uploading-results">
+   Uploading results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#logout">
    Logout
   </a>
@@ -1342,6 +1362,26 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#login">
    Login
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#browsing-the-remote-server">
+   Browsing the remote server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#retrieving-a-file">
+   Retrieving a file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-processing">
+   Image processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uploading-results">
+   Uploading results
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1389,7 +1429,7 @@ title="Print to PDF"
 </div>
 <section id="login">
 <h2>Login<a class="headerlink" href="#login" title="Permalink to this headline">#</a></h2>
-<p>After executing the next cell locally, you will three input fields where you can enter the server url, username and password.</p>
+<p>After executing the next cell locally, you will see three input fields where you can enter the server url, username and password.</p>
 <p><img alt="" src="../_images/login.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1423,7 +1463,11 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>A typical error message is 401: Access denied. Check your username and password</p>
+<p>A typical error message is 401: Access denied. Check your username and password.</p>
+</section>
+<section id="browsing-the-remote-server">
+<h2>Browsing the remote server<a class="headerlink" href="#browsing-the-remote-server" title="Permalink to this headline">#</a></h2>
+<p>To see if the connection was successful, we can just list the files in a given folder.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># enter a folder on the owncloud drive that exists. &#39;/&#39; is the root folder.</span>
@@ -1441,6 +1485,10 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
+<section id="retrieving-a-file">
+<h2>Retrieving a file<a class="headerlink" href="#retrieving-a-file" title="Permalink to this headline">#</a></h2>
+<p>We can download a file to a local directory.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># enter the source file here</span>
@@ -1459,6 +1507,10 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
+<section id="image-processing">
+<h2>Image processing<a class="headerlink" href="#image-processing" title="Permalink to this headline">#</a></h2>
+<p>As we downloaded the file, image processing works as usual.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">local_file</span><span class="p">)</span>
@@ -1470,7 +1522,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1d29730e760&gt;
 </pre></div>
 </div>
-<img alt="../_images/owncloud_10_1.png" src="../_images/owncloud_10_1.png" />
+<img alt="../_images/owncloud_12_1.png" src="../_images/owncloud_12_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1499,6 +1551,9 @@ title="Print to PDF"
 </tr>
 </table></div></div>
 </div>
+</section>
+<section id="uploading-results">
+<h2>Uploading results<a class="headerlink" href="#uploading-results" title="Permalink to this headline">#</a></h2>
 <p>Before uploading an image to the cloud we need to save it locally.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1534,7 +1589,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>Just to be use, we check if the file arrived</p>
+<p>Just to be sure, we check if the file arrived by printing out the files in the folder again.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">oc</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">remote_folder</span><span class="p">):</span>
