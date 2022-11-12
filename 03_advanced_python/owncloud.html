@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Lists and tuples &#8212; Bio-image Analysis Notebooks</title>
+    <title>Accessing image files in the owncloud &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Cropping lists" href="05a_cropping_lists.html" />
-    <link rel="prev" title="Basic types in python" href="04_Basic_types.html" />
+    <link rel="next" title="Image analysis basics" href="../12_image_analysis_basics/readme.html" />
+    <link rel="prev" title="Parallelization" href="parallelization.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -124,120 +124,120 @@ const thebe_selector_output = ".output, .cell_output"
    Setting up your computer
   </a>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="readme.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_python_basics/readme.html">
    Python basics
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="01_our_first_juptyer_notebook.html">
-     Python code in Jupyter notebooks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02_Math_in_python.html">
-     Basic math in python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_Dont_try_this_at_home.html">
-     Pitfalls when working with Jupyter notebooks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_Basic_types.html">
-     Basic types in python
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Lists and tuples
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="05a_cropping_lists.html">
-     Cropping lists
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="05b_sorting_lists.html">
-     Sorting lists
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="05c_masking.html">
-     Masking numpy arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06_Dictionaries_and_tables.html">
-     Dictionaries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_Conditions.html">
-     Conditions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_loops.html">
-     Loops
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09_custom_functions.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_Import_packages.html">
-     Importing functions and packages
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../03_advanced_python/readme.html">
-   Advanced python programming
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_advanced_python/custom_libraries.html">
+    <a class="reference internal" href="../02_python_basics/01_our_first_juptyer_notebook.html">
+     Python code in Jupyter notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/02_Math_in_python.html">
+     Basic math in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/03_Dont_try_this_at_home.html">
+     Pitfalls when working with Jupyter notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/04_Basic_types.html">
+     Basic types in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/05_lists_tuples.html">
+     Lists and tuples
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/05a_cropping_lists.html">
+     Cropping lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/05b_sorting_lists.html">
+     Sorting lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/05c_masking.html">
+     Masking numpy arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/06_Dictionaries_and_tables.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/07_Conditions.html">
+     Conditions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/08_loops.html">
+     Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/09_custom_functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_python_basics/10_Import_packages.html">
+     Importing functions and packages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="readme.html">
+   Advanced python programming
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="custom_libraries.html">
      Custom libraries
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_advanced_python/functional_parameters.html">
+    <a class="reference internal" href="functional_parameters.html">
      Functional parameters
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_advanced_python/partial.html">
+    <a class="reference internal" href="partial.html">
      Partial functions
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_advanced_python/napari_workflows.html">
+    <a class="reference internal" href="napari_workflows.html">
      Workflows in napari
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_advanced_python/parallelization.html">
+    <a class="reference internal" href="parallelization.html">
      Parallelization
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../03_advanced_python/owncloud.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Accessing image files in the owncloud
     </a>
    </li>
@@ -1163,7 +1163,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/02_python_basics/05_lists_tuples.ipynb"
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/03_advanced_python/owncloud.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1223,7 +1223,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F02_python_basics/05_lists_tuples.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F03_advanced_python/owncloud.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1251,7 +1251,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/02_python_basics/05_lists_tuples.ipynb"
+        <a href="../_sources/03_advanced_python/owncloud.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1310,29 +1310,14 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Lists and tuples
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#login">
+   Login
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numeric-lists">
-   Numeric lists
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mixed-type-lists">
-   Mixed type lists
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tuples">
-   Tuples
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise">
-   Exercise
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logout">
+   Logout
   </a>
  </li>
 </ul>
@@ -1344,7 +1329,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lists and tuples</h1>
+                <h1>Accessing image files in the owncloud</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1354,29 +1339,14 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Lists and tuples
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#login">
+   Login
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numeric-lists">
-   Numeric lists
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mixed-type-lists">
-   Mixed type lists
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tuples">
-   Tuples
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise">
-   Exercise
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logout">
+   Logout
   </a>
  </li>
 </ul>
@@ -1389,435 +1359,214 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="lists-and-tuples">
-<span id="id1"></span><h1>Lists and tuples<a class="headerlink" href="#lists-and-tuples" title="Permalink to this headline">#</a></h1>
-<p>Variables can also contain multiple entries of values. We call those lists and tuples. Some programmers also call them vectors or arrays; arrays of values. We already know one kind of array, strings. Strings are lists of characters.</p>
-<p>See also</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="accessing-image-files-in-the-owncloud">
+<h1>Accessing image files in the owncloud<a class="headerlink" href="#accessing-image-files-in-the-owncloud" title="Permalink to this headline">#</a></h1>
+<p>This notebook we will demonstrate how to download files from an owncloud server, how to process it locally and upload the results back to the server.</p>
+<p>Depending on which cloud we use, we may have to install different libaries.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://physics.nyu.edu/pine/pymanual/html/chap3/chap3_arrays.html">Arrays</a></p></li>
-<li><p><a class="reference external" href="https://www.geeksforgeeks.org/find-average-list-python/">Average is list</a></p></li>
-<li><p><a class="reference external" href="https://www.scaler.com/topics/array-in-python/">Array in Python</a></p></li>
+<li><p>Owncloud installation</p></li>
 </ul>
-<p>You can access elements in an array using square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> which allow you access an element at a given index. Indexing starts at 0. Thus, the first element of an array is element number 0. The following string contains 5 characters and thus, element with index 0, 1, 2, 3 and 4 can be accessed:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyocclient</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<ul class="simple">
+<li><p>Nextcloud installation</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyncclient</span>
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;H&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;e&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;l&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;l&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;o&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>When accessing an index that is not in the list, we receive an error:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">word</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imshow</span><span class="p">,</span> <span class="n">imsave</span>
+<span class="kn">from</span> <span class="nn">napari_segment_blobs_and_things_with_membranes</span> <span class="kn">import</span> <span class="n">voronoi_otsu_labeling</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 
-<span class="ne">IndexError</span>: string index out of range
+<span class="kn">import</span> <span class="nn">owncloud</span>
+<span class="c1"># import nextcloud_client as owncloud</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="numeric-lists">
-<h1>Numeric lists<a class="headerlink" href="#numeric-lists" title="Permalink to this headline">#</a></h1>
-<p>Another type of array are numeric lists. They are common to store measurements of experiments for example:</p>
+<section id="login">
+<h2>Login<a class="headerlink" href="#login" title="Permalink to this headline">#</a></h2>
+<p>After executing the next cell locally, you will three input fields where you can enter the server url, username and password.</p>
+<p><img alt="" src="../_images/login.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">,</span> <span class="mf">7.2</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">8.8</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.5
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.3
-</pre></div>
-</div>
-</div>
-</div>
-<p>Changing entries in lists works like this:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">25</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
-</pre></div>
-</div>
-</div>
-</div>
-<p>You can also append entries to lists:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">10.2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Lists can also be reversed:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5.5, 25, 7.2, 8.0, 8.8, 10.2]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10.2, 8.8, 8.0, 7.2, 25, 5.5]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Just like strings, you can also concatenate arrays:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">more_measurements</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.3</span><span class="p">,</span> <span class="mf">14.5</span><span class="p">,</span> <span class="mf">28.3</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span> <span class="o">+</span> <span class="n">more_measurements</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10.2, 8.8, 8.0, 7.2, 25, 5.5, 12.3, 14.5, 28.3]
-</pre></div>
-</div>
-</div>
-</div>
-<p>When working with numeric lists, you can use some of python’s built-in functions to do basic statistics on your measurements</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimum value in the list</span>
-<span class="nb">min</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.5
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># maximum value in the list</span>
-<span class="nb">max</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sum of all elements in the list</span>
-<span class="nb">sum</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64.7
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># number of elements in the list</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># average of all elements in the list</span>
-<span class="nb">sum</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.783333333333333
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="mixed-type-lists">
-<h1>Mixed type lists<a class="headerlink" href="#mixed-type-lists" title="Permalink to this headline">#</a></h1>
-<p>You can also store values of different types in a list</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mixed_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="s2">&quot;Cat&quot;</span><span class="p">,</span> <span class="s1">&#39;Dog&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mixed_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mixed_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Dog&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">mixed_list</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="tuples">
-<h1>Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">#</a></h1>
-<p>Tuples are lists which cannot be changed:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">immutable</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">7.8</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">immutable</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">immutable</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">immutable</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">server_widget</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;https://sharing.biotec.tu-dresden.de&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Server&#39;</span><span class="p">)</span>
+<span class="n">username_widget</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Username:&#39;</span><span class="p">)</span>
+<span class="n">password_widget</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Password</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Password&#39;</span><span class="p">)</span>
 
-<span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
-</pre></div>
-</div>
-</div>
-</div>
-<p>You can convert tubles to lists and lists to tuples:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">immutable</span><span class="p">)</span>
+<span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">server_widget</span><span class="p">,</span> <span class="n">username_widget</span><span class="p">,</span> <span class="n">password_widget</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tuple
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "64621cc25e994b0ebee21a2b7fbc971e", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<p><strong>Do NOT hit Shift-Enter after entering username and password</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">username_widget</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Enter username and password above&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mutable</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">immutable</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span> <span class="o">=</span> <span class="n">owncloud</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">server_widget</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="n">oc</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username_widget</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">password_widget</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>A typical error message is 401: Access denied. Check your username and password</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">mutable</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># enter a folder on the owncloud drive that exists. &#39;/&#39; is the root folder.</span>
+<span class="n">remote_folder</span> <span class="o">=</span> <span class="s2">&quot;/data/&quot;</span>
+
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">oc</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">remote_folder</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/data/blobs.tif
+/data/zfish_nucl_env.tif
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">again_immuntable</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">mutable</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">again_immuntable</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># enter the source file here</span>
+<span class="n">remote_source_file</span> <span class="o">=</span> <span class="s1">&#39;/data/blobs.tif&#39;</span>
+<span class="c1"># enter the destination</span>
+<span class="n">local_file</span> <span class="o">=</span> <span class="s1">&#39;blobs.tif&#39;</span>
+
+<span class="n">oc</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">remote_path</span><span class="o">=</span><span class="n">remote_source_file</span><span class="p">,</span> 
+            <span class="n">local_file</span><span class="o">=</span><span class="n">local_file</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tuple
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">local_file</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1d29730e760&gt;
+</pre></div>
+</div>
+<img alt="../_images/owncloud_10_1.png" src="../_images/owncloud_10_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">voronoi_otsu_labeling</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
+<span class="n">labels</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src="data:image/png;base64,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LwDBE4lE0r63LOusn5mgqakp+b/HjBmjyy+/XJ/61Kf05JNPJi+25r06WzHviUnv2/Tp05P/u6GhQZdccolGjRqlF198UVOnTs36vDC+R3PmzNGvfvUrbd269azH+Ds6I9t7xN8R+kIDiLwNGzZM/fr1O+tfh11dXWf9a9xEgwcP1pgxY7R3797kbmDeq4/l857U1NSop6dHhw8fznqMaWprazVq1Cjt3btXkjnv0dy5c/X8889r48aNuuCCC5I/5+/oY9neo0xM/TtCdgRA5G3AgAEaN26c2tra0n7e1tamCRMmeLQq/+ju7tZbb72l2tpa1dfXq6amJu296unp0ebNm419r/J5T8aNG6eysrK0Yzo6OrR7925j37f3339fBw8eVG1traTwv0eWZWnOnDl67rnntGHDBtXX16c9zt9R3+9RJqb9HSEP3uw9QVCtXbvWKisrs5544gnrzTfftJqbm63Bgwdb77zzjtdLc938+fOtTZs2Wfv27bO2b99uTZo0yaqoqEi+F9/+9retaDRqPffcc9auXbus22+/3aqtrbXi8bjHK3fOkSNHrJ07d1o7d+60JFnLli2zdu7cab377ruWZeX3ntx7773WBRdcYL366qvWL37xC+vaa6+1xo4da508edKrX8tWud6jI0eOWPPnz7e2bdtm7d+/39q4caN1+eWXW5/4xCeMeY/+8i//0opGo9amTZusjo6O5NdHH32UPMb0v6O+3iP+jpAPAiAK9uijj1qjRo2yBgwYYH3+859Pu/WASaZPn27V1tZaZWVlVl1dnTV16lRrz549ycdPnz5tPfDAA1ZNTY1VXl5uXXXVVdauXbs8XLHzNm7caEk662vGjBmWZeX3nhw/ftyaM2eOVVVVZQ0aNMiaNGmSdeDAAQ9+G2fkeo8++ugjq7Gx0Tr//POtsrIya+TIkdaMGTPO+v3D/B5lem8kWStXrkweY/rfUV/vEX9HyEfEsizLvb4RAAAAXuMaQAAAAMMQAAEAAAxDAAQAADAMARAAAMAwBEAAAADDEAABAAAMQwAEAAAwDAEQAADAMARAAAAAwxAAAQAADEMABAAAMAwBEAAAwDAEQAAAAMMQAAEAAAxDAAQAADAMARAAAMAwBEAAAADDEAABAAAMQwAEAAAwDAEQAADAMARAAAAAwxAAAQAADEMABAAAMAwBEAAAwDAEQAAAAMMQAAEAAAxDAAQAADAMARAAAMAwBEAAAADDEAABAAAMQwAEAAAwzP8HTUUohp7DGPwAAAAASUVORK5CYII="></img>
+</td>
+<td style="text-align: center; vertical-align: top;">
+<b><a href="https://www.napari-hub.org/plugins/napari-segment-blobs-and-things-with-membranes" target="_blank">nsbatwm made </a>image</b><br/>
+<table>
+<tr><td>shape</td><td>(254,&nbsp;256)</td></tr>
+<tr><td>dtype</td><td>int32</td></tr>
+<tr><td>size</td><td>254.0 kB</td></tr>
+<tr><td>min</td><td>0</td></tr><tr><td>max</td><td>65</td></tr>
+</table>
+
+</td>
+</tr>
+</table></div></div>
+</div>
+<p>Before uploading an image to the cloud we need to save it locally.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_file_to_upload</span> <span class="o">=</span> <span class="s2">&quot;blobs_labels.tif&quot;</span>
+
+<span class="n">imsave</span><span class="p">(</span><span class="n">local_file_to_upload</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">check_contrast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will upload the file to this folder:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">remote_folder</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/data/&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span><span class="o">.</span><span class="n">put_file</span><span class="p">(</span><span class="n">remote_folder</span><span class="p">,</span> <span class="n">local_file_to_upload</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just to be use, we check if the file arrived</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">oc</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">remote_folder</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/data/blobs.tif
+/data/blobs_labels.tif
+/data/zfish_nucl_env.tif
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="exercise">
-<h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h1>
-<p>Assume you did measurements on multiple days. Compute average measurement of this week?</p>
+<section id="logout">
+<h2>Logout<a class="headerlink" href="#logout" title="Permalink to this headline">#</a></h2>
+<p>When you’re done, log out!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements_monday</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">]</span>
-<span class="n">measurements_tuesday</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span>
-<span class="n">measurements_wednesday</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">]</span>
-<span class="n">measurements_thursday</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.9</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span>
-<span class="n">measurements_friday</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.4</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1833,7 +1582,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./02_python_basics"
+            path: "./03_advanced_python"
         },
         predefinedOutput: true
     }
@@ -1847,17 +1596,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="04_Basic_types.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="parallelization.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Basic types in python</p>
+            <p class="prev-next-title">Parallelization</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="05a_cropping_lists.html" title="next page">
+    <a class='right-next' id="next-link" href="../12_image_analysis_basics/readme.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Cropping lists</p>
+        <p class="prev-next-title">Image analysis basics</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
