@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Opening LIF files" href="opening_lif_files.html" />
-    <link rel="prev" title="Pros and cons of image file formats" href="image_file_formats.html" />
+    <link rel="prev" title="Reading files with AICSImageIO" href="opening_images_using_aicsimageio.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -286,8 +286,13 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="image_file_formats.html">
-     Pros and cons of image file formats
+    <a class="reference internal" href="opening_images.html">
+     Opening image data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="opening_images_using_aicsimageio.html">
+     Reading files with AICSImageIO
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -303,6 +308,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="tiled_image_file_formats_zarr.html">
      Tiled image file formats: zarr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="image_file_formats.html">
+     Pros and cons of image file formats
     </a>
    </li>
   </ul>
@@ -1352,6 +1362,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="opening-czi-files">
 <h1>Opening CZI files<a class="headerlink" href="#opening-czi-files" title="Permalink to this headline">#</a></h1>
 <p>When working with microscopy image data, many file formats are circulating such as the Carl Zeiss Image (CZI) format. In this notebook, we will open a <code class="docutils literal notranslate"><span class="pre">.czi</span></code> file using the <a class="reference external" href="https://pypi.org/project/czifile/"><code class="docutils literal notranslate"><span class="pre">czifile</span></code> library</a>.</p>
+<p>Note: It is recommended to use <a class="reference external" href="https://github.com/AllenCellModeling/aicsimageio">AICSImageIO</a> for reading CZI files as shown in this <span class="xref myst">notebook</span>.</p>
 <p>See also</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://forum.image.sc/t/reading-czi-file-in-python/39768/11">Reading CZI file in Python (image.sc thread)</a>)</p></li>
@@ -1473,11 +1484,11 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="image_file_formats.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="opening_images_using_aicsimageio.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Pros and cons of image file formats</p>
+            <p class="prev-next-title">Reading files with AICSImageIO</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="opening_lif_files.html" title="next page">

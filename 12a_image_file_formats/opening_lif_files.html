@@ -286,8 +286,13 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="image_file_formats.html">
-     Pros and cons of image file formats
+    <a class="reference internal" href="opening_images.html">
+     Opening image data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="opening_images_using_aicsimageio.html">
+     Reading files with AICSImageIO
     </a>
    </li>
    <li class="toctree-l2">
@@ -303,6 +308,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="tiled_image_file_formats_zarr.html">
      Tiled image file formats: zarr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="image_file_formats.html">
+     Pros and cons of image file formats
     </a>
    </li>
   </ul>
@@ -1352,7 +1362,8 @@ title="Print to PDF"
   <section id="opening-lif-files">
 <h1>Opening LIF files<a class="headerlink" href="#opening-lif-files" title="Permalink to this headline">#</a></h1>
 <p>When working with microscopy image data, many file formats are circulating such as the Leica Image Format (LIF). In this notebook, we will open a <code class="docutils literal notranslate"><span class="pre">.lif</span></code> file using the <a class="reference external" href="https://pypi.org/project/readlif/"><code class="docutils literal notranslate"><span class="pre">readlif</span></code> library</a>.</p>
-<p>It can be installed like this from the terminal:</p>
+<p>Note: It is recommended to use <a class="reference external" href="https://github.com/AllenCellModeling/aicsimageio">AICSImageIO</a> for reading LIF images as shown in this <span class="xref myst">notebook</span>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">readlif</span></code> library can be installed like this from the terminal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">readlif</span>
 </pre></div>
 </div>
