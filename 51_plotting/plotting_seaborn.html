@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Plotting using seaborn &#8212; Bio-image Analysis Notebooks</title>
+    <title>Introduction to Seaborn &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Plotting with Matplotlib" href="plotting_matplotlib.html" />
-    <link rel="prev" title="Plotting" href="readme.html" />
+    <link rel="next" title="Plotting Distributions with Seaborn" href="plotting_distributions.html" />
+    <link rel="prev" title="Plotting with Matplotlib" href="plotting_matplotlib.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -1144,14 +1144,24 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Plotting using seaborn
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="plotting_matplotlib.html">
      Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Introduction to Seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plotting_distributions.html">
+     Plotting Distributions with Seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="multivariate_views.html">
+     Multivariate views
     </a>
    </li>
    <li class="toctree-l2">
@@ -1404,14 +1414,14 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Plotting using seaborn
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scatter-plots-with-seaborn">
+   Scatter plots with seaborn
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scatter-plots">
-   Scatter plots
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scatter-plots-with-subplots">
+   Scatter plots with subplots
   </a>
  </li>
 </ul>
@@ -1423,7 +1433,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Plotting using seaborn</h1>
+                <h1>Introduction to Seaborn</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1433,14 +1443,14 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Plotting using seaborn
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scatter-plots-with-seaborn">
+   Scatter plots with seaborn
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scatter-plots">
-   Scatter plots
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scatter-plots-with-subplots">
+   Scatter plots with subplots
   </a>
  </li>
 </ul>
@@ -1453,22 +1463,27 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="plotting-using-seaborn">
-<h1>Plotting using seaborn<a class="headerlink" href="#plotting-using-seaborn" title="Permalink to this headline">#</a></h1>
-<p>When visualizeing quantitative measurements from tables, plots are key.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-seaborn">
+<h1>Introduction to Seaborn<a class="headerlink" href="#introduction-to-seaborn" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a> is a library for making statistical graphics in Python. It builds on top of <a class="reference external" href="https://matplotlib.org/">matplotlib</a> and integrates closely with <a class="reference external" href="https://pandas.pydata.org/">pandas</a> data structures.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
 </div>
+<section id="scatter-plots-with-seaborn">
+<h2>Scatter plots with seaborn<a class="headerlink" href="#scatter-plots-with-seaborn" title="Permalink to this headline">#</a></h2>
+<p>We start by loading a table of measurements into a dataframe <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/Results.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
-<span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../../data/BBBC007_analysis.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -1491,124 +1506,59 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Area</th>
-      <th>Mean</th>
-      <th>StdDev</th>
-      <th>Min</th>
-      <th>Max</th>
-      <th>X</th>
-      <th>Y</th>
-      <th>XM</th>
-      <th>YM</th>
-      <th>Major</th>
-      <th>Minor</th>
-      <th>Angle</th>
-      <th>%Area</th>
-      <th>Type</th>
-    </tr>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>area</th>
+      <th>intensity_mean</th>
+      <th>major_axis_length</th>
+      <th>minor_axis_length</th>
+      <th>aspect_ratio</th>
+      <th>file_name</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <th>0</th>
+      <td>139</td>
+      <td>96.546763</td>
+      <td>17.504104</td>
+      <td>10.292770</td>
+      <td>1.700621</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
       <th>1</th>
-      <td>18.0</td>
-      <td>730.389</td>
-      <td>103.354</td>
-      <td>592.0</td>
-      <td>948.0</td>
-      <td>435.000</td>
-      <td>4.722</td>
-      <td>434.962</td>
-      <td>4.697</td>
-      <td>5.987</td>
-      <td>3.828</td>
-      <td>168.425</td>
-      <td>100</td>
-      <td>A</td>
+      <td>360</td>
+      <td>86.613889</td>
+      <td>35.746808</td>
+      <td>14.983124</td>
+      <td>2.385805</td>
+      <td>20P1_POS0010_D_1UL</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>126.0</td>
-      <td>718.333</td>
-      <td>90.367</td>
-      <td>556.0</td>
-      <td>1046.0</td>
-      <td>388.087</td>
-      <td>8.683</td>
-      <td>388.183</td>
-      <td>8.687</td>
-      <td>16.559</td>
-      <td>9.688</td>
-      <td>175.471</td>
-      <td>100</td>
-      <td>A</td>
+      <td>43</td>
+      <td>91.488372</td>
+      <td>12.967884</td>
+      <td>4.351573</td>
+      <td>2.980045</td>
+      <td>20P1_POS0010_D_1UL</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>608.0</td>
-      <td>964.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>7.665</td>
-      <td>7.359</td>
-      <td>NaN</td>
-      <td>101.121</td>
-      <td>100</td>
-      <td>A</td>
+      <td>140</td>
+      <td>73.742857</td>
+      <td>18.940508</td>
+      <td>10.314404</td>
+      <td>1.836316</td>
+      <td>20P1_POS0010_D_1UL</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>68.0</td>
-      <td>686.985</td>
-      <td>61.169</td>
-      <td>571.0</td>
-      <td>880.0</td>
-      <td>126.147</td>
-      <td>8.809</td>
-      <td>126.192</td>
-      <td>8.811</td>
-      <td>15.136</td>
-      <td>5.720</td>
-      <td>168.133</td>
-      <td>100</td>
-      <td>A</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>69.438</td>
-      <td>566.0</td>
-      <td>792.0</td>
-      <td>348.500</td>
-      <td>7.500</td>
-      <td>NaN</td>
-      <td>7.508</td>
-      <td>NaN</td>
-      <td>3.088</td>
-      <td>NaN</td>
-      <td>100</td>
-      <td>A</td>
+      <td>144</td>
+      <td>89.375000</td>
+      <td>13.639308</td>
+      <td>13.458532</td>
+      <td>1.013432</td>
+      <td>20P1_POS0010_D_1UL</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1618,144 +1568,116 @@ title="Print to PDF"
       <td>...</td>
       <td>...</td>
       <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
     </tr>
     <tr>
-      <th>387</th>
-      <td>152.0</td>
-      <td>801.599</td>
-      <td>111.328</td>
-      <td>582.0</td>
-      <td>1263.0</td>
-      <td>348.487</td>
-      <td>497.632</td>
-      <td>348.451</td>
-      <td>497.675</td>
-      <td>17.773</td>
-      <td>10.889</td>
-      <td>11.829</td>
-      <td>100</td>
-      <td>A</td>
+      <th>106</th>
+      <td>305</td>
+      <td>88.252459</td>
+      <td>20.226532</td>
+      <td>19.244210</td>
+      <td>1.051045</td>
+      <td>20P1_POS0007_D_1UL</td>
     </tr>
     <tr>
-      <th>388</th>
-      <td>17.0</td>
-      <td>742.706</td>
-      <td>69.624</td>
-      <td>620.0</td>
-      <td>884.0</td>
-      <td>420.500</td>
-      <td>496.382</td>
-      <td>420.513</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3.663</td>
-      <td>49.457</td>
-      <td>100</td>
-      <td>A</td>
+      <th>107</th>
+      <td>593</td>
+      <td>89.905565</td>
+      <td>36.508370</td>
+      <td>21.365394</td>
+      <td>1.708762</td>
+      <td>20P1_POS0007_D_1UL</td>
     </tr>
     <tr>
-      <th>389</th>
-      <td>60.0</td>
-      <td>758.033</td>
-      <td>77.309</td>
-      <td>601.0</td>
-      <td>947.0</td>
-      <td>259.000</td>
-      <td>499.300</td>
-      <td>258.990</td>
-      <td>499.289</td>
-      <td>9.476</td>
-      <td>8.062</td>
-      <td>90.000</td>
-      <td>100</td>
-      <td>A</td>
+      <th>108</th>
+      <td>289</td>
+      <td>106.851211</td>
+      <td>20.427809</td>
+      <td>18.221452</td>
+      <td>1.121086</td>
+      <td>20P1_POS0007_D_1UL</td>
     </tr>
     <tr>
-      <th>390</th>
-      <td>12.0</td>
-      <td>714.833</td>
-      <td>67.294</td>
-      <td>551.0</td>
-      <td>785.0</td>
-      <td>240.167</td>
-      <td>498.167</td>
-      <td>240.179</td>
-      <td>498.148</td>
-      <td>4.606</td>
-      <td>3.317</td>
-      <td>168.690</td>
-      <td>100</td>
-      <td>A</td>
+      <th>109</th>
+      <td>277</td>
+      <td>100.664260</td>
+      <td>20.307965</td>
+      <td>17.432920</td>
+      <td>1.164920</td>
+      <td>20P1_POS0007_D_1UL</td>
     </tr>
     <tr>
-      <th>391</th>
-      <td>23.0</td>
-      <td>695.043</td>
-      <td>67.356</td>
-      <td>611.0</td>
-      <td>846.0</td>
-      <td>49.891</td>
-      <td>503.022</td>
-      <td>49.882</td>
-      <td>502.979</td>
-      <td>6.454</td>
-      <td>4.537</td>
-      <td>73.243</td>
-      <td>100</td>
-      <td>A</td>
+      <th>110</th>
+      <td>46</td>
+      <td>70.869565</td>
+      <td>11.648895</td>
+      <td>5.298003</td>
+      <td>2.198733</td>
+      <td>20P1_POS0007_D_1UL</td>
     </tr>
   </tbody>
 </table>
-<p>391 rows × 14 columns</p>
+<p>111 rows × 6 columns</p>
 </div></div></div>
 </div>
-<p>For plotting, we can use the <a class="reference external" href="https://seaborn.pydata.org/">seaborn library</a>, for example for visualizing a histogram of values given a table column.</p>
+<p>From this table we can make a scatter plot of aspect ratio versus mean intensity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="n">kde</span> <span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;aspect_ratio&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;intensity_mean&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/plotting_seaborn_4_0.png" src="../_images/plotting_seaborn_4_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;aspect_ratio&#39;, ylabel=&#39;intensity_mean&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/plotting_seaborn_7_1.png" src="../_images/plotting_seaborn_7_1.png" />
+</div>
+</div>
+<p>We can embbed and visualize other features by providing a few extra arguments, for example we can use the area measurement to encode the size of the data points and the major axis length can be used to visualize data points in different colours from the <code class="docutils literal notranslate"><span class="pre">magma</span></code> color map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;aspect_ratio&quot;</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;intensity_mean&quot;</span><span class="p">,</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="s2">&quot;area&quot;</span><span class="p">,</span>
+            <span class="n">hue</span> <span class="o">=</span> <span class="s2">&quot;major_axis_length&quot;</span><span class="p">,</span>
+            <span class="n">palette</span> <span class="o">=</span> <span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;aspect_ratio&#39;, ylabel=&#39;intensity_mean&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/plotting_seaborn_9_1.png" src="../_images/plotting_seaborn_9_1.png" />
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">scatterplot</span></code> function is an axes-level function. This means, if we want to add subplots, we also need to create a figure and axes from matplotlib first and pass the axes handles.</p>
+</section>
+<section id="scatter-plots-with-subplots">
+<h2>Scatter plots with subplots<a class="headerlink" href="#scatter-plots-with-subplots" title="Permalink to this headline">#</a></h2>
+<p>Seaborn also has figure-level functions, where the subplots are an argument.</p>
+<p>In the example below, we use the <code class="docutils literal notranslate"><span class="pre">relplot</span></code> function (from <em>relationship</em>) and separate the files by providing ‘file_name’ to the argument <code class="docutils literal notranslate"><span class="pre">col</span></code>. This allows us to see measurements seprated by the image file the measurements were taken from.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;aspect_ratio&quot;</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;intensity_mean&quot;</span><span class="p">,</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="s2">&quot;area&quot;</span><span class="p">,</span>
+            <span class="n">hue</span> <span class="o">=</span> <span class="s2">&quot;major_axis_length&quot;</span><span class="p">,</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;file_name&quot;</span><span class="p">,</span>
+            <span class="n">palette</span> <span class="o">=</span> <span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x148dd2d2be0&gt;
+</pre></div>
+</div>
+<img alt="../_images/plotting_seaborn_12_1.png" src="../_images/plotting_seaborn_12_1.png" />
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="scatter-plots">
-<h1>Scatter plots<a class="headerlink" href="#scatter-plots" title="Permalink to this headline">#</a></h1>
-<p>For visualizing relationships between different parameters, it may make sense to visualze a scatter plot along with histograms.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Mean&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/plotting_seaborn_6_0.png" src="../_images/plotting_seaborn_6_0.png" />
-</div>
-</div>
-<p>This visualization can give futher insights into our given dataset, e.g. by visualizing different groups of samples in different colours. In this example we distinguish samples by their type:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span>
-              <span class="n">x</span> <span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> 
-              <span class="n">y</span><span class="o">=</span> <span class="s1">&#39;Mean&#39;</span><span class="p">,</span>
-              <span class="n">hue</span><span class="o">=</span> <span class="s1">&#39;Type&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/plotting_seaborn_8_0.png" src="../_images/plotting_seaborn_8_0.png" />
-</div>
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1785,17 +1707,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="readme.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="plotting_matplotlib.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Plotting</p>
+            <p class="prev-next-title">Plotting with Matplotlib</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="plotting_matplotlib.html" title="next page">
+    <a class='right-next' id="next-link" href="plotting_distributions.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Plotting with Matplotlib</p>
+        <p class="prev-next-title">Plotting Distributions with Seaborn</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
