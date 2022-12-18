@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Optimize segmentation / labeling &#8212; Bio-image Analysis Notebooks</title>
+    <title>Optimize segmentation algorithms &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,6 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Optimizing parameters for membrane-image based cell segmentation" href="membrane_segmentation.html" />
+    <link rel="prev" title="Optimization basics" href="optimization_basics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -111,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -1075,12 +1077,39 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="readme.html">
+   Parameter optimization
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimization_basics.html">
+     Optimization basics
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Optimize segmentation algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="membrane_segmentation.html">
+     Optimizing parameters for membrane-image based cell segmentation
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
    Tabular data wrangling
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1131,8 +1160,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../41_descriptive_statistics/readme.html">
    Descriptive statistics
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1158,8 +1187,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../51_plotting/readme.html">
    Plotting
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
-  <label for="toctree-checkbox-27">
+  <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
+  <label for="toctree-checkbox-28">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1195,8 +1224,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../60_data_visualization/readme.html">
    Data visualization
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
-  <label for="toctree-checkbox-28">
+  <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
+  <label for="toctree-checkbox-29">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1412,23 +1441,60 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-insights-in-optimization">
+   Further insights in optimization
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Optimize segmentation / labeling</h1>
+                <h1>Optimize segmentation algorithms</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-insights-in-optimization">
+   Further insights in optimization
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -1436,38 +1502,63 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="optimize-segmentation-labeling">
-<h1>Optimize segmentation / labeling<a class="headerlink" href="#optimize-segmentation-labeling" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="optimize-segmentation-algorithms">
+<h1>Optimize segmentation algorithms<a class="headerlink" href="#optimize-segmentation-algorithms" title="Permalink to this headline">#</a></h1>
+<p>The Napari plugin <a class="reference external" href="https://github.com/haesleinhuepf/napari-workflow-optimizer">napari-workflow-optimizer</a> allows optimizing image segmentation workflows in a convenient way.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">from</span> <span class="nn">napari_workflow_optimizer</span> <span class="kn">import</span> <span class="n">JaccardLabelImageOptimizer</span><span class="p">,</span> <span class="n">Optimizer</span><span class="p">,</span> <span class="n">Workflow</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">napari_workflow_optimizer</span> <span class="kn">import</span> <span class="n">JaccardLabelImageOptimizer</span><span class="p">,</span> <span class="n">Workflow</span>
+
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
 <span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/haase/code/pyclesperanto_prototype/pyclesperanto_prototype/_tier0/_pycl.py:30: UserWarning: Data type double is not supported by your GPU. Will use float instead.
-  warnings.warn(&quot;Data type double is not supported by your GPU. Will use float instead.&quot;)
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>To use the optimizer, we need to define our workflow using a <code class="docutils literal notranslate"><span class="pre">Workflow</span></code> object. It works like a dictionary with image names as keywords and list of operations and parameters as values. The underlying infrastructure is based on <a class="reference external" href="https://docs.dask.org/en/stable/graphs.html">dask graphs</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">()</span>
 <span class="c1"># define background subtraction</span>
-<span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;deblurred&quot;</span><span class="p">,</span> <span class="n">cle</span><span class="o">.</span><span class="n">gaussian_blur</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">sigma_x</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sigma_y</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;blurred&quot;</span><span class="p">,</span> <span class="n">cle</span><span class="o">.</span><span class="n">gaussian_blur</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">sigma_x</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sigma_y</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="c1"># define segmentation</span>
-<span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;binarized&quot;</span><span class="p">,</span> <span class="n">cle</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">,</span> <span class="s2">&quot;deblurred&quot;</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;binarized&quot;</span><span class="p">,</span> <span class="n">cle</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">,</span> <span class="s2">&quot;blurred&quot;</span><span class="p">)</span>
 <span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">,</span> <span class="n">cle</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="s2">&quot;binarized&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>These workflows can be explored. For example we can read from it which image parameters are needed to get started.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs.tif&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="o">.</span><span class="n">roots</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;input&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also determine what the result images of the workflow are.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="o">.</span><span class="n">leafs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;labeled&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>After setting the inputs, we can read ask the workflow to compute results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/blobs.tif&quot;</span><span class="p">))</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">)</span>
 
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1475,62 +1566,87 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/label_image_optimizer_3_0.png" src="../_images/label_image_optimizer_3_0.png" />
+<img alt="../_images/label_image_optimizer_9_0.png" src="../_images/label_image_optimizer_9_0.png" />
 </div>
 </div>
+<p>For optimization of such a workflow, we need a ground truth annotation image. A sparse annotation of some objects is enough for this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ground_truth</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs_labeled.tif&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ground_truth</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/blobs_sparse_labels.tif&quot;</span><span class="p">)</span>
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/label_image_optimizer_4_0.png" src="../_images/label_image_optimizer_4_0.png" />
+<img alt="../_images/label_image_optimizer_11_0.png" src="../_images/label_image_optimizer_11_0.png" />
 </div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">JaccardLabelImageOptimizer</span></code> consumes a workflow and can optimize parameters with respect to a sparse ground truth. Its <code class="docutils literal notranslate"><span class="pre">optimize</span></code> function returns a set of parameters which corresponds to all numeric parameters of the workflow.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jlio</span> <span class="o">=</span> <span class="n">JaccardLabelImageOptimizer</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 <span class="n">best_param</span> <span class="o">=</span> <span class="n">jlio</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">jlio</span><span class="o">.</span><span class="n">set_numeric_parameters</span><span class="p">(</span><span class="n">best_param</span><span class="p">)</span>
+<span class="n">best_param</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.80023582e+00, 4.44562637e+00, 3.84861161e-04])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then use the optimizer for setting these parameters to the workflow and afterwards read where in the workflow the paramweters were set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jlio</span><span class="o">.</span><span class="n">set_numeric_parameters</span><span class="p">(</span><span class="n">best_param</span><span class="p">)</span>
+
+<span class="c1"># before printing the workflow, we quickly remove the input image</span>
+<span class="n">w</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Workflow:
+blurred &lt;- (&lt;function gaussian_blur at 0x0000023723085A60&gt;, &#39;input&#39;, None, 4.8002358210977345, 4.445626372447739, 0.00038486116050511713)
+binarized &lt;- (&lt;function threshold_otsu at 0x00000237232EADC0&gt;, &#39;blurred&#39;)
+labeled &lt;- (&lt;function connected_components_labeling_box at 0x000002372316AB80&gt;, &#39;binarized&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>After setting the input again, we can also apply the workflow to the image and inspect the result visually.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/blobs.tif&quot;</span><span class="p">))</span>
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> final_simplex: (array([[-2.57117817,  3.07498857,  0.00319218],
-       [-2.52941625,  3.03286465,  0.00334455],
-       [-1.89824976,  3.02270995,  0.0030759 ],
-       [-2.49756558,  3.00336109,  0.00330068]]), array([-0.68798562, -0.687528  , -0.6873711 , -0.68725163]))
-           fun: -0.6879856237928642
-       message: &#39;Maximum number of iterations has been exceeded.&#39;
-          nfev: 39
-           nit: 20
-        status: 2
-       success: False
-             x: array([-2.57117817,  3.07498857,  0.00319218])
-</pre></div>
-</div>
-<img alt="../_images/label_image_optimizer_5_1.png" src="../_images/label_image_optimizer_5_1.png" />
+<img alt="../_images/label_image_optimizer_17_0.png" src="../_images/label_image_optimizer_17_0.png" />
 </div>
 </div>
+<section id="further-insights-in-optimization">
+<h2>Further insights in optimization<a class="headerlink" href="#further-insights-in-optimization" title="Permalink to this headline">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">JaccardLabelImageOptimizer</span></code> also allows to take a look at the optimization process applied earlier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">attempt</span><span class="p">,</span> <span class="n">quality</span> <span class="o">=</span> <span class="n">jlio</span><span class="o">.</span><span class="n">get_plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attempt</span><span class="p">,</span> <span class="n">quality</span> <span class="o">=</span> <span class="n">jlio</span><span class="o">.</span><span class="n">get_plot</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">attempt</span><span class="p">,</span> <span class="n">quality</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f99a09f8250&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x23735c22c70&gt;]
 </pre></div>
 </div>
-<img alt="../_images/label_image_optimizer_6_1.png" src="../_images/label_image_optimizer_6_1.png" />
+<img alt="../_images/label_image_optimizer_19_1.png" src="../_images/label_image_optimizer_19_1.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1560,6 +1676,20 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="optimization_basics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Optimization basics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="membrane_segmentation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Optimizing parameters for membrane-image based cell segmentation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>

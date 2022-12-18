@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Optimize image segmentation / labeling with spare annotations &#8212; Bio-image Analysis Notebooks</title>
+    <title>Optimization basics &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,6 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Optimize segmentation algorithms" href="label_image_optimizer.html" />
+    <link rel="prev" title="Parameter optimization" href="readme.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -111,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -1075,12 +1077,39 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="readme.html">
+   Parameter optimization
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Optimization basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="label_image_optimizer.html">
+     Optimize segmentation algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="membrane_segmentation.html">
+     Optimizing parameters for membrane-image based cell segmentation
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
    Tabular data wrangling
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1131,8 +1160,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../41_descriptive_statistics/readme.html">
    Descriptive statistics
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1158,8 +1187,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../51_plotting/readme.html">
    Plotting
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
-  <label for="toctree-checkbox-27">
+  <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
+  <label for="toctree-checkbox-28">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1195,8 +1224,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../60_data_visualization/readme.html">
    Data visualization
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
-  <label for="toctree-checkbox-28">
+  <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
+  <label for="toctree-checkbox-29">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1287,7 +1316,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/35_parameter_optimization/sparse_label_image_optimizer.ipynb"
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/35_parameter_optimization/optimization_basics.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1347,7 +1376,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F35_parameter_optimization/sparse_label_image_optimizer.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F35_parameter_optimization/optimization_basics.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1375,7 +1404,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/35_parameter_optimization/sparse_label_image_optimizer.ipynb"
+        <a href="../_sources/35_parameter_optimization/optimization_basics.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1412,23 +1441,70 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-note-on-convergence">
+   A note on convergence
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#troubleshooting-exploring-the-parameter-space">
+   Troubleshooting: Exploring the parameter space
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Optimize image segmentation / labeling with spare annotations</h1>
+                <h1>Optimization basics</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-note-on-convergence">
+   A note on convergence
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#troubleshooting-exploring-the-parameter-space">
+   Troubleshooting: Exploring the parameter space
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -1436,96 +1512,266 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="optimize-image-segmentation-labeling-with-spare-annotations">
-<h1>Optimize image segmentation / labeling with spare annotations<a class="headerlink" href="#optimize-image-segmentation-labeling-with-spare-annotations" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="optimization-basics">
+<h1>Optimization basics<a class="headerlink" href="#optimization-basics" title="Permalink to this headline">#</a></h1>
+<p>In this notebook we demonstrate how to setup an image segmentation workflow and optimize its parameters with a given sparse annotation.</p>
+<p>See also:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard index</a></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">scipy.optimize.minimize</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">from</span> <span class="nn">napari_workflow_optimizer</span> <span class="kn">import</span> <span class="n">JaccardLabelImageOptimizer</span><span class="p">,</span> <span class="n">Optimizer</span><span class="p">,</span> <span class="n">Workflow</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/haase/code/pyclesperanto_prototype/pyclesperanto_prototype/_tier0/_pycl.py:30: UserWarning: Data type double is not supported by your GPU. Will use float instead.
-  warnings.warn(&quot;Data type double is not supported by your GPU. Will use float instead.&quot;)
-</pre></div>
 </div>
-</div>
-</div>
+<p>We start with loading an example image and a manual annotation. Not all objects must be annotated (sparse annotation).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">()</span>
-<span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">,</span> <span class="n">cle</span><span class="o">.</span><span class="n">voronoi_otsu_labeling</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs.tif&quot;</span><span class="p">))</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blobs</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs.tif&#39;</span><span class="p">)</span>
 
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sparse_label_image_optimizer_3_0.png" src="../_images/sparse_label_image_optimizer_3_0.png" />
+<img alt="../_images/optimization_basics_3_0.png" src="../_images/optimization_basics_3_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ground_truth</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs_sparse_labels.tif&quot;</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/sparse_label_image_optimizer_4_0.png" src="../_images/sparse_label_image_optimizer_4_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jlio</span> <span class="o">=</span> <span class="n">JaccardLabelImageOptimizer</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-<span class="n">best_param</span> <span class="o">=</span> <span class="n">jlio</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">jlio</span><span class="o">.</span><span class="n">set_numeric_parameters</span><span class="p">(</span><span class="n">best_param</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> final_simplex: (array([[ 3.18913574, -7.95849609],
-       [ 3.19094238, -7.83056641],
-       [ 3.19572983, -7.92399597]]), array([-0.08336982, -0.08336982, -0.08336982]))
-           fun: -0.08336982363781267
-       message: &#39;Maximum number of iterations has been exceeded.&#39;
-          nfev: 41
-           nit: 20
-        status: 2
-       success: False
-             x: array([ 3.18913574, -7.95849609])
-</pre></div>
-</div>
-<img alt="../_images/sparse_label_image_optimizer_5_1.png" src="../_images/sparse_label_image_optimizer_5_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">attempt</span><span class="p">,</span> <span class="n">quality</span> <span class="o">=</span> <span class="n">jlio</span><span class="o">.</span><span class="n">get_plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annotation</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs_annotated.tif&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">attempt</span><span class="p">,</span> <span class="n">quality</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8d1112f8b0&gt;]
+<img alt="../_images/optimization_basics_4_0.png" src="../_images/optimization_basics_4_0.png" />
+</div>
+</div>
+<p>Next, we define an image processing workflow that results in a binary image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">workflow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+    <span class="n">blurred</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">gaussian_blur</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">sigma_x</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">sigma_y</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="n">binary</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">greater_constant</span><span class="p">(</span><span class="n">blurred</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">binary</span>
 </pre></div>
 </div>
-<img alt="../_images/sparse_label_image_optimizer_6_1.png" src="../_images/sparse_label_image_optimizer_6_1.png" />
 </div>
 </div>
+<p>We also test this workflow with some random <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and <code class="docutils literal notranslate"><span class="pre">threshold</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">workflow</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/optimization_basics_8_0.png" src="../_images/optimization_basics_8_0.png" />
+</div>
+</div>
+<p>Our <a class="reference external" href="https://en.wikipedia.org/wiki/Fitness_function">fitness function</a> takes two parameters: A given segmentation result (test) and a reference annotation. It then determines how good the segmentation is, e.g. using the Jaccard index.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary_and</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">binary_and</span>
+
+<span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">reference</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determine how correct a given test segmentation is. </span>
+<span class="sd">    As metric we use the Jaccard index.</span>
+<span class="sd">    Assumtion: test is a binary image(0=False and 1=True) and </span>
+<span class="sd">    reference is an image with 0=unknown, 1=False, 2=True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">negative_reference</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="n">positive_reference</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="n">negative_test</span> <span class="o">=</span> <span class="n">test</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">positive_test</span> <span class="o">=</span> <span class="n">test</span> <span class="o">==</span> <span class="mi">1</span>
+    
+    <span class="c1"># true positive: test = 1, ref = 2</span>
+    <span class="n">tp</span> <span class="o">=</span> <span class="n">binary_and</span><span class="p">(</span><span class="n">positive_reference</span><span class="p">,</span> <span class="n">positive_test</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># true negative: </span>
+    <span class="n">tn</span> <span class="o">=</span> <span class="n">binary_and</span><span class="p">(</span><span class="n">negative_reference</span><span class="p">,</span> <span class="n">negative_test</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># false positive</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">binary_and</span><span class="p">(</span><span class="n">negative_reference</span><span class="p">,</span> <span class="n">positive_test</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># false negative</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="n">binary_and</span><span class="p">(</span><span class="n">positive_reference</span><span class="p">,</span> <span class="n">negative_test</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># return Jaccard Index</span>
+    <span class="k">return</span> <span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span>
+
+<span class="n">fitness</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">annotation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.74251497
+</pre></div>
+</div>
+</div>
+</div>
+<p>We should also test this function on a range of parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">for</span> <span class="n">threshold</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">workflow</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">fitness</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">annotation</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>70 0.49048626
+80 0.5843038
+90 0.67019403
+100 0.74251497
+110 0.8183873
+120 0.8378158
+130 0.79089373
+140 0.7024014
+150 0.60603446
+160 0.49827588
+170 0.3974138
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we define a <code class="docutils literal notranslate"><span class="pre">fun</span></code>ction that takes only numerical parameters that should be optimized.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># apply current parameter setting</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">workflow</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1"># as we are minimizing, we multiply fitness with -1</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">fitness</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">annotation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before starting the optimization, the final step is to configure the starting point <code class="docutils literal notranslate"><span class="pre">x0</span></code> for the optimization and the stoppigin criterion <code class="docutils literal notranslate"><span class="pre">atol</span></code>, the absolut tolerance value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># starting point in parameter space</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+
+<span class="c1"># run the optimization</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nelder-mead&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;xatol&#39;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">})</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> final_simplex: (array([[  3.89501953, 121.94091797],
+       [  3.89498663, 121.9409585 ],
+       [  3.89500463, 121.9403702 ]]), array([-0.85761315, -0.85761315, -0.85761315]))
+           fun: -0.8576131463050842
+       message: &#39;Optimization terminated successfully.&#39;
+          nfev: 65
+           nit: 22
+        status: 0
+       success: True
+             x: array([  3.89501953, 121.94091797])
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this <code class="docutils literal notranslate"><span class="pre">result</span></code> object we can read out the parameter set that has been determined as optimal and produce a binary image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+<span class="n">best_binary</span> <span class="o">=</span> <span class="n">workflow</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">best_binary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/optimization_basics_18_0.png" src="../_images/optimization_basics_18_0.png" />
+</div>
+</div>
+<section id="a-note-on-convergence">
+<h2>A note on convergence<a class="headerlink" href="#a-note-on-convergence" title="Permalink to this headline">#</a></h2>
+<p>Optimization algorithms may not always find the global optimum. Succeeding depends on the starting point of the optimzation, of the shape of the parameter space and the chosen algorithm. In the following example we demonstrate how a failed optimization can look like if the starting point was chosen poorly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># starting point in parameter space</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+
+<span class="c1"># run the optimization</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nelder-mead&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;xatol&#39;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">})</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> final_simplex: (array([[0.00000000e+00, 6.00000000e+01],
+       [6.10351563e-08, 6.00000000e+01],
+       [0.00000000e+00, 6.00007324e+01]]), array([-0.63195992, -0.63195992, -0.63195992]))
+           fun: -0.6319599151611328
+       message: &#39;Optimization terminated successfully.&#39;
+          nfev: 51
+           nit: 13
+        status: 0
+       success: True
+             x: array([ 0., 60.])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="troubleshooting-exploring-the-parameter-space">
+<h2>Troubleshooting: Exploring the parameter space<a class="headerlink" href="#troubleshooting-exploring-the-parameter-space" title="Permalink to this headline">#</a></h2>
+<p>In this case, the resulting set of parameters is not different from the starting point. In case the fitness does not change around in the starting point, the optimization algorithm does not know how to improve the result. Visualizing the values around the starting point may help.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">threshold</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">57</span><span class="p">,</span> <span class="mi">63</span><span class="p">):</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">workflow</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">fitness</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">annotation</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>57 0.6319599
+58 0.6319599
+59 0.6319599
+60 0.6319599
+61 0.6319599
+62 0.6319599
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">):</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">workflow</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">fitness</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">annotation</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0 0.6319599
+0.1 0.6319599
+0.2 0.6319599
+0.30000000000000004 0.6319599
+0.4 0.6319599
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, some manual exploration of the parameter space before running automatic optimization make sense.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1555,6 +1801,20 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="readme.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Parameter optimization</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="label_image_optimizer.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Optimize segmentation algorithms</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>

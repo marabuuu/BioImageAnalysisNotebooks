@@ -52,6 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Optimization basics" href="optimization_basics.html" />
+    <link rel="prev" title="Processing timelapse data" href="../33_batch_processing/14_process_timelapse.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -111,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -1075,12 +1077,39 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Parameter optimization
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimization_basics.html">
+     Optimization basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="label_image_optimizer.html">
+     Optimize segmentation algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="membrane_segmentation.html">
+     Optimizing parameters for membrane-image based cell segmentation
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
    Tabular data wrangling
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1131,8 +1160,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../41_descriptive_statistics/readme.html">
    Descriptive statistics
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1158,8 +1187,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../51_plotting/readme.html">
    Plotting
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
-  <label for="toctree-checkbox-27">
+  <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
+  <label for="toctree-checkbox-28">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1195,8 +1224,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../60_data_visualization/readme.html">
    Data visualization
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
-  <label for="toctree-checkbox-28">
+  <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
+  <label for="toctree-checkbox-29">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1409,6 +1438,12 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="parameter-optimization">
 <h1>Parameter optimization<a class="headerlink" href="#parameter-optimization" title="Permalink to this headline">#</a></h1>
+<p>In this chapter we will apply some strategies to optimize parameters of image processing workflows.
+In general, it is important to have high-quality ground truth data, such as manually segmented images.
+Furthermore, a well-engineered fitness function (sometimes als also called loss-function) is necessary.
+For parameter optimization we will use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html">scipy’s optimize package</a> and the Napari plugin <a class="reference external" href="https://github.com/haesleinhuepf/napari-workflow-optimizer">napari-workflow-optimizer</a>.</p>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1438,6 +1473,20 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../33_batch_processing/14_process_timelapse.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Processing timelapse data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="optimization_basics.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Optimization basics</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>

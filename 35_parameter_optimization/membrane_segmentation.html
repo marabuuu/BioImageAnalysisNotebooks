@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Segmenting cells with fluorescent membranes using Random Forest Classifiers &#8212; Bio-image Analysis Notebooks</title>
+    <title>Optimizing parameters for membrane-image based cell segmentation &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,6 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tabular data wrangling" href="../40_tabular_data_wrangling/readme.html" />
+    <link rel="prev" title="Optimize segmentation algorithms" href="label_image_optimizer.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -111,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -1075,12 +1077,39 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="readme.html">
+   Parameter optimization
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimization_basics.html">
+     Optimization basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="label_image_optimizer.html">
+     Optimize segmentation algorithms
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Optimizing parameters for membrane-image based cell segmentation
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../40_tabular_data_wrangling/readme.html">
    Tabular data wrangling
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1131,8 +1160,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../41_descriptive_statistics/readme.html">
    Descriptive statistics
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1158,8 +1187,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../51_plotting/readme.html">
    Plotting
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
-  <label for="toctree-checkbox-27">
+  <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
+  <label for="toctree-checkbox-28">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1195,8 +1224,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../60_data_visualization/readme.html">
    Data visualization
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
-  <label for="toctree-checkbox-28">
+  <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
+  <label for="toctree-checkbox-29">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1424,7 +1453,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Segmenting cells with fluorescent membranes using Random Forest Classifiers</h1>
+                <h1>Optimizing parameters for membrane-image based cell segmentation</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1436,44 +1465,47 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="segmenting-cells-with-fluorescent-membranes-using-random-forest-classifiers">
-<h1>Segmenting cells with fluorescent membranes using Random Forest Classifiers<a class="headerlink" href="#segmenting-cells-with-fluorescent-membranes-using-random-forest-classifiers" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="optimizing-parameters-for-membrane-image-based-cell-segmentation">
+<h1>Optimizing parameters for membrane-image based cell segmentation<a class="headerlink" href="#optimizing-parameters-for-membrane-image-based-cell-segmentation" title="Permalink to this headline">#</a></h1>
+<p>Workflows for segmenting cells from membrane staining images are often hard to optimize. In this notebook we demonstrate how to automatically optimizing the <a class="reference external" href="https://en.wikipedia.org/wiki/Watershed_(image_processing)">seeded watershed algorithm</a>, a common approach for this kind of image data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">from</span> <span class="nn">napari_workflow_optimizer</span> <span class="kn">import</span> <span class="n">JaccardLabelImageOptimizer</span><span class="p">,</span> <span class="n">Workflow</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">napari_workflow_optimizer</span> <span class="kn">import</span> <span class="n">JaccardLabelImageOptimizer</span><span class="p">,</span> <span class="n">Workflow</span>
+
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
 <span class="kn">import</span> <span class="nn">napari_segment_blobs_and_things_with_membranes</span> <span class="k">as</span> <span class="nn">nsbatwm</span>
 <span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/haase/code/pyclesperanto_prototype/pyclesperanto_prototype/_tier0/_pycl.py:30: UserWarning: Data type double is not supported by your GPU. Will use float instead.
-  warnings.warn(&quot;Data type double is not supported by your GPU. Will use float instead.&quot;)
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">the_segmentation_game.metrics</span> <span class="kn">import</span> <span class="n">jaccard_index_sparse</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>We set up a workflow and insert a single operation, <a class="reference external" href="https://www.napari-hub.org/plugins/napari-segment-blobs-and-things-with-membranes#seeded-watershed-using-local-minima-as-starting-points">Seeded Watershed using local minima as starting points</a> using the Napari plugin napari-segment-blobs-and-things-with-membranes. The algorithm has two parameters: <code class="docutils literal notranslate"><span class="pre">spot_sigma</span></code> for tuning how close seed points can be and <code class="docutils literal notranslate"><span class="pre">outline_sigma</span></code> for tuning how precise the membranes should be segmented.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">()</span>
-<span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">,</span> <span class="n">nsbatwm</span><span class="o">.</span><span class="n">thresholded_local_minima_seeded_watershed</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">,</span> <span class="c1"># result image name</span>
+      <span class="n">nsbatwm</span><span class="o">.</span><span class="n">thresholded_local_minima_seeded_watershed</span><span class="p">,</span> <span class="c1"># operation</span>
+      <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># parameters</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;membranes_2d.tif&quot;</span><span class="p">))</span> <span class="c1"># image data source: scikit-image cells3d example, slice 28</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># image data source: scikit-image cells3d example, slice 28</span>
+<span class="n">w</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/membranes_2d.tif&quot;</span><span class="p">))</span>
 <span class="n">input_image</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">)</span>
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">input_image</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/membrane_segmentation_3_0.png" src="../_images/membrane_segmentation_3_0.png" />
+<img alt="../_images/membrane_segmentation_4_0.png" src="../_images/membrane_segmentation_4_0.png" />
 </div>
 </div>
+<p>We produce a first segmentation result that is oversegmented, there are obviously too many cells found.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">)</span>
@@ -1482,20 +1514,22 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/membrane_segmentation_4_0.png" src="../_images/membrane_segmentation_4_0.png" />
+<img alt="../_images/membrane_segmentation_6_0.png" src="../_images/membrane_segmentation_6_0.png" />
 </div>
 </div>
+<p>To give the segmentation algorithm some ground truth to compare segmentation results with, we use this sparse annotation image. It typically is enough to annotate some example cells accurately. Better spend time on making good segmentations and do not draw so many.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ground_truth</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;membranes_2d_sparse_labels.tif&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ground_truth</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/membranes_2d_sparse_labels.tif&quot;</span><span class="p">)</span>
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/membrane_segmentation_5_0.png" src="../_images/membrane_segmentation_5_0.png" />
+<img alt="../_images/membrane_segmentation_8_0.png" src="../_images/membrane_segmentation_8_0.png" />
 </div>
 </div>
+<p>We can then initiate the <code class="docutils literal notranslate"><span class="pre">JaccardLabelImageOptimizer</span></code>. Just for testing we inspect the current starting point for optimization.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jlio</span> <span class="o">=</span> <span class="n">JaccardLabelImageOptimizer</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
@@ -1509,45 +1543,108 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>We then start the optimization and afterwards print out the optimized parameter set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_param</span> <span class="o">=</span> <span class="n">jlio</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">jlio</span><span class="o">.</span><span class="n">set_numeric_parameters</span><span class="p">(</span><span class="n">best_param</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_param</span> <span class="o">=</span> <span class="n">jlio</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">best_param</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  2.34307473,   5.6861856 , -74.78749191])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also ask the optimizer to set these parameters for us and inspect the resulting label image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jlio</span><span class="o">.</span><span class="n">set_numeric_parameters</span><span class="p">(</span><span class="n">best_param</span><span class="p">)</span>
 <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> final_simplex: (array([[   9.4       ,    2.83333333, -250.        ],
-       [   9.88206447,    2.95291495, -293.77572016],
-       [   9.40246914,    2.95401235, -258.56481481],
-       [   9.61536351,    2.92033608, -276.20884774]]), array([-0.10388815, -0.10376672, -0.10376672, -0.10375615]))
-           fun: -0.10388815377572722
-       message: &#39;Maximum number of iterations has been exceeded.&#39;
-          nfev: 44
-           nit: 20
-        status: 2
-       success: False
-             x: array([   9.4       ,    2.83333333, -250.        ])
-</pre></div>
-</div>
-<img alt="../_images/membrane_segmentation_7_1.png" src="../_images/membrane_segmentation_7_1.png" />
+<img alt="../_images/membrane_segmentation_14_0.png" src="../_images/membrane_segmentation_14_0.png" />
 </div>
 </div>
+<p>The quality of this image can be measured by averaging the Jaccard Index of the three ground truth objects. <a class="reference external" href="https://github.com/haesleinhuepf/the-segmentation-game">The Segmentation Game</a> library has a function for this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">attempt</span><span class="p">,</span> <span class="n">quality</span> <span class="o">=</span> <span class="n">jlio</span><span class="o">.</span><span class="n">get_plot</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">attempt</span><span class="p">,</span> <span class="n">quality</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jaccard_index_sparse</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">,</span> <span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f93688b0c40&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8300891581238193
 </pre></div>
 </div>
-<img alt="../_images/membrane_segmentation_8_1.png" src="../_images/membrane_segmentation_8_1.png" />
+</div>
+</div>
+<p>Sometimes, the result is not perfect and we may want to change one parameter and see if the result can be improved.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_starting_point</span> <span class="o">=</span> <span class="n">best_param</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">new_starting_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="n">new_starting_point</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  8.        ,   5.6861856 , -74.78749191])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jlio2</span> <span class="o">=</span> <span class="n">JaccardLabelImageOptimizer</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="n">jlio2</span><span class="o">.</span><span class="n">set_numeric_parameters</span><span class="p">(</span><span class="n">new_starting_point</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/membrane_segmentation_19_0.png" src="../_images/membrane_segmentation_19_0.png" />
+</div>
+</div>
+<p>We can then start a second attempt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_param</span> <span class="o">=</span> <span class="n">jlio</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">best_param</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  9.50775939,   1.39446381, -83.9132378 ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jlio</span><span class="o">.</span><span class="n">set_numeric_parameters</span><span class="p">(</span><span class="n">best_param</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/membrane_segmentation_22_0.png" src="../_images/membrane_segmentation_22_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jaccard_index_sparse</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">,</span> <span class="n">w</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labeled&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8905848327576197
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -1579,6 +1676,20 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="label_image_optimizer.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Optimize segmentation algorithms</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../40_tabular_data_wrangling/readme.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tabular data wrangling</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
