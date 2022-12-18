@@ -1091,8 +1091,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="summarizing_subsets.html">
+     Summarizing subsets of data
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pivot_tables.html">
      Pivot tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tidy_data.html">
+     Tidy-Data
     </a>
    </li>
   </ul>
@@ -1400,8 +1410,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Appending tables
+  <a class="reference internal nav-link" href="#combining-measurements-from-multiple-image-files">
+   Combining measurements from multiple image files
   </a>
  </li>
 </ul>
@@ -1429,8 +1439,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Appending tables
+  <a class="reference internal nav-link" href="#combining-measurements-from-multiple-image-files">
+   Combining measurements from multiple image files
   </a>
  </li>
 </ul>
@@ -1446,7 +1456,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="appending-tables">
 <h1>Appending tables<a class="headerlink" href="#appending-tables" title="Permalink to this headline">#</a></h1>
 <p>When processing multiple images, potentially using multiple image processing libraries, a common task is to combine tables.</p>
-<p>We start with two small tables of measurements.</p>
+<p>We start with two small tables of measurements that could have been obtained from different functions or different libraries.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1789,27 +1799,10 @@ title="Print to PDF"
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="id1">
-<h2>Appending tables<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
-<p>It may also make sense to append tables, e.g. if measurements were acquired subsequently.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">more_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-    <span class="s1">&#39;circularity&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
-    <span class="s1">&#39;elongation&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">],</span>
-    <span class="s1">&#39;area&#39;</span><span class="p">:[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
-    <span class="s1">&#39;skewness&#39;</span><span class="p">:[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]</span>
-<span class="p">})</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">long_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">correctly_combined_tables2</span><span class="p">,</span> <span class="n">more_data</span><span class="p">])</span>
-<span class="n">long_table</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correctly_combined_tables2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">table1</span><span class="p">,</span> <span class="n">table2</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="n">correctly_combined_tables2</span>
 </pre></div>
 </div>
 </div>
@@ -1842,11 +1835,11 @@ title="Print to PDF"
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
-      <td>0.3</td>
-      <td>2.3</td>
-      <td>25</td>
-      <td>0.3</td>
+      <td>3</td>
+      <td>0.7</td>
+      <td>1.2</td>
+      <td>22</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1858,11 +1851,11 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>2</th>
-      <td>3</td>
-      <td>0.7</td>
-      <td>1.2</td>
-      <td>22</td>
-      <td>0.5</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>2.3</td>
+      <td>25</td>
+      <td>0.3</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1872,26 +1865,674 @@ title="Print to PDF"
       <td>18</td>
       <td>0.3</td>
     </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Suppose there is a common measurement name from different tables. For example, table3 below also contain “elongation”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span>    <span class="p">[</span><span class="mi">3</span><span class="p">,</span>   <span class="mi">2</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>   <span class="mi">4</span><span class="p">],</span>
+    <span class="s2">&quot;area&quot;</span><span class="p">:</span>     <span class="p">[</span><span class="mi">22</span><span class="p">,</span>  <span class="mi">32</span><span class="p">,</span>  <span class="mi">25</span><span class="p">,</span>  <span class="mi">18</span><span class="p">],</span>
+    <span class="s2">&quot;skewness&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+    <span class="s2">&quot;elongation&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">]</span>
+    <span class="p">})</span>
+<span class="n">table3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>area</th>
+      <th>skewness</th>
+      <th>elongation</th>
+    </tr>
+  </thead>
+  <tbody>
     <tr>
       <th>0</th>
-      <td>5</td>
-      <td>0.2</td>
-      <td>2.2</td>
-      <td>33</td>
+      <td>3</td>
+      <td>22</td>
       <td>0.5</td>
+      <td>2.3</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>6</td>
-      <td>0.3</td>
-      <td>4.1</td>
-      <td>14</td>
+      <td>2</td>
+      <td>32</td>
       <td>0.6</td>
+      <td>3.4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>25</td>
+      <td>0.3</td>
+      <td>1.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>18</td>
+      <td>0.3</td>
+      <td>1.1</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+<p>Applying merge still preserves both measurements in different columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correctly_combined_tables3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">table1</span><span class="p">,</span> <span class="n">table3</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="n">correctly_combined_tables3</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>circularity</th>
+      <th>elongation_x</th>
+      <th>area</th>
+      <th>skewness</th>
+      <th>elongation_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0.3</td>
+      <td>2.3</td>
+      <td>25</td>
+      <td>0.3</td>
+      <td>1.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>0.5</td>
+      <td>3.4</td>
+      <td>32</td>
+      <td>0.6</td>
+      <td>3.4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>0.7</td>
+      <td>1.2</td>
+      <td>22</td>
+      <td>0.5</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>18</td>
+      <td>0.3</td>
+      <td>1.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can change ‘x’ and ‘y’ by passing other suffixes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correctly_combined_tables3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">table1</span><span class="p">,</span> <span class="n">table3</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;_method1&#39;</span><span class="p">,</span> <span class="s1">&#39;_method2&#39;</span><span class="p">))</span>
+<span class="n">correctly_combined_tables3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>circularity</th>
+      <th>elongation_method1</th>
+      <th>area</th>
+      <th>skewness</th>
+      <th>elongation_method2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0.3</td>
+      <td>2.3</td>
+      <td>25</td>
+      <td>0.3</td>
+      <td>1.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>0.5</td>
+      <td>3.4</td>
+      <td>32</td>
+      <td>0.6</td>
+      <td>3.4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>0.7</td>
+      <td>1.2</td>
+      <td>22</td>
+      <td>0.5</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>18</td>
+      <td>0.3</td>
+      <td>1.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="combining-measurements-from-multiple-image-files">
+<h2>Combining measurements from multiple image files<a class="headerlink" href="#combining-measurements-from-multiple-image-files" title="Permalink to this headline">#</a></h2>
+<p>When applying a workflow to many images, you would get tables with the same column names, but with a variable number of rows.
+To calculate statistics for whole folders or to perform machine learning, we usually need to concatenate those tables, but it is important to keep track of the source files.</p>
+<p>Let’s open two tables generated from applying the same worflow to different files.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/BBBC007_20P1_POS0007_D_1UL.csv&#39;</span><span class="p">)</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>area</th>
+      <th>intensity_mean</th>
+      <th>major_axis_length</th>
+      <th>minor_axis_length</th>
+      <th>aspect_ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>256</td>
+      <td>93.250000</td>
+      <td>19.995017</td>
+      <td>17.021559</td>
+      <td>1.174688</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>90</td>
+      <td>82.488889</td>
+      <td>15.939969</td>
+      <td>7.516326</td>
+      <td>2.120713</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>577</td>
+      <td>90.637782</td>
+      <td>35.324458</td>
+      <td>21.759434</td>
+      <td>1.623409</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>270</td>
+      <td>95.640741</td>
+      <td>20.229431</td>
+      <td>17.669052</td>
+      <td>1.144908</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>153</td>
+      <td>84.908497</td>
+      <td>15.683703</td>
+      <td>12.420475</td>
+      <td>1.262730</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/BBBC007_20P1_POS0010_D_1UL.csv&#39;</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>area</th>
+      <th>intensity_mean</th>
+      <th>major_axis_length</th>
+      <th>minor_axis_length</th>
+      <th>aspect_ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>139</td>
+      <td>96.546763</td>
+      <td>17.504104</td>
+      <td>10.292770</td>
+      <td>1.700621</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>360</td>
+      <td>86.613889</td>
+      <td>35.746808</td>
+      <td>14.983124</td>
+      <td>2.385805</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>43</td>
+      <td>91.488372</td>
+      <td>12.967884</td>
+      <td>4.351573</td>
+      <td>2.980045</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>140</td>
+      <td>73.742857</td>
+      <td>18.940508</td>
+      <td>10.314404</td>
+      <td>1.836316</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>144</td>
+      <td>89.375000</td>
+      <td>13.639308</td>
+      <td>13.458532</td>
+      <td>1.013432</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In this particular case where we know we have the same columns, we could concatenate them into a single big table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">big_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">big_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>area</th>
+      <th>intensity_mean</th>
+      <th>major_axis_length</th>
+      <th>minor_axis_length</th>
+      <th>aspect_ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>256</td>
+      <td>93.250000</td>
+      <td>19.995017</td>
+      <td>17.021559</td>
+      <td>1.174688</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>90</td>
+      <td>82.488889</td>
+      <td>15.939969</td>
+      <td>7.516326</td>
+      <td>2.120713</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>577</td>
+      <td>90.637782</td>
+      <td>35.324458</td>
+      <td>21.759434</td>
+      <td>1.623409</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>270</td>
+      <td>95.640741</td>
+      <td>20.229431</td>
+      <td>17.669052</td>
+      <td>1.144908</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>153</td>
+      <td>84.908497</td>
+      <td>15.683703</td>
+      <td>12.420475</td>
+      <td>1.262730</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>315</td>
+      <td>91.133333</td>
+      <td>20.927095</td>
+      <td>19.209283</td>
+      <td>1.089426</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>206</td>
+      <td>94.262136</td>
+      <td>23.381879</td>
+      <td>11.669668</td>
+      <td>2.003646</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>45</td>
+      <td>68.377778</td>
+      <td>9.406371</td>
+      <td>6.276445</td>
+      <td>1.498678</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>33</td>
+      <td>76.727273</td>
+      <td>10.724275</td>
+      <td>4.174568</td>
+      <td>2.568955</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>16</td>
+      <td>76.750000</td>
+      <td>7.745967</td>
+      <td>2.783882</td>
+      <td>2.782433</td>
+    </tr>
+  </tbody>
+</table>
+<p>111 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>The problem is that we lose their source identity. An easy fix for that is to add a new column with the file name before concatenating them. This will facilitating splitting them back and plotting later on.</p>
+<p>When we give a single value to a new column, it is assigned to all rows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;BBBC007_20P1_POS0007_D_1UL&#39;</span>
+
+<span class="n">df2</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;BBBC007_20P1_POS0010_D_1UL&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">big_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">big_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>area</th>
+      <th>intensity_mean</th>
+      <th>major_axis_length</th>
+      <th>minor_axis_length</th>
+      <th>aspect_ratio</th>
+      <th>file_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>256</td>
+      <td>93.250000</td>
+      <td>19.995017</td>
+      <td>17.021559</td>
+      <td>1.174688</td>
+      <td>BBBC007_20P1_POS0007_D_1UL</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>90</td>
+      <td>82.488889</td>
+      <td>15.939969</td>
+      <td>7.516326</td>
+      <td>2.120713</td>
+      <td>BBBC007_20P1_POS0007_D_1UL</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>577</td>
+      <td>90.637782</td>
+      <td>35.324458</td>
+      <td>21.759434</td>
+      <td>1.623409</td>
+      <td>BBBC007_20P1_POS0007_D_1UL</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>270</td>
+      <td>95.640741</td>
+      <td>20.229431</td>
+      <td>17.669052</td>
+      <td>1.144908</td>
+      <td>BBBC007_20P1_POS0007_D_1UL</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>153</td>
+      <td>84.908497</td>
+      <td>15.683703</td>
+      <td>12.420475</td>
+      <td>1.262730</td>
+      <td>BBBC007_20P1_POS0007_D_1UL</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>315</td>
+      <td>91.133333</td>
+      <td>20.927095</td>
+      <td>19.209283</td>
+      <td>1.089426</td>
+      <td>BBBC007_20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>206</td>
+      <td>94.262136</td>
+      <td>23.381879</td>
+      <td>11.669668</td>
+      <td>2.003646</td>
+      <td>BBBC007_20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>45</td>
+      <td>68.377778</td>
+      <td>9.406371</td>
+      <td>6.276445</td>
+      <td>1.498678</td>
+      <td>BBBC007_20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>33</td>
+      <td>76.727273</td>
+      <td>10.724275</td>
+      <td>4.174568</td>
+      <td>2.568955</td>
+      <td>BBBC007_20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>16</td>
+      <td>76.750000</td>
+      <td>7.745967</td>
+      <td>2.783882</td>
+      <td>2.782433</td>
+      <td>BBBC007_20P1_POS0010_D_1UL</td>
+    </tr>
+  </tbody>
+</table>
+<p>111 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p>Now, when we can safely distinguish the source of each row.</p>
 </section>
 </section>
 

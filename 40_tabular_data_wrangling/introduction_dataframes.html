@@ -1091,8 +1091,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="summarizing_subsets.html">
+     Summarizing subsets of data
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pivot_tables.html">
      Pivot tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tidy_data.html">
+     Tidy-Data
     </a>
    </li>
   </ul>
@@ -1405,11 +1415,6 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-dataframes-from-lists-of-lists">
-   Creating DataFrames from lists of lists
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#loading-data-frames">
    Loading data frames
   </a>
@@ -1446,11 +1451,6 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#saving-data-frames">
    Saving data frames
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-dataframes-from-lists-of-lists">
-   Creating DataFrames from lists of lists
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1630,144 +1630,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-</div>
-</section>
-<section id="creating-dataframes-from-lists-of-lists">
-<h2>Creating DataFrames from lists of lists<a class="headerlink" href="#creating-dataframes-from-lists-of-lists" title="Permalink to this headline">#</a></h2>
-<p>Sometimes, we are confronted to data in form of lists of lists. To make pandas understand that form of data correctly, we also need to provide the headers in the same order as the lists</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">,</span> <span class="s1">&#39;minor_axis&#39;</span><span class="p">,</span> <span class="s1">&#39;major_axis&#39;</span><span class="p">]</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">68</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-<span class="p">]</span>
-          
-<span class="c1"># convert the data and header arrays in a pandas data frame</span>
-<span class="n">data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
-
-<span class="c1"># show it</span>
-<span class="n">data_frame</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>labels</th>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>area</th>
-      <td>45</td>
-      <td>23</td>
-      <td>68</td>
-    </tr>
-    <tr>
-      <th>minor_axis</th>
-      <td>2</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>major_axis</th>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>As you can see, this tabls is <em>rotated</em>. We can bring it in the usual form like this:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rotate/flip it</span>
-<span class="n">data_frame</span> <span class="o">=</span> <span class="n">data_frame</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
-
-<span class="c1"># show it</span>
-<span class="n">data_frame</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>labels</th>
-      <th>area</th>
-      <th>minor_axis</th>
-      <th>major_axis</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>45</td>
-      <td>2</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>23</td>
-      <td>4</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>68</td>
-      <td>4</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 <section id="loading-data-frames">
@@ -2113,7 +1975,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\AppData\Local\Temp/ipykernel_20588/206920941.py:1: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\haase\AppData\Local\Temp\ipykernel_3576\206920941.py:1: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
