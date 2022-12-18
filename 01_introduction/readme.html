@@ -605,7 +605,12 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20a_pixel_classification/mutlichannel_images.html">
+    <a class="reference internal" href="../20a_pixel_classification/interactive_pixel_classification/readme.html">
+     Interactive pixel classification and object segmentation in Napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20a_pixel_classification/multichannel_images.html">
      Pixel classification in multi-channel images
     </a>
    </li>
@@ -780,6 +785,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../27_cell_classification/apoc_object_classifier.html">
      Object classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../27_cell_classification/interactive_object_classification/readme.html">
+     Interactive object classification in Napari
     </a>
    </li>
    <li class="toctree-l2">
@@ -1292,30 +1302,28 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-install-conda">
-     Step 1: Install Conda
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#step-1-starting-conda">
-       Step 1: Starting conda
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-creating-a-conda-environment">
-     Step 2: Creating a conda environment
+    <a class="reference internal nav-link" href="#step-1-install-mambaforge">
+     Step 1: Install Mambaforge
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-installing-software-tools-and-libraries">
-     Step 3: Installing software tools and libraries
+    <a class="reference internal nav-link" href="#step-2-install-devbio-napari">
+     Step 2: Install devbio-napari
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-3-testing-the-installation">
      Step 3: Testing the installation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#troubleshooting-graphics-cards-drivers">
+     Troubleshooting: Graphics cards drivers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#troubleshooting-dll-load-failed">
+     Troubleshooting: DLL load failed
     </a>
    </li>
   </ul>
@@ -1350,30 +1358,28 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-install-conda">
-     Step 1: Install Conda
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#step-1-starting-conda">
-       Step 1: Starting conda
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-creating-a-conda-environment">
-     Step 2: Creating a conda environment
+    <a class="reference internal nav-link" href="#step-1-install-mambaforge">
+     Step 1: Install Mambaforge
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-installing-software-tools-and-libraries">
-     Step 3: Installing software tools and libraries
+    <a class="reference internal nav-link" href="#step-2-install-devbio-napari">
+     Step 2: Install devbio-napari
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-3-testing-the-installation">
      Step 3: Testing the installation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#troubleshooting-graphics-cards-drivers">
+     Troubleshooting: Graphics cards drivers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#troubleshooting-dll-load-failed">
+     Troubleshooting: DLL load failed
     </a>
    </li>
   </ul>
@@ -1390,93 +1396,96 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="setting-up-your-computer">
 <h1>Setting up your computer<a class="headerlink" href="#setting-up-your-computer" title="Permalink to this headline">#</a></h1>
-<p>This chapter provides instructions for setting up your computer to run python to analyse images.</p>
+<p>This chapter provides instructions for setting up your computer to run Python to analyse images.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="setting-up-python-and-conda-environments">
 <h1>Setting up Python and Conda environments<a class="headerlink" href="#setting-up-python-and-conda-environments" title="Permalink to this headline">#</a></h1>
 <p>When working with Python, we will make use of many plugins and software libraries which need to be organized.
-One way of doing this, is by managing so called “Conda” environments.
-A conda environment can be seen as a virtual desktop, or virtual computer, accessible via the command line.
-If you install some software into one conda environment, it may not be accessible from another environment.</p>
+One way of doing this, is by managing <em>Conda</em> environments.
+A conda environment can be seen as a virtual desktop, or virtual computer, accessible via the terminal.
+If you install some software into one Conda environment, it may not be accessible from another environment.
+If a Conda environment breaks, e.g. incompatible software was installed, you can just make a new one and start over.</p>
 <p>See also</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://mpicbg-scicomp.github.io/ipf_howtoguides/guides/Python_Conda_Environments">Python/Conda environments</a></p></li>
-<li><p><a class="reference external" href="https://youtu.be/MOEPe9TGBK0">Scientific Data Analysis with Python</a>.</p></li>
+<li><p><a class="reference external" href="https://focalplane.biologists.com/2022/12/08/managing-scientific-python-environments-using-conda-mamba-and-friends/">Managing Scientific Python environments using Conda, Mamba and friends</a></p></li>
+<li><p><a class="reference external" href="https://youtu.be/MOEPe9TGBK0">Scientific Data Analysis with Python</a></p></li>
 </ul>
-<section id="step-1-install-conda">
-<h2>Step 1: Install Conda<a class="headerlink" href="#step-1-install-conda" title="Permalink to this headline">#</a></h2>
-<p>Download and install conda, for example mini-conda
-<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html#windows-installers">for Windows</a> or
-<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html#linux-installers">for Linux</a>. MacOS users please follow the instructions on <a class="reference external" href="https://docs.conda.io/projects/continuumio-conda/en/latest/user-guide/install/macos.html">this page</a> and make sure you download the “bash” installer.</p>
-<p>For ease-of-use, it is recommended to add conda to the PATH variable during installtion, e.g. by checking this checkbox:</p>
-<p><img alt="" src="../_images/PATH.png" /></p>
-<section id="step-1-starting-conda">
-<h3>Step 1: Starting conda<a class="headerlink" href="#step-1-starting-conda" title="Permalink to this headline">#</a></h3>
-<p>After installation, you can start conda from the terminal or command line like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span>
-</pre></div>
-</div>
-<p>You will then see the term <code class="docutils literal notranslate"><span class="pre">(base)</span></code> at the beginning of each line:</p>
-<p><img alt="" src="../_images/base_env.png" /></p>
+<section id="step-1-install-mambaforge">
+<h2>Step 1: Install Mambaforge<a class="headerlink" href="#step-1-install-mambaforge" title="Permalink to this headline">#</a></h2>
+<p>Download and install Conda. We recommend the Conda distribution <a class="reference external" href="https://github.com/conda-forge/miniforge#mambaforge">Mambaforge</a>.</p>
+<p>For ease-of-use, it is recommended to install it for your use only and to add Conda to the PATH variable during installation.</p>
+<p><img alt="img.png" src="../_images/install_mambaforge.png" /></p>
+<p><img alt="img.png" src="../_images/install_mambaforge2.png" /></p>
 </section>
-</section>
-<section id="step-2-creating-a-conda-environment">
-<h2>Step 2: Creating a conda environment<a class="headerlink" href="#step-2-creating-a-conda-environment" title="Permalink to this headline">#</a></h2>
-<p>You can create a conda environment with this command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>conda create ––name env_exercise_9
-</pre></div>
-</div>
-<p>In some projects, you may want to start using python right away. Thus, you can specify to install python in a given version to your new conda environment from the start:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">env_exercise_9</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
-</pre></div>
-</div>
-<p>And afterwards you can enter the environment to work within it.
-Whenever you want to work on the same project again, you should start a command line and enter this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">env_exercise_9</span>
+<section id="step-2-install-devbio-napari">
+<h2>Step 2: Install devbio-napari<a class="headerlink" href="#step-2-install-devbio-napari" title="Permalink to this headline">#</a></h2>
+<p>We recommend installing <a class="reference external" href="https://github.com/haesleinhuepf/devbio-napari">devbio-napari</a>, a distribution of napari with a set of plugins for bioimage analysis.</p>
+<p>Use this command from the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mamba</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">devbio</span><span class="o">-</span><span class="n">napari</span><span class="o">-</span><span class="n">env</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.9</span> <span class="n">devbio</span><span class="o">-</span><span class="n">napari</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
 </pre></div>
 </div>
 <p><strong>Tip</strong>: It is recommended to create one environment for every project you are executing.
 In that way installed software libraries and tools cannot harm each other.</p>
-<p><img alt="" src="../_images/create_env.png" /></p>
-<p>Furthermore, configure <a class="reference external" href="https://conda-forge.org/">conda-forge</a> to receive the most-recent updates from the data science community:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> 
-<span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="nb">set</span> <span class="n">channel_priority</span> <span class="n">strict</span> 
-</pre></div>
-</div>
-</section>
-<section id="step-3-installing-software-tools-and-libraries">
-<h2>Step 3: Installing software tools and libraries<a class="headerlink" href="#step-3-installing-software-tools-and-libraries" title="Permalink to this headline">#</a></h2>
-<p>We will use python mostly from <a class="reference external" href="https://www.jupyter.org">jupyter notebooks</a>.
-Before we can do so, we need to install it.
-We can do that using the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">jupyter</span>
-</pre></div>
-</div>
-<p>As you can see, jupyter comes with many other libraries and tools it needs to execute.
-Check that you entered the right tool to install. E.g. take care that <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> contains a <code class="docutils literal notranslate"><span class="pre">y</span></code> and no <code class="docutils literal notranslate"><span class="pre">i</span></code>.
-Enter <code class="docutils literal notranslate"><span class="pre">y</span></code> and hit ENTER to start the installation process.
-As the <code class="docutils literal notranslate"><span class="pre">y</span></code> is pre-selected, as shown with the square brakets <code class="docutils literal notranslate"><span class="pre">[y]</span></code>, you can also just hit ENTER.</p>
-<p><img alt="" src="../_images/install_jupyter.png" /></p>
 </section>
 <section id="step-3-testing-the-installation">
 <h2>Step 3: Testing the installation<a class="headerlink" href="#step-3-testing-the-installation" title="Permalink to this headline">#</a></h2>
-<p>To get started with Jupyter notebooks, start them from the command line in your activated environment using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">notebook</span>
+<p>Afterwards you can enter the environment to work with it.
+Whenever you want to work on the same project again, you should start a command line and enter this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">devbio</span><span class="o">-</span><span class="n">napari</span><span class="o">-</span><span class="n">env</span>
 </pre></div>
 </div>
-<p>A browser will open and show you the following web page. Click on “New” in the top right corner and select “Python 3”:
-<img alt="" src="../_images/jupyter1.png" /></p>
-<p>In the new tab, click in the first code cell, enter <code class="docutils literal notranslate"><span class="pre">print(&quot;Hello</span> <span class="pre">world&quot;)</span></code> and hit SHIFT+ENTER on your keyboard.
-If everything is installed properly, it should look like this:
-<img alt="" src="../_images/jupyter2.png" /></p>
-<p>E.g. if python is not installed yet, you need to install it using this command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">python</span>
+<p>Start <a class="reference external" href="https://jupyter.org/">Jupyter lab</a> from the terminal like this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">lab</span>
 </pre></div>
 </div>
-<p><strong>Tip</strong>: You will later need to install more packages and software.
-However, while you are running jupyter notebooks, you cannot enter new commands in the command line.
-Thus, it is recommended to open two command line windows and activate the same conda environment at the same time.
-In one windows, you run <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> and in the other <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">name_of_the_software_that_isnt_installed_yet</span></code>.</p>
+<p>A browser will open and show you the following web page. In the sectiojn <code class="docutils literal notranslate"><span class="pre">Notebook</span></code> click on “Python 3 (ipykernel)” to create a new notebook:</p>
+<p><img alt="img.png" src="../_images/start_jupyter_lab.png" /></p>
+<p>In the new notebook, click in the first code cell, enter <code class="docutils literal notranslate"><span class="pre">print(&quot;Hello</span> <span class="pre">world&quot;)</span></code> and hit SHIFT+ENTER on your keyboard.
+If everything is installed properly, it should look like this:</p>
+<p><img alt="img.png" src="../_images/hello_world.png" /></p>
+<p>To test if your graphics card driver is properly installed, enter this code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="img.png" src="../_images/test_opencl.png" /></p>
+</section>
+<section id="troubleshooting-graphics-cards-drivers">
+<h2>Troubleshooting: Graphics cards drivers<a class="headerlink" href="#troubleshooting-graphics-cards-drivers" title="Permalink to this headline">#</a></h2>
+<p>In case error messages contains “ImportError: DLL load failed while importing cl: The specified procedure could not be found” <a class="reference external" href="https://github.com/clEsperanto/pyclesperanto_prototype/issues/55">see also</a> or “”clGetPlatformIDs failed: PLATFORM_NOT_FOUND_KHR”, please install recent drivers for your graphics card and/or OpenCL device.</p>
+<p>Select the right driver source depending on your hardware from this list:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.amd.com/en/support">AMD drivers</a></p></li>
+<li><p><a class="reference external" href="https://www.nvidia.com/download/index.aspx">NVidia drivers</a></p></li>
+<li><p><span class="xref myst">Intel GPU drivers</span>(<a class="reference external" href="https://www.intel.com/content/www/us/en/download/726609/intel-arc-graphics-windows-dch-driver.html">https://www.intel.com/content/www/us/en/download/726609/intel-arc-graphics-windows-dch-driver.html</a>)</p></li>
+<li><p><a class="reference external" href="https://www.intel.com/content/www/us/en/developer/articles/tool/opencl-drivers.html#latest_CPU_runtime">Intel CPU OpenCL drivers</a></p></li>
+<li><p><a class="reference external" href="https://www.microsoft.com/en-us/p/opencl-and-opengl-compatibility-pack/9nqpsl29bfff">Microsoft Windows OpenCL support</a></p></li>
+</ul>
+<p>Sometimes, mac-users need to install this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>mamba install -c conda-forge ocl_icd_wrapper_apple
+</pre></div>
+</div>
+<p>Sometimes, linux users need to install this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>mamba install -c conda-forge ocl-icd-system
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting-dll-load-failed">
+<h2>Troubleshooting: DLL load failed<a class="headerlink" href="#troubleshooting-dll-load-failed" title="Permalink to this headline">#</a></h2>
+<p>In case of error messages such as this one:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="n">_get_win_folder_with_pywin32</span>
+<span class="kn">from</span> <span class="nn">win32com.shell</span> <span class="kn">import</span> <span class="n">shellcon</span><span class="p">,</span> <span class="n">shell</span>
+<span class="ne">ImportError</span><span class="p">:</span> <span class="n">DLL</span> <span class="n">load</span> <span class="n">failed</span> <span class="k">while</span> <span class="n">importing</span> <span class="n">shell</span><span class="p">:</span> <span class="n">The</span> <span class="n">specified</span> <span class="n">procedure</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">found</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Try this command, within the base environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">base</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pywin32</span><span class="o">==</span><span class="mi">228</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/conda/conda/issues/11503">Source</a></p>
 </section>
 </section>
 
