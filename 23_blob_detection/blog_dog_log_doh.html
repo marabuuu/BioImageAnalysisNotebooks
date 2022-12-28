@@ -701,7 +701,7 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20h_segmentation_post_processing/12_open_close_labels.html">
+    <a class="reference internal" href="../20h_segmentation_post_processing/open_close_labels.html">
      Label image refinement
     </a>
    </li>
@@ -721,12 +721,17 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20h_segmentation_post_processing/14_remove_labels_on_image_edges.html">
+    <a class="reference internal" href="../20h_segmentation_post_processing/remove_labels_on_image_edges.html">
      Remove labels on image edges
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../20h_segmentation_post_processing/15_sequential_labeling.html">
+    <a class="reference internal" href="../20h_segmentation_post_processing/select_labels.html">
+     Select labels using machine learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../20h_segmentation_post_processing/sequential_labeling.html">
      Sequential object (re-)labeling
     </a>
    </li>
@@ -1587,12 +1592,20 @@ title="Print to PDF"
 <img alt="../_images/blog_dog_log_doh_3_0.png" src="../_images/blog_dog_log_doh_3_0.png" />
 </div>
 </div>
+<p>For technial reasons it is important to convert the pixel type of this image first (<a class="reference external" href="https://forum.image.sc/t/how-to-use-scikit-images-blob-dog/75150">see this discussion</a>) and <a class="reference external" href="https://github.com/scikit-image/scikit-image/issues/6657">this github issue</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <section id="difference-of-gaussian-dog">
 <h2>Difference-of-Gaussian (DoG)<a class="headerlink" href="#difference-of-gaussian-dog" title="Permalink to this headline">#</a></h2>
 <p>The DoG technique consists of two Gaussian-blur operations applied to an image. The resulting images are subtracted from each other resulting in an image where objects smaller and large than a define size or <code class="docutils literal notranslate"><span class="pre">sigma</span></code> range are removed. In this image, local maxima are detected. Read more in the documentation of <a class="reference external" href="https://scikit-image.org/docs/stable/api/skimage.feature.html#skimage.feature.blob_dog"><code class="docutils literal notranslate"><span class="pre">blob_dog</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_dog</span> <span class="o">=</span> <span class="n">blob_dog</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">min_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_dog</span> <span class="o">=</span> <span class="n">blob_dog</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">min_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">coordinates_dog</span>
 </pre></div>
 </div>
@@ -1615,7 +1628,12 @@ title="Print to PDF"
        [52.    ,  0.    ,  1.    ],
        [16.    , 99.    ,  1.6   ],
        [99.    , 81.    ,  1.6   ],
-       [41.    , 27.    ,  1.    ]])
+       [41.    , 27.    ,  1.    ],
+       [34.    , 37.    ,  1.    ],
+       [16.    ,  8.    ,  1.    ],
+       [46.    , 25.    ,  1.    ],
+       [99.    , 49.    ,  1.    ],
+       [99.    , 45.    ,  1.    ]])
 </pre></div>
 </div>
 </div>
@@ -1627,7 +1645,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(18, 3)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(23, 3)
 </pre></div>
 </div>
 </div>
@@ -1641,10 +1659,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e70f86e50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1a509079a00&gt;]
 </pre></div>
 </div>
-<img alt="../_images/blog_dog_log_doh_8_1.png" src="../_images/blog_dog_log_doh_8_1.png" />
+<img alt="../_images/blog_dog_log_doh_10_1.png" src="../_images/blog_dog_log_doh_10_1.png" />
 </div>
 </div>
 </section>
@@ -1653,7 +1671,7 @@ title="Print to PDF"
 <p>The LoG technique is a Laplacian kernel applied to a Gaussian blurred image. In the resulting image, objects with a given size can be detected more easily because noise has been remove and edges enhanced.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_log</span> <span class="o">=</span> <span class="n">blob_log</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">min_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_log</span> <span class="o">=</span> <span class="n">blob_log</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">min_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">coordinates_log</span>
 </pre></div>
 </div>
@@ -1679,7 +1697,15 @@ title="Print to PDF"
        [41., 27.,  1.],
        [34., 36.,  1.],
        [56., 38.,  1.],
-       [17.,  8.,  1.]])
+       [17.,  8.,  1.],
+       [46., 25.,  1.],
+       [35., 44.,  1.],
+       [56., 33.,  1.],
+       [62., 83.,  1.],
+       [99., 49.,  2.],
+       [99., 45.,  1.],
+       [82., 95.,  1.],
+       [99., 42.,  1.]])
 </pre></div>
 </div>
 </div>
@@ -1692,10 +1718,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e7100e1f0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1a5090b3a90&gt;]
 </pre></div>
 </div>
-<img alt="../_images/blog_dog_log_doh_11_1.png" src="../_images/blog_dog_log_doh_11_1.png" />
+<img alt="../_images/blog_dog_log_doh_13_1.png" src="../_images/blog_dog_log_doh_13_1.png" />
 </div>
 </div>
 </section>
@@ -1704,7 +1730,7 @@ title="Print to PDF"
 <p>This approach works by determining maxima in the Hessian determinant image of a Gaussian blurred image of the origina (<a class="reference external" href="https://scikit-image.org/docs/stable/api/skimage.feature.html#skimage.feature.blob_doh">read more</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_doh</span> <span class="o">=</span> <span class="n">blob_doh</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">min_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.00000001</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_doh</span> <span class="o">=</span> <span class="n">blob_doh</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">min_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">coordinates_doh</span>
 </pre></div>
 </div>
@@ -1720,12 +1746,32 @@ title="Print to PDF"
        [76., 16., 10.],
        [ 0., 57.,  9.],
        [ 1., 93.,  5.],
-       [11., 39.,  4.],
        [97., 89.,  3.],
-       [16., 97.,  4.],
        [ 0., 44.,  6.],
        [71., 29.,  9.],
-       [ 0.,  0.,  9.]])
+       [ 0.,  0.,  9.],
+       [19., 16., 10.],
+       [95., 22.,  9.],
+       [62.,  0., 10.],
+       [92.,  0., 10.],
+       [28., 50., 10.],
+       [41., 81.,  9.],
+       [30., 25., 10.],
+       [59., 72., 10.],
+       [43., 58., 10.],
+       [85., 95.,  9.],
+       [88., 74., 10.],
+       [17., 34.,  5.],
+       [74., 45., 10.],
+       [98., 84.,  1.],
+       [53., 11., 10.],
+       [99., 43.,  9.],
+       [35., 98.,  9.],
+       [58., 49.,  9.],
+       [57., 99.,  9.],
+       [10., 99.,  7.],
+       [57., 34.,  3.],
+       [32.,  0., 10.]])
 </pre></div>
 </div>
 </div>
@@ -1738,10 +1784,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e71083280&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1a5090d0310&gt;]
 </pre></div>
 </div>
-<img alt="../_images/blog_dog_log_doh_14_1.png" src="../_images/blog_dog_log_doh_14_1.png" />
+<img alt="../_images/blog_dog_log_doh_16_1.png" src="../_images/blog_dog_log_doh_16_1.png" />
 </div>
 </div>
 </section>

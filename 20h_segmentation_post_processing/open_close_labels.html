@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Remove labels on image edges &#8212; Bio-image Analysis Notebooks</title>
+    <title>Label image refinement &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Sequential object (re-)labeling" href="15_sequential_labeling.html" />
-    <link rel="prev" title="Merging objects using machine learning" href="merge_objects_using_machine_learning.html" />
+    <link rel="next" title="Merging labels" href="merge_labels.html" />
+    <link rel="prev" title="Segmentation post-processing" href="readme.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -700,8 +700,8 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_open_close_labels.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Label image refinement
     </a>
    </li>
@@ -720,13 +720,18 @@ const thebe_selector_output = ".output, .cell_output"
      Merging objects using machine learning
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="remove_labels_on_image_edges.html">
      Remove labels on image edges
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="15_sequential_labeling.html">
+    <a class="reference internal" href="select_labels.html">
+     Select labels using machine learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sequential_labeling.html">
      Sequential object (re-)labeling
     </a>
    </li>
@@ -1348,7 +1353,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/20h_segmentation_post_processing/14_remove_labels_on_image_edges.ipynb"
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/20h_segmentation_post_processing/open_close_labels.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1408,7 +1413,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F20h_segmentation_post_processing/14_remove_labels_on_image_edges.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F20h_segmentation_post_processing/open_close_labels.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1436,7 +1441,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/20h_segmentation_post_processing/14_remove_labels_on_image_edges.ipynb"
+        <a href="../_sources/20h_segmentation_post_processing/open_close_labels.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1473,23 +1478,110 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Label image refinement
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dilating-expanding-labels">
+   Dilating / expanding labels
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dilating-and-eroding-labels">
+   Dilating and eroding labels
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#label-opening-and-closing">
+   Label opening and closing
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-label-closing-to-binary-closing">
+   Comparison of label closing to binary closing
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-label-closing-to-morphological-closing">
+   Comparison of label closing to morphological closing
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Remove labels on image edges</h1>
+                <h1>Label image refinement</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Label image refinement
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dilating-expanding-labels">
+   Dilating / expanding labels
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dilating-and-eroding-labels">
+   Dilating and eroding labels
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#label-opening-and-closing">
+   Label opening and closing
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-label-closing-to-binary-closing">
+   Comparison of label closing to binary closing
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-label-closing-to-morphological-closing">
+   Comparison of label closing to morphological closing
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -1497,76 +1589,217 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="remove-labels-on-image-edges">
-<h1>Remove labels on image edges<a class="headerlink" href="#remove-labels-on-image-edges" title="Permalink to this headline">#</a></h1>
-<p>When analysing image scientifically, it is often relevant that only object in the image are analyzed that are fully captured.</p>
+  <section id="label-image-refinement">
+<h1>Label image refinement<a class="headerlink" href="#label-image-refinement" title="Permalink to this headline">#</a></h1>
+<p>Similar to <a class="reference internal" href="../20_image_segmentation/08_binary_mask_refinement.html#image-segmentation-binary-mask-refinement"><span class="std std-ref">refining binary images</span></a> it is also possible to refine label images. This notebook shows how to do this.</p>
+<p>See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-image.org/docs/dev/auto_examples/segmentation/plot_expand_labels.html">scikit-image’s Expand segmentation labels without overlap tutorial</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
-
-<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="c1"># initialize GPU</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">select_device</span><span class="p">(</span><span class="s2">&quot;GTX&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Apple M1 Max on Platform: Apple (2 refs)&gt;
+<span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">cells3d</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">closing</span><span class="p">,</span> <span class="n">disk</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imsave</span>
+<span class="kn">from</span> <span class="nn">skimage.filters.rank</span> <span class="kn">import</span> <span class="n">maximum</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">expand_labels</span>
+<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">label</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Our starting point shall be a label image; for example derived from blobs.tif through thresholding and connected component labeling:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs.tif&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load image</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cells3d</span><span class="p">()</span>
+<span class="n">membrane2d</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 
-<span class="c1"># process the image</span>
-<span class="n">blurred</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">gaussian_blur</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">sigma_x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma_y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">binary</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">blurred</span><span class="p">)</span>
-<span class="n">labeled</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">connected_components_labeling_box</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
+<span class="c1"># segment and label the image</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">gaussian_blur</span><span class="p">(</span><span class="n">membrane2d</span><span class="p">,</span> <span class="n">sigma_x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sigma_y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">)</span>
 
-<span class="c1"># show result</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labeled</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># The maxmium intensity in a label image corresponds to the number of objects</span>
-<span class="n">num_labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_all_pixels</span><span class="p">(</span><span class="n">labeled</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of objects in the image: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_labels</span><span class="p">))</span>
+<span class="c1"># visualization</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">membrane2d</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">max_display_intensity</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14_remove_labels_on_image_edges_3_0.png" src="../_images/14_remove_labels_on_image_edges_3_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of objects in the image: 63.0
-</pre></div>
+<img alt="../_images/open_close_labels_2_0.png" src="../_images/open_close_labels_2_0.png" />
 </div>
 </div>
-</div>
-<p>In case the size of the objects is relevant, one should exclude the object which were not fully imaged and thus, touch the image border.</p>
+</section>
+<section id="dilating-expanding-labels">
+<h1>Dilating / expanding labels<a class="headerlink" href="#dilating-expanding-labels" title="Permalink to this headline">#</a></h1>
+<p>When dilating labels in a label image, we cannot apply a maximum filter, because the maximum filter lead to labels swapping into each other. The label with the larger value would increas while labels with lower values would decrease. We can demonstrate that using <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.filters.rank.html#skimage.filters.rank.maximum">maximum</a> filters and the <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.segmentation.html#skimage.segmentation.expand_labels">expand_labels function</a> in scikit-image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exclude Labels On Edges</span>
-<span class="n">labels_excl_edges</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">exclude_labels_on_edges</span><span class="p">(</span><span class="n">labeled</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">25</span>
 
-<span class="c1"># show result</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span> <span class="p">(</span> <span class="mi">256</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels_excl_edges</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">maximum_label_image</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">footprint</span><span class="o">=</span><span class="n">disk</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+<span class="n">expaned_label_image</span> <span class="o">=</span> <span class="n">expand_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="n">r</span><span class="p">)</span>
 
-<span class="c1"># The maxmium intensity in a label image corresponds to the number of objects</span>
-<span class="n">num_labels</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">maximum_of_all_pixels</span><span class="p">(</span><span class="n">labels_excl_edges</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of objects in the image: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_labels</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">maximum_label_image</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">expaned_label_image</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Maximum filter&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original labels&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Expanded labels&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14_remove_labels_on_image_edges_5_0.png" src="../_images/14_remove_labels_on_image_edges_5_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of objects in the image: 45.0
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\AppData\Local\Temp\ipykernel_15152\668206942.py:3: UserWarning: Possible precision loss converting image of type int64 to uint8 as required by rank filters. Convert manually using skimage.util.img_as_ubyte to silence this warning.
+  maximum_label_image = maximum(labels, footprint=disk(r))
+C:\Users\rober\Anaconda3\envs\bio_39\lib\site-packages\skimage\util\dtype.py:541: UserWarning: Downcasting int64 to uint8 without scaling because max value 26 fits in uint8
+  return _convert(image, np.uint8, force_copy)
 </pre></div>
 </div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Expanded labels&#39;)
+</pre></div>
+</div>
+<img alt="../_images/open_close_labels_4_2.png" src="../_images/open_close_labels_4_2.png" />
+</div>
+</div>
+</section>
+<section id="dilating-and-eroding-labels">
+<h1>Dilating and eroding labels<a class="headerlink" href="#dilating-and-eroding-labels" title="Permalink to this headline">#</a></h1>
+<p>There is also the opposite of dilation: Erosion of labels. The latter function is available in clesperanto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">fix</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">dilate_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">erode_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Dilated labels (r=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original labels&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Eroded labels (r=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Eroded labels (r=5)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/open_close_labels_6_1.png" src="../_images/open_close_labels_6_1.png" />
+</div>
+</div>
+</section>
+<section id="label-opening-and-closing">
+<h1>Label opening and closing<a class="headerlink" href="#label-opening-and-closing" title="Permalink to this headline">#</a></h1>
+<p>Opening and closing are uncommon operations applied to label images as discussed <a class="reference external" href="https://twitter.com/haesleinhuepf/status/1492215964305436673">here</a>. They are also powerful options for post-processing label images. To show in more detail what these operations are doing, we look at the results in a for-loop using different radii.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)):</span>
+    
+    <span class="n">fix</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    
+    <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">closing_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">opening_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Closed labels (r=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original labels&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Opened labels (r=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/open_close_labels_8_0.png" src="../_images/open_close_labels_8_0.png" />
+<img alt="../_images/open_close_labels_8_1.png" src="../_images/open_close_labels_8_1.png" />
+<img alt="../_images/open_close_labels_8_2.png" src="../_images/open_close_labels_8_2.png" />
+<img alt="../_images/open_close_labels_8_3.png" src="../_images/open_close_labels_8_3.png" />
+</div>
+</div>
+</section>
+<section id="comparison-of-label-closing-to-binary-closing">
+<h1>Comparison of label closing to binary closing<a class="headerlink" href="#comparison-of-label-closing-to-binary-closing" title="Permalink to this headline">#</a></h1>
+<p>The closing operations applied to label images is very similar to a binary closing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">fix</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">closing_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">closing_sphere</span><span class="p">(</span><span class="n">labels</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color_map</span><span class="o">=</span><span class="s2">&quot;Greys_r&quot;</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original labels&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Closed labels (r=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Binary closing (r=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\structure\code\pyclesperanto_prototype\pyclesperanto_prototype\_tier9\_imshow.py:14: UserWarning: The imshow parameter color_map is deprecated. Use colormap instead.
+  warnings.warn(&quot;The imshow parameter color_map is deprecated. Use colormap instead.&quot;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Binary closing (r=5)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/open_close_labels_10_2.png" src="../_images/open_close_labels_10_2.png" />
+</div>
+</div>
+</section>
+<section id="comparison-of-label-closing-to-morphological-closing">
+<h1>Comparison of label closing to morphological closing<a class="headerlink" href="#comparison-of-label-closing-to-morphological-closing" title="Permalink to this headline">#</a></h1>
+<p>If dedicated label closing operations are not available, also morphological closing can be used. However, as shown above for the maximum-filter, also morphological closing will show the same swapping over of labels. Hence, it is recommended to only use morphological closing with small radii and when labels are not too close.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="n">fix</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">closing_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">closing_sphere</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Label closing (r=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original labels&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Morphological closing (r=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Morphological closing (r=6)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/open_close_labels_12_1.png" src="../_images/open_close_labels_12_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">24</span>
+
+<span class="n">fix</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">closing_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">closing_sphere</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">radius_y</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Label closing (r=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original labels&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Morphological closing (r=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Morphological closing (r=24)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/open_close_labels_13_1.png" src="../_images/open_close_labels_13_1.png" />
 </div>
 </div>
 </section>
@@ -1598,17 +1831,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="merge_objects_using_machine_learning.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="readme.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Merging objects using machine learning</p>
+            <p class="prev-next-title">Segmentation post-processing</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="15_sequential_labeling.html" title="next page">
+    <a class='right-next' id="next-link" href="merge_labels.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Sequential object (re-)labeling</p>
+        <p class="prev-next-title">Merging labels</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

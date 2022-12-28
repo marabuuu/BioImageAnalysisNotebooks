@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Inner and outer cell borders" href="inner_and_outer_cell_borders.html" />
-    <link rel="prev" title="Remove labels on image edges" href="14_remove_labels_on_image_edges.html" />
+    <link rel="prev" title="Select labels using machine learning" href="select_labels.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -701,7 +701,7 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="12_open_close_labels.html">
+    <a class="reference internal" href="open_close_labels.html">
      Label image refinement
     </a>
    </li>
@@ -721,8 +721,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="14_remove_labels_on_image_edges.html">
+    <a class="reference internal" href="remove_labels_on_image_edges.html">
      Remove labels on image edges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="select_labels.html">
+     Select labels using machine learning
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -1348,7 +1353,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/20h_segmentation_post_processing/15_sequential_labeling.ipynb"
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/20h_segmentation_post_processing/sequential_labeling.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1408,7 +1413,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F20h_segmentation_post_processing/15_sequential_labeling.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F20h_segmentation_post_processing/sequential_labeling.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1436,7 +1441,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/20h_segmentation_post_processing/15_sequential_labeling.ipynb"
+        <a href="../_sources/20h_segmentation_post_processing/sequential_labeling.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1566,7 +1571,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/15_sequential_labeling_3_0.png" src="../_images/15_sequential_labeling_3_0.png" />
+<img alt="../_images/sequential_labeling_3_0.png" src="../_images/sequential_labeling_3_0.png" />
 </div>
 </div>
 <p>When measuring the maximum intensity in the image, we can see that this label image containing 4 labels is obviously not sequentially labeled.</p>
@@ -1607,7 +1612,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/15_sequential_labeling_9_0.png" src="../_images/15_sequential_labeling_9_0.png" />
+<img alt="../_images/sequential_labeling_9_0.png" src="../_images/sequential_labeling_9_0.png" />
 </div>
 </div>
 <p>Afterwards, the unique labels should be sequential:</p>
@@ -1633,7 +1638,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/15_sequential_labeling_13_0.png" src="../_images/15_sequential_labeling_13_0.png" />
+<img alt="../_images/sequential_labeling_13_0.png" src="../_images/sequential_labeling_13_0.png" />
 </div>
 </div>
 </section>
@@ -1649,7 +1654,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/15_sequential_labeling_15_0.png" src="../_images/15_sequential_labeling_15_0.png" />
+<img alt="../_images/sequential_labeling_15_0.png" src="../_images/sequential_labeling_15_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1674,7 +1679,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/15_sequential_labeling_18_0.png" src="../_images/15_sequential_labeling_18_0.png" />
+<img alt="../_images/sequential_labeling_18_0.png" src="../_images/sequential_labeling_18_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1686,7 +1691,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/15_sequential_labeling_19_0.png" src="../_images/15_sequential_labeling_19_0.png" />
+<img alt="../_images/sequential_labeling_19_0.png" src="../_images/sequential_labeling_19_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1732,11 +1737,11 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="14_remove_labels_on_image_edges.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="select_labels.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Remove labels on image edges</p>
+            <p class="prev-next-title">Select labels using machine learning</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="inner_and_outer_cell_borders.html" title="next page">
