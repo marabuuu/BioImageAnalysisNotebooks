@@ -1515,6 +1515,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="loading-multi-channel-multi-position-folders-of-tif-files">
 <h1>Loading multi-channel / multi-position folders of tif-files<a class="headerlink" href="#loading-multi-channel-multi-position-folders-of-tif-files" title="Permalink to this headline">#</a></h1>
 <p>Some microscopes write image data to disc as tif-files slice-by slice. You find then many files named for example <code class="docutils literal notranslate"><span class="pre">image_z03_ch01.tif</span></code> in these folders. For loading these folders you typically need to know details such as how many z-slices and how many channels were imaged, or if the image data has multiple time-points or not.</p>
+<p>See also <a class="reference external" href="https://forum.image.sc/t/reading-2d-images-as-a-multi-channel-3d-stack-in-python/75460">this discussion</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span>
