@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Parameter optimization" href="../35_parameter_optimization/readme.html" />
@@ -1604,7 +1606,7 @@ title="Print to PDF"
                   <span class="n">background_subtraction_radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
                   <span class="n">spot_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
                   <span class="n">outline_sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Segment nuclei in an image and return labels&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Segment nuclei in an image and return labels&quot;&quot;&quot;</span>
     <span class="c1"># pre-process image</span>
     <span class="n">background_subtracted</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">top_hat_box</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> 
                   <span class="n">radius_x</span><span class="o">=</span><span class="n">background_subtraction_radius</span><span class="p">,</span> 

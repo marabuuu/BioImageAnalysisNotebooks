@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Machine learning basics" href="../14_machine_learning_basics/readme.html" />
@@ -1692,7 +1694,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">resave_image_statistics</span><span class="p">(</span><span class="n">original_image</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Saves and reloads an image in multiple formats and returns a table with image statistics.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Saves and reloads an image in multiple formats and returns a table with image statistics.&quot;&quot;&quot;</span>
 
     <span class="c1"># prepare table</span>
     <span class="n">stats</span> <span class="o">=</span> <span class="p">{</span>

@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Tracing memory consumption" href="memory_management.html" />
@@ -1597,10 +1599,10 @@ title="Print to PDF"
 <p>Before we start, we need to install CUDA and CUCIM it properly. The following commands make this notebook run in Google Colab.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>curl https://colab.chainer.org/install <span class="p">|</span> sh -
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>curl<span class="w"> </span>https://colab.chainer.org/install<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh<span class="w"> </span>-
 
-<span class="o">!</span>pip install cucim
-<span class="o">!</span>pip install scipy scikit-image cupy-cuda100
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>cucim
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>scipy<span class="w"> </span>scikit-image<span class="w"> </span>cupy-cuda100
 </pre></div>
 </div>
 </div>

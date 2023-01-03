@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Further reading" href="further_reading.html" />
@@ -1560,7 +1562,7 @@ title="Print to PDF"
 <p>For overseeing memory consumption, one can use <a class="reference external" href="https://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries">nvidia-smi</a>, a command line tool that can print out how much memory is currently blocked in a given GPU, by any application:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nvidia-smi --query-gpu<span class="o">=</span>memory.used --format<span class="o">=</span>csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nvidia-smi<span class="w"> </span>--query-gpu<span class="o">=</span>memory.used<span class="w"> </span>--format<span class="o">=</span>csv
 </pre></div>
 </div>
 </div>
@@ -1583,7 +1585,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nvidia-smi --query-gpu<span class="o">=</span>memory.used --format<span class="o">=</span>csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nvidia-smi<span class="w"> </span>--query-gpu<span class="o">=</span>memory.used<span class="w"> </span>--format<span class="o">=</span>csv
 </pre></div>
 </div>
 </div>
@@ -1604,7 +1606,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nvidia-smi --query-gpu<span class="o">=</span>memory.used --format<span class="o">=</span>csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nvidia-smi<span class="w"> </span>--query-gpu<span class="o">=</span>memory.used<span class="w"> </span>--format<span class="o">=</span>csv
 </pre></div>
 </div>
 </div>

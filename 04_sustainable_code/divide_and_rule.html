@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Don’t repeat yourself" href="dont_repeat_yourself.html" />
@@ -1627,20 +1629,20 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reusable functions</span>
 <span class="k">def</span> <span class="nf">preprocess_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">background_subtraction_radius</span><span class="p">,</span> <span class="n">particle_radius</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Apply background removal and denoising&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply background removal and denoising&quot;&quot;&quot;</span>
     <span class="n">footprint</span> <span class="o">=</span> <span class="n">disk</span><span class="p">(</span><span class="n">background_subtraction_radius</span><span class="p">)</span>
     <span class="n">background_subtracted</span> <span class="o">=</span> <span class="n">white_tophat</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">footprint</span><span class="o">=</span><span class="n">footprint</span><span class="p">)</span>
     <span class="n">denoised</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">background_subtracted</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">particle_radius</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">denoised</span>
 
 <span class="k">def</span> <span class="nf">segment_image</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Apply thresholding and connected component analysis&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply thresholding and connected component analysis&quot;&quot;&quot;</span>
     <span class="n">binary</span> <span class="o">=</span> <span class="n">image</span> <span class="o">&gt;</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
     <span class="n">labels</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">labels</span>
 
 <span class="k">def</span> <span class="nf">extract_features</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">requested_measurements</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Measure specified properties&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measure specified properties&quot;&quot;&quot;</span>
     <span class="n">regionprops</span> <span class="o">=</span> <span class="n">regionprops_table</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> 
                                     <span class="n">labels</span><span class="p">,</span> 
                                     <span class="n">properties</span><span class="o">=</span><span class="n">requested_measurements</span><span class="p">)</span>
@@ -1656,7 +1658,7 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">analyse_average_total_intensity</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> 
                                     <span class="n">background_subtraction_radius</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> 
                                     <span class="n">particle_radius</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Load an image, segment objects and measure their mean total intensity.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load an image, segment objects and measure their mean total intensity.&quot;&quot;&quot;</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">denoised</span> <span class="o">=</span> <span class="n">preprocess_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> 
                                 <span class="n">background_subtraction_radius</span><span class="p">,</span> 
