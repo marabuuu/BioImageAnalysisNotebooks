@@ -1,0 +1,1900 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Validation of spot counting pipelines &#8212; Bio-image Analysis Notebooks</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Bio-image Analysis Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bio-image Analysis Notebooks
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_introduction/trailer.html">
+   Trailer: Bio-image Analysis with Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_introduction/readme.html">
+   Setting up your computer
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="02_python_basics/readme.html">
+   Python basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/01_our_first_juptyer_notebook.html">
+     Python code in Jupyter notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/02_Math_in_python.html">
+     Basic math in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/03_Dont_try_this_at_home.html">
+     Pitfalls when working with Jupyter notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/04_Basic_types.html">
+     Basic types in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/05_lists_tuples.html">
+     Lists and tuples
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/05a_cropping_lists.html">
+     Cropping lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/05b_sorting_lists.html">
+     Sorting lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/05c_masking.html">
+     Masking numpy arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/06_Dictionaries_and_tables.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/07_Conditions.html">
+     Conditions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/08_loops.html">
+     Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/09_custom_functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_python_basics/10_Import_packages.html">
+     Importing functions and packages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="03_advanced_python/readme.html">
+   Advanced python programming
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_advanced_python/custom_libraries.html">
+     Custom libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_advanced_python/functional_parameters.html">
+     Functional parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_advanced_python/partial.html">
+     Partial functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_advanced_python/napari_workflows.html">
+     Workflows in napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_advanced_python/parallelization.html">
+     Parallelization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_advanced_python/owncloud.html">
+     Accessing image files in the owncloud
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="04_sustainable_code/readme.html">
+   Writing substainable code
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_sustainable_code/readable_code.html">
+     Writing good code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_sustainable_code/magic_numbers.html">
+     Prevent magic numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_sustainable_code/divide_and_rule.html">
+     Divide and rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_sustainable_code/dont_repeat_yourself.html">
+     Don’t repeat yourself
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_sustainable_code/keep_it_short_and_simple.html">
+     Keep it short and simple
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="12_image_analysis_basics/readme.html">
+   Image analysis basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_image_analysis_basics/01_Introduction_to_image_processing.html">
+     Introduction to image processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_image_analysis_basics/02_Working_with_images.html">
+     Working with images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_image_analysis_basics/03_Cropping_images.html">
+     Cropping images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_image_analysis_basics/04_multi_channel_image_data.html">
+     Multi-channel image data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="12a_image_file_formats/readme.html">
+   Image file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12a_image_file_formats/opening_images.html">
+     Opening image data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12a_image_file_formats/opening_images_using_aicsimageio.html">
+     Reading files with AICSImageIO
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12a_image_file_formats/opening_czi_files.html">
+     Opening CZI files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12a_image_file_formats/opening_lif_files.html">
+     Opening LIF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12a_image_file_formats/opening_tif_folders.html">
+     Loading multi-channel / multi-position folders of tif-files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12a_image_file_formats/tiled_image_file_formats_zarr.html">
+     Tiled image file formats: zarr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12a_image_file_formats/image_file_formats.html">
+     Pros and cons of image file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="14_machine_learning_basics/readme.html">
+   Machine learning basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_machine_learning_basics/supervised_machine_learning.html">
+     Supervised machine learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_machine_learning_basics/unsupervised_machine_learning.html">
+     Unsupervised machine learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_machine_learning_basics/scaling.html">
+     Scaling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="15_gpu_acceleration/readme.html">
+   GPU accelerated image processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_gpu_acceleration/clesperanto.html">
+     clEsperanto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_gpu_acceleration/why_GPU_acceleration.html">
+     Why GPU-acceleration makes sense
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_gpu_acceleration/cupy.html">
+     GPU-accelerated image processing using CUPY and CUCIM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_gpu_acceleration/memory_management.html">
+     Tracing memory consumption
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_gpu_acceleration/further_reading.html">
+     Further reading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="16_3d_image_visualization/readme.html">
+   Image visualization in 3D
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="16_3d_image_visualization/10_nd_image_data.html">
+     Multidimensional image stacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="16_3d_image_visualization/inspecting_3d_images.html">
+     Inspecting 3D image data with pyclesperanto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="16_3d_image_visualization/napari.html">
+     Interactive image visualization with napari
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="18_image_filtering/readme.html">
+   Image filtering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18_image_filtering/01_Filtering.html">
+     Filtering images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18_image_filtering/convolution.html">
+     Convolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18_image_filtering/02_noise_removal.html">
+     Noise removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18_image_filtering/03_background_removal.html">
+     Background removal filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18_image_filtering/divide_by_gaussian.html">
+     Divide by Gaussian
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18_image_filtering/edge_detection_and_enhancement.html">
+     Edge detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18_image_filtering/simpleitk.html">
+     Processing images using SimpleITK
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="18a_deconvolution/readme.html">
+   Image deconvolution
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18a_deconvolution/introduction_deconvolution.html">
+     An introduction to image deconvolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18a_deconvolution/extract_psf.html">
+     Determining the point-spread-function from a bead image by averaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18a_deconvolution/richardson_lucy_deconvolution.html">
+     Richardson-Lucy-Deconvolution on OpenCL-compatible GPUs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="19_spatial_transforms/readme.html">
+   Spatial transforms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19_spatial_transforms/coordinate_systems.html">
+     Coordinate systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19_spatial_transforms/cropping.html">
+     Slicing and cropping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19_spatial_transforms/scaling.html">
+     Scaling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19_spatial_transforms/affine_transforms_scikit_image.html">
+     Affine transforms using scikit-image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19_spatial_transforms/affine_transforms_scipy.html">
+     Affine transforms using Scipy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19_spatial_transforms/affine_transforms_cupy.html">
+     Affine transforms using cupy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19_spatial_transforms/affine_transforms_clesperanto.html">
+     Affine transforms using clesperanto
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="20_image_segmentation/readme.html">
+   Image segmentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/06_Introduction_to_image_segmentation.html">
+     Image segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/07_Thresholding.html">
+     Thresholding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/08_binary_mask_refinement.html">
+     Binary mask refinement
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/08a_split_touching_objects.html">
+     Split touching objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/09_connected_component_labeling.html">
+     Label images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/09a_gauss_otsu_labeling.html">
+     Gauss-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/10_touching_objects_labeling.html">
+     Touching objects labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/11_voronoi_otsu_labeling.html">
+     Voronoi-Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/11a_eroded_otsu_labeling.html">
+     Eroded Otsu-labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/segmentation_2d_membranes.html">
+     Seeded watershed for membrane-based cell segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20_image_segmentation/Segmentation_3D.html">
+     3D Image Segmentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="20a_pixel_classification/readme.html">
+   Machine learning for image segmentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20a_pixel_classification/scikit_learn_random_forest_pixel_classifier.html">
+     Pixel classification using Scikit-learn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20a_pixel_classification/apoc_object_segmenter.html">
+     Object segmentation on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20a_pixel_classification/apoc_pixel_classifier.html">
+     Pixel classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20a_pixel_classification/interactive_pixel_classification/readme.html">
+     Interactive pixel classification and object segmentation in Napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20a_pixel_classification/multichannel_images.html">
+     Pixel classification in multi-channel images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20a_pixel_classification/apoc_probability_mapper.html">
+     Probability maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20a_pixel_classification/apoc_train_on_folders.html">
+     Training pixel classifiers from folders of images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20a_pixel_classification/feature_stacks.html">
+     Generating feature stacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20a_pixel_classification/selecting_features.html">
+     Selecting features
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="20h_segmentation_post_processing/readme.html">
+   Segmentation post-processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20h_segmentation_post_processing/open_close_labels.html">
+     Label image refinement
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20h_segmentation_post_processing/merge_labels.html">
+     Merging labels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20h_segmentation_post_processing/merge_annotated_labels.html">
+     Merging annotated labels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20h_segmentation_post_processing/merge_objects_using_machine_learning.html">
+     Merging objects using machine learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20h_segmentation_post_processing/remove_labels_on_image_edges.html">
+     Remove labels on image edges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20h_segmentation_post_processing/select_labels.html">
+     Select labels using machine learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20h_segmentation_post_processing/sequential_labeling.html">
+     Sequential object (re-)labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20h_segmentation_post_processing/inner_and_outer_cell_borders.html">
+     Inner and outer cell borders
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20h_segmentation_post_processing/refine_cell_segmentation.html">
+     Post-processing for membrane-based cell segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20h_segmentation_post_processing/mimicking_imagej_watershed.html">
+     Mimicking ImageJ’s watershed algorithm
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="21_segmentation_comparison/readme.html">
+   Comparing segmentation algorithms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="21_segmentation_comparison/scenario_otsu_segmentation.html">
+     Scenario: Comparing different implementations of the same thresholding algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="21_segmentation_comparison/visual_comparison.html">
+     Visual labeling comparison
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="21_segmentation_comparison/quantiative_comparison.html">
+     Quantitative labeling comparison
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="22_feature_extraction/readme.html">
+   Feature extraction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_feature_extraction/quantitative_measurements.html">
+     Quantitative image analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_feature_extraction/count_blobs.html">
+     Counting bright objects in images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_feature_extraction/statistics_with_pyclesperanto.html">
+     Basic statistics with pyclesperanto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_feature_extraction/statistics_with_simpleitk.html">
+     Statistics using SimpleITK
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_feature_extraction/comparison_of_measurements_from_different_libraries.html">
+     Comparison of measurements from different libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_feature_extraction/measure_intensity_on_label_edges.html">
+     Measuring intensity on label borders
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_feature_extraction/shape_descriptors_based_on_neighborhood_graphs.html">
+     Shape descriptors based on neighborhood graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="22_feature_extraction/distance_features.html">
+     Measuring distances between objects
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="23_blob_detection/readme.html">
+   Blob detection
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="23_blob_detection/local_maxima_detection.html">
+     Local maxima detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="23_blob_detection/blog_dog_log_doh.html">
+     Blob detection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="25_neighborhood_relationships_between_cells/readme.html">
+   Neighborhood analysis in tissues
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="25_neighborhood_relationships_between_cells/01_neighborhood_definitions.html">
+     Neighborhood definitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="25_neighborhood_relationships_between_cells/05_count_touching_neighbors.html">
+     Count touching neighbors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="25_neighborhood_relationships_between_cells/statistics_of_neighbors.html">
+     Statistics of neighbors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="25_neighborhood_relationships_between_cells/06_mesh_with_distances.html">
+     Draw distance-meshes between neighbors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="25_neighborhood_relationships_between_cells/touch_portion_explained.html">
+     Label touch count and touch portion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="25_neighborhood_relationships_between_cells/distance_to_other_labels.html">
+     Measure the distance to cells in another label image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="25_neighborhood_relationships_between_cells/other_proximal_labels_count.html">
+     Count proximal labels in an other label image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="25_neighborhood_relationships_between_cells/neighbor_meshes_in_3d.html">
+     Neighbor meshes in three dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="25_neighborhood_relationships_between_cells/label_neighbor_filters.html">
+     Label neighbor filters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="27_cell_classification/readme.html">
+   Cell classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <label for="toctree-checkbox-19">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="27_cell_classification/apoc_object_classifier.html">
+     Object classification on OpenCL-compatible GPUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="27_cell_classification/interactive_object_classification/readme.html">
+     Interactive object classification in Napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="27_cell_classification/forest_statistics.html">
+     Random forest decision making statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="27_cell_classification/sklearn_object_classification.html">
+     Object classification with scikit-learn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="27_cell_classification/apoc_simpleitk_object_classification.html">
+     Object classification with APOC and SimpleITK-based features
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="47_clustering/readme.html">
+   Clustering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="47_clustering/trailer.html">
+     Clustering - a quick walkthrough
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="47_clustering/umap.html">
+     Clustering with UMAPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="47_clustering/interactive_dimensionality_reduction_and_clustering/readme.html">
+     Interactive dimensionality reduction and clustering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="28_colocalization/readme.html">
+   Colocalization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+  <label for="toctree-checkbox-21">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="28_colocalization/counting_nuclei_multichannel.html">
+     Counting nuclei according to expression in multiple channels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="28_colocalization/differentiate_nuclei_intensity.html">
+     Differentiating nuclei according to signal intensity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="28_colocalization/distance-based_colocalization.html">
+     Distance-based colocalization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="30_simulating_data/readme.html">
+   Simulating data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+  <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="31_graphical_user_interfaces/readme.html">
+   Graphical user interfaces
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="31_graphical_user_interfaces/napari.html">
+     Interactive image visualization with napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="31_graphical_user_interfaces/napari_magicgui.html">
+     Interactive parameter tuning with napari and magicgui
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="31_graphical_user_interfaces/napari-skimage-regionprops.html">
+     Visualizing region properties in napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="31_graphical_user_interfaces/napari_dask.html">
+     Tribolium embryo morphometry over time in Napari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="31_graphical_user_interfaces/napari_crop.html">
+     Interactive cropping with napari
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="32_tiled_image_processing/readme.html">
+   Tiled image processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="32_tiled_image_processing/tiled_nuclei_counting_quick.html">
+     Tiled image processing, a quick run-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="32_tiled_image_processing/tiling_images_naive_approach.html">
+     Tiling images - the naive approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="32_tiled_image_processing/tiling_images_with_overlap.html">
+     Tiling images with overlap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="32_tiled_image_processing/tiled_connected_component_labeling.html">
+     Connected component labeling in tiles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="32_tiled_image_processing/tiled_object_measurements.html">
+     Measurements in objects in tiled images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="32_tiled_image_processing/tiled_area_mapping.html">
+     Map area of objects in tiles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="32_tiled_image_processing/tiled_nuclei_counting.html">
+     Counting nuclei in tiles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="33_batch_processing/readme.html">
+   Batch processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="33_batch_processing/12_process_folders.html">
+     How process files in a folder
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="33_batch_processing/14_process_timelapse.html">
+     Processing timelapse data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="35_parameter_optimization/readme.html">
+   Parameter optimization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="35_parameter_optimization/optimization_basics.html">
+     Optimization basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="35_parameter_optimization/label_image_optimizer.html">
+     Optimize segmentation algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="35_parameter_optimization/membrane_segmentation.html">
+     Optimizing parameters for membrane-image based cell segmentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="40_tabular_data_wrangling/readme.html">
+   Tabular data wrangling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40_tabular_data_wrangling/introduction_dataframes.html">
+     Introduction to working with DataFrames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40_tabular_data_wrangling/explore_dataset.html">
+     Exploring tabular data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40_tabular_data_wrangling/append_tables.html">
+     Appending tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40_tabular_data_wrangling/select_rows_and_columns.html">
+     Selecting columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40_tabular_data_wrangling/handling_NaNs.html">
+     Handling NaN values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40_tabular_data_wrangling/summarizing_subsets.html">
+     Summarizing subsets of data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40_tabular_data_wrangling/pivot_tables.html">
+     Pivot tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40_tabular_data_wrangling/tidy_data.html">
+     Tidy-Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="40a_sql/readme.html">
+   Querying databases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
+  <label for="toctree-checkbox-28">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40a_sql/select.html">
+     Querying databases using SQL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40a_sql/join.html">
+     Combining tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="40a_sql/group_by.html">
+     Summarizing measurements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="41_descriptive_statistics/readme.html">
+   Descriptive statistics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
+  <label for="toctree-checkbox-29">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="41_descriptive_statistics/basic_descriptive_statistics.html">
+     Descriptive statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="41_descriptive_statistics/descriptive_statistics_label_images.html">
+     Descriptive statistics of labeled images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="41_descriptive_statistics/Bland_altman_analysis.html">
+     Method comparison
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="51_plotting/readme.html">
+   Plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/>
+  <label for="toctree-checkbox-30">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="51_plotting/plotting_matplotlib.html">
+     Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="51_plotting/plotting_seaborn.html">
+     Introduction to Seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="51_plotting/plotting_distributions.html">
+     Plotting Distributions with Seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="51_plotting/multivariate_views.html">
+     Multivariate views
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="51_plotting/bland_altman_analysis.html">
+     Bland-Altman plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="60_data_visualization/readme.html">
+   Data visualization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/>
+  <label for="toctree-checkbox-31">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="60_data_visualization/overlay_text_on_image.html">
+     Overlay texts on images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="60_data_visualization/parametric_maps.html">
+     Parametric maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="60_data_visualization/quantitative_neighbor_maps.html">
+     Quantitative maps from neighbor statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_introduction/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="imprint.html">
+   Imprint
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/validate-spot-counting_public_data.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2Fvalidate-spot-counting_public_data.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/validate-spot-counting_public_data.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spot-detection">
+   Spot detection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measuring-the-distance-between-nearest-neighbour-cells">
+   Measuring the distance between nearest neighbour cells
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quantifying-true-and-false-positives">
+   Quantifying true and false positives
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Validation of spot counting pipelines</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spot-detection">
+   Spot detection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measuring-the-distance-between-nearest-neighbour-cells">
+   Measuring the distance between nearest neighbour cells
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quantifying-true-and-false-positives">
+   Quantifying true and false positives
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">skimage.io</span>
+
+<span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span> 
+
+<span class="c1"># comment this out if you don&#39;t have an RTX-type GPU </span>
+<span class="n">cle</span><span class="o">.</span><span class="n">select_device</span><span class="p">(</span><span class="s1">&#39;RTX&#39;</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;NVIDIA GeForce RTX 3050 Ti Laptop GPU on Platform: NVIDIA CUDA (1 refs)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="validation-of-spot-counting-pipelines">
+<h1>Validation of spot counting pipelines<a class="headerlink" href="#validation-of-spot-counting-pipelines" title="Permalink to this headline">#</a></h1>
+<p>My aim here is be able to quantitatively compare different spot counting pipelines, so that we can robustly identify which parameters are best, and to be able to do quality control on new data.</p>
+<p>We are using a dataset from the Allen Institute for Cell Science : <a class="reference external" href="https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.cells3d">https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.cells3d</a></p>
+<p>And I manually annotated centroids of these cells in napari.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anisotropy</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># note that this image is anisotropic, which means the distance measurements are inaccurate. For non-demo data I should fix this. </span>
+
+<span class="c1"># load cell positions </span>
+<span class="n">annotations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s1">&#39;../data/cells3d_annotations.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> 
+<span class="n">annotations</span> <span class="o">=</span> <span class="n">annotations</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span>
+
+<span class="c1"># load image and show a central point </span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../data/cells3d_nuclei.tif&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="mi">30</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x272eb856520&gt;
+</pre></div>
+</div>
+<img alt="_images/validate-spot-counting_public_data_2_1.png" src="_images/validate-spot-counting_public_data_2_1.png" />
+</div>
+</div>
+<section id="spot-detection">
+<h2>Spot detection<a class="headerlink" href="#spot-detection" title="Permalink to this headline">#</a></h2>
+<p>We have a basic spot detection algorithm, that just does a gaussian blur on the image and detects local maxima of pixels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_chunk</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">sigmaxy</span><span class="p">,</span> <span class="n">radius_xy</span><span class="p">):</span> 
+    <span class="n">input_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">starting_point</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">gaussian_blur</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">sigma_x</span><span class="o">=</span><span class="n">sigmaxy</span><span class="p">,</span> <span class="n">sigma_y</span><span class="o">=</span><span class="n">sigmaxy</span><span class="p">,</span> <span class="n">sigma_z</span> <span class="o">=</span> <span class="n">sigmaxy</span><span class="o">/</span><span class="n">anisotropy</span><span class="p">)</span>
+    <span class="n">maxima</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">detect_maxima_box</span><span class="p">(</span><span class="n">starting_point</span><span class="p">,</span> <span class="n">radius_x</span><span class="o">=</span><span class="n">radius_xy</span><span class="p">,</span> <span class="n">radius_y</span> <span class="o">=</span> <span class="n">radius_xy</span><span class="p">,</span> <span class="n">radius_z</span><span class="o">=</span><span class="n">radius_xy</span><span class="o">/</span><span class="n">anisotropy</span><span class="p">)</span>
+    <span class="c1"># print(np.sum(cle.pull(maxima)))</span>
+    <span class="n">labeled_maxima</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">maxima</span><span class="p">)</span>
+    <span class="n">pointlist</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">centroids_of_labels</span><span class="p">(</span><span class="n">labeled_maxima</span><span class="p">)</span>
+    <span class="n">detected_spots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span> <span class="o">=</span> <span class="n">pointlist</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="c1"># this reshaping ensures that detected and annotated spots share the same axis order </span>
+    <span class="n">detected_spots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">pointlist</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">detected_spots</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">pointlist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">detected_spots</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">pointlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">detected_spots</span> <span class="o">=</span> <span class="n">detected_spots</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">detected_spots</span> <span class="o">=</span> <span class="n">detected_spots</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">detected_spots</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">detected_spots</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+
+<span class="n">sigmaxy</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">radius_xy</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> 
+
+<span class="n">detected_spots</span> <span class="o">=</span> <span class="n">process_chunk</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">sigmaxy</span><span class="p">,</span> <span class="n">radius_xy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One could visualize the outcomes of this spot detection in 3d using napari:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is commented out because napari interferes with inline graphics</span>
+<span class="c1"># import napari </span>
+
+<span class="c1"># viewer = napari.Viewer() </span>
+
+<span class="c1"># viewer.add_image(img)</span>
+<span class="c1"># viewer.add_points(annotations, size = 3)</span>
+<span class="c1"># viewer.add_points(detected_spots.T, size = 3, face_color=&#39;blue&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now compute the distances between ground truth (manually annotated) centroids. We do this by generating a distance matrix in pyclesperanto: each row and column represents one detected cell, and the distance is represented by the value in the grid entry/colour intensity, in the graphic below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distance_matrix_of_actual_cells</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">generate_distance_matrix</span><span class="p">(</span><span class="n">annotations</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">annotations</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">generate_distance_matrix</span><span class="p">(</span><span class="n">detected_spots</span><span class="p">,</span> <span class="n">annotations</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">distance_matrix_of_actual_cells</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x272fc1db8e0&gt;
+</pre></div>
+</div>
+<img alt="_images/validate-spot-counting_public_data_8_1.png" src="_images/validate-spot-counting_public_data_8_1.png" />
+</div>
+</div>
+</section>
+<section id="measuring-the-distance-between-nearest-neighbour-cells">
+<h2>Measuring the distance between nearest neighbour cells<a class="headerlink" href="#measuring-the-distance-between-nearest-neighbour-cells" title="Permalink to this headline">#</a></h2>
+<p>As a sanity check, we want to know the minimum distance between nearest neighbour cells, and the minimum distance between ground truth and predicted cell centres. If our spot detection pipeline is perfect, we would expect the minimum distance between ground truth and predicted cell centres to be consistently much smaller than the minimum distance between cells. I calculated this by computing the minimum projection along the x axis, thus obtaining the nearest neighbour cell.</p>
+<p>In our data, on average, neighbouring cells in the ground truth data are ~50 pixels apart, and most of detected spots are less than 10 pixels from annotated spots. Therefore our spot detection pipeline is good. However note there are two detected spots that are a long way from annotations, these may be false positives.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Any cells of 0 distance from each other are the same cell, so we want to exclude them </span>
+<span class="c1"># it would be neater to overwrite the diagonal </span>
+<span class="n">distance_matrix_of_actual_cells</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">replace_intensity</span><span class="p">(</span><span class="n">distance_matrix_of_actual_cells</span><span class="p">,</span> <span class="n">value_to_replace</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">value_replacement</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">minimum_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">minimum_x_projection</span><span class="p">(</span><span class="n">distance_matrix_of_actual_cells</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:]))</span>
+<span class="c1"># [1:, 1:] is necessary to get rid of background</span>
+<span class="n">values</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">minimum_dist</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;minimum distance between </span><span class="se">\n</span><span class="s1">neighbouring cells&#39;</span><span class="p">)</span>
+
+<span class="n">minimum_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">minimum_x_projection</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:]))</span>
+<span class="n">values</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">minimum_dist</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;minimum distance between </span><span class="se">\n</span><span class="s1">ground truth and detected spots&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minimum distance (voxels)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x272fc28ec70&gt;
+</pre></div>
+</div>
+<img alt="_images/validate-spot-counting_public_data_10_1.png" src="_images/validate-spot-counting_public_data_10_1.png" />
+</div>
+</div>
+</section>
+<section id="quantifying-true-and-false-positives">
+<h2>Quantifying true and false positives<a class="headerlink" href="#quantifying-true-and-false-positives" title="Permalink to this headline">#</a></h2>
+<p>We now want to use this information to identify true and false positive cells. To achieve this, we need to define a distance threshold <span class="math notranslate nohighlight">\(d\)</span>, between which two points are defined as being part of the same cell. We can also use the above histogram to choose <span class="math notranslate nohighlight">\(d\)</span>. This value needs to be smaller than the minimum distance between neighbouring cells, and larger than the distance error we can tolerate between ground truth and detected cells. For our data, anywhere between 20 and 40 will give the same results, so we will use 30.</p>
+<p>We can now count true and false positive cells. If our spot detection was perfect, every row and column in the distance matrix would have exactly one entry below the threshold <span class="math notranslate nohighlight">\(d\)</span>, ie one correctly detected spot (true positives). This is not the case, and so we will define</p>
+<ol class="simple">
+<li><p>false positives as spots in the prediction but not the ground truth: eg. columns with no cells within distance <span class="math notranslate nohighlight">\(d\)</span>;</p></li>
+<li><p>false negatives as cells present in the ground truth but not prediction; ie rows with no cells within distance <span class="math notranslate nohighlight">\(d\)</span>;</p></li>
+<li><p>and ambiguous matches as columns with more than one match.</p></li>
+</ol>
+<p>From this we can calculate F1 score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_true_positives</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">thresh</span><span class="p">):</span> 
+    <span class="n">dist_mat</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
+    <span class="n">count_matrix</span> <span class="o">=</span> <span class="n">dist_mat</span> <span class="o">&lt;</span> <span class="n">thresh</span>
+
+    <span class="c1"># we do not want to count background as a close-by object</span>
+    <span class="n">cle</span><span class="o">.</span><span class="n">set_column</span><span class="p">(</span><span class="n">count_matrix</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">cle</span><span class="o">.</span><span class="n">set_row</span><span class="p">(</span><span class="n">count_matrix</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">detected</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_y_projection</span><span class="p">(</span><span class="n">count_matrix</span><span class="p">))[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span>
+    <span class="c1"># [0, 1:] is necessary to get rid of the first column which corresponds to background</span>
+
+    <span class="c1"># true positive detections are present exactly once in both the GT and prediction </span>
+    <span class="n">true_positives</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">detected</span><span class="p">[</span><span class="n">detected</span><span class="o">==</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># false negatives are present in the GT but not the prediction </span>
+    <span class="n">false_negatives</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">detected</span><span class="p">[</span><span class="n">detected</span><span class="o">==</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># ambiguous matches occur when one annotation corresponds to multiple detected spots </span>
+    <span class="n">ambiguous_matches</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">detected</span><span class="p">[</span><span class="n">detected</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># finally, to detect false positives, we want to identify any cells present in the detected spots but not GT </span>
+    <span class="n">x_proj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cle</span><span class="o">.</span><span class="n">maximum_x_projection</span><span class="p">(</span><span class="n">count_matrix</span><span class="p">))[</span><span class="mi">1</span><span class="p">:,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">false_positives</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_proj</span><span class="p">[</span><span class="n">x_proj</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span><span class="p">([</span><span class="n">true_positives</span><span class="p">,</span> <span class="n">false_positives</span><span class="p">,</span> <span class="n">false_negatives</span><span class="p">,</span> <span class="n">ambiguous_matches</span><span class="p">])</span>
+
+    
+<span class="k">def</span> <span class="nf">compute_f1</span><span class="p">(</span><span class="n">metrics</span><span class="p">):</span>
+    <span class="n">tp</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">am</span> <span class="o">=</span> <span class="n">metrics</span> 
+    <span class="k">return</span><span class="p">((</span><span class="n">tp</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">fn</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The F1 score is: &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">compute_f1</span><span class="p">(</span><span class="n">compute_true_positives</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="mi">30</span><span class="p">)),</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of ambiguious matches is: &#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">compute_true_positives</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="mi">30</span><span class="p">)[</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;We are detecting </span><span class="si">{</span><span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> cells when there are </span><span class="si">{</span><span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The F1 score is: 
+0.77
+The number of ambiguious matches is: 
+0
+We are detecting 16 cells when there are 17
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, it makes sense to check that our somewhat arbitrary choice of distance threshold didn’t bias our results.</p>
+<p>I’ve done this by computing the true and false positives for different values of <span class="math notranslate nohighlight">\(d\)</span>. For very small <span class="math notranslate nohighlight">\(d\)</span>, there are fewer true positives and more false positives: this is because <span class="math notranslate nohighlight">\(d\)</span> is much smaller than the nucleus diameter, so missed cells are a consequence of differences between where the human annotator and the algorithm place the spots, not genuine mis-detection. For <span class="math notranslate nohighlight">\(d\)</span> &gt; 40, the false positive rate decreases, as mis-annotated spots could be erronously assigned to the wrong cells.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># after the metrics unloaded paper, I should be defining my true/false positives based on a range of values </span>
+<span class="c1"># not simply one arbitrary distance threshold </span>
+
+<span class="n">array</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">threshold_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+
+<span class="n">tp</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">threshold_range</span><span class="p">:</span> 
+    <span class="n">p</span> <span class="o">=</span> <span class="n">compute_true_positives</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="n">array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">threshold_range</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">array</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;true positives&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">threshold_range</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">array</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;false positives&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">threshold_range</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">array</span><span class="p">)[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;false negatives&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">threshold_range</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">array</span><span class="p">)[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ambiguious match&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">xmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">threshold_range</span><span class="p">),</span> <span class="n">xmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">threshold_range</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">tp</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Chosen threshold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of cells&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x272eb9c9070&gt;
+</pre></div>
+</div>
+<img alt="_images/validate-spot-counting_public_data_14_1.png" src="_images/validate-spot-counting_public_data_14_1.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Robert Haase, Miguel Fernandes, Marcelo Leomil Zoccoler & add-your-name-here-by-sending-a-pull-request-containing-a-notebook<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
