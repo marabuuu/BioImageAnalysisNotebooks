@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Working with images &#8212; Bio-image Analysis Notebooks</title>
+    <title>Multi-channel image data &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Cropping images" href="03_Cropping_images.html" />
-    <link rel="prev" title="Introduction to image processing" href="01_Introduction_to_image_processing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -115,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -169,11 +167,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../02_python_basics/05b_sorting_lists.html">
      Sorting lists
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../02_python_basics/05c_masking.html">
-     Masking numpy arrays
     </a>
    </li>
    <li class="toctree-l2">
@@ -282,36 +275,16 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="readme.html">
    Image analysis basics
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="01_Introduction_to_image_processing.html">
-     Introduction to image processing
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Working with images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_Cropping_images.html">
-     Cropping images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_multi_channel_image_data.html">
-     Multi-channel image data
-    </a>
-   </li>
+  <ul class="simple">
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -1414,7 +1387,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/12_image_analysis_basics/02_Working_with_images.ipynb"
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/12_image_analysis_basics/06_multi_channel_image_data.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1474,7 +1447,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F12_image_analysis_basics/02_Working_with_images.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F12_image_analysis_basics/06_multi_channel_image_data.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1502,7 +1475,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/12_image_analysis_basics/02_Working_with_images.ipynb"
+        <a href="../_sources/12_image_analysis_basics/06_multi_channel_image_data.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1562,18 +1535,13 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#opening-images">
-   Opening images
+  <a class="reference internal nav-link" href="#playing-with-dimensions">
+   Playing with dimensions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lookup-tables-a-k-a-color-maps">
-   Lookup tables (a.k.a. color maps)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#image-statistics">
-   Image statistics
+  <a class="reference internal nav-link" href="#visualizing-multi-channel-images">
+   Visualizing multi-channel images
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1590,7 +1558,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Working with images</h1>
+                <h1>Multi-channel image data</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1601,18 +1569,13 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#opening-images">
-   Opening images
+  <a class="reference internal nav-link" href="#playing-with-dimensions">
+   Playing with dimensions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lookup-tables-a-k-a-color-maps">
-   Lookup tables (a.k.a. color maps)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#image-statistics">
-   Image statistics
+  <a class="reference internal nav-link" href="#visualizing-multi-channel-images">
+   Visualizing multi-channel images
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1630,264 +1593,100 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="working-with-images">
-<h1>Working with images<a class="headerlink" href="#working-with-images" title="Permalink to this headline">#</a></h1>
-<p>For analysing image data, we need to open them, apply filters to them, segment objects in the image and do measurements.</p>
-<p>See also</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://scipy-lectures.org/packages/scikit-image/index.html">Lecture notes on scikit image by Emmanuelle Gouillart</a></p></li>
-<li><p><a class="reference external" href="https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_histograms/py_histogram_begins/py_histogram_begins.html">Histograms of images</a></p></li>
-</ul>
-<section id="opening-images">
-<h2>Opening images<a class="headerlink" href="#opening-images" title="Permalink to this headline">#</a></h2>
-<p>Most images read using the <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.io.html#skimage.io.imread">imread</a> function. In case your image doesn’t you should consult the documentation of the given file format.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="multi-channel-image-data">
+<h1>Multi-channel image data<a class="headerlink" href="#multi-channel-image-data" title="Permalink to this headline">#</a></h1>
+<p>Beyond two dimensional images which can be expressed as 2-D matrix, also higher dimensional, multi-channel images are quite common. For example let’s import the <code class="docutils literal notranslate"><span class="pre">hela-cells.tif</span></code> image:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-
-<span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs.tif&quot;</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/hela-cells.tif&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<p>As shown earlier, images are just matrices of intensities. However, showing them as such is not convenient.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 40,  32,  24, ..., 216, 200, 200],
-       [ 56,  40,  24, ..., 232, 216, 216],
-       [ 64,  48,  24, ..., 240, 232, 232],
-       ...,
-       [ 72,  80,  80, ...,  48,  48,  48],
-       [ 80,  80,  80, ...,  48,  48,  48],
-       [ 96,  88,  80, ...,  48,  48,  48]], dtype=uint8)
-</pre></div>
-</div>
-</div>
-</div>
-<p>As a recap, we can show images using <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.io.html#skimage.io.imshow">imshow in scikit image</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imshow</span>
-
-<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x245e7e5b220&gt;
-</pre></div>
-</div>
-<img alt="../_images/02_Working_with_images_5_1.png" src="../_images/02_Working_with_images_5_1.png" />
-</div>
-</div>
-</section>
-<section id="lookup-tables-a-k-a-color-maps">
-<h2>Lookup tables (a.k.a. color maps)<a class="headerlink" href="#lookup-tables-a-k-a-color-maps" title="Permalink to this headline">#</a></h2>
-<p>We can also change the <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">look-up table</a>, a.k.a. “color map” for the visualization.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;hot&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x245e7fb7520&gt;
-</pre></div>
-</div>
-<img alt="../_images/02_Working_with_images_7_1.png" src="../_images/02_Working_with_images_7_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x245e8019910&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(512, 672, 3)
 </pre></div>
 </div>
-<img alt="../_images/02_Working_with_images_8_1.png" src="../_images/02_Working_with_images_8_1.png" />
 </div>
 </div>
-</section>
-<section id="image-statistics">
-<h2>Image statistics<a class="headerlink" href="#image-statistics" title="Permalink to this headline">#</a></h2>
-<p>As a recap, we can use <a class="reference external" href="https://numpy.org/">numpy</a> to determine mean intensity and standard deviation of the image, because it is just a matrix of numbers.</p>
+<p>We see that instead of just pixel rows and columns, we now have an additional number that tells us we have three planes in our data. In this case each image corresponds to a channel but for other data they could be z-planes, time points etc.</p>
+<section id="playing-with-dimensions">
+<h2>Playing with dimensions<a class="headerlink" href="#playing-with-dimensions" title="Permalink to this headline">#</a></h2>
+<p>Re-organizing multi-dimensional data is often necessary to correspond to the input of a function. For example <code class="docutils literal notranslate"><span class="pre">microshow</span></code> expects channels to be in the first dimension so we have to <em>move</em> the last axis into first position and use the Numpy function <code class="docutils literal notranslate"><span class="pre">np.moveaxis</span></code> for this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>103.26857775590551
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>71.05654744558498
-</pre></div>
-</div>
-</div>
-</div>
-<p>The histogram of an image represents its grey value distribution. It tells us if there are bright and dark regions.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_bins</span> <span class="o">=</span> <span class="mi">256</span>
-<span class="n">min_max</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">]</span>
-<span class="n">histogram</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">number_of_bins</span><span class="p">,</span><span class="n">min_max</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">histogram</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([    0,     0,     0,     0,     0,     0,     0,     0,    53,
-           0,     0,     0,     0,     0,     0,     0,   304,     0,
-           0,     0,     0,     0,     0,     0,  1209,     0,     0,
-           0,     0,     0,     0,     0,  3511,     0,     0,     0,
-           0,     0,     0,     0,  7731,     0,     0,     0,     0,
-           0,     0,     0, 10396,     0,     0,     0,     0,     0,
-           0,     0,  7456,     0,     0,     0,     0,     0,     0,
-           0,  3829,     0,     0,     0,     0,     0,     0,     0,
-        1992,     0,     0,     0,     0,     0,     0,     0,  1394,
-           0,     0,     0,     0,     0,     0,     0,  1158,     0,
-           0,     0,     0,     0,     0,     0,  1022,     0,     0,
-           0,     0,     0,     0,     0,   984,     0,     0,     0,
-           0,     0,     0,     0,   902,     0,     0,     0,     0,
-           0,     0,     0,   840,     0,     0,     0,     0,     0,
-           0,     0,   830,     0,     0,     0,     0,     0,     0,
-           0,   926,     0,     0,     0,     0,     0,     0,     0,
-         835,     0,     0,     0,     0,     0,     0,     0,   901,
-           0,     0,     0,     0,     0,     0,     0,  1025,     0,
-           0,     0,     0,     0,     0,     0,  1180,     0,     0,
-           0,     0,     0,     0,     0,  1209,     0,     0,     0,
-           0,     0,     0,     0,  1614,     0,     0,     0,     0,
-           0,     0,     0,  1609,     0,     0,     0,     0,     0,
-           0,     0,  2220,     0,     0,     0,     0,     0,     0,
-           0,  2037,     0,     0,     0,     0,     0,     0,     0,
-        2373,     0,     0,     0,     0,     0,     0,     0,  1568,
-           0,     0,     0,     0,     0,     0,     0,  1778,     0,
-           0,     0,     0,     0,     0,     0,   774,     0,     0,
-           0,     0,     0,     0,     0,  1364,     0,     0,     0,
-           0,     0,     0,     0], dtype=int64)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.        ,   0.99609375,   1.9921875 ,   2.98828125,
-         3.984375  ,   4.98046875,   5.9765625 ,   6.97265625,
-         7.96875   ,   8.96484375,   9.9609375 ,  10.95703125,
-        11.953125  ,  12.94921875,  13.9453125 ,  14.94140625,
-        15.9375    ,  16.93359375,  17.9296875 ,  18.92578125,
-        19.921875  ,  20.91796875,  21.9140625 ,  22.91015625,
-        23.90625   ,  24.90234375,  25.8984375 ,  26.89453125,
-        27.890625  ,  28.88671875,  29.8828125 ,  30.87890625,
-        31.875     ,  32.87109375,  33.8671875 ,  34.86328125,
-        35.859375  ,  36.85546875,  37.8515625 ,  38.84765625,
-        39.84375   ,  40.83984375,  41.8359375 ,  42.83203125,
-        43.828125  ,  44.82421875,  45.8203125 ,  46.81640625,
-        47.8125    ,  48.80859375,  49.8046875 ,  50.80078125,
-        51.796875  ,  52.79296875,  53.7890625 ,  54.78515625,
-        55.78125   ,  56.77734375,  57.7734375 ,  58.76953125,
-        59.765625  ,  60.76171875,  61.7578125 ,  62.75390625,
-        63.75      ,  64.74609375,  65.7421875 ,  66.73828125,
-        67.734375  ,  68.73046875,  69.7265625 ,  70.72265625,
-        71.71875   ,  72.71484375,  73.7109375 ,  74.70703125,
-        75.703125  ,  76.69921875,  77.6953125 ,  78.69140625,
-        79.6875    ,  80.68359375,  81.6796875 ,  82.67578125,
-        83.671875  ,  84.66796875,  85.6640625 ,  86.66015625,
-        87.65625   ,  88.65234375,  89.6484375 ,  90.64453125,
-        91.640625  ,  92.63671875,  93.6328125 ,  94.62890625,
-        95.625     ,  96.62109375,  97.6171875 ,  98.61328125,
-        99.609375  , 100.60546875, 101.6015625 , 102.59765625,
-       103.59375   , 104.58984375, 105.5859375 , 106.58203125,
-       107.578125  , 108.57421875, 109.5703125 , 110.56640625,
-       111.5625    , 112.55859375, 113.5546875 , 114.55078125,
-       115.546875  , 116.54296875, 117.5390625 , 118.53515625,
-       119.53125   , 120.52734375, 121.5234375 , 122.51953125,
-       123.515625  , 124.51171875, 125.5078125 , 126.50390625,
-       127.5       , 128.49609375, 129.4921875 , 130.48828125,
-       131.484375  , 132.48046875, 133.4765625 , 134.47265625,
-       135.46875   , 136.46484375, 137.4609375 , 138.45703125,
-       139.453125  , 140.44921875, 141.4453125 , 142.44140625,
-       143.4375    , 144.43359375, 145.4296875 , 146.42578125,
-       147.421875  , 148.41796875, 149.4140625 , 150.41015625,
-       151.40625   , 152.40234375, 153.3984375 , 154.39453125,
-       155.390625  , 156.38671875, 157.3828125 , 158.37890625,
-       159.375     , 160.37109375, 161.3671875 , 162.36328125,
-       163.359375  , 164.35546875, 165.3515625 , 166.34765625,
-       167.34375   , 168.33984375, 169.3359375 , 170.33203125,
-       171.328125  , 172.32421875, 173.3203125 , 174.31640625,
-       175.3125    , 176.30859375, 177.3046875 , 178.30078125,
-       179.296875  , 180.29296875, 181.2890625 , 182.28515625,
-       183.28125   , 184.27734375, 185.2734375 , 186.26953125,
-       187.265625  , 188.26171875, 189.2578125 , 190.25390625,
-       191.25      , 192.24609375, 193.2421875 , 194.23828125,
-       195.234375  , 196.23046875, 197.2265625 , 198.22265625,
-       199.21875   , 200.21484375, 201.2109375 , 202.20703125,
-       203.203125  , 204.19921875, 205.1953125 , 206.19140625,
-       207.1875    , 208.18359375, 209.1796875 , 210.17578125,
-       211.171875  , 212.16796875, 213.1640625 , 214.16015625,
-       215.15625   , 216.15234375, 217.1484375 , 218.14453125,
-       219.140625  , 220.13671875, 221.1328125 , 222.12890625,
-       223.125     , 224.12109375, 225.1171875 , 226.11328125,
-       227.109375  , 228.10546875, 229.1015625 , 230.09765625,
-       231.09375   , 232.08984375, 233.0859375 , 234.08203125,
-       235.078125  , 236.07421875, 237.0703125 , 238.06640625,
-       239.0625    , 240.05859375, 241.0546875 , 242.05078125,
-       243.046875  , 244.04296875, 245.0390625 , 246.03515625,
-       247.03125   , 248.02734375, 249.0234375 , 250.01953125,
-       251.015625  , 252.01171875, 253.0078125 , 254.00390625,
-       255.        ])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Using matplotlibs’ <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html">hist</a> function, we can visualize the histogram as plot.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">number_of_bins</span><span class="p">,</span> <span class="n">min_max</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">image_rolled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">image_rolled</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02_Working_with_images_17_0.png" src="../_images/02_Working_with_images_17_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 512, 672)
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are plenty of other funcitons in Numpy to do these axis moving operations. For example <code class="docutils literal notranslate"><span class="pre">np.swapaxes</span></code>, <code class="docutils literal notranslate"><span class="pre">np.rollaxis</span></code> etc.</p>
+</section>
+<section id="visualizing-multi-channel-images">
+<h2>Visualizing multi-channel images<a class="headerlink" href="#visualizing-multi-channel-images" title="Permalink to this headline">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">microshow</span></code> function takes care of displaying the image with reasonable defaults:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">microfilm.microplot</span> <span class="kn">import</span> <span class="n">microshow</span>
+<span class="n">microshow</span><span class="p">(</span><span class="n">image_rolled</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/06_multi_channel_image_data_8_0.png" src="../_images/06_multi_channel_image_data_8_0.png" />
+</div>
+</div>
+<p>By default it uses a Cyan, Magenta, Yellow combination of colormaps, but those can also be changed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">microshow</span><span class="p">(</span><span class="n">image_rolled</span><span class="p">,</span> <span class="n">cmaps</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pure_red&#39;</span><span class="p">,</span> <span class="s1">&#39;pure_green&#39;</span><span class="p">,</span> <span class="s1">&#39;pure_blue&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/06_multi_channel_image_data_10_0.png" src="../_images/06_multi_channel_image_data_10_0.png" />
+</div>
+</div>
+<p>We can also visualize these three channels independently by splitting them. Furthermore, we can arrange multiple images side-by-side using <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html">matplotlib subplots</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">channel1</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">channel2</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">channel3</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+
+<span class="n">microshow</span><span class="p">(</span><span class="n">channel1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmaps</span><span class="o">=</span><span class="s1">&#39;pure_cyan&#39;</span><span class="p">)</span>
+<span class="n">microshow</span><span class="p">(</span><span class="n">channel2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmaps</span><span class="o">=</span><span class="s1">&#39;pure_magenta&#39;</span><span class="p">)</span>
+<span class="n">microshow</span><span class="p">(</span><span class="n">channel3</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">cmaps</span><span class="o">=</span><span class="s1">&#39;pure_yellow&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/06_multi_channel_image_data_12_0.png" src="../_images/06_multi_channel_image_data_12_0.png" />
 </div>
 </div>
 </section>
 <section id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
-<p>Open the <code class="docutils literal notranslate"><span class="pre">banana020.tif</span></code> data set, visualize it in a yellowish lookup table side by side with its histogram and measure the minimum and maximum intensity of the image.</p>
+<p>Explore look-up tables, a.k.a. <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">colormaps in matplotlib</a> and visualize the three channels above as similar as possible to how the image is visualized in ImageJ.</p>
 </section>
 </section>
 
@@ -1918,20 +1717,6 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="01_Introduction_to_image_processing.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction to image processing</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="03_Cropping_images.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Cropping images</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>

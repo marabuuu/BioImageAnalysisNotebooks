@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to image processing &#8212; Bio-image Analysis Notebooks</title>
+    <title>Cropping images &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Working with images" href="02_Working_with_images.html" />
-    <link rel="prev" title="Image analysis basics" href="readme.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -115,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -169,11 +167,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../02_python_basics/05b_sorting_lists.html">
      Sorting lists
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../02_python_basics/05c_masking.html">
-     Masking numpy arrays
     </a>
    </li>
    <li class="toctree-l2">
@@ -282,36 +275,16 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="readme.html">
    Image analysis basics
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Introduction to image processing
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02_Working_with_images.html">
-     Working with images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03_Cropping_images.html">
-     Cropping images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_multi_channel_image_data.html">
-     Multi-channel image data
-    </a>
-   </li>
+  <ul class="simple">
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -1414,7 +1387,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/12_image_analysis_basics/01_Introduction_to_image_processing.ipynb"
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/12_image_analysis_basics/04_Cropping_images.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1474,7 +1447,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F12_image_analysis_basics/01_Introduction_to_image_processing.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F12_image_analysis_basics/04_Cropping_images.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1502,7 +1475,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/12_image_analysis_basics/01_Introduction_to_image_processing.ipynb"
+        <a href="../_sources/12_image_analysis_basics/04_Cropping_images.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1562,13 +1535,18 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pixel-statistics">
-   Pixel statistics
+  <a class="reference internal nav-link" href="#sub-sampling-images">
+   Sub-sampling images
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#image-visualization">
-   Image visualization
+  <a class="reference internal nav-link" href="#flipping-images">
+   Flipping images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>
@@ -1580,7 +1558,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to image processing</h1>
+                <h1>Cropping images</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1591,13 +1569,18 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pixel-statistics">
-   Pixel statistics
+  <a class="reference internal nav-link" href="#sub-sampling-images">
+   Sub-sampling images
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#image-visualization">
-   Image visualization
+  <a class="reference internal nav-link" href="#flipping-images">
+   Flipping images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>
@@ -1610,193 +1593,116 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-image-processing">
-<h1>Introduction to image processing<a class="headerlink" href="#introduction-to-image-processing" title="Permalink to this headline">#</a></h1>
-<p><a class="reference external" href="https://numpy.org">Numpy</a> is a library for processing arrays and matrices of numerical data. Images are exactly that.</p>
-<p>See also</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://scipy-lectures.org/advanced/image_processing/index.html#basic-image">Image manipulation and processing using Numpy and Scipy by Emmanuelle Gouillart and Gaël Varoquaux</a></p></li>
-<li><p><a class="reference external" href="https://scikit-image.org/docs/dev/user_guide/tutorial_segmentation.html">Tutorial on image segmentation with scikit-image</a></p></li>
-</ul>
-<p>Let’s start by defining an image as a two dimensional array; a matrix.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="cropping-images">
+<h1>Cropping images<a class="headerlink" href="#cropping-images" title="Permalink to this headline">#</a></h1>
+<p>When working with microscopy images, it often makes limited sense to process the whole image. We typically crop out interesting regions and process them in detail.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_image_array</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imshow</span>
+<span class="kn">from</span> <span class="nn">microfilm.microplot</span> <span class="kn">import</span> <span class="n">microshow</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can turn this matrix into a numpy array. Processing numpy arrays is more convenient as introduced in <a class="reference external" href="https://github.com/BiAPoL/Bio-image_Analysis_with_Python/blob/main/python_basics/00_Python_data_structures.pdf">lecture 02</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/blobs.tif&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before we can crop an image, we may want to know its precise shape (dimensions):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(254, 256)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recap: Visualization using <code class="docutils literal notranslate"><span class="pre">imshow</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">microshow</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_Cropping_images_6_0.png" src="../_images/04_Cropping_images_6_0.png" />
+</div>
+</div>
+<p>Cropping images works exactly like cropping lists and tuples, by using indices to specify the range of elements to use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cropped_image1</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">128</span><span class="p">]</span>
 
-<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">raw_image_array</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span>
+<span class="n">microshow</span><span class="p">(</span><span class="n">cropped_image1</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 0, 2, 1, 0, 0, 0],
-       [0, 3, 1, 0, 1, 0, 1],
-       [0, 5, 5, 1, 0, 1, 0],
-       [0, 6, 6, 5, 1, 0, 2],
-       [0, 0, 5, 6, 3, 0, 1],
-       [0, 1, 2, 1, 0, 0, 1],
-       [1, 0, 1, 0, 0, 1, 0]])
+<img alt="../_images/04_Cropping_images_8_0.png" src="../_images/04_Cropping_images_8_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">78</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can also create empty images containing <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.zeros.html">zeros</a> and <a class="reference external" href="https://numpy.org/doc/1.16/reference/generated/numpy.random.random.html#numpy.random.random">random</a> images, which is sometimes good for playing with algorithms.</p>
+<p>To crop the image in the second dimension as well, we add a <code class="docutils literal notranslate"><span class="pre">,</span></code> in the square brackets:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cropped_image2</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">:]</span>
 
-<span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">image_size</span><span class="p">)</span>
+<span class="n">microshow</span><span class="p">(</span><span class="n">cropped_image2</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]])
-</pre></div>
+<img alt="../_images/04_Cropping_images_11_0.png" src="../_images/04_Cropping_images_11_0.png" />
 </div>
 </div>
-</div>
+<section id="sub-sampling-images">
+<h2>Sub-sampling images<a class="headerlink" href="#sub-sampling-images" title="Permalink to this headline">#</a></h2>
+<p>Also step sizes can be specified as if we would process lists and tuples. Technically, we are sub-sampling the image in this case. We sample a subset of the original pixels for example in steps of 5:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampled_image</span> <span class="o">=</span> <span class="n">image</span><span class="p">[::</span><span class="mi">5</span><span class="p">,</span> <span class="p">::</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="n">microshow</span><span class="p">(</span><span class="n">sampled_image</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.55460936, 0.65190428, 0.17707292, 0.48021746, 0.71172296],
-       [0.59249835, 0.80077   , 0.93618394, 0.71594853, 0.6613176 ],
-       [0.28979045, 0.98719214, 0.68702289, 0.51240876, 0.2534302 ]])
-</pre></div>
-</div>
-</div>
-</div>
-<section id="pixel-statistics">
-<h2>Pixel statistics<a class="headerlink" href="#pixel-statistics" title="Permalink to this headline">#</a></h2>
-<p>Numpy also allows us to derive basic descriptive statistical measurements from images such as mean, minimum, maximum and standard deviation of intensities:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.3265306122448979
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8448798987737995
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8448798987737995
-</pre></div>
-</div>
+<img alt="../_images/04_Cropping_images_13_0.png" src="../_images/04_Cropping_images_13_0.png" />
 </div>
 </div>
 </section>
-<section id="image-visualization">
-<h2>Image visualization<a class="headerlink" href="#image-visualization" title="Permalink to this headline">#</a></h2>
-<p>For visualizing images, we use the <a class="reference external" href="https://scikit-image.org">scikit-image</a> library.</p>
+<section id="flipping-images">
+<h2>Flipping images<a class="headerlink" href="#flipping-images" title="Permalink to this headline">#</a></h2>
+<p>Negative step sizes flip the image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imshow</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flipped_image</span> <span class="o">=</span> <span class="n">image</span><span class="p">[::,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">microshow</span><span class="p">(</span><span class="n">flipped_image</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\programs\miniconda3\lib\site-packages\skimage\io\_plugins\matplotlib_plugin.py:150: UserWarning: Low image data range; displaying image with stretched contrast.
-  lo, hi, cmap = _get_display_range(image)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2024f898730&gt;
-</pre></div>
-</div>
-<img alt="../_images/01_Introduction_to_image_processing_16_2.png" src="../_images/01_Introduction_to_image_processing_16_2.png" />
+<img alt="../_images/04_Cropping_images_15_0.png" src="../_images/04_Cropping_images_15_0.png" />
 </div>
 </div>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
+<p>Open the <code class="docutils literal notranslate"><span class="pre">banana020.tif</span></code> data set and crop out the region where the banana slice is located.</p>
 </section>
 </section>
 
@@ -1827,20 +1733,6 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="readme.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Image analysis basics</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="02_Working_with_images.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Working with images</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>

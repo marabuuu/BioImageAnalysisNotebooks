@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Masking numpy arrays &#8212; Bio-image Analysis Notebooks</title>
+    <title>Computing with images &#8212; Bio-image Analysis Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Dictionaries" href="06_Dictionaries_and_tables.html" />
-    <link rel="prev" title="Sorting lists" href="05b_sorting_lists.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -115,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01_introduction/trailer.html">
    Trailer: Bio-image Analysis with Python
@@ -126,78 +124,73 @@ const thebe_selector_output = ".output, .cell_output"
    Setting up your computer
   </a>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="readme.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_python_basics/readme.html">
    Python basics
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="01_our_first_juptyer_notebook.html">
+    <a class="reference internal" href="../02_python_basics/01_our_first_juptyer_notebook.html">
      Python code in Jupyter notebooks
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="02_Math_in_python.html">
+    <a class="reference internal" href="../02_python_basics/02_Math_in_python.html">
      Basic math in python
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="03_Dont_try_this_at_home.html">
+    <a class="reference internal" href="../02_python_basics/03_Dont_try_this_at_home.html">
      Pitfalls when working with Jupyter notebooks
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="04_Basic_types.html">
+    <a class="reference internal" href="../02_python_basics/04_Basic_types.html">
      Basic types in python
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="05_lists_tuples.html">
+    <a class="reference internal" href="../02_python_basics/05_lists_tuples.html">
      Lists and tuples
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="05a_cropping_lists.html">
+    <a class="reference internal" href="../02_python_basics/05a_cropping_lists.html">
      Cropping lists
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="05b_sorting_lists.html">
+    <a class="reference internal" href="../02_python_basics/05b_sorting_lists.html">
      Sorting lists
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Masking numpy arrays
-    </a>
-   </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="06_Dictionaries_and_tables.html">
+    <a class="reference internal" href="../02_python_basics/06_Dictionaries_and_tables.html">
      Dictionaries
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07_Conditions.html">
+    <a class="reference internal" href="../02_python_basics/07_Conditions.html">
      Conditions
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08_loops.html">
+    <a class="reference internal" href="../02_python_basics/08_loops.html">
      Loops
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="09_custom_functions.html">
+    <a class="reference internal" href="../02_python_basics/09_custom_functions.html">
      Functions
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_Import_packages.html">
+    <a class="reference internal" href="../02_python_basics/10_Import_packages.html">
      Importing functions and packages
     </a>
    </li>
@@ -283,7 +276,7 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../12_image_analysis_basics/readme.html">
+  <a class="reference internal" href="readme.html">
    Image analysis basics
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -291,27 +284,7 @@ const thebe_selector_output = ".output, .cell_output"
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12_image_analysis_basics/01_Introduction_to_image_processing.html">
-     Introduction to image processing
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12_image_analysis_basics/02_Working_with_images.html">
-     Working with images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12_image_analysis_basics/03_Cropping_images.html">
-     Cropping images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12_image_analysis_basics/04_multi_channel_image_data.html">
-     Multi-channel image data
-    </a>
-   </li>
+  <ul class="simple">
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -1414,7 +1387,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/02_python_basics/05c_masking.ipynb"
+        <a href="https://mybinder.org/v2/gh/haesleinhuepf/BioImageAnalysisNotebooks/main?urlpath=tree/docs/12_image_analysis_basics/03_Computing_with_images.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1474,7 +1447,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F02_python_basics/05c_masking.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F12_image_analysis_basics/03_Computing_with_images.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1502,7 +1475,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/02_python_basics/05c_masking.ipynb"
+        <a href="../_sources/12_image_analysis_basics/03_Computing_with_images.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1562,8 +1535,28 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercises">
-   Exercises
+  <a class="reference internal nav-link" href="#simple-calculus">
+   Simple calculus
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-images">
+   Combining images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions-pixel-by-pixel">
+   Functions pixel by pixel
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-statistics">
+   Image statistics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>
@@ -1575,7 +1568,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Masking numpy arrays</h1>
+                <h1>Computing with images</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1586,8 +1579,28 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercises">
-   Exercises
+  <a class="reference internal nav-link" href="#simple-calculus">
+   Simple calculus
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-images">
+   Combining images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions-pixel-by-pixel">
+   Functions pixel by pixel
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-statistics">
+   Image statistics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>
@@ -1600,57 +1613,196 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="masking-numpy-arrays">
-<h1>Masking numpy arrays<a class="headerlink" href="#masking-numpy-arrays" title="Permalink to this headline">#</a></h1>
-<p>Masking is the term used for selecting entries in arrays, e.g. depending on its content.
-In order to do this, we need to use <a class="reference external" href="https://numpy.org/doc/stable/user/basics.creation.html">numpy arrays</a>.</p>
-<p>First, we define a numpy array. Per definition it contains numbers:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="computing-with-images">
+<h1>Computing with images<a class="headerlink" href="#computing-with-images" title="Permalink to this headline">#</a></h1>
+<p>We have seen in the last chapter that images exist in the form of Numpy arrays. We will here see different types of image processing computations that we can do with such arrays such as arithmetic operations, combining images etc.</p>
+<p>We have seen in the last chapter that we could create images using e.g. the <code class="docutils literal notranslate"><span class="pre">np.random.random</span></code> function. Let’s create two tiny images:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="n">measurements</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
-<span class="n">measurements</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">image1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">image1</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1, 17, 25,  3,  5, 26, 12])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>Next, we create a mask, e.g. a mask that defines all measurements which are above a given threshold:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">measurements</span> <span class="o">&gt;</span> <span class="mi">10</span>
-<span class="n">mask</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">image2</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False,  True,  True, False, False,  True,  True])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.27194417, 0.30500551, 0.88970898, 0.74560188, 0.91738941],
+       [0.98418878, 0.2635199 , 0.25729652, 0.22427242, 0.39387982],
+       [0.59095273, 0.90222827, 0.4722848 , 0.05913885, 0.96609068]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can apply that mask to our data to retrieve a new array that only contains masked values.</p>
+<section id="simple-calculus">
+<h2>Simple calculus<a class="headerlink" href="#simple-calculus" title="Permalink to this headline">#</a></h2>
+<p>As a recap from last chapter, we have seen that we can do arithemtics with images just as we would with simple numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image1_plus</span> <span class="o">=</span> <span class="n">image1</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="n">image1_plus</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([17, 25, 26, 12])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4., 4., 4., 4., 4.],
+       [4., 4., 4., 4., 4.],
+       [4., 4., 4., 4., 4.]])
 </pre></div>
 </div>
 </div>
 </div>
-<section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h2>
-<p>Create a new mask for all measurements below 20.</p>
-<p>Apply the mask to retrieve a new array with numbers below 20.</p>
-<p>Compute the average of all numbers below 20.</p>
+<p>This is valid for all basis operations like addition, multiplication etc. Even raising to a given power works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image1_plus</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[16., 16., 16., 16., 16.],
+       [16., 16., 16., 16., 16.],
+       [16., 16., 16., 16., 16.]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="combining-images">
+<h2>Combining images<a class="headerlink" href="#combining-images" title="Permalink to this headline">#</a></h2>
+<p>If images have the same size, we can here again treat them like simple numbers and do maths with them: again addition, multiplication etc. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image1</span> <span class="o">+</span> <span class="n">image2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.27194417, 1.30500551, 1.88970898, 1.74560188, 1.91738941],
+       [1.98418878, 1.2635199 , 1.25729652, 1.22427242, 1.39387982],
+       [1.59095273, 1.90222827, 1.4722848 , 1.05913885, 1.96609068]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="functions-pixel-by-pixel">
+<h2>Functions pixel by pixel<a class="headerlink" href="#functions-pixel-by-pixel" title="Permalink to this headline">#</a></h2>
+<p>In addition of allowing us to create various types of arrays, Numpy also provides us functions that can operate on arrays. In many cases, the input is an image and the output is an image of the same size where <em>a given function has been applied to each individual pixel</em>.</p>
+<p>For example we might want to apply a log function to an image to reduce the range of values that pixels can take. Here we would use the <code class="docutils literal notranslate"><span class="pre">np.log</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">image2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.3021585 , -1.18742543, -0.11686086, -0.29356349, -0.08622324],
+       [-0.01593755, -1.3336264 , -1.35752608, -1.49489381, -0.93170945],
+       [-0.52601924, -0.10288772, -0.75017308, -2.82786728, -0.03449758]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see the input image had 3 rows and 5 columns and the output image has the same dimensions. You can find many functions in Numpy that operate this way e.g. to take an exponential (<code class="docutils literal notranslate"><span class="pre">np.exp()</span></code>), to do trigonometry (<code class="docutils literal notranslate"><span class="pre">np.cos()</span></code>, <code class="docutils literal notranslate"><span class="pre">np.sin()</span></code>) etc.</p>
+</section>
+<section id="image-statistics">
+<h2>Image statistics<a class="headerlink" href="#image-statistics" title="Permalink to this headline">#</a></h2>
+<p>Another type of functions takes an image as input but returns an output of a different size by computing a statistic on the image or parts of it. For example we can compute the average of <em>all</em> <code class="docutils literal notranslate"><span class="pre">image2</span></code> pixel values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">image2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5495668473697417
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or we can specify that we want to compute the mean along a certain dimension of the image, in 2D along columns or rows. Let’s keep in mind what <code class="docutils literal notranslate"><span class="pre">image2</span></code> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.27194417, 0.30500551, 0.88970898, 0.74560188, 0.91738941],
+       [0.98418878, 0.2635199 , 0.25729652, 0.22427242, 0.39387982],
+       [0.59095273, 0.90222827, 0.4722848 , 0.05913885, 0.96609068]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we take the average over columns, which means along the first axis or <code class="docutils literal notranslate"><span class="pre">axis=0</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">image2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.61569523, 0.49025123, 0.53976343, 0.34300438, 0.75911997])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The same logic applies to all other statistical functions such as taking the minium (<code class="docutils literal notranslate"><span class="pre">np.min()</span></code>), the maxiumum (<code class="docutils literal notranslate"><span class="pre">np.max()</span></code>), standard deviation (<code class="docutils literal notranslate"><span class="pre">np.std()</span></code>), median (<code class="docutils literal notranslate"><span class="pre">np.median()</span></code>) etc.</p>
+<p>Note that most of this function can also be called directly on the Numpy array variable. For example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">image2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31182981411327126
+</pre></div>
+</div>
+</div>
+</div>
+<p>and</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image2</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31182981411327126
+</pre></div>
+</div>
+</div>
+</div>
+<p>are completely equivalent. In the latter case using the dot notation, you might hear that <code class="docutils literal notranslate"><span class="pre">std()</span></code> is a <em>method</em> of <code class="docutils literal notranslate"><span class="pre">image2</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Finally</span> <span class="n">we</span> <span class="n">might</span> <span class="n">want</span> <span class="n">to</span> <span class="n">have</span> <span class="n">a</span> <span class="n">look</span> <span class="n">at</span> <span class="n">the</span> <span class="n">actual</span> <span class="n">distribution</span> <span class="n">of</span> <span class="n">pixel</span> <span class="n">values</span><span class="o">.</span> <span class="n">For</span> <span class="n">this</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
+<p>From the <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code> module, find a function that generates <strong>Poisson</strong> noise and creata a 4x9 image. Compute its mean and standard deviation.</p>
 </section>
 </section>
 
@@ -1667,7 +1819,7 @@ In order to do this, we need to use <a class="reference external" href="https://
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./02_python_basics"
+            path: "./12_image_analysis_basics"
         },
         predefinedOutput: true
     }
@@ -1681,20 +1833,6 @@ In order to do this, we need to use <a class="reference external" href="https://
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="05b_sorting_lists.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Sorting lists</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="06_Dictionaries_and_tables.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Dictionaries</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
