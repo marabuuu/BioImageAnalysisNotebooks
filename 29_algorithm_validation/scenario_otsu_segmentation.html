@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Quantitative labeling comparison &#8212; Bio-image Analysis Notebooks</title>
+    <title>Scenario: Comparing different implementations of the same thresholding algorithm &#8212; Bio-image Analysis Notebooks</title>
   
   
   
@@ -61,11 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '21_segmentation_comparison/quantiative_comparison';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '29_algorithm_validation/scenario_otsu_segmentation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Feature extraction" href="../22_feature_extraction/readme.html" />
-    <link rel="prev" title="Visual labeling comparison" href="visual_comparison.html" />
+    <link rel="next" title="Visual labeling comparison" href="visual_comparison.html" />
+    <link rel="prev" title="Validation of spot counting pipelines" href="validate-spot-counting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -277,7 +277,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Segmentation</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../20_image_segmentation/readme.html">Image segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../20_image_segmentation/06_Introduction_to_image_segmentation.html">Image segmentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../20_image_segmentation/07_Thresholding.html">Thresholding</a></li>
@@ -328,15 +328,24 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../20h_segmentation_post_processing/mimicking_imagej_watershed.html">Mimicking ImageJ’s watershed algorithm</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="readme.html">Comparing segmentation algorithms</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="scenario_otsu_segmentation.html">Scenario: Comparing different implementations of the same thresholding algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visual_comparison.html">Visual labeling comparison</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Quantitative labeling comparison</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../21_surface_processing/readme.html">Surface processing</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../21_surface_processing/creating_surfaces.html">Creating surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../21_surface_processing/visualizing_surfaces.html">Visualizing surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../21_surface_processing/saving_and_loading_surfaces.html">Saving and loading surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../21_surface_processing/smoothing_and_simplifying_surfaces.html">Smoothing and simplifying surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../21_surface_processing/connected_component_labeling.html">Connected component labeling on surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../21_surface_processing/surfaces_and_point_clouds.html">Converting points and surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../21_surface_processing/surfaces_to_images.html">From surface data to image data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../21_surface_processing/tabular_quality_measurements.html">Surface measurements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../21_surface_processing/quality_measurements.html">Surface quality measurements using vedo in napari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../21_surface_processing/surface_vertex_classification.html">Surface vertex classification</a></li>
+
+
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantiative analysis</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../22_feature_extraction/readme.html">Feature extraction</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../22_feature_extraction/quantitative_measurements.html">Quantitative image analysis</a></li>
 
@@ -357,22 +366,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../23_blob_detection/blog_dog_log_doh.html">Blob detection</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../24_surface_processing/readme.html">Surface processing</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../24_surface_processing/creating_surfaces.html">Creating surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../24_surface_processing/visualizing_surfaces.html">Visualizing surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../24_surface_processing/saving_and_loading_surfaces.html">Saving and loading surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../24_surface_processing/smoothing_and_simplifying_surfaces.html">Smoothing and simplifying surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../24_surface_processing/connected_component_labeling.html">Connected component labeling on surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../24_surface_processing/surfaces_and_point_clouds.html">Converting points and surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../24_surface_processing/surfaces_to_images.html">From surface data to image data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../24_surface_processing/tabular_quality_measurements.html">Surface measurements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../24_surface_processing/quality_measurements.html">Surface quality measurements using vedo in napari</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../24_surface_processing/surface_vertex_classification.html">Surface vertex classification</a></li>
-
-
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../25_neighborhood_relationships_between_cells/readme.html">Neighborhood analysis in tissues</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../25_neighborhood_relationships_between_cells/readme.html">Neighborhood analysis in tissues</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../25_neighborhood_relationships_between_cells/01_neighborhood_definitions.html">Neighborhood definitions</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../25_neighborhood_relationships_between_cells/05_count_touching_neighbors.html">Count touching neighbors</a></li>
@@ -392,7 +386,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../27_cell_classification/readme.html">Cell classification</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../27_cell_classification/readme.html">Cell classification</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../27_cell_classification/apoc_object_classifier.html">Object classification on OpenCL-compatible GPUs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../27_cell_classification/interactive_object_classification/readme.html">Interactive object classification in Napari</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../27_cell_classification/forest_statistics.html">Random forest decision making statistics</a></li>
@@ -400,12 +394,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../27_cell_classification/apoc_simpleitk_object_classification.html">Object classification with APOC and SimpleITK-based features</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../29_algorithm_validation/readme.html">Algorithm validation</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../29_algorithm_validation/segmentation_quality_estimation.html">Image segmentation quality measurements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../29_algorithm_validation/validate-spot-counting.html">Validation of spot counting pipelines</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../47_clustering/readme.html">Clustering</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../47_clustering/readme.html">Clustering</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../47_clustering/trailer.html">Clustering - a quick walkthrough</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../47_clustering/umap.html">Clustering with UMAPs</a></li>
 
@@ -422,19 +411,27 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../47_clustering/interactive_dimensionality_reduction_and_clustering/readme.html">Interactive dimensionality reduction and clustering</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../28_colocalization/readme.html">Colocalization</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../28_colocalization/readme.html">Colocalization</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../28_colocalization/counting_nuclei_multichannel.html">Counting nuclei according to expression in multiple channels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../28_colocalization/differentiate_nuclei_intensity.html">Differentiating nuclei according to signal intensity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../28_colocalization/distance-based_colocalization.html">Distance-based colocalization</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../30_simulating_data/readme.html">Simulating data</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="readme.html">Algorithm validation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="segmentation_quality_estimation.html">Image segmentation quality measurements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validate-spot-counting.html">Validation of spot counting pipelines</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Scenario: Comparing different implementations of the same thresholding algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_comparison.html">Visual labeling comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantiative_comparison.html">Quantitative labeling comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../30_simulating_data/readme.html">Simulating data</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced workflows and tools</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../31_graphical_user_interfaces/readme.html">Graphical user interfaces</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../31_graphical_user_interfaces/readme.html">Graphical user interfaces</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../31_graphical_user_interfaces/napari.html">Interactive image visualization with napari</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../31_graphical_user_interfaces/napari_magicgui.html">Interactive parameter tuning with napari and magicgui</a></li>
@@ -443,7 +440,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../31_graphical_user_interfaces/napari_crop.html">Interactive cropping with napari</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../32_tiled_image_processing/readme.html">Tiled image processing</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../32_tiled_image_processing/readme.html">Tiled image processing</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../32_tiled_image_processing/tiled_nuclei_counting_quick.html">Tiled image processing, a quick run-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../32_tiled_image_processing/tiling_images_naive_approach.html">Tiling images - the naive approach</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../32_tiled_image_processing/tiling_images_with_overlap.html">Tiling images with overlap</a></li>
@@ -453,13 +450,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../32_tiled_image_processing/tiled_nuclei_counting.html">Counting nuclei in tiles</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../33_batch_processing/readme.html">Batch processing</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../33_batch_processing/readme.html">Batch processing</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../33_batch_processing/12_process_folders.html">How process files in a folder</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../33_batch_processing/14_process_timelapse.html">Processing timelapse data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../35_parameter_optimization/readme.html">Parameter optimization</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../35_parameter_optimization/readme.html">Parameter optimization</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../35_parameter_optimization/optimization_basics.html">Optimization basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../35_parameter_optimization/label_image_optimizer.html">Optimize segmentation algorithms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../35_parameter_optimization/membrane_segmentation.html">Optimizing parameters for membrane-image based cell segmentation</a></li>
@@ -468,7 +465,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tabular data, plots and statistics</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../40_tabular_data_wrangling/readme.html">Tabular data wrangling</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../40_tabular_data_wrangling/readme.html">Tabular data wrangling</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../40_tabular_data_wrangling/introduction_dataframes.html">Introduction to working with DataFrames</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../40_tabular_data_wrangling/explore_dataset.html">Exploring tabular data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../40_tabular_data_wrangling/append_tables.html">Appending tables</a></li>
@@ -481,7 +478,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../40_tabular_data_wrangling/tidy_data.html">Tidy-Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../40a_sql/readme.html">Querying databases</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../40a_sql/readme.html">Querying databases</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../40a_sql/select.html">Querying databases using SQL</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../40a_sql/join.html">Combining tables</a></li>
@@ -492,7 +489,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../41_descriptive_statistics/readme.html">Descriptive statistics</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../41_descriptive_statistics/readme.html">Descriptive statistics</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../41_descriptive_statistics/basic_descriptive_statistics.html">Descriptive statistics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../41_descriptive_statistics/descriptive_statistics_label_images.html">Descriptive statistics of labeled images</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../41_descriptive_statistics/Bland_altman_analysis.html">Method comparison</a></li>
@@ -500,7 +497,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../51_plotting/readme.html">Plotting</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-32"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../51_plotting/readme.html">Plotting</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../51_plotting/plotting_matplotlib.html">Plotting with Matplotlib</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../51_plotting/plotting_seaborn.html">Introduction to Seaborn</a></li>
@@ -509,7 +506,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../51_plotting/bland_altman_analysis.html">Bland-Altman plots</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../60_data_visualization/readme.html">Data visualization</a><input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-33"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../60_data_visualization/readme.html">Data visualization</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-32"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../60_data_visualization/overlay_text_on_image.html">Overlay texts on images</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../60_data_visualization/parametric_maps.html">Parametric maps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../60_data_visualization/quantitative_neighbor_maps.html">Quantitative maps from neighbor statistics</a></li>
@@ -593,7 +590,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F21_segmentation_comparison/quantiative_comparison.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/new?title=Issue%20on%20page%20%2F29_algorithm_validation/scenario_otsu_segmentation.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -623,7 +620,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/21_segmentation_comparison/quantiative_comparison.ipynb" target="_blank"
+      <li><a href="../_sources/29_algorithm_validation/scenario_otsu_segmentation.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -705,7 +702,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Quantitative labeling comparison</h1>
+    <h1>Scenario: Comparing different implementations of the same thresholding algorithm</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -715,10 +712,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-label-counts">Comparing label counts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantitative-comparison">Quantitative comparison</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#student-s-t-test-testing-for-differences">Student’s t-test - testing for differences</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-sided-t-test-for-equivalence-testing">Two-sided t-test for equivalence testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-1-imagej">Implementation 1: ImageJ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-2-scikit-image">Implementation 2: scikit-image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-3-clesperanto-python">Implementation 3: clesperanto / python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-4-clesperanto-jython">Implementation 4: clesperanto / Jython</a></li>
 </ul>
             </nav>
         </div>
@@ -730,382 +728,253 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="quantitative-labeling-comparison">
-<h1>Quantitative labeling comparison<a class="headerlink" href="#quantitative-labeling-comparison" title="Permalink to this heading">#</a></h1>
-<p>Segmentation algorithms may produce different results. These differences may or may not be crucial, depending on the purpose of the scientific analysis these algorithms are used for.</p>
-<p>In this notebook we will check if the number of segmented objects is different using Otsu’s thresholding method on blobs.tif and we will check if the area measurements are different between these two algorithms. The visual comparison performed before suggests that there should be a difference in area measurements.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="scenario-comparing-different-implementations-of-the-same-thresholding-algorithm">
+<h1>Scenario: Comparing different implementations of the same thresholding algorithm<a class="headerlink" href="#scenario-comparing-different-implementations-of-the-same-thresholding-algorithm" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we will compare different implementations of the same algorithm. As example, we select Otsu’s method for binary threesholding in combination with <a class="reference external" href="https://en.wikipedia.org/wiki/Connected-component_labeling">connected component labeling</a>. The algorithm was published more than 40 years ago and one could presume that all common implementations of this algorithm show identical results.</p>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ieeexplore.ieee.org/document/4310076">A Threshold Selection Method from Gray-Level Histograms (N. Otsu 1979)</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imsave</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">regionprops</span>
-<span class="kn">from</span> <span class="nn">pyclesperanto_prototype</span> <span class="kn">import</span> <span class="n">imshow</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">describe</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">ttest_ind</span>
-<span class="kn">from</span> <span class="nn">statsmodels.stats.weightstats</span> <span class="kn">import</span> <span class="n">ttost_ind</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imshow</span><span class="p">,</span> <span class="n">imsave</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_otsu</span>
+<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">label</span>
+<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">label2rgb</span>
 </pre></div>
 </div>
 </div>
-</div>
-<p>Just as a recap, we take a quick look at the two label images. One was produced in ImageJ, the other using scikit-image.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blobs_labels_imagej</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs_labels_imagej.tif&quot;</span><span class="p">)</span>
-<span class="n">blobs_labels_skimage</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs_labels_skimage.tif&quot;</span><span class="p">)</span>
-
-<span class="n">imshow</span><span class="p">(</span><span class="n">blobs_labels_imagej</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">blobs_labels_skimage</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/cdc69e90459a3a8cba2befb95af73d5516bbe4e985521e69b09df76db2dc5308.png" src="../_images/cdc69e90459a3a8cba2befb95af73d5516bbe4e985521e69b09df76db2dc5308.png" />
-<img alt="../_images/5a68c38f79e7493551a8dc8b23f1f4a06090b9f51adb83488f404269f4575869.png" src="../_images/5a68c38f79e7493551a8dc8b23f1f4a06090b9f51adb83488f404269f4575869.png" />
-</div>
-</div>
-<section id="comparing-label-counts">
-<h2>Comparing label counts<a class="headerlink" href="#comparing-label-counts" title="Permalink to this heading">#</a></h2>
-<p>First, we will count the number of objects in the two images. If the images are labeled subsequently, which means every integer label between 0 and the maximum of the labels exits, the maximum intensity in these label images corresponds to the number of labels present in the image.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blobs_labels_imagej</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">blobs_labels_skimage</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(63, 64)
-</pre></div>
-</div>
-</div>
-</div>
-<p>If the images are not subsequently labeled, we should first determine the unique sets of labels and count them. If background intensity (<code class="docutils literal notranslate"><span class="pre">0</span></code>) is present, these two numbers will be higher by one than the maximum.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">blobs_labels_imagej</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">blobs_labels_skimage</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 65)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Comparing label counts from one single image gives limited insights. It shall be recommended to compare counts from multiple images and apply statistical tests as shown below. With these error analysis methods one can get deeper insights into how different the algorithms are.</p>
-</section>
-<section id="quantitative-comparison">
-<h2>Quantitative comparison<a class="headerlink" href="#quantitative-comparison" title="Permalink to this heading">#</a></h2>
-<p>Depending on the desired scientific analysis, the found number of objects may not be relevant, but the area of the found objects might be. Hence, we shoud compare how different area measurements between the algorithms are. Also this should actually be done using multiplel images. We demonstrate it with the single image to make it easisly reproducible.</p>
-<p>First, we derive area measurements from the label images and take a quick look.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imagej_statistics</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">blobs_labels_imagej</span><span class="p">)</span>
-<span class="n">imagej_areas</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">imagej_statistics</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">imagej_areas</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[415, 181, 646, 426, 465, 273, 74, 264, 221, 25, 485, 639, 92, 216, 432, 387, 503, 407, 257, 345, 149, 399, 407, 245, 494, 272, 659, 171, 350, 527, 581, 10, 611, 184, 584, 20, 260, 871, 461, 228, 158, 387, 398, 233, 364, 629, 364, 558, 62, 158, 450, 598, 525, 197, 544, 828, 267, 201, 1, 87, 73, 49, 46]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skimage_statistics</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">blobs_labels_skimage</span><span class="p">)</span>
-<span class="n">skimage_areas</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">skimage_statistics</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">skimage_areas</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[433, 185, 658, 434, 477, 285, 81, 278, 231, 30, 501, 660, 99, 228, 448, 401, 520, 425, 271, 350, 159, 412, 426, 260, 506, 289, 676, 175, 361, 545, 610, 14, 641, 195, 593, 22, 268, 902, 473, 239, 167, 413, 415, 244, 377, 652, 379, 578, 69, 170, 472, 613, 543, 204, 555, 858, 281, 215, 3, 1, 81, 90, 53, 49]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Just to confirm our insights from above, we check the number of measurements</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">imagej_areas</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">skimage_areas</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(63, 64)
-</pre></div>
-</div>
-</div>
-</div>
-<p>A simple and yet powerful approach for comparing quantitative measurements visually, is to draw histograms of the measurements, e.g. using <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html">matplotlib’s <code class="docutils literal notranslate"><span class="pre">hist</span></code> method</a>. This method works for non-paired data and for paired datasets.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">imagej_areas</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([10.,  5., 11.,  5., 12.,  6.,  7.,  5.,  0.,  2.]),
- array([  1.,  88., 175., 262., 349., 436., 523., 610., 697., 784., 871.]),
- &lt;BarContainer object of 10 artists&gt;)
-</pre></div>
-</div>
-<img alt="../_images/ced9ca44591a236bc7d5c6b225a4c4a9a3ab204f7f8f5e8179a3912f6b1ee841.png" src="../_images/ced9ca44591a236bc7d5c6b225a4c4a9a3ab204f7f8f5e8179a3912f6b1ee841.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">skimage_areas</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([11.,  5., 11.,  6., 11.,  6.,  7.,  5.,  0.,  2.]),
- array([  1. ,  91.1, 181.2, 271.3, 361.4, 451.5, 541.6, 631.7, 721.8,
-        811.9, 902. ]),
- &lt;BarContainer object of 10 artists&gt;)
-</pre></div>
-</div>
-<img alt="../_images/0ae287dae71fe52dfab9744a6e27966db05dfd586bc4139120853a8bf985b48c.png" src="../_images/0ae287dae71fe52dfab9744a6e27966db05dfd586bc4139120853a8bf985b48c.png" />
-</div>
-</div>
-<p>The histograms look very similar, and small differences can be identified.</p>
-<p>We can nicer to read overview by using scipy’s <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.describe.html"><code class="docutils literal notranslate"><span class="pre">describe</span></code> method</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">imagej_areas</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DescribeResult(nobs=63, minmax=(1, 871), mean=339.8888888888889, variance=43858.100358422926, skewness=0.2985582216973995, kurtosis=-0.5512673189985389)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">skimage_areas</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DescribeResult(nobs=64, minmax=(1, 902), mean=347.546875, variance=47422.15649801587, skewness=0.29237468285874324, kurtosis=-0.5465739129172253)
-</pre></div>
-</div>
-</div>
-</div>
-<p>A bit easier to read is the output of <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html">pandas’ <code class="docutils literal notranslate"><span class="pre">describe</span></code> mwethod</a>. In order to make it work for our data, we need to create to pandas DataFrames and concatenate them. This is necessary because we have measurements with different lengths (<a class="reference external" href="https://stackoverflow.com/questions/27126511/add-columns-different-length-pandas/33404243">read more</a>).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;ImageJ&quot;</span><span class="p">:</span> <span class="n">imagej_areas</span>
-<span class="p">}</span>
-<span class="n">table2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;scikit-image&quot;</span><span class="p">:</span> <span class="n">skimage_areas</span>
-<span class="p">}</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">table1</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">table2</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ImageJ</th>
-      <th>scikit-image</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>63.000000</td>
-      <td>64.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>339.888889</td>
-      <td>347.546875</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>209.423256</td>
-      <td>217.766289</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>1.000000</td>
-      <td>1.000000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>182.500000</td>
-      <td>182.500000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>350.000000</td>
-      <td>355.500000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>489.500000</td>
-      <td>502.250000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>871.000000</td>
-      <td>902.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
-<section id="student-s-t-test-testing-for-differences">
-<h2>Student’s t-test - testing for differences<a class="headerlink" href="#student-s-t-test-testing-for-differences" title="Permalink to this heading">#</a></h2>
-<p>We now know that the mean of the measurements are different. We should determine if the differences between the measurements are significant.</p>
-<p>We can use the <a class="reference external" href="https://en.wikipedia.org/wiki/Student%27s_t-test">Student’s t-test</a> for that using the null-hypothesis: Means of measurements are different. We use the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html"><code class="docutils literal notranslate"><span class="pre">ttest_ind</span></code> method</a> because we do not have paired datasets.</p>
+<section id="implementation-1-imagej">
+<h2>Implementation 1: ImageJ<a class="headerlink" href="#implementation-1-imagej" title="Permalink to this heading">#</a></h2>
+<p>As first implementation, we take a look at <a class="reference external" href="https://imagej.nih.gov/ij/index.html">ImageJ</a>. We will use it as part of the <a class="reference external" href="https://fiji.sc/">Fiji distribution</a>. The following <a class="reference external" href="https://imagej.nih.gov/ij/developer/macro/macros.html">ImageJ Macro</a> code opens “blobs.tif”, thresholds it using Otsu’s method and applied connected component labeling. The resulting label image is stored to disk. You can execute this script in Fiji’s script editor by clicking on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">New</span> <span class="pre">&gt;</span> <span class="pre">Script</span></code>.</p>
+<p><strong>Note:</strong> When executing this script, you should adapt the path of the image data so that it runs on your computer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">imagej_areas</span><span class="p">,</span> <span class="n">skimage_areas</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;blobs_segmentation_imagej.ijm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=-0.20194436015007275, pvalue=0.8402885093667958)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>open(&quot;C:/structure/code/clesperanto_SIMposium/blobs.tif&quot;);
+
+// binarization
+setAutoThreshold(&quot;Otsu dark&quot;);
+setOption(&quot;BlackBackground&quot;, true);
+run(&quot;Convert to Mask&quot;);
+
+// Connected component labeling + measurement
+run(&quot;Analyze Particles...&quot;, &quot;  show=[Count Masks] &quot;);
+
+// Result visualization
+run(&quot;glasbey on dark&quot;);
+
+// Save results
+saveAs(&quot;Tiff&quot;, &quot;C:/structure/code/clesperanto_SIMposium/blobs_labels_imagej.tif&quot;);
 </pre></div>
 </div>
 </div>
 </div>
-<p>From the printed p-value we can <em>not</em> conclude that differences are insignificant. We can only say that according to the given sample, significance could not be shown.</p>
+<p>The result looks then like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imagej_label_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs_labels_imagej.tif&quot;</span><span class="p">)</span>
+<span class="n">visualization</span> <span class="o">=</span> <span class="n">label2rgb</span><span class="p">(</span><span class="n">imagej_label_image</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">visualization</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1d290a79520&gt;
+</pre></div>
+</div>
+<img alt="../_images/274cd5c9d29a0d56ef587d5388b15a01098442deaaae0bc67c53f90d483b63f9.png" src="../_images/274cd5c9d29a0d56ef587d5388b15a01098442deaaae0bc67c53f90d483b63f9.png" />
+</div>
+</div>
 </section>
-<section id="two-sided-t-test-for-equivalence-testing">
-<h2>Two-sided t-test for equivalence testing<a class="headerlink" href="#two-sided-t-test-for-equivalence-testing" title="Permalink to this heading">#</a></h2>
-<p>For proving that two algorithms perform similarly and means are different less that a given threshold, we can use a two-sided t-test, e.g. using statsmodels’ <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.stats.weightstats.ttost_ind.html"><code class="docutils literal notranslate"><span class="pre">ttost_ind</span></code> method</a>. Our null-hypothesis: Means of measurements are more than 5% different.</p>
+<section id="implementation-2-scikit-image">
+<h2>Implementation 2: scikit-image<a class="headerlink" href="#implementation-2-scikit-image" title="Permalink to this heading">#</a></h2>
+<p>As a second implementation we will use <a class="reference external" href="https://scikit-image.org/">scikit-image</a>. As it can be used from juypter notebooks, we can also have a close look again at the workflow.</p>
+<p>We start with loading and visualizing the raw blobs image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">five_percent_error_threshold</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">imagej_areas</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">skimage_areas</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="n">five_percent_error_threshold</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blobs_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs.tif&quot;</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">blobs_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Greys_r&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17.185894097222224
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\miniconda3\envs\bio_39\lib\site-packages\skimage\io\_plugins\matplotlib_plugin.py:150: UserWarning: Float image out of standard range; displaying image with stretched contrast.
+  lo, hi, cmap = _get_display_range(image)
 </pre></div>
 </div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1d290cfd7c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/8615d0d6587b65fbb39ad4e627fd8475dd7f2343dcdf7647aeda0f1e24d4e092.png" src="../_images/8615d0d6587b65fbb39ad4e627fd8475dd7f2343dcdf7647aeda0f1e24d4e092.png" />
 </div>
 </div>
+<p>The <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.filters.html?highlight=threshold%20otsu#skimage.filters.threshold_otsu"><code class="docutils literal notranslate"><span class="pre">threshold_otsu</span></code> method</a> is then used to binarize the image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ttost_ind</span><span class="p">(</span><span class="n">imagej_areas</span><span class="p">,</span> <span class="n">skimage_areas</span><span class="p">,</span> <span class="o">-</span><span class="n">five_percent_error_threshold</span><span class="p">,</span> <span class="n">five_percent_error_threshold</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># determine threshold</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">blobs_image</span><span class="p">)</span>
+
+<span class="c1"># apply threshold</span>
+<span class="n">binary_image</span> <span class="o">=</span> <span class="n">blobs_image</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+
+<span class="n">imshow</span><span class="p">(</span><span class="n">binary_image</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.40101477051276024,
- (0.25125499758118736, 0.40101477051276024, 125.0),
- (-0.6551437178813329, 0.2567895351853574, 125.0))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1d290f67280&gt;
 </pre></div>
 </div>
+<img alt="../_images/d912d7acff68e20a54b7cdec9b1c9f50c7c341d650f6e3cffd287839452c4638.png" src="../_images/d912d7acff68e20a54b7cdec9b1c9f50c7c341d650f6e3cffd287839452c4638.png" />
 </div>
 </div>
-<p>Note to self: I’m not sure if I interpret the result correctly. I’m also not sure if I use this test correctly. If anyone reads this, and understands why the p-value here is 0.4, please get in touch: <a class="reference external" href="mailto:robert&#46;haase&#37;&#52;&#48;tu-dresden&#46;de">robert<span>&#46;</span>haase<span>&#64;</span>tu-dresden<span>&#46;</span>de</a></p>
+<p>For connected component labeling, we use the <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.measure.html?highlight=label#skimage.measure.label"><code class="docutils literal notranslate"><span class="pre">label</span></code> method</a>. The visualization of the label image is produces using the <span class="xref myst">`` method</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ttost_ind<span class="o">?</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># connected component labeling</span>
+<span class="n">skimage_label_image</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">binary_image</span><span class="p">)</span>
+
+<span class="c1"># visualize it in colours</span>
+<span class="n">visualization</span> <span class="o">=</span> <span class="n">label2rgb</span><span class="p">(</span><span class="n">skimage_label_image</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">visualization</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">Signature:</span>
-ttost_ind<span class=" -Color -Color-Bold -Color-Bold-Yellow">(</span>
-    x1<span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span>
-    x2<span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span>
-    low<span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span>
-    upp<span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span>
-    usevar<span class=" -Color -Color-Bold -Color-Bold-Yellow">=</span><span class=" -Color -Color-Bold -Color-Bold-Blue">&#39;pooled&#39;</span><span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span>
-    weights<span class=" -Color -Color-Bold -Color-Bold-Yellow">=(</span><span class=" -Color -Color-Bold -Color-Bold-Green">None</span><span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span> <span class=" -Color -Color-Bold -Color-Bold-Green">None</span><span class=" -Color -Color-Bold -Color-Bold-Yellow">),</span>
-    transform<span class=" -Color -Color-Bold -Color-Bold-Yellow">=</span><span class=" -Color -Color-Bold -Color-Bold-Green">None</span><span class=" -Color -Color-Bold -Color-Bold-Yellow">,</span>
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">)</span>
-<span class=" -Color -Color-Bold -Color-Bold-Red">Docstring:</span>
-test of (non-)equivalence for two independent samples
-
-TOST: two one-sided t tests
-
-null hypothesis:  m1 - m2 &lt; low or m1 - m2 &gt; upp
-alternative hypothesis:  low &lt; m1 - m2 &lt; upp
-
-where m1, m2 are the means, expected values of the two samples.
-
-If the pvalue is smaller than a threshold, say 0.05, then we reject the
-hypothesis that the difference between the two samples is larger than the
-the thresholds given by low and upp.
-
-Parameters
-----------
-x1 : array_like, 1-D or 2-D
-    first of the two independent samples, see notes for 2-D case
-x2 : array_like, 1-D or 2-D
-    second of the two independent samples, see notes for 2-D case
-low, upp : float
-    equivalence interval low &lt; m1 - m2 &lt; upp
-usevar : str, &#39;pooled&#39; or &#39;unequal&#39;
-    If ``pooled``, then the standard deviation of the samples is assumed to be
-    the same. If ``unequal``, then Welch ttest with Satterthwait degrees
-    of freedom is used
-weights : tuple of None or ndarrays
-    Case weights for the two samples. For details on weights see
-    ``DescrStatsW``
-transform : None or function
-    If None (default), then the data is not transformed. Given a function,
-    sample data and thresholds are transformed. If transform is log, then
-    the equivalence interval is in ratio: low &lt; m1 / m2 &lt; upp
-
-Returns
--------
-pvalue : float
-    pvalue of the non-equivalence test
-t1, pv1 : tuple of floats
-    test statistic and pvalue for lower threshold test
-t2, pv2 : tuple of floats
-    test statistic and pvalue for upper threshold test
-
-Notes
------
-The test rejects if the 2*alpha confidence interval for the difference
-is contained in the ``(low, upp)`` interval.
-
-This test works also for multi-endpoint comparisons: If d1 and d2
-have the same number of columns, then each column of the data in d1 is
-compared with the corresponding column in d2. This is the same as
-comparing each of the corresponding columns separately. Currently no
-multi-comparison correction is used. The raw p-values reported here can
-be correction with the functions in ``multitest``.
-<span class=" -Color -Color-Bold -Color-Bold-Red">File:</span>      c:\users\rober\miniconda3\envs\bio_39\lib\site-packages\statsmodels\stats\weightstats.py
-<span class=" -Color -Color-Bold -Color-Bold-Red">Type:</span>      function
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1d290d2f940&gt;
 </pre></div>
 </div>
+<img alt="../_images/aa39527ccd2e88578b56f997602c2e61f6202049925bd1045e7c872d01b815ff.png" src="../_images/aa39527ccd2e88578b56f997602c2e61f6202049925bd1045e7c872d01b815ff.png" />
+</div>
+</div>
+<p>To compare the images later, we also save this one to disk.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imsave</span><span class="p">(</span><span class="s2">&quot;blobs_labels_skimage.tif&quot;</span><span class="p">,</span> <span class="n">skimage_label_image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\AppData\Local\Temp\ipykernel_6744\179771585.py:1: UserWarning: blobs_labels_skimage.tif is a low contrast image
+  imsave(&quot;blobs_labels_skimage.tif&quot;, skimage_label_image)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="implementation-3-clesperanto-python">
+<h2>Implementation 3: clesperanto / python<a class="headerlink" href="#implementation-3-clesperanto-python" title="Permalink to this heading">#</a></h2>
+<p>The third implementation of the same workflow also runs from python and uses <a class="reference external" href="https://github.com/clEsperanto/pyclesperanto_prototype">pyclesperanto</a>.</p>
+<p><strong>Note:</strong> When executing this script, you should adapt the path of the image data so that it runs on your computer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
+
+<span class="n">blobs_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;C:/structure/code/clesperanto_SIMposium/blobs.tif&quot;</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">blobs_image</span><span class="p">,</span> <span class="s2">&quot;Blobs&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+
+<span class="c1"># Threshold Otsu</span>
+<span class="n">binary_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">create_like</span><span class="p">(</span><span class="n">blobs_image</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">blobs_image</span><span class="p">,</span> <span class="n">binary_image</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">binary_image</span><span class="p">,</span> <span class="s2">&quot;Threshold Otsu of CLIJ2 Image of blobs.gif&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Connected Components Labeling Box</span>
+<span class="n">label_image</span> <span class="o">=</span> <span class="n">cle</span><span class="o">.</span><span class="n">create_like</span><span class="p">(</span><span class="n">binary_image</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">connected_components_labeling_box</span><span class="p">(</span><span class="n">binary_image</span><span class="p">,</span> <span class="n">label_image</span><span class="p">)</span>
+
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">label_image</span><span class="p">,</span> <span class="s2">&quot;Connected Components Labeling Box of Threshold Otsu of CLIJ2 Image of blobs.gif&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">64.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/07f150782728e957fcf976380051de87c0faa3adbc2c7ade8b12da32f107ee1d.png" src="../_images/07f150782728e957fcf976380051de87c0faa3adbc2c7ade8b12da32f107ee1d.png" />
+<img alt="../_images/aac24fde3fd260040b5033ca92c02ff51dae5ae320de2449b8e8e86ef339dc9d.png" src="../_images/aac24fde3fd260040b5033ca92c02ff51dae5ae320de2449b8e8e86ef339dc9d.png" />
+<img alt="../_images/177acdc0fce60609e9cc9d1df01ec420b31863a72853b11ca38319ae2e1f8e5d.png" src="../_images/177acdc0fce60609e9cc9d1df01ec420b31863a72853b11ca38319ae2e1f8e5d.png" />
+</div>
+</div>
+<p>We will also save this image for later comparison.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imsave</span><span class="p">(</span><span class="s2">&quot;blobs_labels_clesperanto_python.tif&quot;</span><span class="p">,</span> <span class="n">label_image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="implementation-4-clesperanto-jython">
+<h2>Implementation 4: clesperanto / Jython<a class="headerlink" href="#implementation-4-clesperanto-jython" title="Permalink to this heading">#</a></h2>
+<p>The fourth implementation uses clesperanto within Fiji. To make this script run in Fiji, please activate the clij, <a class="reference external" href="https://clij.github.io/">clij2</a> and <a class="reference external" href="https://clij.github.io/clijx-assistant/">clijx-assistant</a> update sites in your Fiji. You may notice that this script is identical with the above one. Only saving the result works differently.</p>
+<p><strong>Note:</strong> When executing this script, you should adapt the path of the image data so that it runs on your computer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;blobs_segmentation_clesperanto.py&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># To make this script run in Fiji, please activate the clij, clij2
+# and clijx-assistant update sites in your Fiji. 
+# Read more: 
+# https://clij.github.io/
+# 
+# To make this script run in python, install pyclesperanto_prototype:
+# conda install -c conda-forge pyopencl
+# pip install pyclesperanto_prototype
+# Read more: 
+# https://clesperanto.net
+# 
+import pyclesperanto_prototype as cle
+
+blobs_image = cle.imread(&quot;C:/structure/code/clesperanto_SIMposium/blobs.tif&quot;)
+
+cle.imshow(blobs_image, &quot;Blobs&quot;, False, 0, 255)
+
+# Threshold Otsu
+binary_image = cle.create_like(blobs_image)
+cle.threshold_otsu(blobs_image, binary_image)
+
+cle.imshow(binary_image, &quot;Threshold Otsu of CLIJ2 Image of blobs.gif&quot;, False, 0.0, 1.0)
+
+# Connected Components Labeling Box
+label_image = cle.create_like(binary_image)
+cle.connected_components_labeling_box(binary_image, label_image)
+
+cle.imshow(label_image, &quot;Connected Components Labeling Box of Threshold Otsu of CLIJ2 Image of blobs.gif&quot;, True, 0.0, 64.0)
+
+# The following code is ImageJ specific. If you run this code from 
+# Python, consider replacing this part with skimage.io.imsave
+from ij import IJ
+IJ.saveAs(&quot;tif&quot;,&quot;C:/structure/code/clesperanto_SIMposium/blobs_labels_clesperanto_imagej.tif&quot;);
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will also take a look at the result of this workflow:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imagej_label_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;blobs_labels_clesperanto_imagej.tif&quot;</span><span class="p">)</span>
+<span class="n">visualization</span> <span class="o">=</span> <span class="n">label2rgb</span><span class="p">(</span><span class="n">imagej_label_image</span><span class="p">,</span> <span class="n">bg_label</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">visualization</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1d291513a90&gt;
+</pre></div>
+</div>
+<img alt="../_images/aa39527ccd2e88578b56f997602c2e61f6202049925bd1045e7c872d01b815ff.png" src="../_images/aa39527ccd2e88578b56f997602c2e61f6202049925bd1045e7c872d01b815ff.png" />
 </div>
 </div>
 </section>
@@ -1124,7 +993,7 @@ be correction with the functions in ``multitest``.
         },
         kernelOptions: {
             name: "python3",
-            path: "./21_segmentation_comparison"
+            path: "./29_algorithm_validation"
         },
         predefinedOutput: true
     }
@@ -1140,20 +1009,20 @@ be correction with the functions in ``multitest``.
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="visual_comparison.html"
+       href="validate-spot-counting.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Visual labeling comparison</p>
+        <p class="prev-next-title">Validation of spot counting pipelines</p>
       </div>
     </a>
     <a class="right-next"
-       href="../22_feature_extraction/readme.html"
+       href="visual_comparison.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Feature extraction</p>
+        <p class="prev-next-title">Visual labeling comparison</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1172,10 +1041,11 @@ be correction with the functions in ``multitest``.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-label-counts">Comparing label counts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantitative-comparison">Quantitative comparison</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#student-s-t-test-testing-for-differences">Student’s t-test - testing for differences</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-sided-t-test-for-equivalence-testing">Two-sided t-test for equivalence testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-1-imagej">Implementation 1: ImageJ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-2-scikit-image">Implementation 2: scikit-image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-3-clesperanto-python">Implementation 3: clesperanto / python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-4-clesperanto-jython">Implementation 4: clesperanto / Jython</a></li>
 </ul>
   </nav></div>
 
