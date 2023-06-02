@@ -12,3 +12,4 @@ mamba install btrack -c conda-forge
 
 See also
 * [LapTrack](https://github.com/yfukai/laptrack)
+* [Tracking blog post](https://focalplane.biologists.com/2023/06/01/tracking-in-napari/)
